@@ -2,8 +2,8 @@ package org.miprojekt.turnieverwaltung;
 
 public class Main {
 
-	public static void main(String[] args) {
-		new Turnierverwaltung();
+	public static void main(int args[]) {
+		
 	}
-
+	
 }
