@@ -16,7 +16,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 		
-		stage.setTitle("Rocket Ligue Turnierverwaltung");
+		stage.setTitle("Rocket League Turnierverwaltung");
 		
 		StackPane root = new StackPane();
 		
