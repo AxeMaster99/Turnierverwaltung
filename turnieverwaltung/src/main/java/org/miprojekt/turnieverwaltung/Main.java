@@ -25,7 +25,7 @@ public class Main extends Application {
 	public void start(Stage stage) throws Exception {
 		this.stage = stage;
 		
-		stage.setTitle("Rocket League Turnierverwaltung GUI Test");
+		stage.setTitle("Turnierverwaltung");
 				
 		this.scenes.put("splashscreen", new Scene(new Splashscreen(this), WINDOWWIDTH, WINDOWHEIGHT));
 		this.scenes.put("settings", new Scene(new Settings(this), WINDOWWIDTH, WINDOWHEIGHT));
