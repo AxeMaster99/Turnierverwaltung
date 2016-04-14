@@ -1,12 +1,20 @@
 package org.miprojekt.turnieverwaltung;
 
+import java.util.HashMap;
+
+import org.miprojekt.turnieverwaltung.gui.windows.Settings;
+import org.miprojekt.turnieverwaltung.gui.windows.Splashscreen;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-
 public class Main extends Application {
+	
+	private final int WINDOWWIDTH = 800;
+	private final int WINDOWHEIGHT = 600;
+	private Stage stage;
+	private HashMap<String, Scene> scenes = new HashMap<String, Scene>();
 	
 	public static void main(String args[]) {
 		new Steuerung();
@@ -15,16 +23,23 @@ public class Main extends Application {
 	
 	@Override
 	public void start(Stage stage) throws Exception {
+		this.stage = stage;
 		
-		stage.setTitle("Rocket League Turnierverwaltung");
+		stage.setTitle("Rocket League Turnierverwaltung GUI Test");
+				
+		this.scenes.put("splashscreen", new Scene(new Splashscreen(this), WINDOWWIDTH, WINDOWHEIGHT));
+		this.scenes.put("settings", new Scene(new Settings(this), WINDOWWIDTH, WINDOWHEIGHT));
 		
-		StackPane root = new StackPane();
-		
-		Scene scene = new Scene(root, 800, 600);
-		
-		stage.setScene(scene);
+		stage.setScene(this.scenes.get("splashscreen"));
 		stage.show();
-		
+	}
+	
+	public Stage getStage() {
+		return this.stage;
+	}
+	
+	public Scene getScreen(String key) {
+		return this.scenes.get(key);
 	}
 	
 }
