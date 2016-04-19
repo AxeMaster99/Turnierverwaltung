@@ -68,7 +68,7 @@ public class Mannschaftsnamen extends SceneParent {
 				alert.setHeaderText("Es ist ein Fehler aufgetreten");
 				alert.setContentText("Anzahl der Mannschaften erreicht");
 				alert.showAndWait();
-			} else if (t_teamnames.getText().equals("")) {
+			} else if (t_teamnames.getText().replace(" ", "").length() == 0) {
 				Alert alert = new Alert(AlertType.ERROR);
 				alert.setTitle("Fehler");
 				alert.setHeaderText("Es ist ein Fehler aufgetreten");
