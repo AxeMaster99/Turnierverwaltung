@@ -35,7 +35,7 @@ public class Splashscreen extends SceneParent {
 		
 		this.getChildren().add(bp);
 		
-		timer = new Timeline(new KeyFrame(Duration.seconds(3), new EventHandler<ActionEvent>() {
+		timer = new Timeline(new KeyFrame(Duration.seconds(0.1), new EventHandler<ActionEvent>() {
 		    @Override
 		    public void handle(ActionEvent event) {
 		    	main.getStage().setScene(main.getScreen("settings"));
