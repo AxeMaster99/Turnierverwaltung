@@ -11,6 +11,7 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ProgressIndicator;
@@ -20,13 +21,16 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 
+
 public class Mannschaftsnamen extends SceneParent {
 
 	private int anzahlMannschaften;
-	private int cnt = 0; // Globale Laufvariable
+	private int cnt = 0;
+	private ObservableList<String> teams = FXCollections.observableArrayList();
+	private ListView<String> lb_teams = new ListView<String>(teams);
 	private ProgressBar pb_fortschritt = new ProgressBar(0);
 	private ProgressIndicator pi = new ProgressIndicator(0);
-	private Button b_submit = new Button("OK");
+	private Button b_submit = new Button("Bestätigen");
 	private GridPane grid = new GridPane();
 	private Button b_add = new Button("hinzufügen");
 	private Button b_delete = new Button("entfernen");
@@ -39,27 +43,35 @@ public class Mannschaftsnamen extends SceneParent {
 		super(main);
 		this.anzahlMannschaften = anzahlMannschaften;
 
+		grid.setPadding(new Insets(20));
+		
+		grid.add(new Label("Mannschaftsname:"), 0,0 );
+
+		grid.add(t_teamnames, 0, 1, 2, 1);
+		grid.add(b_add, 2, 1);
+		grid.add(b_autofill, 3, 1);
+
+		grid.add(lb_teams, 0, 2);
+		GridPane.setColumnSpan(lb_teams, 4);
+
+		grid.add(b_edit, 0, 3);
+		grid.add(b_delete, 1, 3);
+
+		grid.add(pb_fortschritt, 0, 4, 4, 1);
+		pb_fortschritt.setPrefWidth(250);
+
+		grid.add(pi, 3, 4);
+
+		grid.add(b_submit, 3, 5);
 		b_submit.setDisable(true);
 
-		ObservableList<String> teams = FXCollections.observableArrayList();
-		ListView<String> lb_teams = new ListView<String>(teams);
+		grid.add(b_back, 0, 5);
 
-		GridPane.setColumnSpan(lb_teams, 2);
-		GridPane.setColumnSpan(pb_fortschritt, 1);
-		pb_fortschritt.setMinWidth(400);
-
-		grid.add(t_teamnames, 0, 0);
-		grid.add(b_add, 1, 0);
-		grid.add(b_autofill, 2, 0);
-		grid.add(b_delete, 0, 2);
-		grid.add(b_edit, 1, 2);
-		grid.setPadding(new Insets(25));
-		grid.add(pb_fortschritt, 1, 3);
-		grid.add(pi, 0, 3);
-		grid.add(b_submit, 3, 4);
-		grid.add(b_back, 0, 4);
-
-		GridPane.setMargin(t_teamnames, new Insets(0, 25, 0, 0));
+		GridPane.setMargin(lb_teams, new Insets(15, 0, 15, 0));
+		GridPane.setMargin(b_add, new Insets(0, 15, 0, 15));
+		GridPane.setMargin(b_edit, new Insets(0, 15, 0, 0));
+		GridPane.setMargin(pb_fortschritt, new Insets(20));
+		GridPane.setMargin(pi, new Insets(0,0,20,0));
 
 		b_add.setOnAction((event) -> {
 			if (cnt >= anzahlMannschaften) {
@@ -133,7 +145,11 @@ public class Mannschaftsnamen extends SceneParent {
 						alert.showAndWait();
 					} else {
 						teams.set(lb_teams.getSelectionModel().getSelectedIndex(), result.get());
-						System.out.println("Neuer Name: " + result.get());
+						Alert alert = new Alert(AlertType.INFORMATION);
+						alert.setTitle("Information");
+						alert.setHeaderText("Die Mannschaft wurde umbenannt");
+						alert.setContentText("Die Mannschaft wurde zu " +result.get()+" umbenannt.");
+						alert.showAndWait();
 					}
 				}
 			}
@@ -144,29 +160,32 @@ public class Mannschaftsnamen extends SceneParent {
 				b_add.fire();
 			}
 		});
-		
+
 		b_back.setOnAction((event) -> {
 			main.getStage().setScene(main.getScreen("settings"));
 		});
 
 		b_autofill.setOnAction((event) -> {
 			teams.clear();
-			for(int i = 1; i <= anzahlMannschaften; i++) {
-				teams.add("Mannschaft "+i);
+			for (int i = 1; i <= anzahlMannschaften; i++) {
+				teams.add("Mannschaft " + i);
 			}
 			cnt = anzahlMannschaften;
 			updateFortschritt();
 		});
 		
-		grid.add(lb_teams, 0, 1);
-		GridPane.setMargin(lb_teams, new Insets(25, 0, 0, 0));
+		b_submit.setOnAction((event)->{
+			main.erstelleMannschaften(teams);
+		});
+		
+
 		this.getChildren().add(grid);
 	}
 
 	public void updateFortschritt() {
 		double cnt_double = cnt;
 		double anzMannschaftenDouble = anzahlMannschaften;
-		this.pb_fortschritt.setProgress(1 / anzMannschaftenDouble * cnt);
+		this.pb_fortschritt.setProgress(1 / anzMannschaftenDouble * cnt_double);
 		this.pi.setProgress(this.pb_fortschritt.getProgress());
 		if (cnt == anzahlMannschaften) {
 			b_submit.setDisable(false);
