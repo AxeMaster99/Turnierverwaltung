@@ -2,18 +2,35 @@ package org.miprojekt.turnieverwaltung;
 
 public class Steuerung {
 
-	private Turnier turnier;
+	int anzahl_teams ;
 	
-	public Steuerung() {
-		this.turnier = new Turnier(this);
+	public Steuerung (){
 	}
-
-	public Turnier getTurnier() {
-		return turnier;
+	
+	void set_anzahl_teams(int teams){
+		this.anzahl_teams = teams;
 	}
-
-	public void setTurnier(Turnier turnier) {
-		this.turnier = turnier;
+	
+	int get_anzahl_teams(){
+		return this.anzahl_teams;
 	}
+	
+	void create_tunier(){
+		
+	}
+	
+	void spiel_starten(){
+		
+	}
+	
+	void set_tor(){
+		
+	}
+	
+	void set_team_name(){
+		
+	}
+	
+	
 	
 }
