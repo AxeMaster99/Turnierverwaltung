@@ -1,5 +1,6 @@
 package org.miprojekt.turnieverwaltung;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.miprojekt.turnieverwaltung.gui.SceneParent;
@@ -7,6 +8,7 @@ import org.miprojekt.turnieverwaltung.gui.windows.Mannschaftsnamen;
 import org.miprojekt.turnieverwaltung.gui.windows.Settings;
 import org.miprojekt.turnieverwaltung.gui.windows.Splashscreen;
 
+import backend.Mannschaft;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
@@ -18,6 +20,7 @@ public class Main extends Application {
 	private final int WINDOWHEIGHT = 600;
 	private Stage stage;
 	private HashMap<String, Scene> scenes = new HashMap<String, Scene>();
+	private ArrayList<Mannschaft> mannschaften = new ArrayList<Mannschaft>();
 	
 	public static void main(String args[]) {
 		new Steuerung();
@@ -49,7 +52,10 @@ public class Main extends Application {
 	}
 
 	public void erstelleMannschaften(ObservableList<String> teams) {
-		//TODO: implement!
+		for(int i = 0; i < teams.size(); i++) {
+			this.mannschaften.add(new Mannschaft(teams.get(i)));
+		}
+		System.out.println(this.mannschaften);
 	}
 	
 }

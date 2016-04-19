@@ -33,7 +33,7 @@ public class Steuerung {
 	}
 	
 	void set_team_name(String team_name, int team_id){
-		manschaften[team_id].set_name(team_name);	
+		// manschaften[team_id].set_name(team_name);	
 	}
 	
 	

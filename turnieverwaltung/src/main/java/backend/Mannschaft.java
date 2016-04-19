@@ -4,8 +4,13 @@ public class Mannschaft {
 		private String name;
 		private Spieler spieler;
 		
-		public void set_name(String name){
+		public Mannschaft(String name){
 			this.name = name;
+		}
+		
+		@Override
+		public String toString() {
+			return this.name;
 		}
 		
 }
