@@ -12,15 +12,19 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 
 public class Mannschaftsnamen extends SceneParent {
 
 	private int anzahlMannschaften;
 	private int cnt = 0; // Globale Laufvariable
-
+	ProgressBar pb_fortschritt = new ProgressBar(0);
+	
 	public Mannschaftsnamen(Main main, int anzahlMannschaften) {
 		super(main);
 		this.anzahlMannschaften = anzahlMannschaften;
@@ -30,17 +34,20 @@ public class Mannschaftsnamen extends SceneParent {
 		Button b_delete = new Button("entfernen");
 		Button b_edit = new Button("Name ändern");
 		TextField t_teamnames = new TextField();
-
+		
 		ObservableList<String> teams = FXCollections.observableArrayList();
 		ListView<String> lb_teams = new ListView<String>(teams);
 
-		grid.setColumnSpan(lb_teams, 2);
+		GridPane.setColumnSpan(lb_teams, 2);
+		GridPane.setColumnSpan(pb_fortschritt, 2);
+		pb_fortschritt.setMinWidth(400);
 
 		grid.add(t_teamnames, 0, 0);
 		grid.add(b_add, 1, 0);
 		grid.add(b_delete, 0, 2);
 		grid.add(b_edit, 1, 2);
 		grid.setPadding(new Insets(25));
+		grid.add(pb_fortschritt, 0, 3);
 
 		GridPane.setMargin(t_teamnames, new Insets(0, 25, 0, 0));
 
@@ -72,7 +79,9 @@ public class Mannschaftsnamen extends SceneParent {
 				}
 				if (!teamSchonVorhanden) {
 					teams.add(t_teamnames.getText());
+					t_teamnames.requestFocus();
 					cnt++;
+					updateFortschritt();
 				}
 				t_teamnames.setText("");
 			}
@@ -88,6 +97,7 @@ public class Mannschaftsnamen extends SceneParent {
 			} else {
 				teams.remove(lb_teams.getSelectionModel().getSelectedIndex());
 				cnt--;
+				updateFortschritt();
 			}
 		});
 
@@ -111,9 +121,22 @@ public class Mannschaftsnamen extends SceneParent {
 			}
 		});
 
+		t_teamnames.setOnKeyReleased((KeyEvent event) -> {
+			if (event.getCode() == KeyCode.ENTER) {
+				b_add.fire();
+			}
+		});
+
 		grid.add(lb_teams, 0, 1);
 		GridPane.setMargin(lb_teams, new Insets(25, 0, 0, 0));
 		this.getChildren().add(grid);
+	}
+	
+	
+	public void updateFortschritt() {
+		double cnt_double = cnt;
+		double anzMannschaftenDouble = anzahlMannschaften;
+		this.pb_fortschritt.setProgress(1/anzMannschaftenDouble*cnt);
 	}
 
 }
