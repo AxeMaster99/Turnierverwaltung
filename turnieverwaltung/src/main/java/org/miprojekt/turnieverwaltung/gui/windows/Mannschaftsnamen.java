@@ -32,7 +32,7 @@ public class Mannschaftsnamen extends SceneParent {
 	private Button b_delete = new Button("entfernen");
 	private Button b_edit = new Button("Name ändern");
 	private Button b_back = new Button("zurück");
-
+	private Button b_autofill = new Button("aut. füllen");
 	private TextField t_teamnames = new TextField();
 
 	public Mannschaftsnamen(Main main, int anzahlMannschaften) {
@@ -50,6 +50,7 @@ public class Mannschaftsnamen extends SceneParent {
 
 		grid.add(t_teamnames, 0, 0);
 		grid.add(b_add, 1, 0);
+		grid.add(b_autofill, 2, 0);
 		grid.add(b_delete, 0, 2);
 		grid.add(b_edit, 1, 2);
 		grid.setPadding(new Insets(25));
@@ -148,6 +149,15 @@ public class Mannschaftsnamen extends SceneParent {
 			main.getStage().setScene(main.getScreen("settings"));
 		});
 
+		b_autofill.setOnAction((event) -> {
+			teams.clear();
+			for(int i = 1; i <= anzahlMannschaften; i++) {
+				teams.add("Mannschaft "+i);
+			}
+			cnt = anzahlMannschaften;
+			updateFortschritt();
+		});
+		
 		grid.add(lb_teams, 0, 1);
 		GridPane.setMargin(lb_teams, new Insets(25, 0, 0, 0));
 		this.getChildren().add(grid);
