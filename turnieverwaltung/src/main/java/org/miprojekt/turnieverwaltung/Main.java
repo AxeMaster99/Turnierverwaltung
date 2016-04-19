@@ -31,7 +31,6 @@ public class Main extends Application {
 				
 		this.scenes.put("splashscreen", new Scene(new Splashscreen(this), WINDOWWIDTH, WINDOWHEIGHT));
 		this.scenes.put("settings", new Scene(new Settings(this), WINDOWWIDTH, WINDOWHEIGHT));
-		this.scenes.put("mannschaftsnamen", new Scene(new Mannschaftsnamen(this),WINDOWWIDTH,WINDOWHEIGHT));
 		stage.setScene(this.scenes.get("splashscreen"));
 		stage.show();
 	}
@@ -41,6 +40,11 @@ public class Main extends Application {
 	
 	public Scene getScreen(String key) {
 		return this.scenes.get(key);
+	}
+
+	public void setMannschaftsnamenScreen(int anzahlMannschaften, String screenName) {
+		this.scenes.put(screenName, new Scene(new Mannschaftsnamen(this,anzahlMannschaften),WINDOWWIDTH,WINDOWHEIGHT));
+		this.getStage().setScene(this.getScreen(screenName));
 	}
 	
 }

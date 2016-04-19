@@ -32,7 +32,7 @@ public class Settings extends SceneParent {
 			l_teamsMade.setText("Teams: " + c_teams.getValue() + ". Bestätigen Drücken.");
 		});
 		b_teams.setOnAction((event) -> {
-			main.getStage().setScene(main.getScreen("mannschaftsnamen"));
+			main.setMannschaftsnamenScreen(c_teams.getValue(),"mannschaftsnamen");
 		});
 
 		grid.add(l_teams, 0, 0);
