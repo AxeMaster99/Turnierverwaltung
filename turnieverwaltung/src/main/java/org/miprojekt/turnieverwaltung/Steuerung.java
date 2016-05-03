@@ -1,5 +1,7 @@
 package org.miprojekt.turnieverwaltung;
 
+import javafx.collections.ObservableList;
+
 public class Steuerung {
 
 	int anzahl_teams ;
@@ -20,7 +22,7 @@ public class Steuerung {
 		return this.anzahl_teams;
 	}
 	
-	void create_tunier(){
+	public void create_tunier(ObservableList<String> teams){
 		
 	}
 	

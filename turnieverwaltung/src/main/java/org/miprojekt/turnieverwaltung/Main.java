@@ -6,6 +6,7 @@ import java.util.HashMap;
 import org.miprojekt.turnieverwaltung.gui.SceneParent;
 import org.miprojekt.turnieverwaltung.gui.windows.Mannschaftsnamen;
 import org.miprojekt.turnieverwaltung.gui.windows.Settings;
+import org.miprojekt.turnieverwaltung.gui.windows.SpielBaum_Screen;
 import org.miprojekt.turnieverwaltung.gui.windows.Splashscreen;
 
 import backend.Mannschaft;
@@ -35,6 +36,7 @@ public class Main extends Application {
 				
 		this.scenes.put("splashscreen", new Scene(new Splashscreen(this), WINDOWWIDTH, WINDOWHEIGHT));
 		this.scenes.put("settings", new Scene(new Settings(this), WINDOWWIDTH, WINDOWHEIGHT));
+		this.scenes.put("spielbaum", new Scene(new SpielBaum_Screen(this),WINDOWWIDTH,WINDOWHEIGHT));
 		stage.setScene(this.scenes.get("splashscreen"));
 		stage.show();
 	}

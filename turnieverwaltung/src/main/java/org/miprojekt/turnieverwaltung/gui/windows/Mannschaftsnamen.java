@@ -176,6 +176,8 @@ public class Mannschaftsnamen extends SceneParent {
 		
 		b_submit.setOnAction((event)->{
 			main.erstelleMannschaften(teams);
+			//steuerung.create_tunier(teams); //Hier wurde der Zugriff geändert: -> direkt auf die Steuerung.		
+	    	main.getStage().setScene(main.getScreen("spielbaum"));
 		});
 		
 
