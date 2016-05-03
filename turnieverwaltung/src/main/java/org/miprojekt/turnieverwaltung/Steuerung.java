@@ -4,7 +4,7 @@ import javafx.collections.ObservableList;
 
 public class Steuerung {
 
-	int anzahl_teams ;
+	int anzahl_teams;
 	backend.Mannschaft[] manschaften ;
 	
 	
@@ -23,7 +23,7 @@ public class Steuerung {
 	}
 	
 	public void create_tunier(ObservableList<String> teams){
-		
+		anzahl_teams = teams.size();
 	}
 	
 	void spiel_starten(){
