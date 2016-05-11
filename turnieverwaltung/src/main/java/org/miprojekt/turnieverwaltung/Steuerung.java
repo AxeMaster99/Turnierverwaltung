@@ -15,10 +15,10 @@ public class Steuerung {
 	public void setTeams(ObservableList<String> teams) {
 
 		this.teams = teams;
-		Collections.shuffle(teams);
+		// Collections.shuffle(teams);
 
-		// Matches erstellen
-		for (int i = 0; i < teams.size() - 1; i = i + 2) {
+		// Matches erstellen 
+		for (int i = 0; i < teams.size() / 2; i = i + 2) {
 			Match m = new Match(new Mannschaft(teams.get(i)), new Mannschaft(teams.get(i + 1)));
 			matches.add(m);
 		}

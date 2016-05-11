@@ -2,10 +2,15 @@ package backend;
 
 public class Match {
 
-	Mannschaft mannschaft1;
-	Mannschaft mannschaft2;
+	private static int indexCounter = 1;
+	private int index;
+	protected Mannschaft mannschaft1;
+	protected Mannschaft mannschaft2;
 	
 	public Match(Mannschaft m1, Mannschaft m2) {
+		index = indexCounter;
+		indexCounter++;
+		System.out.println("index erstellet "+index);
 		this.mannschaft1 = m1;
 		this.mannschaft2 = m2;
 	}
@@ -18,5 +23,8 @@ public class Match {
 		return mannschaft2;
 	}
 	
+	public int getIndex() {
+		return this.index;
+	}
 	
 }
