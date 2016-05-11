@@ -1,6 +1,5 @@
 package org.miprojekt.turnieverwaltung.gui.windows;
 
-import java.util.ArrayList;
 import java.util.Optional;
 
 import org.miprojekt.turnieverwaltung.Main;
@@ -177,8 +176,7 @@ public class Mannschaftsnamen extends SceneParent {
 		
 		b_submit.setOnAction((event)->{
 			steuerung.setTeams(teams);
-			((SpielBaum_Screen) main.getScreen("spielbaum").getRoot()).init();
-			main.getStage().setScene(main.getScreen("spielbaum"));
+			main.setSpielBaumScreen(steuerung.getMatches(), "spielbaum");
 		});
 		
 

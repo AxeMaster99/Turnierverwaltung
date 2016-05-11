@@ -1,12 +1,14 @@
 package org.miprojekt.turnieverwaltung;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.miprojekt.turnieverwaltung.gui.windows.Mannschaftsnamen;
 import org.miprojekt.turnieverwaltung.gui.windows.Settings;
-import org.miprojekt.turnieverwaltung.gui.windows.SpielBaum_Screen;
+import org.miprojekt.turnieverwaltung.gui.windows.SpielBaum;
 import org.miprojekt.turnieverwaltung.gui.windows.Splashscreen;
 
+import backend.Match;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -19,7 +21,6 @@ public class Main extends Application {
 	private HashMap<String, Scene> scenes = new HashMap<String, Scene>();
 	
 	public static void main(String args[]) {
-		new Steuerung();
 		launch(args);
 	}
 	
@@ -31,7 +32,6 @@ public class Main extends Application {
 				
 		this.scenes.put("splashscreen", new Scene(new Splashscreen(this), WINDOWWIDTH, WINDOWHEIGHT));
 		this.scenes.put("settings", new Scene(new Settings(this), WINDOWWIDTH, WINDOWHEIGHT));
-		this.scenes.put("spielbaum", new Scene(new SpielBaum_Screen(this),WINDOWWIDTH,WINDOWHEIGHT));
 		stage.setScene(this.scenes.get("splashscreen"));
 		stage.show();
 	}
@@ -45,6 +45,11 @@ public class Main extends Application {
 
 	public void setMannschaftsnamenScreen(int anzahlMannschaften, String screenName) {
 		this.scenes.put(screenName, new Scene(new Mannschaftsnamen(this,anzahlMannschaften),WINDOWWIDTH,WINDOWHEIGHT));
+		this.getStage().setScene(this.getScreen(screenName));
+	}
+	
+	public void setSpielBaumScreen(ArrayList<Match> matches, String screenName) {
+		this.scenes.put(screenName, new Scene(new SpielBaum(this,matches),WINDOWWIDTH,WINDOWHEIGHT));
 		this.getStage().setScene(this.getScreen(screenName));
 	}
 	
