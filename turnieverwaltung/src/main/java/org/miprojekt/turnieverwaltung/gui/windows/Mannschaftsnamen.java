@@ -176,17 +176,14 @@ public class Mannschaftsnamen extends SceneParent {
 		});
 		
 		b_submit.setOnAction((event)->{
-			goToSpielbaum();
+			steuerung.setTeams(teams);
+			main.getStage().setScene(main.getScreen("spielbaum"));
 		});
 		
 
 		this.getChildren().add(grid);
 	}
 	
-	public void goToSpielbaum() {
-    	main.getStage().setScene(main.getScreen("spielbaum"));
-		steuerung.setTeams(this.teams);
-	}
 
 	public void updateFortschritt() {
 		double cnt_double = cnt;

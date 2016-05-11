@@ -8,7 +8,7 @@ import javafx.scene.layout.StackPane;
 public class SceneParent extends StackPane {
 
 	protected Main main;
-	protected Steuerung steuerung; //?!
+	protected Steuerung steuerung = new Steuerung();
 
 	public SceneParent(Main main) {
 		this.main = main;

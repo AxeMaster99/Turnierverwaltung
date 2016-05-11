@@ -1,17 +1,13 @@
 package org.miprojekt.turnieverwaltung;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
-import org.miprojekt.turnieverwaltung.gui.SceneParent;
 import org.miprojekt.turnieverwaltung.gui.windows.Mannschaftsnamen;
 import org.miprojekt.turnieverwaltung.gui.windows.Settings;
 import org.miprojekt.turnieverwaltung.gui.windows.SpielBaum_Screen;
 import org.miprojekt.turnieverwaltung.gui.windows.Splashscreen;
 
-import backend.Mannschaft;
 import javafx.application.Application;
-import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
