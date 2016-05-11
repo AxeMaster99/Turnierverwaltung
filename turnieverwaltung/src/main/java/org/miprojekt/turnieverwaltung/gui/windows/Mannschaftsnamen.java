@@ -1,5 +1,6 @@
 package org.miprojekt.turnieverwaltung.gui.windows;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 import org.miprojekt.turnieverwaltung.Main;
@@ -175,13 +176,16 @@ public class Mannschaftsnamen extends SceneParent {
 		});
 		
 		b_submit.setOnAction((event)->{
-			main.erstelleMannschaften(teams);
-			//steuerung.create_tunier(teams); //Hier wurde der Zugriff geändert: -> direkt auf die Steuerung.		
-	    	main.getStage().setScene(main.getScreen("spielbaum"));
+			goToSpielbaum();
 		});
 		
 
 		this.getChildren().add(grid);
+	}
+	
+	public void goToSpielbaum() {
+    	main.getStage().setScene(main.getScreen("spielbaum"));
+		steuerung.setTeams(this.teams);
 	}
 
 	public void updateFortschritt() {

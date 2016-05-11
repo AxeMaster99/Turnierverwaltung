@@ -1,43 +1,29 @@
 package org.miprojekt.turnieverwaltung;
 
+import java.util.ArrayList;
+import backend.Match;
 import javafx.collections.ObservableList;
 
 public class Steuerung {
 
-	int anzahl_teams;
-	backend.Mannschaft[] manschaften ;
+	private String teams[];
+	private ArrayList<Match> matches = new ArrayList<Match>();
 	
-	
-	public Steuerung (){
+	public void setTeams(ObservableList<String> teams) {
 		
 		
+	  // this.teams = (String[]) objects;
+
+	  // Teams durchmischen
+	  // Collections.shuffle(objects);
+	  /*
+	  for(int i = 0; i < objects.size(); i = i+2) {
+	    Match m = new Match(new Mannschaft(objects.get(i)), new Mannschaft(objects.get(i+1)));
+	    matches.add(m);
+	  }
+	  */
+
+	  
 	}
-	
-	void set_anzahl_teams(int teams){
-		this.anzahl_teams = teams;
-		manschaften = new backend.Mannschaft[teams];
-	}
-	
-	int get_anzahl_teams(){
-		return this.anzahl_teams;
-	}
-	
-	public void create_tunier(ObservableList<String> teams){
-		anzahl_teams = teams.size();
-	}
-	
-	void spiel_starten(){
-		
-	}
-	
-	void set_tor(){
-		
-	}
-	
-	void set_team_name(String team_name, int team_id){
-		// manschaften[team_id].set_name(team_name);	
-	}
-	
-	
 	
 }

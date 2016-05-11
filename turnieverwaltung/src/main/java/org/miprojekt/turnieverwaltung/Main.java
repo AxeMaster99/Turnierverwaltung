@@ -21,7 +21,6 @@ public class Main extends Application {
 	private final int WINDOWHEIGHT = 600;
 	private Stage stage;
 	private HashMap<String, Scene> scenes = new HashMap<String, Scene>();
-	private ArrayList<Mannschaft> mannschaften = new ArrayList<Mannschaft>();
 	
 	public static void main(String args[]) {
 		new Steuerung();
@@ -51,13 +50,6 @@ public class Main extends Application {
 	public void setMannschaftsnamenScreen(int anzahlMannschaften, String screenName) {
 		this.scenes.put(screenName, new Scene(new Mannschaftsnamen(this,anzahlMannschaften),WINDOWWIDTH,WINDOWHEIGHT));
 		this.getStage().setScene(this.getScreen(screenName));
-	}
-
-	public void erstelleMannschaften(ObservableList<String> teams) {
-		for(int i = 0; i < teams.size(); i++) {
-			this.mannschaften.add(new Mannschaft(teams.get(i)));
-		}
-		System.out.println(this.mannschaften);
 	}
 	
 }
