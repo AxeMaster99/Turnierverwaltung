@@ -3,6 +3,7 @@ package org.miprojekt.turnieverwaltung;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import backend.FinalMatch;
 import backend.FolgeMatch;
 import backend.Mannschaft;
 import backend.Match;
@@ -48,35 +49,42 @@ public class Steuerung {
 			anzahlSpalten = 0;
 		}
 
-		ArrayList<Match> matchesLinks = new ArrayList<Match>();
-		ArrayList<Match> matchesRechts = new ArrayList<Match>();
+		ArrayList<Match> matchesLinks = erstelleSeite(anzahlMatchesZus, 0, this.teams.size() / 2);
+		ArrayList<Match> matchesRechts = erstelleSeite(anzahlMatchesZus, this.teams.size() / 2, this.teams.size()-2);
+		
+		// FinalMatch finale = new FinalMatch(matchesLinks.get(matchesLinks.size()), null);
+	}
 
-		int actMatch = 0;
-		for(int i = 0; i < teams.size() / 2; i += 2) {
-			matchesLinks.add(new Match(new Mannschaft(teams.get(i)), new Mannschaft(teams.get(i+1))));
-			
+	private ArrayList<Match> erstelleSeite(int anzahlMatchesZus, int start, int stop) {
+		int actMatch = start;
+		for(int i = start; i < stop; i += 2) {
+			matches.add(new Match(new Mannschaft(teams.get(i)), new Mannschaft(teams.get(i+1))));
 		}
 		for (int i = 0; i < (anzahlMatchesZus / 2); i++) {
+			
+			System.out.println("called");
+			
+			Match pm1 = matches.get(actMatch);
+			Match pm2 = matches.get(actMatch + 1);
 
-			Match pm1 = matchesLinks.get(actMatch);
-			Match pm2 = matchesLinks.get(actMatch + 1);
-
-			matchesLinks.add(new FolgeMatch(pm1, pm2));
+			matches.add(new FolgeMatch(pm1, pm2));
 			actMatch = actMatch + 2;
 		}
 
-		for (int i = 0; i < matchesLinks.size(); i++) {
+		for (int i = 0; i < matches.size(); i++) {
 			System.out.println("Begegnung Nr. " + (i + 1));
-			System.out.println("m1:" + matchesLinks.get(i).getMannschaft1().getName());
-			System.out.println("m2:" + matchesLinks.get(i).getMannschaft2().getName());
-			if (matchesLinks.get(i) instanceof FolgeMatch) {
-				System.out.println("PrevMatch: " + ((FolgeMatch) matchesLinks.get(i)).getPrevMatch1().getIndex());
-				System.out.println("PrevMatch: " + ((FolgeMatch) matchesLinks.get(i)).getPrevMatch2().getIndex());
+			System.out.println("m1:" + matches.get(i).getMannschaft1().getName());
+			System.out.println("m2:" + matches.get(i).getMannschaft2().getName());
+			if (matches.get(i) instanceof FolgeMatch) {
+				System.out.println("PrevMatch: " + ((FolgeMatch) matches.get(i)).getPrevMatch1().getIndex());
+				System.out.println("PrevMatch: " + ((FolgeMatch) matches.get(i)).getPrevMatch2().getIndex());
 			}
 			System.out.println();
 		}
+		
+		return matches;
 	}
-
+	
 	public ArrayList<Match> getMatches() {
 		return this.matches;
 	}
