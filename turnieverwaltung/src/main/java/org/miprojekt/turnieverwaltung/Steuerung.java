@@ -13,7 +13,7 @@ public class Steuerung {
 	private ArrayList<Match> matches = new ArrayList<Match>();
 
 	public void setTeams(ObservableList<String> teams) {
-				
+
 		this.teams = teams;
 		// teams durchmischen
 		Collections.shuffle(teams);
@@ -23,24 +23,22 @@ public class Steuerung {
 			Match m = new Match(new Mannschaft(teams.get(i)), new Mannschaft(teams.get(i + 1)));
 			matches.add(m);
 		}
+
+		for (int i = 0; i < this.teams.size() - 1; i += 2) {
+			System.out.println("Begegnung " + ((i + 2) / 2) + ": ");
+			System.out.println(this.teams.get(i) + " gegen " + this.teams.get(i + 1));
+			System.out.println("");
+		}
 		
-		System.out.println("size: "+matches.size());
-		/*
-		 * System.out.println(matches);
-		 * 
-		 * for(int i = 0; i < this.teams.size()-1; i+=2) { System.out.println(
-		 * "Begegnung " +((i+2)/2)+": "); System.out.println(this.teams.get(i)+
-		 * " gegen "+ this.teams.get(i+1)); System.out.println(""); } //diese
-		 * Ausgabe entspricht eigentlich der darüber! nur zu Testzwecken for(int
-		 * i=0; i<this.matches.size();i++){
-		 * System.out.print(matches.get(i).getMannschaft1().getName() +" gegen "
-		 * ); System.out.println(matches.get(i).getMannschaft2().getName());
-		 * 
-		 * }
-		 */}
+		// diese Ausgabe entspricht eigentlich der darüber! nur zu Testzwecken
+		for (int i = 0; i < this.matches.size(); i++) {
+			System.out.print(matches.get(i).getMannschaft1().getName() + " gegen ");
+			System.out.println(matches.get(i).getMannschaft2().getName());
+
+		}
+	}
 
 	public ArrayList<Match> getMatches() {
-		System.out.println("getMatches size: "+matches.size());
 		return this.matches;
 	}
 

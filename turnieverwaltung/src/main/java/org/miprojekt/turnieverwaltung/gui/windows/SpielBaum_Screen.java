@@ -15,6 +15,7 @@ public class SpielBaum_Screen extends SceneParent {
 	
 	public void init() {
 
+		System.out.println("call init");
 		System.out.println(steuerung.getMatches().size());
 		
 		for(int i = 0; i < steuerung.getMatches().size(); i++) {
