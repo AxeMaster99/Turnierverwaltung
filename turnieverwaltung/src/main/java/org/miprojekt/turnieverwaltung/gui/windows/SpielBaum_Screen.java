@@ -11,6 +11,9 @@ public class SpielBaum_Screen extends SceneParent {
 
 	public SpielBaum_Screen(Main main) {
 		super(main);
+	}
+	
+	public void init() {
 
 		System.out.println(steuerung.getMatches().size());
 		
@@ -34,7 +37,6 @@ public class SpielBaum_Screen extends SceneParent {
 			p.getChildren().add(grid);
 			this.getChildren().add(p);
 		}
-		
 	}
 
 }

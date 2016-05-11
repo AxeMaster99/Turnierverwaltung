@@ -177,6 +177,7 @@ public class Mannschaftsnamen extends SceneParent {
 		
 		b_submit.setOnAction((event)->{
 			steuerung.setTeams(teams);
+			((SpielBaum_Screen) main.getScreen("spielbaum").getRoot()).init();
 			main.getStage().setScene(main.getScreen("spielbaum"));
 		});
 		

@@ -13,6 +13,7 @@ public class Steuerung {
 	private ArrayList<Match> matches = new ArrayList<Match>();
 
 	public void setTeams(ObservableList<String> teams) {
+				
 		this.teams = teams;
 		// teams durchmischen
 		Collections.shuffle(teams);
@@ -22,7 +23,8 @@ public class Steuerung {
 			Match m = new Match(new Mannschaft(teams.get(i)), new Mannschaft(teams.get(i + 1)));
 			matches.add(m);
 		}
-		System.out.println(matches.size());
+		
+		System.out.println("size: "+matches.size());
 		/*
 		 * System.out.println(matches);
 		 * 
@@ -38,6 +40,7 @@ public class Steuerung {
 		 */}
 
 	public ArrayList<Match> getMatches() {
+		System.out.println("getMatches size: "+matches.size());
 		return this.matches;
 	}
 
