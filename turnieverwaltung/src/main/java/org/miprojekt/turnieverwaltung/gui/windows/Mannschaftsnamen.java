@@ -175,8 +175,7 @@ public class Mannschaftsnamen extends SceneParent {
 		});
 		
 		b_submit.setOnAction((event)->{
-			steuerung.setTeams(teams);
-			main.setSpielBaumScreen(steuerung.getMatches(), "spielbaum");
+			main.setSpielBaumScreen("spielbaum",teams);
 		});
 		
 
