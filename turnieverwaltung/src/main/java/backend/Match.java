@@ -10,7 +10,6 @@ public class Match {
 	public Match(Mannschaft m1, Mannschaft m2) {
 		index = indexCounter;
 		indexCounter++;
-		System.out.println("index erstellet "+index);
 		this.mannschaft1 = m1;
 		this.mannschaft2 = m2;
 	}

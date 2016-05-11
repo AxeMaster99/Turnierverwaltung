@@ -50,7 +50,7 @@ public class Steuerung {
 		}
 
 		ArrayList<Match> matchesLinks = erstelleSeite(anzahlMatchesZus, 0, this.teams.size() / 2);
-		ArrayList<Match> matchesRechts = erstelleSeite(anzahlMatchesZus, this.teams.size() / 2, this.teams.size()-2);
+		ArrayList<Match> matchesRechts = erstelleSeite(anzahlMatchesZus, (this.teams.size() / 2)-1, this.teams.size()-1);
 		
 		// FinalMatch finale = new FinalMatch(matchesLinks.get(matchesLinks.size()), null);
 	}
@@ -62,8 +62,6 @@ public class Steuerung {
 		}
 		for (int i = 0; i < (anzahlMatchesZus / 2); i++) {
 			
-			System.out.println("called");
-			
 			Match pm1 = matches.get(actMatch);
 			Match pm2 = matches.get(actMatch + 1);
 
@@ -71,7 +69,7 @@ public class Steuerung {
 			actMatch = actMatch + 2;
 		}
 
-		for (int i = 0; i < matches.size(); i++) {
+		for (int i = start; i < matches.size(); i++) {
 			System.out.println("Begegnung Nr. " + (i + 1));
 			System.out.println("m1:" + matches.get(i).getMannschaft1().getName());
 			System.out.println("m2:" + matches.get(i).getMannschaft2().getName());
