@@ -24,9 +24,7 @@ public class Steuerung {
 	public void erstelleMatches(ObservableList<String> teams) {
 		this.teams = teams;
 
-		Collections.shuffle(teams); // hässlichste ZEILE
-
-
+//		Collections.shuffle(teams); // beste ZEILE
 
 		switch (this.teams.size()) {
 		case 2:
@@ -55,11 +53,10 @@ public class Steuerung {
 
 		erstelleSeite(anzahlMatchesZus, 0, this.teams.size() / 2);
 		erstelleSeite(anzahlMatchesZus, (this.teams.size() / 2) - 1, this.teams.size() - 1);
+
+		// add final match here
+		// this.matches.add(new FinalMatch(null, null));
 		
-		//matchesRechts = erstelleSeite(anzahlMatchesZus, (this.teams.size() / 2) - 1, this.teams.size() - 1);
-		
-		// FinalMatch finale = new
-		// FinalMatch(matchesLinks.get(matchesLinks.size()), null);
 	}
 
 	private void erstelleSeite(int anzahlMatchesZus, int start, int stop) {
