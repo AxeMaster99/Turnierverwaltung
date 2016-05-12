@@ -3,24 +3,29 @@ package org.miprojekt.turnieverwaltung;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import org.miprojekt.turnieverwaltung.gui.MatchPane;
+
 import backend.FinalMatch;
 import backend.FolgeMatch;
 import backend.Mannschaft;
 import backend.Match;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.layout.Pane;
 
 public class Steuerung {
 
 	private ObservableList<String> teams = FXCollections.observableArrayList();
 	private ArrayList<Match> matches = new ArrayList<Match>();
-
+	private ArrayList<Match> matchesLinks = new ArrayList<Match>();
+	private ArrayList<Match> matchesRechts = new ArrayList<Match>();
+	
 
 	public void erstelleMatches(ObservableList<String> teams) {
-		this.teams=teams;
-		
-		Collections.shuffle(teams); //beste ZEILE
-		
+		this.teams = teams;
+
+		Collections.shuffle(teams); // hässlichste ZEILE
+
 		int anzahlSpalten = 0;
 		int anzahlMatchesZus = 0;
 
@@ -49,19 +54,27 @@ public class Steuerung {
 			anzahlSpalten = 0;
 		}
 
-		ArrayList<Match> matchesLinks = erstelleSeite(anzahlMatchesZus, 0, this.teams.size() / 2);
-		ArrayList<Match> matchesRechts = erstelleSeite(anzahlMatchesZus, (this.teams.size() / 2)-1, this.teams.size()-1);
+		erstelleSeite(anzahlMatchesZus, 0, this.teams.size() / 2);
+		erstelleSeite(anzahlMatchesZus, (this.teams.size() / 2) - 1, this.teams.size() - 1);
 		
-		// FinalMatch finale = new FinalMatch(matchesLinks.get(matchesLinks.size()), null);
+		//matchesRechts = erstelleSeite(anzahlMatchesZus, (this.teams.size() / 2) - 1, this.teams.size() - 1);
+
+		if(matchesLinks == matchesRechts) {
+			System.out.println("same");
+		}
+		
+		// FinalMatch finale = new
+		// FinalMatch(matchesLinks.get(matchesLinks.size()), null);
 	}
 
-	private ArrayList<Match> erstelleSeite(int anzahlMatchesZus, int start, int stop) {
+	private void erstelleSeite(int anzahlMatchesZus, int start, int stop) {
+		
 		int actMatch = start;
-		for(int i = start; i < stop; i += 2) {
-			matches.add(new Match(new Mannschaft(teams.get(i)), new Mannschaft(teams.get(i+1))));
+		for (int i = start; i < stop; i += 2) {
+			matches.add(new Match(new Mannschaft(teams.get(i)), new Mannschaft(teams.get(i + 1))));
 		}
 		for (int i = 0; i < (anzahlMatchesZus / 2); i++) {
-			
+
 			Match pm1 = matches.get(actMatch);
 			Match pm2 = matches.get(actMatch + 1);
 
@@ -79,12 +92,19 @@ public class Steuerung {
 			}
 			System.out.println();
 		}
-		
-		return matches;
+
 	}
-	
+
 	public ArrayList<Match> getMatches() {
 		return this.matches;
+	}
+	
+	public ArrayList<Match> getMatchesLinks() {
+		return this.matchesLinks;
+	}
+	
+	public ArrayList<Match> getMatchesRechts() {
+		return this.matchesRechts;
 	}
 
 }
