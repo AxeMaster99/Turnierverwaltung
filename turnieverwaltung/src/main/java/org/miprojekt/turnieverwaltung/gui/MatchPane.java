@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Font;
 
 public class MatchPane extends Pane {
 
@@ -17,11 +18,18 @@ public class MatchPane extends Pane {
 	public MatchPane(String nameMannschaft1, String nameMannschaft2) {
 		super();
 		GridPane grid = new GridPane();
+		Font font = new Font(12);
+		Font font2= new Font(10);
 		l1_mannschaft = new Label(nameMannschaft1);
+		l1_mannschaft.setFont(font);
 		l2_mannschaft = new Label(nameMannschaft2);
-		b1_torMannschaft1 = new Button("TOR M1");
-		b2_torMannschaft2 = new Button("TOR M2");
+		l2_mannschaft.setFont(font);
+		b1_torMannschaft1 = new Button("Tor M1");
+		b1_torMannschaft1.setFont(font2);
+		b2_torMannschaft2 = new Button("Tor M1");
+		b2_torMannschaft2.setFont(font2);
 		b3_start_stop= new Button("Start/Stopp");
+		b3_start_stop.setFont(font2);
 		grid.add(l1_mannschaft, 0, 0);
 		grid.add(l2_mannschaft, 0, 1);
 		grid.add(b1_torMannschaft1, 1, 0);

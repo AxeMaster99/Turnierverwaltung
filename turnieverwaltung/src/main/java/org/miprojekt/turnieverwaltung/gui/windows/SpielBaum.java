@@ -28,11 +28,12 @@ public class SpielBaum extends SceneParent {
 	}
 
 	private void zeichneSpielBaumLinks() {
-
+		int offset=0;
 		int posX = 10;
 		int posY = 10;
 		int matchesInSpalte = teams.size() / 4;
 		int actMatch = 0;
+		int sprung=70;
 
 		while (matchesInSpalte > 0) {
 			for (int i = 0; i < matchesInSpalte; i++) {
@@ -42,12 +43,14 @@ public class SpielBaum extends SceneParent {
 				pane.setTranslateX(posX);
 				pane.setTranslateY(posY);
 				this.getChildren().add(pane);
-				posY += 70;
+				posY += sprung;
 				actMatch++;
 				
 			}
 			matchesInSpalte = matchesInSpalte/2;
-			posY=10;
+			offset+=sprung/2;
+			sprung=sprung*2;
+			posY=10+offset;
 			posX += 160;
 		}
 
