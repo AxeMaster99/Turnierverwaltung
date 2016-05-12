@@ -20,32 +20,37 @@ public class MatchPane extends Pane {
 		super();
 		
 		GridPane grid = new GridPane();
+		grid.setMinSize(110, 40);
 		grid.setStyle("-fx-background-color: white;");
 		
-		Font font = new Font(12);
-		Font font2= new Font(10);
-		l1_mannschaft = new Label(nameMannschaft1);
-		l1_mannschaft.setFont(font);
-		l2_mannschaft = new Label(nameMannschaft2);
-		l2_mannschaft.setFont(font);
+		grid.setOnMouseClicked((event)->{
+			System.out.println(nameMannschaft1+" gegen " + nameMannschaft2);
+		});
 		
-		b1_torMannschaft1 = new Button("Tor M1");
+		l1_mannschaft = new Label(nameMannschaft1);
+		l2_mannschaft = new Label(nameMannschaft2);
+		
+		
+/*		b1_torMannschaft1 = new Button("Tor M1");
 		b1_torMannschaft1.setFont(font2);
 		GridPane.setMargin(b1_torMannschaft1, new Insets(0,0,0,10));
-
-		
 		b2_torMannschaft2 = new Button("Tor M2");
 		b2_torMannschaft2.setFont(font2);
 		GridPane.setMargin(b2_torMannschaft2, new Insets(0,0,0,10));
-		
 		b3_start_stop= new Button("Start/Stopp");
-		b3_start_stop.setFont(font2);
+		b3_start_stop.setFont(font2);*/
+		
+		
 		grid.add(l1_mannschaft, 0, 0);
 		grid.add(l2_mannschaft, 0, 1);
-		grid.add(b1_torMannschaft1, 1, 0);
+		
+		
+		/*grid.add(b1_torMannschaft1, 1, 0);
 		grid.add(b2_torMannschaft2, 1, 1);
-		grid.add(b3_start_stop, 0, 2);
+		grid.add(b3_start_stop, 0, 2);*/
+		
 		this.getChildren().add(grid);
 	}
+
 
 }

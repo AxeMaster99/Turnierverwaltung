@@ -17,8 +17,6 @@ public class Steuerung {
 
 	private ObservableList<String> teams = FXCollections.observableArrayList();
 	private ArrayList<Match> matches = new ArrayList<Match>();
-	private ArrayList<Match> matchesLinks = new ArrayList<Match>();
-	private ArrayList<Match> matchesRechts = new ArrayList<Match>();
 	private int anzahlSpalten = 0;
 	private int anzahlMatchesZus = 0;
 	
@@ -59,10 +57,6 @@ public class Steuerung {
 		erstelleSeite(anzahlMatchesZus, (this.teams.size() / 2) - 1, this.teams.size() - 1);
 		
 		//matchesRechts = erstelleSeite(anzahlMatchesZus, (this.teams.size() / 2) - 1, this.teams.size() - 1);
-
-		if(matchesLinks == matchesRechts) {
-			System.out.println("same");
-		}
 		
 		// FinalMatch finale = new
 		// FinalMatch(matchesLinks.get(matchesLinks.size()), null);
@@ -98,14 +92,6 @@ public class Steuerung {
 
 	public ArrayList<Match> getMatches() {
 		return this.matches;
-	}
-	
-	public ArrayList<Match> getMatchesLinks() {
-		return this.matchesLinks;
-	}
-	
-	public ArrayList<Match> getMatchesRechts() {
-		return this.matchesRechts;
 	}
 	
 	public int getAnzahlSpalten(){

@@ -1,13 +1,17 @@
 package backend;
 
+import org.miprojekt.turnieverwaltung.gui.MatchPane;
+
 public class Match {
 
 	private static int indexCounter = 1;
 	private int index;
 	protected Mannschaft mannschaft1;
 	protected Mannschaft mannschaft2;
+	private MatchPane matchPane;
 	
 	public Match(Mannschaft m1, Mannschaft m2) {
+		this.matchPane = new MatchPane(m1.getName(), m2.getName());
 		index = indexCounter;
 		indexCounter++;
 		this.mannschaft1 = m1;
@@ -24,6 +28,10 @@ public class Match {
 	
 	public int getIndex() {
 		return this.index;
+	}
+	
+	public MatchPane getMatchPane() {
+		return this.matchPane;
 	}
 	
 }
