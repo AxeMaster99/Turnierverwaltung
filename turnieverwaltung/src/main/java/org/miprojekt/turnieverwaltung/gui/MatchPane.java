@@ -1,5 +1,6 @@
 package org.miprojekt.turnieverwaltung.gui;
 
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -17,17 +18,26 @@ public class MatchPane extends Pane {
 	
 	public MatchPane(String nameMannschaft1, String nameMannschaft2) {
 		super();
+		
 		GridPane grid = new GridPane();
+		grid.setStyle("-fx-background-color: white;");
+		
 		Font font = new Font(12);
 		Font font2= new Font(10);
 		l1_mannschaft = new Label(nameMannschaft1);
 		l1_mannschaft.setFont(font);
 		l2_mannschaft = new Label(nameMannschaft2);
 		l2_mannschaft.setFont(font);
+		
 		b1_torMannschaft1 = new Button("Tor M1");
 		b1_torMannschaft1.setFont(font2);
-		b2_torMannschaft2 = new Button("Tor M1");
+		GridPane.setMargin(b1_torMannschaft1, new Insets(0,0,0,10));
+
+		
+		b2_torMannschaft2 = new Button("Tor M2");
 		b2_torMannschaft2.setFont(font2);
+		GridPane.setMargin(b2_torMannschaft2, new Insets(0,0,0,10));
+		
 		b3_start_stop= new Button("Start/Stopp");
 		b3_start_stop.setFont(font2);
 		grid.add(l1_mannschaft, 0, 0);

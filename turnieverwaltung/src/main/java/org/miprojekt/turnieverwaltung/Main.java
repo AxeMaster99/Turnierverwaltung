@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 	
-	private final int WINDOWWIDTH = 1200;
+	private final int WINDOWWIDTH = 1400;
 	private final int WINDOWHEIGHT = 600;
 	private Stage stage;
 	private HashMap<String, Scene> scenes = new HashMap<String, Scene>();

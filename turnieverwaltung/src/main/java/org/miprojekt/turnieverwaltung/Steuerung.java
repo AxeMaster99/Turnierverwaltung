@@ -19,6 +19,8 @@ public class Steuerung {
 	private ArrayList<Match> matches = new ArrayList<Match>();
 	private ArrayList<Match> matchesLinks = new ArrayList<Match>();
 	private ArrayList<Match> matchesRechts = new ArrayList<Match>();
+	private int anzahlSpalten = 0;
+	private int anzahlMatchesZus = 0;
 	
 
 	public void erstelleMatches(ObservableList<String> teams) {
@@ -26,8 +28,7 @@ public class Steuerung {
 
 		Collections.shuffle(teams); // hässlichste ZEILE
 
-		int anzahlSpalten = 0;
-		int anzahlMatchesZus = 0;
+
 
 		switch (this.teams.size()) {
 		case 2:
@@ -105,6 +106,10 @@ public class Steuerung {
 	
 	public ArrayList<Match> getMatchesRechts() {
 		return this.matchesRechts;
+	}
+	
+	public int getAnzahlSpalten(){
+		return this.anzahlSpalten;
 	}
 
 }

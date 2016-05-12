@@ -22,9 +22,11 @@ public class SpielBaum extends SceneParent {
 	public SpielBaum(Main main, ObservableList<String> teams) {
 		super(main);
 		this.teams = teams;
+		this.setStyle("-fx-background-color: #999999");
 		steuerung.erstelleMatches(teams);
 		this.zeichneSpielBaumLinks();
-		// this.zeichneSpielBaumRechts();
+		this.zeichneFinale();
+		this.zeichneSpielBaumRechts();
 	}
 
 	private void zeichneSpielBaumLinks() {
@@ -51,21 +53,41 @@ public class SpielBaum extends SceneParent {
 			offset+=sprung/2;
 			sprung=sprung*2;
 			posY=10+offset;
-			posX += 160;
+			posX += 150;
 		}
 
 	}
+	
+	private void zeichneFinale(){
+		
+	};
 
 	private void zeichneSpielBaumRechts() {
+		int offset=0;
+		int posX = (steuerung.getAnzahlSpalten()-2)*150;
 		int posY = 10;
-		for (int i = this.teams.size() / 2; i < this.teams.size(); i++) {
-			Pane pane = new Pane();
-			pane = new MatchPane(steuerung.getMatches().get(i).getMannschaft1().getName(),
-					steuerung.getMatches().get(i).getMannschaft2().getName());
-			pane.setTranslateX(500);
-			pane.setTranslateY(posY);
-			this.getChildren().add(pane);
-			posY += 70;
+		int matchesInSpalte = teams.size() / 4;
+		int actMatch = steuerung.getMatches().size()/2;
+		int sprung=70;
+
+		while (matchesInSpalte > 0) {
+			for (int i = 0; i < matchesInSpalte; i++) {
+				Pane pane = new Pane();
+				pane = new MatchPane(steuerung.getMatches().get(actMatch).getMannschaft1().getName(),
+						steuerung.getMatches().get(actMatch).getMannschaft2().getName());
+				pane.setTranslateX(posX);
+				pane.setTranslateY(posY);
+				this.getChildren().add(pane);
+				posY += sprung;
+				actMatch++;
+				
+			}
+			matchesInSpalte = matchesInSpalte/2;
+			offset+=sprung/2;
+			sprung=sprung*2;
+			posY=10+offset;
+			posX -= 150;
 		}
+
 	}
 }
