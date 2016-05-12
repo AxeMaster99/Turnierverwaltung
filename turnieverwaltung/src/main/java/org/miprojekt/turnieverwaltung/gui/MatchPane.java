@@ -25,6 +25,8 @@ public class MatchPane extends Pane {
 		
 		grid.setOnMouseClicked((event)->{
 			System.out.println(nameMannschaft1+" gegen " + nameMannschaft2);
+			System.out.println(this.getTranslateX());
+			System.out.println(this.getTranslateY());
 		});
 		
 		l1_mannschaft = new Label(nameMannschaft1);
