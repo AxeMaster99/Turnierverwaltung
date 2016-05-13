@@ -2,7 +2,7 @@ package backend;
 
 import interfaces.IMatch;
 
-public class FinalMatch extends FolgeMatch {
+public final class FinalMatch extends FolgeMatch {
 
 	public FinalMatch() {
 		super();

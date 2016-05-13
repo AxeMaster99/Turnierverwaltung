@@ -80,7 +80,9 @@ public class Steuerung {
 			IMatch pm1 = matches.get(actMatch);
 			IMatch pm2 = matches.get(actMatch + 1);
 
-			matches.add(MatchFactory.createMatch(pm1, pm2));
+			// beste Fabrik
+			matches.add(new MatchFactory().addMatch(pm1).addMatch(pm2).build());
+			
 			actMatch = actMatch + 2;
 		}
 

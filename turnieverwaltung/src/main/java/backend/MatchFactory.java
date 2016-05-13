@@ -4,16 +4,31 @@ import interfaces.IMatch;
 
 public class MatchFactory {
 
-	public static IMatch createMatch(Mannschaft m1, Mannschaft m2) {
-		return new Match(m1, m2);	
+	private Mannschaft m1 = null;
+	private Mannschaft m2 = null;
+	private Match prevMatch1 = null;
+	private Match prevMatch2 = null;
+	
+	public MatchFactory addMatch(IMatch m) {
+		if(this.prevMatch1 == null) {
+			this.prevMatch1 = (Match) m;
+		} else if(prevMatch2 == null) {
+			this.prevMatch2 = (Match) m;
+		} else {
+			// exception
+		}
+		return this;
 	}
 	
-	public static IMatch createMatch(Match m1, Match m2) {
-		return new FolgeMatch(m1, m2);
-	}
-	
-	public static IMatch createMatch(IMatch m1, IMatch m2) {
-		return new FolgeMatch((Match) m1, (Match) m2);
+	public IMatch build() {
+		if(this.m1 != null && this.m2 != null) {
+			return new Match(this.m1, this.m2);
+		} else if(this.prevMatch1 != null && this.prevMatch2 != null) {
+			return new FolgeMatch(this.prevMatch1, this.prevMatch2);
+		} else {
+			// exception
+		}
+		return null;
 	}
 	
 }
