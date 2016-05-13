@@ -9,6 +9,8 @@ import backend.FinalMatch;
 import backend.FolgeMatch;
 import backend.Mannschaft;
 import backend.Match;
+import backend.MatchFactory;
+import interfaces.IMatch;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.layout.Pane;
@@ -16,7 +18,7 @@ import javafx.scene.layout.Pane;
 public class Steuerung {
 
 	private ObservableList<String> teams = FXCollections.observableArrayList();
-	private ArrayList<Match> matches = new ArrayList<Match>();
+	private ArrayList<IMatch> matches = new ArrayList<IMatch>();
 	private int anzahlSpalten = 0;
 	private int anzahlMatchesZus = 0;
 	
@@ -67,10 +69,10 @@ public class Steuerung {
 		}
 		for (int i = 0; i < (anzahlMatchesZus / 2); i++) {
 
-			Match pm1 = matches.get(actMatch);
-			Match pm2 = matches.get(actMatch + 1);
+			IMatch pm1 = matches.get(actMatch);
+			IMatch pm2 = matches.get(actMatch + 1);
 
-			matches.add(new FolgeMatch(pm1, pm2));
+			matches.add(MatchFactory.createMatch(pm1, pm2));
 			actMatch = actMatch + 2;
 		}
 
@@ -87,7 +89,7 @@ public class Steuerung {
 
 	}
 
-	public ArrayList<Match> getMatches() {
+	public ArrayList<IMatch> getMatches() {
 		return this.matches;
 	}
 	

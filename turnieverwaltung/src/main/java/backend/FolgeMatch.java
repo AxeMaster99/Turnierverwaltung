@@ -1,5 +1,7 @@
 package backend;
 
+import interfaces.IMatch;
+
 public class FolgeMatch extends Match {
 
 	private Match prevMatch1;

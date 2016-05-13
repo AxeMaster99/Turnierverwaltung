@@ -2,7 +2,9 @@ package backend;
 
 import org.miprojekt.turnieverwaltung.gui.MatchPane;
 
-public class Match {
+import interfaces.IMatch;
+
+public class Match implements IMatch {
 
 	private static int indexCounter = 1;
 	private int index;
