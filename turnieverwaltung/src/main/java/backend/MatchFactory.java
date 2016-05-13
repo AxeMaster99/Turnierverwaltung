@@ -4,8 +4,8 @@ import interfaces.IMatch;
 
 public class MatchFactory {
 
-	private Mannschaft m1 = null;
-	private Mannschaft m2 = null;
+	private Mannschaft mannschaft1 = null;
+	private Mannschaft mannschaft2 = null;
 	private Match prevMatch1 = null;
 	private Match prevMatch2 = null;
 	
@@ -20,15 +20,27 @@ public class MatchFactory {
 		return this;
 	}
 	
-	public IMatch build() {
-		if(this.m1 != null && this.m2 != null) {
-			return new Match(this.m1, this.m2);
-		} else if(this.prevMatch1 != null && this.prevMatch2 != null) {
-			return new FolgeMatch(this.prevMatch1, this.prevMatch2);
+	public MatchFactory addMannschaft(String m) {
+		if(this.mannschaft1 == null) {
+			this.mannschaft1 = new Mannschaft(m);
+		} else if(this.mannschaft2 == null) {
+			this.mannschaft2 = new Mannschaft(m);
 		} else {
 			// exception
 		}
-		return null;
+		return this;
+	}
+	
+	public IMatch build() {
+		IMatch createdMatch = null;
+		if(this.mannschaft1 != null && this.mannschaft2 != null) {
+			createdMatch = new Match(this.mannschaft1, this.mannschaft2);
+		} else if(this.prevMatch1 != null && this.prevMatch2 != null) {
+			createdMatch = new FolgeMatch(this.prevMatch1, this.prevMatch2);
+		} else {
+			// exception
+		}
+		return createdMatch;
 	}
 	
 }
