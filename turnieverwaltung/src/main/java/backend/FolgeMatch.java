@@ -21,4 +21,12 @@ public class FolgeMatch extends Match {
 		return this.prevMatch2;
 	}
 	
+	public String toString() {
+		String ret = "Folgematch\n";
+		ret = super.toString();
+		ret += "\nVorheriges Match1: " + this.prevMatch1.getIndex();
+		ret += "\nVorheriges Match2: " + this.prevMatch2.getIndex();
+		return ret;
+	}
+	
 }

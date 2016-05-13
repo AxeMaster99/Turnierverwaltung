@@ -76,14 +76,9 @@ public class Steuerung {
 			actMatch = actMatch + 2;
 		}
 
+		// Konsolenausgabe
 		for (int i = start; i < matches.size(); i++) {
-			System.out.println("Begegnung Nr. " + (i + 1));
-			System.out.println("m1:" + matches.get(i).getMannschaft1().getName());
-			System.out.println("m2:" + matches.get(i).getMannschaft2().getName());
-			if (matches.get(i) instanceof FolgeMatch) {
-				System.out.println("PrevMatch: " + ((FolgeMatch) matches.get(i)).getPrevMatch1().getIndex());
-				System.out.println("PrevMatch: " + ((FolgeMatch) matches.get(i)).getPrevMatch2().getIndex());
-			}
+			System.out.println(this.matches.get(i).toString());
 			System.out.println();
 		}
 

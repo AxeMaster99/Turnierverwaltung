@@ -36,4 +36,11 @@ public class Match implements IMatch {
 		return this.matchPane;
 	}
 	
+	public String toString() {
+		String ret = "Begegnung Nr. " + (this.index + 1);
+		ret += "\nMannschaft1:" + this.mannschaft1.getName();
+		ret += "\nMannschaft2:" + this.mannschaft2.getName();
+		return ret;
+	}
+	
 }
