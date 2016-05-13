@@ -21,11 +21,10 @@ public class Steuerung {
 	private ArrayList<IMatch> matches = new ArrayList<IMatch>();
 	private int anzahlSpalten = 0;
 	private int anzahlMatchesZus = 0;
-	
 
 	public void erstelleMatches(ObservableList<String> teams) {
 		this.teams = teams;
-		
+
 		Collections.shuffle(teams); // beste ZEILE
 
 		switch (this.teams.size()) {
@@ -56,24 +55,23 @@ public class Steuerung {
 		erstelleSeite(anzahlMatchesZus, 0, this.teams.size() / 2);
 		erstelleSeite(anzahlMatchesZus, (this.teams.size() / 2) - 1, this.teams.size() - 1);
 
-		FinalMatch finale = new FinalMatch();
-		IMatch prevFinal1 = this.matches.get(this.matches.size() / 2);
-		IMatch prevFinal2 = this.matches.get(this.matches.size()-1);
+		IMatch prevFinal1 = this.matches.get(this.matches.size() / 2 - 1);
+		IMatch prevFinal2 = this.matches.get(this.matches.size() - 1);
 
 		this.matches.add(new MatchFactory().addMatch(prevFinal1).addMatch(prevFinal2).isFinalMatch().build());
-		
+
 		for (int i = 0; i < matches.size(); i++) {
 			System.out.println(this.matches.get(i).toString());
 			System.out.println();
 		}
-		
+
 	}
 
 	private void erstelleSeite(int anzahlMatchesZus, int start, int stop) {
-		
+
 		int actMatch = start;
 		for (int i = start; i < stop; i += 2) {
-			matches.add(new MatchFactory().addMannschaft(teams.get(i)).addMannschaft(teams.get(i+1)).build());
+			matches.add(new MatchFactory().addMannschaft(teams.get(i)).addMannschaft(teams.get(i + 1)).build());
 		}
 		for (int i = 0; i < (anzahlMatchesZus / 2); i++) {
 
@@ -82,7 +80,7 @@ public class Steuerung {
 
 			// beste Fabrik
 			matches.add(new MatchFactory().addMatch(pm1).addMatch(pm2).build());
-			
+
 			actMatch = actMatch + 2;
 		}
 
@@ -91,8 +89,8 @@ public class Steuerung {
 	public ArrayList<IMatch> getMatches() {
 		return this.matches;
 	}
-	
-	public int getAnzahlSpalten(){
+
+	public int getAnzahlSpalten() {
 		return this.anzahlSpalten;
 	}
 
