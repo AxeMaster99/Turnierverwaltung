@@ -156,11 +156,20 @@ public class SpielBaum extends SceneParent {
 	private void zeichneFinale() { 
 		IMatch finale = this.steuerung.getFinalMatch();		
 		this.getChildren().add(finale.getMatchPane());
-		finale.getMatchPane().setTranslateX(this.steuerung.getMatches().get(this.steuerung.getMatches().size() / 2 - 1).getMatchPane().getTranslateX()+155);
+		
+		// ermittle Position finalMatchPane
+		double x1 = this.steuerung.getMatches().get(this.steuerung.getMatches().size() / 2 - 1).getMatchPane().getTranslateX() + 110;
+		double x2 = this.steuerung.getMatches().get(this.steuerung.getMatches().size()-1).getMatchPane().getTranslateX();
+		double mitte = x1 + (x2 - x1) / 2;
+		
+		// finalMatchPane positionieren
+		finale.getMatchPane().setTranslateX(mitte - 55);
 		finale.getMatchPane().setTranslateY(this.steuerung.getMatches().get(this.steuerung.getMatches().size() / 2 - 1).getMatchPane().getTranslateY());
 		
+		// Striche zu finalMatchPane zeichnen
 		double fmX = finale.getMatchPane().getTranslateX();
 		double fmY = finale.getMatchPane().getTranslateY() + 20;
+				
 		double m1X = this.steuerung.getMatches().get(this.steuerung.getMatches().size() / 2 - 1).getMatchPane().getTranslateX() + 110;
 		double m1Y = this.steuerung.getMatches().get(this.steuerung.getMatches().size() / 2 - 1).getMatchPane().getTranslateY() + 20;
 		double m2X = this.steuerung.getMatches().get(this.steuerung.getMatches().size()-1).getMatchPane().getTranslateX() + 110;
