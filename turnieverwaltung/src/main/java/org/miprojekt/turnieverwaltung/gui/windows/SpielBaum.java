@@ -172,7 +172,7 @@ public class SpielBaum extends SceneParent {
 				
 		double m1X = this.steuerung.getMatches().get(this.steuerung.getMatches().size() / 2 - 1).getMatchPane().getTranslateX() + 110;
 		double m1Y = this.steuerung.getMatches().get(this.steuerung.getMatches().size() / 2 - 1).getMatchPane().getTranslateY() + 20;
-		double m2X = this.steuerung.getMatches().get(this.steuerung.getMatches().size()-1).getMatchPane().getTranslateX() + 110;
+		double m2X = this.steuerung.getMatches().get(this.steuerung.getMatches().size()-1).getMatchPane().getTranslateX();
 		double m2Y = this.steuerung.getMatches().get(this.steuerung.getMatches().size()-1).getMatchPane().getTranslateY() + 20;
 		
 		gc.setFill(Color.BLACK);
