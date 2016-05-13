@@ -16,4 +16,8 @@ public class FinalMatch extends FolgeMatch {
 		this.prevMatch2 = (Match) m;
 	}
 	
+	public String toString() {
+		return "Finale\n" + super.toString();
+	}
+	
 }

@@ -19,7 +19,6 @@ public class Steuerung {
 
 	private ObservableList<String> teams = FXCollections.observableArrayList();
 	private ArrayList<IMatch> matches = new ArrayList<IMatch>();
-	private FinalMatch finale = new FinalMatch();
 	private int anzahlSpalten = 0;
 	private int anzahlMatchesZus = 0;
 	
@@ -57,11 +56,17 @@ public class Steuerung {
 		erstelleSeite(anzahlMatchesZus, 0, this.teams.size() / 2);
 		erstelleSeite(anzahlMatchesZus, (this.teams.size() / 2) - 1, this.teams.size() - 1);
 
-		// add final match here
-		this.finale = new FinalMatch();
-		this.finale.setPrevMatch1(this.matches.get(this.matches.size() / 2));
-		this.finale.setPrevMatch2(this.matches.get(this.matches.size()-1));
+		FinalMatch finale = new FinalMatch();
+		finale.setPrevMatch1(this.matches.get(this.matches.size() / 2));
+		finale.setPrevMatch2(this.matches.get(this.matches.size()-1));
 
+		this.matches.add(finale);
+		
+		for (int i = 0; i < matches.size(); i++) {
+			System.out.println(this.matches.get(i).toString());
+			System.out.println();
+		}
+		
 	}
 
 	private void erstelleSeite(int anzahlMatchesZus, int start, int stop) {
@@ -79,12 +84,6 @@ public class Steuerung {
 			actMatch = actMatch + 2;
 		}
 
-		// Konsolenausgabe
-		for (int i = start; i < matches.size(); i++) {
-			System.out.println(this.matches.get(i).toString());
-			System.out.println();
-		}
-
 	}
 
 	public ArrayList<IMatch> getMatches() {
@@ -93,10 +92,6 @@ public class Steuerung {
 	
 	public int getAnzahlSpalten(){
 		return this.anzahlSpalten;
-	}
-	
-	public IMatch getFinalMatch() {
-		return this.finale;
 	}
 
 }

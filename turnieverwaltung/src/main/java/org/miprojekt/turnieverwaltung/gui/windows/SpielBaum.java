@@ -5,6 +5,7 @@ import org.miprojekt.turnieverwaltung.Main;
 import org.miprojekt.turnieverwaltung.gui.MatchPane;
 import org.miprojekt.turnieverwaltung.gui.SceneParent;
 
+import backend.FinalMatch;
 import backend.FolgeMatch;
 import backend.Mannschaft;
 import backend.Match;
@@ -49,7 +50,7 @@ public class SpielBaum extends SceneParent {
 
 	private void zeichneLinienLinks() {
 		for (int i = 0; i < this.steuerung.getMatches().size()/2; i++) {
-			if (this.steuerung.getMatches().get(i) instanceof FolgeMatch) {
+			if (this.steuerung.getMatches().get(i) instanceof FolgeMatch && !(this.steuerung.getMatches().get(i) instanceof FinalMatch)) {
 				
 				MatchPane fm = this.steuerung.getMatches().get(i).getMatchPane();
 				MatchPane m1 = ((FolgeMatch) this.steuerung.getMatches().get(i)).getPrevMatch1().getMatchPane();
@@ -75,7 +76,7 @@ public class SpielBaum extends SceneParent {
 	
 	private void zeichneLinienRechts() {
 		for (int i = this.steuerung.getMatches().size()/2; i < this.steuerung.getMatches().size(); i++) {
-			if (this.steuerung.getMatches().get(i) instanceof FolgeMatch) {
+			if (this.steuerung.getMatches().get(i) instanceof FolgeMatch && !(this.steuerung.getMatches().get(i) instanceof FinalMatch)) {
 				
 				MatchPane fm = this.steuerung.getMatches().get(i).getMatchPane();
 				MatchPane m1 = ((FolgeMatch) this.steuerung.getMatches().get(i)).getPrevMatch1().getMatchPane();
@@ -154,12 +155,12 @@ public class SpielBaum extends SceneParent {
 	}
 	
 	private void zeichneFinale() { 
-		IMatch finale = this.steuerung.getFinalMatch();		
+		IMatch finale = this.steuerung.getMatches().get(this.steuerung.getMatches().size()-1);
 		this.getChildren().add(finale.getMatchPane());
 		
 		// ermittle Position finalMatchPane
 		double x1 = this.steuerung.getMatches().get(this.steuerung.getMatches().size() / 2 - 1).getMatchPane().getTranslateX() + 110;
-		double x2 = this.steuerung.getMatches().get(this.steuerung.getMatches().size()-1).getMatchPane().getTranslateX();
+		double x2 = this.steuerung.getMatches().get(this.steuerung.getMatches().size()-2).getMatchPane().getTranslateX();
 		double mitte = x1 + (x2 - x1) / 2;
 		
 		// finalMatchPane positionieren
@@ -172,8 +173,8 @@ public class SpielBaum extends SceneParent {
 				
 		double m1X = this.steuerung.getMatches().get(this.steuerung.getMatches().size() / 2 - 1).getMatchPane().getTranslateX() + 110;
 		double m1Y = this.steuerung.getMatches().get(this.steuerung.getMatches().size() / 2 - 1).getMatchPane().getTranslateY() + 20;
-		double m2X = this.steuerung.getMatches().get(this.steuerung.getMatches().size()-1).getMatchPane().getTranslateX();
-		double m2Y = this.steuerung.getMatches().get(this.steuerung.getMatches().size()-1).getMatchPane().getTranslateY() + 20;
+		double m2X = this.steuerung.getMatches().get(this.steuerung.getMatches().size()-2).getMatchPane().getTranslateX();
+		double m2Y = this.steuerung.getMatches().get(this.steuerung.getMatches().size()-2).getMatchPane().getTranslateY() + 20;
 		
 		gc.setFill(Color.BLACK);
 		gc.setStroke(Color.BLACK);

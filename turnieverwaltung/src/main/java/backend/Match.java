@@ -13,12 +13,16 @@ public class Match implements IMatch {
 	private MatchPane matchPane;
 	
 	public Match() {
-		this.matchPane = new MatchPane("...", "...");
+		this.index = indexCounter;
+		indexCounter++;
+		this.mannschaft1 = new Mannschaft("...");
+		this.mannschaft2 = new Mannschaft("...");
+		this.matchPane = new MatchPane(this.mannschaft1.getName(), this.mannschaft2.getName());
 	}
 	
 	public Match(Mannschaft m1, Mannschaft m2) {
 		this.matchPane = new MatchPane(m1.getName(), m2.getName());
-		index = indexCounter;
+		this.index = indexCounter;
 		indexCounter++;
 		this.mannschaft1 = m1;
 		this.mannschaft2 = m2;
@@ -41,7 +45,7 @@ public class Match implements IMatch {
 	}
 	
 	public String toString() {
-		String ret = "Begegnung Nr. " + (this.index + 1);
+		String ret = "Begegnung Nr. " + this.index;
 		ret += "\nMannschaft1:" + this.mannschaft1.getName();
 		ret += "\nMannschaft2:" + this.mannschaft2.getName();
 		return ret;
