@@ -2,6 +2,8 @@ package org.miprojekt.turnieverwaltung.gui;
 
 import org.miprojekt.turnieverwaltung.Steuerung;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -19,10 +21,10 @@ public class MatchStage extends Stage {
 	private Label l_Mannschaft2 = new Label();
 	private Button b_TorMannschaft1 = new Button("Tor M1");
 	private Button b_TorMannschaft2 = new Button("Tor M2");
-	private Button b_Start_Stopp = new Button("Start/Stop");
-	
-	private int ToreM1=0;
-	private int ToreM2=0;
+	private Button b_Start_Stopp = new Button("Start");
+
+	private int ToreM1 = 0;
+	private int ToreM2 = 0;
 
 	public MatchStage(String nameMannschaft1, String nameMannschaft2) {
 		super();
@@ -36,10 +38,13 @@ public class MatchStage extends Stage {
 		l_Mannschaft1.setText(nameMannschaft1);
 		l_Mannschaft2.setText(nameMannschaft2);
 
+		b_TorMannschaft1.setDisable(true);
+		b_TorMannschaft2.setDisable(true);
+
 		Font font = new Font(25);
 
 		l_Spielstand.setFont(font);
-		l_Spielstand.setText(ToreM1+":"+ToreM2);
+		l_Spielstand.setText(ToreM1 + ":" + ToreM2);
 
 		grid.add(l_Mannschaft1, 0, 0);
 		grid.add(l_Spielstand, 1, 0);
@@ -57,6 +62,29 @@ public class MatchStage extends Stage {
 		this.setTitle(nameMannschaft1 + " vs " + nameMannschaft2);
 		this.setScene(scene);
 		this.show();
+
+		b_TorMannschaft1.setOnAction((event) -> {
+			ToreM1++;
+			l_Spielstand.setText(ToreM1 + ":" + ToreM2);
+		});
+
+		b_TorMannschaft2.setOnAction((event) -> {
+			ToreM2++;
+			l_Spielstand.setText(ToreM1 + ":" + ToreM2);
+		});
+
+		b_Start_Stopp.setOnAction((event) -> {
+			if (b_Start_Stopp.getText().equals("Stop")) {
+				b_Start_Stopp.setText("Start");
+				b_TorMannschaft1.setDisable(true);
+				b_TorMannschaft2.setDisable(true);
+
+			} else {
+				b_Start_Stopp.setText("Stop");
+				b_TorMannschaft1.setDisable(false);
+				b_TorMannschaft2.setDisable(false);
+			}
+		});
 
 	}
 
