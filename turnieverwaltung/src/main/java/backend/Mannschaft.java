@@ -4,6 +4,10 @@ public class Mannschaft {
 		private String name;
 		private Spieler spieler;
 		
+		public Mannschaft() {
+			this.name = "...";
+		}
+		
 		public Mannschaft(String name){
 			this.name = name;
 		}
@@ -13,8 +17,12 @@ public class Mannschaft {
 			return this.name;
 		}
 
+		public void setName(String name) {
+			this.name = name;
+		}
+		
 		public String getName() {
-			return name;
+			return this.name;
 		}
 		
 }

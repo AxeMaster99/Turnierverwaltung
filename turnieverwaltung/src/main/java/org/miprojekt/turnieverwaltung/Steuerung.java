@@ -22,10 +22,10 @@ public class Steuerung {
 	private int anzahlSpalten = 0;
 	private int anzahlMatchesZus = 0;
 
-	public void erstelleMatches(ObservableList<String> teams) {
+	public void erstelleMatches(ObservableList<String> teams) throws Exception {
 		this.teams = teams;
 
-		Collections.shuffle(teams); // beste ZEILE
+		// Collections.shuffle(teams); // beste ZEILE
 
 		switch (this.teams.size()) {
 		case 2:
@@ -67,7 +67,7 @@ public class Steuerung {
 
 	}
 
-	private void erstelleSeite(int anzahlMatchesZus, int start, int stop) {
+	private void erstelleSeite(int anzahlMatchesZus, int start, int stop) throws Exception {
 
 		int actMatch = start;
 		for (int i = start; i < stop; i += 2) {

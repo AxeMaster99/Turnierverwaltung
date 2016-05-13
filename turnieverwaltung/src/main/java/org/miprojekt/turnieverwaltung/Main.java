@@ -49,7 +49,7 @@ public class Main extends Application {
 		this.getStage().setScene(this.getScreen(screenName));
 	}
 	
-	public void setSpielBaumScreen(String screenName, ObservableList<String> teams) {
+	public void setSpielBaumScreen(String screenName, ObservableList<String> teams) throws Exception {
 		this.scenes.put(screenName, new Scene(new SpielBaum(this,teams),WINDOWWIDTH,WINDOWHEIGHT));
 		this.getStage().setScene(this.getScreen(screenName));
 	}

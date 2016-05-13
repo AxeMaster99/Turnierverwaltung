@@ -29,7 +29,7 @@ public class SpielBaum extends SceneParent {
 	private GraphicsContext gc = canvas.getGraphicsContext2D();
 	private ObservableList<String> teams = FXCollections.observableArrayList();
 
-	public SpielBaum(Main main, ObservableList<String> teams) {
+	public SpielBaum(Main main, ObservableList<String> teams) throws Exception {
 		super(main);
 		
 		this.teams = teams;
@@ -41,11 +41,10 @@ public class SpielBaum extends SceneParent {
 		
 		this.zeichneSpielBaumLinks();
 		this.zeichneSpielBaumRechts();
-		// this.zeichneFinale();
+		this.zeichneFinale();
 		this.zeichneLinienLinks();
 		this.zeichneLinienRechts();
 		this.zeichneFinale();
-		
 	}
 
 	private void zeichneLinienLinks() {
@@ -156,7 +155,7 @@ public class SpielBaum extends SceneParent {
 	
 	private void zeichneFinale() { 
 		IMatch finale = this.steuerung.getMatches().get(this.steuerung.getMatches().size()-1);
-		this.getChildren().add(finale.getMatchPane());
+		// this.getChildren().add(finale.getMatchPane());
 		
 		// ermittle Position finalMatchPane
 		double x1 = this.steuerung.getMatches().get(this.steuerung.getMatches().size() / 2 - 1).getMatchPane().getTranslateX() + 110;

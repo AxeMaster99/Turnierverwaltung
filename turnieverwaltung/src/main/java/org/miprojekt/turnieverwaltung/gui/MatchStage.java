@@ -2,6 +2,7 @@ package org.miprojekt.turnieverwaltung.gui;
 
 import org.miprojekt.turnieverwaltung.Steuerung;
 
+import interfaces.IMatch;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -16,6 +17,7 @@ import javafx.stage.Stage;
 
 public class MatchStage extends Stage {
 
+	private IMatch match;
 	private Label l_Spielstand = new Label();
 	private Label l_Mannschaft1 = new Label();
 	private Label l_Mannschaft2 = new Label();
@@ -23,11 +25,9 @@ public class MatchStage extends Stage {
 	private Button b_TorMannschaft2 = new Button("Tor M2");
 	private Button b_Start_Stopp = new Button("Start");
 
-	private int ToreM1 = 0;
-	private int ToreM2 = 0;
-
-	public MatchStage(String nameMannschaft1, String nameMannschaft2) {
+	public MatchStage(IMatch match) {
 		super();
+		this.match = match;
 
 		Pane root = new Pane();
 		GridPane grid = new GridPane();
@@ -35,8 +35,8 @@ public class MatchStage extends Stage {
 		grid.setMinHeight(200);
 		grid.setAlignment(Pos.CENTER);
 
-		l_Mannschaft1.setText(nameMannschaft1);
-		l_Mannschaft2.setText(nameMannschaft2);
+		l_Mannschaft1.setText(this.match.getMannschaft1().getName());
+		l_Mannschaft2.setText(this.match.getMannschaft2().getName());
 
 		b_TorMannschaft1.setDisable(true);
 		b_TorMannschaft2.setDisable(true);
@@ -44,7 +44,7 @@ public class MatchStage extends Stage {
 		Font font = new Font(25);
 
 		l_Spielstand.setFont(font);
-		l_Spielstand.setText(ToreM1 + ":" + ToreM2);
+		l_Spielstand.setText(this.match.getToreM1() + ":" + this.match.getToreM2());
 
 		grid.add(l_Mannschaft1, 0, 0);
 		grid.add(l_Spielstand, 1, 0);
@@ -59,18 +59,18 @@ public class MatchStage extends Stage {
 
 		Scene scene = new Scene(root, 300, 200);
 
-		this.setTitle(nameMannschaft1 + " vs " + nameMannschaft2);
+		this.setTitle(this.match.getMannschaft1().getName() + " vs " + this.match.getMannschaft2().getName());
 		this.setScene(scene);
 		this.show();
 
 		b_TorMannschaft1.setOnAction((event) -> {
-			ToreM1++;
-			l_Spielstand.setText(ToreM1 + ":" + ToreM2);
+			this.match.incrementToreM1();
+			l_Spielstand.setText(this.match.getToreM1() + ":" + this.match.getToreM2());
 		});
 
 		b_TorMannschaft2.setOnAction((event) -> {
-			ToreM2++;
-			l_Spielstand.setText(ToreM1 + ":" + ToreM2);
+			this.match.incrementToreM2();
+			l_Spielstand.setText(this.match.getToreM1() + ":" + this.match.getToreM2());
 		});
 
 		b_Start_Stopp.setOnAction((event) -> {

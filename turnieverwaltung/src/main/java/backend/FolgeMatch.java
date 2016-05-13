@@ -4,24 +4,20 @@ import interfaces.IMatch;
 
 public class FolgeMatch extends Match {
 
-	protected Match prevMatch1;
-	protected Match prevMatch2;
+	protected IMatch prevMatch1;
+	protected IMatch prevMatch2;
 	
-	public FolgeMatch() {
+	public FolgeMatch(IMatch prevMatch1, IMatch prevMatch2) {
 		super();
-	}
-	
-	public FolgeMatch(Match prevMatch1, Match prevMatch2) {
-		super(new Mannschaft("..."), new Mannschaft("..."));
 		this.prevMatch1 = prevMatch1;
 		this.prevMatch2 = prevMatch2;
 	}
 
-	public Match getPrevMatch1() {
+	public IMatch getPrevMatch1() {
 		return this.prevMatch1;
 	}
 	
-	public Match getPrevMatch2() {
+	public IMatch getPrevMatch2() {
 		return this.prevMatch2;
 	}
 	

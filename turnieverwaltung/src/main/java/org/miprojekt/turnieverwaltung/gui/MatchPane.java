@@ -1,5 +1,7 @@
 package org.miprojekt.turnieverwaltung.gui;
 
+import backend.Match;
+import interfaces.IMatch;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -12,12 +14,12 @@ import javafx.scene.input.MouseEvent;
 
 public class MatchPane extends Pane {
 
-	private Label l1_mannschaft;
-	private Label l2_mannschaft;
+	private IMatch match;
 	private GridPane grid = new GridPane();
-
-	public MatchPane(String nameMannschaft1, String nameMannschaft2) {
+	
+	public MatchPane(IMatch match) {
 		super();
+		this.match = match;
 
 		grid.setMinSize(110, 40);
 		grid.setStyle("-fx-background-color: white;");
@@ -31,17 +33,16 @@ public class MatchPane extends Pane {
 		});
 
 		grid.setOnMouseReleased((event) -> {
-
-			new MatchStage(nameMannschaft1, nameMannschaft2);
-
-			System.out.println(l1_mannschaft.getText() + " gegen " + l2_mannschaft.getText());
+			System.out.println(this);
+			new MatchStage(this.match);
+			System.out.println(this.match.getMannschaft1().getName() + " gegen " + this.match.getMannschaft2().getName());
 			System.out.println(this.getTranslateX());
 			System.out.println(this.getTranslateY());
 		});
-
-		l1_mannschaft = new Label(nameMannschaft1);
-		l2_mannschaft = new Label(nameMannschaft2);
-
+		
+		Label l1_mannschaft = new Label(this.match.getMannschaft1().getName());
+		Label l2_mannschaft = new Label(this.match.getMannschaft2().getName());
+		
 		grid.add(l1_mannschaft, 0, 0);
 		grid.add(l2_mannschaft, 0, 1);
 

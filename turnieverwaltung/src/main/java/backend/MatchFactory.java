@@ -4,25 +4,26 @@ import interfaces.IMatch;
 
 public class MatchFactory {
 
-	private Mannschaft mannschaft1 = null;
-	private Mannschaft mannschaft2 = null;
-	private Match prevMatch1 = null;
-	private Match prevMatch2 = null;
-	private boolean isFinalMatch = false;
+	private String m1Name;
+	private String m2Name;
+	private IMatch prevMatch1;
+	private IMatch prevMatch2;
+	private boolean isFinalMatch;
 
-	public IMatch build() {
+	public IMatch build() throws Exception {
 		IMatch createdMatch = null;
-		if(this.isFinalMatch) {
-			createdMatch = new FinalMatch();
+		if(this.isFinalMatch == true) {
+			System.out.println("try to create finale");
+			createdMatch = new FinalMatch(prevMatch1, prevMatch2);
 			// Exception wenn prevmatch1 und 2 nicht drin
-			((FinalMatch) createdMatch).setPrevMatch1(this.prevMatch1);
-			((FinalMatch) createdMatch).setPrevMatch2(this.prevMatch2);
-		} else if(this.mannschaft1 != null && this.mannschaft2 != null) {
-			createdMatch = new Match(this.mannschaft1, this.mannschaft2);
+		} else if(this.prevMatch1 == null && this.prevMatch2 == null && !this.m1Name.isEmpty() && !this.m2Name.isEmpty()) {
+			System.out.println("try to create match");
+			createdMatch = new Match(new Mannschaft(m1Name), new Mannschaft(m2Name));
 		} else if(this.prevMatch1 != null && this.prevMatch2 != null) {
+			System.out.println("try to create folgematch");
 			createdMatch = new FolgeMatch(this.prevMatch1, this.prevMatch2);
 		} else {
-			// exception
+			throw new Exception("Exception from Factory");
 		}
 		return createdMatch;
 	}
@@ -32,22 +33,22 @@ public class MatchFactory {
 		return this;
 	}
 
-	public MatchFactory addMatch(IMatch m) {
+	public MatchFactory addMatch(IMatch m) throws Exception {
 		if(this.prevMatch1 == null) {
-			this.prevMatch1 = (Match) m;
+			this.prevMatch1 = m;
 		} else if(prevMatch2 == null) {
-			this.prevMatch2 = (Match) m;
+			this.prevMatch2 = m;
 		} else {
-			// exception
+			throw new Exception("Exception from Factory addMatch");
 		}
 		return this;
 	}
 	
 	public MatchFactory addMannschaft(String m) {
-		if(this.mannschaft1 == null) {
-			this.mannschaft1 = new Mannschaft(m);
-		} else if(this.mannschaft2 == null) {
-			this.mannschaft2 = new Mannschaft(m);
+		if(this.m1Name == null) {
+			this.m1Name = m;
+		} else if(this.m2Name == null) {
+			this.m2Name = m;
 		} else {
 			// exception
 		}

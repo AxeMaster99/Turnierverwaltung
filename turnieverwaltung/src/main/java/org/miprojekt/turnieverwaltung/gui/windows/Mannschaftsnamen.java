@@ -176,7 +176,12 @@ public class Mannschaftsnamen extends SceneParent {
 		});
 		
 		b_submit.setOnAction((event)->{
-			main.setSpielBaumScreen("spielbaum",teams);
+			try {
+				main.setSpielBaumScreen("spielbaum",teams);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		});
 		
 

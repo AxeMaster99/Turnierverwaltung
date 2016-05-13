@@ -2,18 +2,10 @@ package backend;
 
 import interfaces.IMatch;
 
-public final class FinalMatch extends FolgeMatch {
+public final class FinalMatch extends FolgeMatch implements IMatch {
 
-	public FinalMatch() {
-		super();
-	}
-
-	public void setPrevMatch1(IMatch m) {
-		this.prevMatch1 = (Match) m;
-	}
-	
-	public void setPrevMatch2(IMatch m) {
-		this.prevMatch2 = (Match) m;
+	public FinalMatch(IMatch prevMatch1, IMatch prevMatch2) {
+		super(prevMatch1, prevMatch2);
 	}
 	
 	public String toString() {

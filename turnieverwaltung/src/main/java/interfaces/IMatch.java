@@ -6,9 +6,20 @@ import backend.Mannschaft;
 
 public interface IMatch {
 
-	Mannschaft getMannschaft1();
-	Mannschaft getMannschaft2();
+	public Mannschaft getMannschaft1();
 
-	MatchPane getMatchPane();
-	
+	public Mannschaft getMannschaft2();
+
+	public MatchPane getMatchPane();
+
+	public void incrementToreM1();
+
+	public void incrementToreM2();
+
+	public int getToreM1();
+
+	public int getToreM2();
+
+	public int getIndex();
+
 }
