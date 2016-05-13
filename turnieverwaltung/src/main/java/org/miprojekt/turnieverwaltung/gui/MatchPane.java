@@ -15,9 +15,7 @@ public class MatchPane extends Pane {
 	private Label l2_mannschaft;
 	private GridPane grid = new GridPane();
 	
-	public MatchPane(String nameMannschaft1, String nameMannschaft2) {
-		super();
-		
+	public MatchPane(String nameMannschaft1, String nameMannschaft2) {		
 		grid.setMinSize(110, 40);
 		grid.setStyle("-fx-background-color: white;");
 		

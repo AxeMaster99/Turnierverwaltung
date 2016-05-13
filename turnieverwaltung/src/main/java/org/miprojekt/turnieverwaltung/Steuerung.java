@@ -19,13 +19,14 @@ public class Steuerung {
 
 	private ObservableList<String> teams = FXCollections.observableArrayList();
 	private ArrayList<IMatch> matches = new ArrayList<IMatch>();
+	private FinalMatch finale = new FinalMatch();
 	private int anzahlSpalten = 0;
 	private int anzahlMatchesZus = 0;
 	
 
 	public void erstelleMatches(ObservableList<String> teams) {
 		this.teams = teams;
-
+		
 //		Collections.shuffle(teams); // beste ZEILE
 
 		switch (this.teams.size()) {
@@ -57,8 +58,10 @@ public class Steuerung {
 		erstelleSeite(anzahlMatchesZus, (this.teams.size() / 2) - 1, this.teams.size() - 1);
 
 		// add final match here
-		// this.matches.add(new FinalMatch(null, null));
-		
+		this.finale = new FinalMatch();
+		this.finale.setPrevMatch1(this.matches.get(this.matches.size() / 2));
+		this.finale.setPrevMatch2(this.matches.get(this.matches.size()-1));
+
 	}
 
 	private void erstelleSeite(int anzahlMatchesZus, int start, int stop) {
@@ -90,6 +93,10 @@ public class Steuerung {
 	
 	public int getAnzahlSpalten(){
 		return this.anzahlSpalten;
+	}
+	
+	public IMatch getFinalMatch() {
+		return this.finale;
 	}
 
 }

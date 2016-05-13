@@ -12,6 +12,10 @@ public class Match implements IMatch {
 	protected Mannschaft mannschaft2;
 	private MatchPane matchPane;
 	
+	public Match() {
+		this.matchPane = new MatchPane("...", "...");
+	}
+	
 	public Match(Mannschaft m1, Mannschaft m2) {
 		this.matchPane = new MatchPane(m1.getName(), m2.getName());
 		index = indexCounter;

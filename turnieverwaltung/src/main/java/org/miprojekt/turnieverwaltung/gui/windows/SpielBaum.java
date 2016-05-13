@@ -8,6 +8,7 @@ import org.miprojekt.turnieverwaltung.gui.SceneParent;
 import backend.FolgeMatch;
 import backend.Mannschaft;
 import backend.Match;
+import interfaces.IMatch;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Bounds;
@@ -42,6 +43,7 @@ public class SpielBaum extends SceneParent {
 		// this.zeichneFinale();
 		this.zeichneLinienLinks();
 		this.zeichneLinienRechts();
+		this.zeichneFinale();
 		
 	}
 
@@ -124,10 +126,6 @@ public class SpielBaum extends SceneParent {
 
 	}
 
-	private void zeichneFinale() { 
-		
-	}
-
 	private void zeichneSpielBaumRechts() {
 		int offset = 0;
 		int posX = (this.steuerung.getAnzahlSpalten() * 130) - 20;
@@ -154,4 +152,25 @@ public class SpielBaum extends SceneParent {
 		}
 
 	}
+	
+	private void zeichneFinale() { 
+		IMatch finale = this.steuerung.getFinalMatch();		
+		this.getChildren().add(finale.getMatchPane());
+		finale.getMatchPane().setTranslateX(this.steuerung.getMatches().get(this.steuerung.getMatches().size() / 2 - 1).getMatchPane().getTranslateX()+155);
+		finale.getMatchPane().setTranslateY(this.steuerung.getMatches().get(this.steuerung.getMatches().size() / 2 - 1).getMatchPane().getTranslateY());
+		
+		double fmX = finale.getMatchPane().getTranslateX();
+		double fmY = finale.getMatchPane().getTranslateY() + 20;
+		double m1X = this.steuerung.getMatches().get(this.steuerung.getMatches().size() / 2 - 1).getMatchPane().getTranslateX() + 110;
+		double m1Y = this.steuerung.getMatches().get(this.steuerung.getMatches().size() / 2 - 1).getMatchPane().getTranslateY() + 20;
+		double m2X = this.steuerung.getMatches().get(this.steuerung.getMatches().size()-1).getMatchPane().getTranslateX() + 110;
+		double m2Y = this.steuerung.getMatches().get(this.steuerung.getMatches().size()-1).getMatchPane().getTranslateY() + 20;
+		
+		gc.setFill(Color.BLACK);
+		gc.setStroke(Color.BLACK);
+		gc.setLineWidth(3);
+		gc.strokeLine(fmX, fmY, m1X, m1Y);
+		gc.strokeLine(fmX, fmY, m2X, m2Y);
+	}
+	
 }

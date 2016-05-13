@@ -1,9 +1,19 @@
 package backend;
 
+import interfaces.IMatch;
+
 public class FinalMatch extends FolgeMatch {
 
-	public FinalMatch(Match prevMatch1, Match prevMatch2) {
-		super(prevMatch1, prevMatch2);
+	public FinalMatch() {
+		super();
 	}
 
+	public void setPrevMatch1(IMatch m) {
+		this.prevMatch1 = (Match) m;
+	}
+	
+	public void setPrevMatch2(IMatch m) {
+		this.prevMatch2 = (Match) m;
+	}
+	
 }
