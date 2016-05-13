@@ -168,10 +168,8 @@ public class Mannschaftsnamen extends SceneParent {
 		b_autofill.setOnAction((event) -> {
 			teams.clear();
 			for (int i = 1; i <= anzahlMannschaften; i++) {
-				if(i<10){
-				teams.add("Mannschaft " + i +"  ");
-				}
-				else teams.add("Mannschaft " + i);
+
+				teams.add("Mannschaft " + i);
 			}
 			cnt = anzahlMannschaften;
 			updateFortschritt();
