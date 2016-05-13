@@ -75,6 +75,9 @@ public class MatchStage extends Stage {
 
 		b_Start_Stopp.setOnAction((event) -> {
 			if (b_Start_Stopp.getText().equals("Stop")) {
+				
+				
+				
 				b_Start_Stopp.setText("Start");
 				b_TorMannschaft1.setDisable(true);
 				b_TorMannschaft2.setDisable(true);
