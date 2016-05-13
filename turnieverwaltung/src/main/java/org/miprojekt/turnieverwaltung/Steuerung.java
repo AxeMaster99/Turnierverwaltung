@@ -57,10 +57,10 @@ public class Steuerung {
 		erstelleSeite(anzahlMatchesZus, (this.teams.size() / 2) - 1, this.teams.size() - 1);
 
 		FinalMatch finale = new FinalMatch();
-		finale.setPrevMatch1(this.matches.get(this.matches.size() / 2));
-		finale.setPrevMatch2(this.matches.get(this.matches.size()-1));
+		IMatch prevFinal1 = this.matches.get(this.matches.size() / 2);
+		IMatch prevFinal2 = this.matches.get(this.matches.size()-1);
 
-		this.matches.add(finale);
+		this.matches.add(new MatchFactory().addMatch(prevFinal1).addMatch(prevFinal2).isFinalMatch().build());
 		
 		for (int i = 0; i < matches.size(); i++) {
 			System.out.println(this.matches.get(i).toString());
