@@ -20,6 +20,7 @@ public class MatchPane extends Pane {
 	public MatchPane(IMatch match) {
 		super();
 		this.match = match;
+		
 
 		grid.setMinSize(110, 40);
 		grid.setStyle("-fx-background-color: white;");
@@ -38,6 +39,7 @@ public class MatchPane extends Pane {
 			System.out.println(this.match.getMannschaft1().getName() + " gegen " + this.match.getMannschaft2().getName());
 			System.out.println(this.getTranslateX());
 			System.out.println(this.getTranslateY());
+			this.setDisable(true);
 		});
 		
 		Label l1_mannschaft = new Label(this.match.getMannschaft1().getName());

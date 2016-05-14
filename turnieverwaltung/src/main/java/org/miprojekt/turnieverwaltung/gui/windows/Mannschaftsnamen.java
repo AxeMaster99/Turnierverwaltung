@@ -47,7 +47,7 @@ public class Mannschaftsnamen extends SceneParent {
 	public Mannschaftsnamen(Main main, int anzahlMannschaften) {
 		super(main);
 		this.anzahlMannschaften = anzahlMannschaften;
-
+	    
 		ColumnConstraints col1 = new ColumnConstraints(100);
 		ColumnConstraints col2 = new ColumnConstraints(100);
 		ColumnConstraints col3 = new ColumnConstraints(100);

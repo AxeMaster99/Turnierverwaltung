@@ -27,8 +27,7 @@ public class Main extends Application {
 	
 	@Override
 	public void start(Stage stage) throws Exception {
-		this.stage = stage;
-		
+		this.stage = stage;	
 		stage.setTitle("Turnierverwaltung");
 				
 		this.scenes.put("splashscreen", new Scene(new Splashscreen(this), WINDOWWIDTH, WINDOWHEIGHT));

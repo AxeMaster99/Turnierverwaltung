@@ -28,24 +28,26 @@ public class MatchStage extends Stage {
 	private IMatch match;
 
 	Timeline timeline;
-	private int timerdauer = 120;
+
+	private final double SPIELMINUTEN = 2;
+	private int timerdauer = 5;
 
 	private Label l_Spielstand = new Label();
 	private Label l_Mannschaft1 = new Label();
 	private Label l_Mannschaft2 = new Label();
 
 	private Label l_timer = new Label("Verbleibende Zeit: ");
-	private Label l_timerdauer = new Label(timerdauer/60+":"+timerdauer%60);
+	private Label l_timerdauer = new Label(timerdauer / 60 + ":0" + timerdauer % 60);
 
 	private Button b_TorMannschaft1 = new Button("Tor M1");
 	private Button b_TorMannschaft2 = new Button("Tor M2");
 	private Button b_Start_Stopp = new Button("Start");
+	private Button b_Close = new Button("Schließen");
 
 	public MatchStage(IMatch match) {
 		super();
 		this.match = match;
 
-		
 		Pane root = new Pane();
 		GridPane grid = new GridPane();
 		grid.setMinWidth(350);
@@ -61,7 +63,7 @@ public class MatchStage extends Stage {
 		Font font = new Font(25);
 
 		l_timerdauer.setFont(font);
-		
+
 		l_Spielstand.setFont(font);
 		l_Spielstand.setText(this.match.getToreM1() + ":" + this.match.getToreM2());
 
@@ -96,6 +98,9 @@ public class MatchStage extends Stage {
 
 		grid.add(l_timerdauer, 1, 2);
 		GridPane.setHalignment(l_timerdauer, HPos.CENTER);
+
+		grid.add(b_Close, 2, 2);
+		GridPane.setHalignment(b_Close, HPos.LEFT);
 
 		// grid.setGridLinesVisible(true);
 		root.getChildren().add(grid);
@@ -132,6 +137,10 @@ public class MatchStage extends Stage {
 			}
 		});
 
+		b_Close.setOnAction((event) -> {
+			this.close();
+		});
+
 	}
 
 	private void stoppeSpiel() {
@@ -141,21 +150,20 @@ public class MatchStage extends Stage {
 	private void starteSpiel() {
 		timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
 			timerdauer--;
-			l_timerdauer.setText(timerdauer/60+":"+timerdauer%60);
+			if (timerdauer % 60 >= 10) {
+				l_timerdauer.setText(timerdauer / 60 + ":" + timerdauer % 60);
+			} else {
+				l_timerdauer.setText(timerdauer / 60 + ":0" + timerdauer % 60);
+			}
 			if (timerdauer == 0) {
 				b_Start_Stopp.setText("Start");
 				b_Start_Stopp.setDisable(true);
 				b_TorMannschaft1.setDisable(true);
 				b_TorMannschaft2.setDisable(true);
-				this.speichereErgebnis();
 			}
 		}));
 		timeline.setCycleCount(timerdauer);
 		timeline.play();
-	}
-
-	private void speichereErgebnis() {
-		// TODO IMPLEMENT!
 	}
 
 }

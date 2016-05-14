@@ -32,6 +32,10 @@ public class SpielBaum extends SceneParent {
 	public SpielBaum(Main main, ObservableList<String> teams) throws Exception {
 		super(main);
 		
+		
+//		String style = getClass().getResource("style.css").toExternalForm();
+//		this.getStylesheets().addAll(style);
+		
 		this.teams = teams;
 		this.setStyle("-fx-background-color: #999999");
 		steuerung.erstelleMatches(teams);
