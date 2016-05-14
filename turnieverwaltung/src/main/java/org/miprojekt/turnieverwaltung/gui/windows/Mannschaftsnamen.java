@@ -7,7 +7,10 @@ import org.miprojekt.turnieverwaltung.gui.SceneParent;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.geometry.VPos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -19,6 +22,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 
 
@@ -30,6 +34,7 @@ public class Mannschaftsnamen extends SceneParent {
 	private ListView<String> lb_teams = new ListView<String>(teams);
 	private ProgressBar pb_fortschritt = new ProgressBar(0);
 	private ProgressIndicator pi = new ProgressIndicator(0);
+	private Label l_mannschatsname = new Label("Mannschaftsname:");
 	private Button b_submit = new Button("Bestätigen");
 	private GridPane grid = new GridPane();
 	private Button b_add = new Button("hinzufügen");
@@ -43,35 +48,56 @@ public class Mannschaftsnamen extends SceneParent {
 		super(main);
 		this.anzahlMannschaften = anzahlMannschaften;
 
+		ColumnConstraints col1 = new ColumnConstraints(100);
+		ColumnConstraints col2 = new ColumnConstraints(100);
+		ColumnConstraints col3 = new ColumnConstraints(100);
+		ColumnConstraints col4 = new ColumnConstraints(100);
+		grid.setHgap(10);
+		grid.setVgap(10);
+		
+		grid.getColumnConstraints().addAll(col1,col2,col3,col4);
+		
 		grid.setPadding(new Insets(20));
 		
-		grid.add(new Label("Mannschaftsname:"), 0,0 );
+		grid.add(l_mannschatsname, 0,0 );
+		l_mannschatsname.setMinWidth(100);
 
 		grid.add(t_teamnames, 0, 1, 2, 1);
+		t_teamnames.setMinWidth(100);
+		
 		grid.add(b_add, 2, 1);
+		b_add.setMinWidth(100);
+
 		grid.add(b_autofill, 3, 1);
+		b_autofill.setMinWidth(100);
 
 		grid.add(lb_teams, 0, 2);
 		GridPane.setColumnSpan(lb_teams, 4);
 
 		grid.add(b_edit, 0, 3);
-		grid.add(b_delete, 1, 3);
+		b_edit.setMinWidth(100);
 
-		grid.add(pb_fortschritt, 0, 4, 4, 1);
-		pb_fortschritt.setPrefWidth(250);
+		grid.add(b_delete, 1, 3);
+		b_delete.setMinWidth(100);
+
+		grid.add(pb_fortschritt, 0, 4, 3, 1);
+		pb_fortschritt.setMinWidth(270);
+		GridPane.setHalignment(pb_fortschritt, HPos.CENTER);
 
 		grid.add(pi, 3, 4);
 
 		grid.add(b_submit, 3, 5);
+		b_submit.setMinWidth(100);
+		
 		b_submit.setDisable(true);
 
 		grid.add(b_back, 0, 5);
+		b_back.setMinWidth(100);
 
-		GridPane.setMargin(lb_teams, new Insets(15, 0, 15, 0));
-		GridPane.setMargin(b_add, new Insets(0, 15, 0, 15));
-		GridPane.setMargin(b_edit, new Insets(0, 15, 0, 0));
-		GridPane.setMargin(pb_fortschritt, new Insets(20));
-		GridPane.setMargin(pi, new Insets(0,0,20,0));
+	//	grid.setGridLinesVisible(true);
+		
+		GridPane.setHalignment(b_add, HPos.CENTER);
+		
 
 		b_add.setOnAction((event) -> {
 			if (cnt >= anzahlMannschaften) {

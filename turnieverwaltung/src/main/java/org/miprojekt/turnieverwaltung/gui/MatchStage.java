@@ -1,12 +1,12 @@
 package org.miprojekt.turnieverwaltung.gui;
 
-import org.miprojekt.turnieverwaltung.Steuerung;
 
 import interfaces.IMatch;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.geometry.HPos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -48,13 +48,14 @@ public class MatchStage extends Stage {
 
 		grid.add(l_Mannschaft1, 0, 0);
 		grid.add(l_Spielstand, 1, 0);
+		GridPane.setMargin(l_Spielstand, new Insets(0, 20, 0, 20));
 		grid.add(l_Mannschaft2, 2, 0);
 		grid.add(b_TorMannschaft1, 0, 1);
 		grid.add(b_Start_Stopp, 1, 1);
+		GridPane.setHalignment(b_Start_Stopp, HPos.CENTER);
 		grid.add(b_TorMannschaft2, 2, 1);
-
-		GridPane.setMargin(l_Spielstand, new Insets(0, 20, 0, 20));
-
+		
+		grid.setGridLinesVisible(true);		
 		root.getChildren().add(grid);
 
 		Scene scene = new Scene(root, 300, 200);
