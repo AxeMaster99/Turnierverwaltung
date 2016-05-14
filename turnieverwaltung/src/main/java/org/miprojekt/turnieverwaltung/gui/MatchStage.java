@@ -28,14 +28,14 @@ public class MatchStage extends Stage {
 	private IMatch match;
 
 	Timeline timeline;
-	private int timerdauer = 10;
+	private int timerdauer = 120;
 
 	private Label l_Spielstand = new Label();
 	private Label l_Mannschaft1 = new Label();
 	private Label l_Mannschaft2 = new Label();
 
 	private Label l_timer = new Label("Verbleibende Zeit: ");
-	private Label l_timerdauer = new Label(Integer.toString(timerdauer));
+	private Label l_timerdauer = new Label(timerdauer/60+":"+timerdauer%60);
 
 	private Button b_TorMannschaft1 = new Button("Tor M1");
 	private Button b_TorMannschaft2 = new Button("Tor M2");
@@ -141,7 +141,7 @@ public class MatchStage extends Stage {
 	private void starteSpiel() {
 		timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
 			timerdauer--;
-			l_timerdauer.setText(Integer.toString(timerdauer));
+			l_timerdauer.setText(timerdauer/60+":"+timerdauer%60);
 			if (timerdauer == 0) {
 				b_Start_Stopp.setText("Start");
 				b_Start_Stopp.setDisable(true);

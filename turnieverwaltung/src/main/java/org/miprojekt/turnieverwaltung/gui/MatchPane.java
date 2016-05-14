@@ -33,7 +33,7 @@ public class MatchPane extends Pane {
 		});
 
 		grid.setOnMouseReleased((event) -> {
-			System.out.println(this);
+			//System.out.println(this);
 			new MatchStage(this.match);
 			System.out.println(this.match.getMannschaft1().getName() + " gegen " + this.match.getMannschaft2().getName());
 			System.out.println(this.getTranslateX());
