@@ -10,6 +10,7 @@ import javafx.geometry.HPos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
@@ -46,16 +47,33 @@ public class MatchStage extends Stage {
 		l_Spielstand.setFont(font);
 		l_Spielstand.setText(this.match.getToreM1() + ":" + this.match.getToreM2());
 
+		
+		ColumnConstraints col1 = new ColumnConstraints(100);
+		ColumnConstraints col2 = new ColumnConstraints(100);
+		ColumnConstraints col3 = new ColumnConstraints(100);
+		grid.setHgap(10);
+		grid.setVgap(10);
+		
+		grid.getColumnConstraints().addAll(col1,col2,col3);
+		
 		grid.add(l_Mannschaft1, 0, 0);
+		GridPane.setHalignment(l_Mannschaft1, HPos.RIGHT);
+
 		grid.add(l_Spielstand, 1, 0);
-		GridPane.setMargin(l_Spielstand, new Insets(0, 20, 0, 20));
+		GridPane.setHalignment(l_Spielstand, HPos.CENTER);
+
 		grid.add(l_Mannschaft2, 2, 0);
+		GridPane.setHalignment(l_Mannschaft2, HPos.LEFT);
+
 		grid.add(b_TorMannschaft1, 0, 1);
+		GridPane.setHalignment(b_TorMannschaft1, HPos.RIGHT);
+
 		grid.add(b_Start_Stopp, 1, 1);
 		GridPane.setHalignment(b_Start_Stopp, HPos.CENTER);
-		grid.add(b_TorMannschaft2, 2, 1);
 		
-		grid.setGridLinesVisible(true);		
+		grid.add(b_TorMannschaft2, 2, 1);
+		GridPane.setHalignment(b_TorMannschaft2, HPos.LEFT);
+		
 		root.getChildren().add(grid);
 
 		Scene scene = new Scene(root, 300, 200);
