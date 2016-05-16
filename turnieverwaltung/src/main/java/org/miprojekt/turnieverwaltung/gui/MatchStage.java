@@ -1,7 +1,10 @@
 package org.miprojekt.turnieverwaltung.gui;
 
+import java.util.Optional;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import org.miprojekt.turnieverwaltung.Steuerung;
 
 import interfaces.IMatch;
 import javafx.animation.Animation;
@@ -14,8 +17,11 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.HPos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -25,9 +31,10 @@ import javafx.util.Duration;
 
 public class MatchStage extends Stage {
 
+	private MatchPane matchPane;
 	private IMatch match;
-
-	Timeline timeline;
+	
+	private Timeline timeline;
 
 	private final double SPIELMINUTEN = 2;
 	private int timerdauer = 5;
@@ -42,11 +49,33 @@ public class MatchStage extends Stage {
 	private Button b_TorMannschaft1 = new Button("Tor M1");
 	private Button b_TorMannschaft2 = new Button("Tor M2");
 	private Button b_Start_Stopp = new Button("Start");
-	private Button b_Close = new Button("Schließen");
+	
+	private Boolean matchBeendet=false;
 
-	public MatchStage(IMatch match) {
+	public MatchStage(IMatch match, MatchPane matchPane) {
 		super();
 		this.match = match;
+		this.matchPane = matchPane;
+
+		this.setOnCloseRequest((WindowEvent) -> {
+			if (matchBeendet == true) {
+				this.close();
+			} else {
+				Alert alert = new Alert(AlertType.CONFIRMATION);
+				alert.setTitle("Warnung");
+				alert.setHeaderText("Wirklich schließen?");
+				alert.setContentText("Wollen sie das Fenster wirklich schließen? Das Spiel ist noch nicht beendet.");
+				Optional<ButtonType> result = alert.showAndWait();
+				if (result.get() == ButtonType.OK) {
+					matchPane.setDisable(false);
+					this.close();
+					
+				} else {
+					WindowEvent.consume();
+					alert.close();
+				}
+			}
+		});
 
 		Pane root = new Pane();
 		GridPane grid = new GridPane();
@@ -99,8 +128,6 @@ public class MatchStage extends Stage {
 		grid.add(l_timerdauer, 1, 2);
 		GridPane.setHalignment(l_timerdauer, HPos.CENTER);
 
-		grid.add(b_Close, 2, 2);
-		GridPane.setHalignment(b_Close, HPos.LEFT);
 
 		// grid.setGridLinesVisible(true);
 		root.getChildren().add(grid);
@@ -137,10 +164,6 @@ public class MatchStage extends Stage {
 			}
 		});
 
-		b_Close.setOnAction((event) -> {
-			this.close();
-		});
-
 	}
 
 	private void stoppeSpiel() {
@@ -160,6 +183,8 @@ public class MatchStage extends Stage {
 				b_Start_Stopp.setDisable(true);
 				b_TorMannschaft1.setDisable(true);
 				b_TorMannschaft2.setDisable(true);
+				matchBeendet=true;
+				this.match.setSieger();
 			}
 		}));
 		timeline.setCycleCount(timerdauer);

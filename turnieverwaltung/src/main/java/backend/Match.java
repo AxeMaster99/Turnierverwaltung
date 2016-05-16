@@ -56,8 +56,15 @@ public class Match implements IMatch {
 		return ret;
 	}
 
-	public void setSieger(Mannschaft sieger) {
-		this.sieger = sieger;
+	public void setSieger() {
+		if (toreM1 > toreM2) {
+			this.sieger = mannschaft1;
+		} else {
+			this.sieger=mannschaft2;
+		}
+		
+		// TODO: Unentschieden?
+		System.out.println(sieger +" hat gewonnen.");
 	}
 
 	public Mannschaft getSieger() {

@@ -22,5 +22,6 @@ public interface IMatch {
 
 	public int getIndex();
 	
+	public void setSieger();
 
 }

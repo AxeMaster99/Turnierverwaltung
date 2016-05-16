@@ -35,7 +35,7 @@ public class MatchPane extends Pane {
 
 		grid.setOnMouseReleased((event) -> {
 			//System.out.println(this);
-			new MatchStage(this.match);
+			new MatchStage(this.match,this);
 			System.out.println(this.match.getMannschaft1().getName() + " gegen " + this.match.getMannschaft2().getName());
 			System.out.println(this.getTranslateX());
 			System.out.println(this.getTranslateY());
@@ -49,6 +49,9 @@ public class MatchPane extends Pane {
 		grid.add(l2_mannschaft, 0, 1);
 
 		this.getChildren().add(grid);
+	}
+	public void anzeigen(){
+		
 	}
 
 }
