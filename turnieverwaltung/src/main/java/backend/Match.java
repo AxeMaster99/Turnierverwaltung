@@ -3,8 +3,12 @@ package backend;
 import org.miprojekt.turnieverwaltung.gui.MatchPane;
 
 import interfaces.IMatch;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
 public class Match implements IMatch {
+	
+	
 
 	private static int indexCounter = 1;
 	private int index;
@@ -60,11 +64,13 @@ public class Match implements IMatch {
 		if (toreM1 > toreM2) {
 			this.sieger = mannschaft1;
 		} else {
-			this.sieger=mannschaft2;
+			this.sieger = mannschaft2;
 		}
-		
+
 		// TODO: Unentschieden?
-		System.out.println(sieger +" hat gewonnen.");
+
+		System.out.println("Das Spiel endetete " + toreM1 + ":" + toreM2 + ". " + sieger + " hat gewonnen.");
+		this.matchPane.setLabelErgebnis(toreM1,toreM2);
 	}
 
 	public Mannschaft getSieger() {

@@ -67,7 +67,7 @@ public class MatchStage extends Stage {
 				alert.setContentText("Wollen sie das Fenster wirklich schließen? Das Spiel ist noch nicht beendet.");
 				Optional<ButtonType> result = alert.showAndWait();
 				if (result.get() == ButtonType.OK) {
-					matchPane.setDisable(false);
+					this.matchPane.setDisable(false);
 					this.close();
 					
 				} else {

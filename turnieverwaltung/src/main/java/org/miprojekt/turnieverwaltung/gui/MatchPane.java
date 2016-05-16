@@ -1,5 +1,8 @@
 package org.miprojekt.turnieverwaltung.gui;
 
+import org.miprojekt.turnieverwaltung.Steuerung;
+
+import backend.FolgeMatch;
 import backend.Match;
 import interfaces.IMatch;
 import javafx.geometry.Insets;
@@ -9,18 +12,26 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.scene.input.MouseEvent;
 
 public class MatchPane extends Pane {
 
+	private Steuerung steuerung = new Steuerung();
 	private IMatch match;
 	private GridPane grid = new GridPane();
-	
+
+	private Label l1_mannschaft;
+	private Label l2_mannschaft;
+
+	private Label l3_toreM1;
+	private Label l4_toreM2;
+
 	public MatchPane(IMatch match) {
 		super();
 		this.match = match;
-		
 
 		grid.setMinSize(110, 40);
 		grid.setStyle("-fx-background-color: white;");
@@ -34,24 +45,38 @@ public class MatchPane extends Pane {
 		});
 
 		grid.setOnMouseReleased((event) -> {
-			//System.out.println(this);
-			new MatchStage(this.match,this);
-			System.out.println(this.match.getMannschaft1().getName() + " gegen " + this.match.getMannschaft2().getName());
+			// System.out.println(this);
+			new MatchStage(this.match, this);
+			System.out
+					.println(this.match.getMannschaft1().getName() + " gegen " + this.match.getMannschaft2().getName());
 			System.out.println(this.getTranslateX());
 			System.out.println(this.getTranslateY());
 			this.setDisable(true);
 		});
-		
-		Label l1_mannschaft = new Label(this.match.getMannschaft1().getName());
-		Label l2_mannschaft = new Label(this.match.getMannschaft2().getName());
-		
+
+		l1_mannschaft = new Label(this.match.getMannschaft1().getName());
+		l2_mannschaft = new Label(this.match.getMannschaft2().getName());
+		l3_toreM1 = new Label("");
+		l4_toreM2 = new Label("");
+		Font font = new Font(14);
+		l3_toreM1.setFont(font);
+		l4_toreM2.setFont(font);
+
 		grid.add(l1_mannschaft, 0, 0);
 		grid.add(l2_mannschaft, 0, 1);
 
+		grid.add(l3_toreM1, 1, 0);
+		grid.add(l4_toreM2, 1, 1);
+
+		grid.setHgap(15);
 		this.getChildren().add(grid);
 	}
-	public void anzeigen(){
-		
+
+	public void setLabelErgebnis(int toreM1, int toreM2) {
+		l3_toreM1.setText(Integer.toString(toreM1));
+		l4_toreM2.setText(Integer.toString(toreM2));
+		grid.setStyle("-fx-background-color: green;");
+		steuerung.BerechneFolgeMatches();
 	}
 
 }
