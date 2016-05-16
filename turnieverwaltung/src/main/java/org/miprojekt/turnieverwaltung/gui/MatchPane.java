@@ -19,7 +19,6 @@ import javafx.scene.input.MouseEvent;
 
 public class MatchPane extends Pane {
 
-	private Steuerung steuerung = new Steuerung();
 	private IMatch match;
 	private GridPane grid = new GridPane();
 
@@ -76,7 +75,6 @@ public class MatchPane extends Pane {
 		l3_toreM1.setText(Integer.toString(toreM1));
 		l4_toreM2.setText(Integer.toString(toreM2));
 		grid.setStyle("-fx-background-color: green;");
-		steuerung.BerechneFolgeMatches();
 	}
 
 }

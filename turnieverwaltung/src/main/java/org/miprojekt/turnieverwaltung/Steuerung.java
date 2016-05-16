@@ -94,13 +94,4 @@ public class Steuerung {
 		return this.anzahlSpalten;
 	}
 
-	public void BerechneFolgeMatches() {
-		for (int i=0; i<this.matches.size();i++){
-			if (this.matches.get(i) instanceof FolgeMatch) {
-				// Kann hier nicht auf FolgeMatch.getPrevMatch zugreifen :(
-				// hilf mal! :D liegt an dem Interface
-			}
-		}
-	}
-
 }
