@@ -34,6 +34,7 @@ public class MatchPane extends Pane {
 		super();
 		this.match = match;
 		this.matchStage = new MatchStage(this.match, this);
+		this.matchStage.hide();
 
 		grid.setMinSize(110, 40);
 		grid.setStyle("-fx-background-color: white;");
@@ -48,7 +49,7 @@ public class MatchPane extends Pane {
 
 		grid.setOnMouseReleased((event) -> {
 			// System.out.println(this);
-			this.matchStage = new MatchStage(this.match, this);
+			this.matchStage.show();
 			System.out
 					.println(this.match.getMannschaft1().getName() + " gegen " + this.match.getMannschaft2().getName());
 			System.out.println(this.getTranslateX());
