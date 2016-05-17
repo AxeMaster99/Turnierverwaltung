@@ -39,6 +39,8 @@ public class MatchStage extends Stage {
 	private final double SPIELMINUTEN = 2;
 	private int timerdauer = 5;
 
+	private Boolean spielGestartet = false;
+
 	private Label l_Spielstand = new Label();
 	private Label l_Mannschaft1 = new Label();
 	private Label l_Mannschaft2 = new Label();
@@ -71,7 +73,10 @@ public class MatchStage extends Stage {
 					this.matchPane.setDisable(false);
 					this.match.setToreM1(0);
 					this.match.setToreM2(0);
-					this.stoppeSpiel();
+					if (spielGestartet) {
+						this.stoppeSpiel();
+					}
+					this.spielGestartet=false;
 					this.close();
 
 				} else {
@@ -160,6 +165,7 @@ public class MatchStage extends Stage {
 				b_TorMannschaft2.setDisable(true);
 
 			} else {
+				this.spielGestartet = true;
 				this.starteSpiel();
 				b_Start_Stopp.setText("Stop");
 				b_TorMannschaft1.setDisable(false);
