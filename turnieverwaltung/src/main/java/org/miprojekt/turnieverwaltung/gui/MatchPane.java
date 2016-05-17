@@ -1,6 +1,7 @@
 package org.miprojekt.turnieverwaltung.gui;
 
 import org.miprojekt.turnieverwaltung.Steuerung;
+import org.miprojekt.turnieverwaltung.gui.MatchStage.Status;
 
 import backend.FolgeMatch;
 import backend.Match;
@@ -29,7 +30,7 @@ public class MatchPane extends Pane {
 	private Label l4_toreM2;
 
 	private MatchStage matchStage;
-	
+
 	public MatchPane(IMatch match) {
 		super();
 		this.match = match;
@@ -80,19 +81,27 @@ public class MatchPane extends Pane {
 		l4_toreM2.setText(Integer.toString(toreM2));
 		grid.setStyle("-fx-background-color: green;");
 	}
-	
+
 	public MatchStage getMatchStage() {
 		return this.matchStage;
 	}
-	
+
 	public void updateMannschaftsLabelM1() {
 		l1_mannschaft.setText(this.match.getMannschaft1().getName());
 		matchStage.setLabelM1(this.match.getMannschaft1().getName());
 	}
-	
+
 	public void updateMannschaftsLabelM2() {
 		l2_mannschaft.setText(this.match.getMannschaft2().getName());
 		matchStage.setLabelM2(this.match.getMannschaft2().getName());
+	}
+
+	public void statusFarbeAendern(Status status) {
+		if (status == Status.running)
+			grid.setStyle("-fx-background-color: yellow;");
+		else if (status == Status.clickable) {
+			grid.setStyle("-fx-background-color: white;");
+		}
 	}
 
 }

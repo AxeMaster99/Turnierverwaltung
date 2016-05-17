@@ -32,6 +32,8 @@ import javafx.util.Duration;
 
 public class MatchStage extends Stage {
 
+	public enum Status {clickable, running}
+	
 	private MatchPane matchPane;
 	private IMatch match;
 
@@ -76,6 +78,7 @@ public class MatchStage extends Stage {
 					if (spielGestartet) {
 						this.stoppeSpiel();
 						b_Start_Stopp.setText("Start");
+						this.matchPane.statusFarbeAendern(Status.clickable);
 						b_TorMannschaft1.setDisable(true);
 						b_TorMannschaft2.setDisable(true);
 					}
@@ -170,6 +173,7 @@ public class MatchStage extends Stage {
 			} else {
 				this.spielGestartet = true;
 				this.starteSpiel();
+				this.matchPane.statusFarbeAendern(Status.running);
 				b_Start_Stopp.setText("Stop");
 				b_TorMannschaft1.setDisable(false);
 				b_TorMannschaft2.setDisable(false);
