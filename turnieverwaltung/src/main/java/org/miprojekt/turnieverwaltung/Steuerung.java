@@ -53,7 +53,7 @@ public class Steuerung {
 		}
 
 		erstelleSeite(anzahlMatchesZus, 0, this.teams.size() / 2);
-		erstelleSeite(anzahlMatchesZus, (this.teams.size() / 2) - 1, this.teams.size() - 1);
+		erstelleSeite(anzahlMatchesZus, (this.teams.size() / 2), this.teams.size() - 1);
 
 		IMatch prevFinal1 = this.matches.get(this.matches.size() / 2 - 1);
 		IMatch prevFinal2 = this.matches.get(this.matches.size() - 1);
