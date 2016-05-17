@@ -50,7 +50,7 @@ public class Match implements IMatch {
 	}
 
 	public void setMannschaft2(Mannschaft m2) {
-		this.mannschaft1 = m2;
+		this.mannschaft2 = m2;
 	}
 	
 	public Mannschaft getMannschaft2() {
