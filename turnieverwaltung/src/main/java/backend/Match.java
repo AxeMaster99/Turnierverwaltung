@@ -8,8 +8,6 @@ import javafx.scene.control.Alert.AlertType;
 
 public class Match implements IMatch {
 	
-	
-
 	private static int indexCounter = 1;
 	private int index;
 	protected Mannschaft mannschaft1 = new Mannschaft("...");;
@@ -101,9 +99,16 @@ public class Match implements IMatch {
 		this.toreM2=toreM2;
 	}
 
-	@Override
 	public MatchPane getMatchPane() {
 		return this.matchPane;
+	}
+	
+	public boolean isGameFinished() {
+		if(this.sieger != null) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }
