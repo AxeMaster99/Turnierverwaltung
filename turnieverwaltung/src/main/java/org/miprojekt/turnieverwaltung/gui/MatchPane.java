@@ -22,6 +22,7 @@ public class MatchPane extends Pane {
 
 	private IMatch match;
 	private GridPane grid = new GridPane();
+	private String currentStyle;
 
 	private Label l1_mannschaft;
 	private Label l2_mannschaft;
@@ -41,11 +42,12 @@ public class MatchPane extends Pane {
 		grid.setStyle("-fx-background-color: white;");
 
 		grid.setOnMouseEntered((MouseEvent e) -> {
+			currentStyle = grid.getStyle();
 			grid.setStyle("-fx-background-color: CCCCCC;");
 		});
 
 		grid.setOnMouseExited((MouseEvent e) -> {
-			grid.setStyle("-fx-background-color: white;");
+			grid.setStyle(currentStyle);
 		});
 
 		grid.setOnMouseReleased((event) -> {
@@ -101,6 +103,9 @@ public class MatchPane extends Pane {
 			grid.setStyle("-fx-background-color: yellow;");
 		else if (status == Status.clickable) {
 			grid.setStyle("-fx-background-color: white;");
+		}
+		else {
+			grid.setStyle("-fx-background-color: orange;");
 		}
 	}
 

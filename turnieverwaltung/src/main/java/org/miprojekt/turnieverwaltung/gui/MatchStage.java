@@ -32,8 +32,10 @@ import javafx.util.Duration;
 
 public class MatchStage extends Stage {
 
-	public enum Status {clickable, running}
-	
+	public enum Status {
+		clickable, running, closed
+	}
+
 	private MatchPane matchPane;
 	private IMatch match;
 
@@ -65,20 +67,24 @@ public class MatchStage extends Stage {
 		this.matchPane = matchPane;
 
 		this.setOnCloseRequest((WindowEvent) -> {
+
 			if (matchBeendet == true) {
 				this.close();
 			} else {
+				if (spielGestartet) {
+					this.stoppeSpiel();
+				}
 				Alert alert = new Alert(AlertType.CONFIRMATION);
 				alert.setTitle("Warnung");
 				alert.setHeaderText("Wirklich schließen?");
-				alert.setContentText("Wollen sie das Fenster wirklich schließen? Das Spiel ist noch nicht beendet..");
+				alert.setContentText(
+						"Wollen sie das Fenster wirklich schließen? Der Timer wird dann gestoppt und das Spiel muss später fortgesetzt werden.");
 				Optional<ButtonType> result = alert.showAndWait();
 				if (result.get() == ButtonType.OK) {
 					this.matchPane.setDisable(false);
 					if (spielGestartet) {
-						this.stoppeSpiel();
 						b_Start_Stopp.setText("Start");
-						this.matchPane.statusFarbeAendern(Status.clickable);
+						this.matchPane.statusFarbeAendern(Status.closed);
 						b_TorMannschaft1.setDisable(true);
 						b_TorMannschaft2.setDisable(true);
 					}
@@ -88,6 +94,7 @@ public class MatchStage extends Stage {
 				} else {
 					WindowEvent.consume();
 					alert.close();
+					this.starteSpiel();
 				}
 			}
 		});
@@ -187,7 +194,7 @@ public class MatchStage extends Stage {
 	}
 
 	private void starteSpiel() {
-		timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
+		this.timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
 			timerdauer--;
 			if (timerdauer % 60 >= 10) {
 				l_timerdauer.setText(timerdauer / 60 + ":" + timerdauer % 60);
@@ -216,14 +223,14 @@ public class MatchStage extends Stage {
 	public void setLabelM1(String label) {
 		l_Mannschaft1.setText(label);
 		if (!l_Mannschaft2.getText().equals("...")) {
-			this.setTitle(l_Mannschaft1.getText()+" vs " +l_Mannschaft2.getText());
+			this.setTitle(l_Mannschaft1.getText() + " vs " + l_Mannschaft2.getText());
 		}
 	}
 
 	public void setLabelM2(String label) {
 		l_Mannschaft2.setText(label);
 		if (!l_Mannschaft1.getText().equals("...")) {
-			this.setTitle(l_Mannschaft1.getText()+" vs " +l_Mannschaft2.getText());
+			this.setTitle(l_Mannschaft1.getText() + " vs " + l_Mannschaft2.getText());
 		}
 	}
 
