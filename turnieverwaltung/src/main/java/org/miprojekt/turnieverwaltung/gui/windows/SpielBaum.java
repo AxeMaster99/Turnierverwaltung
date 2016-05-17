@@ -197,7 +197,7 @@ public class SpielBaum extends SceneParent {
 		for(int i = 0; i < this.steuerung.getMatches().size(); i++) {
 			if(this.steuerung.getMatches().get(i) instanceof FolgeMatch) {
 				
-				if(((FolgeMatch) this.steuerung.getMatches().get(i)).getPrevMatch1().isGameFinished() && 
+				if(((FolgeMatch) this.steuerung.getMatches().get(i)).getPrevMatch1().isGameFinished() || 
 						((FolgeMatch) this.steuerung.getMatches().get(i)).getPrevMatch2().isGameFinished()) {
 					
 					FolgeMatch actMatch = (FolgeMatch) this.steuerung.getMatches().get(i);
