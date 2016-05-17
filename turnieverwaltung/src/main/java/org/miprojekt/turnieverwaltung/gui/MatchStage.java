@@ -70,14 +70,15 @@ public class MatchStage extends Stage {
 				alert.setTitle("Warnung");
 				alert.setHeaderText("Wirklich schließen?");
 				alert.setContentText(
-						"Wollen sie das Fenster wirklich schließen? Das Spiel ist noch nicht beendet und muss dann neu gestartet werden.");
+						"Wollen sie das Fenster wirklich schließen? Das Spiel ist noch nicht beendet..");
 				Optional<ButtonType> result = alert.showAndWait();
 				if (result.get() == ButtonType.OK) {
 					this.matchPane.setDisable(false);
-					this.match.setToreM1(0);
-					this.match.setToreM2(0);
 					if (spielGestartet) {
 						this.stoppeSpiel();
+						b_Start_Stopp.setText("Start");
+						b_TorMannschaft1.setDisable(true);
+						b_TorMannschaft2.setDisable(true);
 					}
 					this.spielGestartet=false;
 					this.close();
