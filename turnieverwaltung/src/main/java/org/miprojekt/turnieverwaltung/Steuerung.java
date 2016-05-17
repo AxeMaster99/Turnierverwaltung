@@ -53,7 +53,7 @@ public class Steuerung {
 		}
 
 		erstelleSeite(anzahlMatchesZus, 0, this.teams.size() / 2);
-		erstelleSeite(anzahlMatchesZus, (this.teams.size() / 2), this.teams.size() - 1);
+		erstelleSeite(anzahlMatchesZus, (this.teams.size() / 2)-1, this.teams.size() - 1);
 
 		IMatch prevFinal1 = this.matches.get(this.matches.size() / 2 - 1);
 		IMatch prevFinal2 = this.matches.get(this.matches.size() - 1);
@@ -70,7 +70,7 @@ public class Steuerung {
 	private void erstelleSeite(int anzahlMatchesZus, int start, int stop) throws Exception {
 
 		int actMatch = start;
-		for (int i = start; i <= stop; i += 2) {
+		for (int i = start; i <stop; i += 2) {
 			matches.add(new MatchFactory().addMannschaft(teams.get(i)).addMannschaft(teams.get(i + 1)).build());
 		}
 		for (int i = 0; i < (anzahlMatchesZus / 2); i++) {
