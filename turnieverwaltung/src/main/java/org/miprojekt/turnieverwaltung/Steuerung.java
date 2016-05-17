@@ -71,7 +71,11 @@ public class Steuerung {
 
 		int actMatch = start;
 		for (int i = start; i <stop; i += 2) {
-			matches.add(new MatchFactory().addMannschaft(teams.get(i)).addMannschaft(teams.get(i + 1)).build());
+			if(start > 1) {
+				matches.add(new MatchFactory().addMannschaft(teams.get(i+1)).addMannschaft(teams.get(i + 2)).build());
+			} else {
+				matches.add(new MatchFactory().addMannschaft(teams.get(i)).addMannschaft(teams.get(i + 1)).build());
+			}
 		}
 		for (int i = 0; i < (anzahlMatchesZus / 2); i++) {
 
