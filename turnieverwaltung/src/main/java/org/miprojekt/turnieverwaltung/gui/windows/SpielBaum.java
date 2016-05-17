@@ -113,7 +113,8 @@ public class SpielBaum extends SceneParent {
 
 		while (matchesInSpalte > 0) {
 			for (int i = 0; i < matchesInSpalte; i++) {
-				Pane pane = this.steuerung.getMatches().get(actMatch).getMatchPane();
+				MatchPane pane = this.steuerung.getMatches().get(actMatch).getMatchPane();
+				pane.getMatchStage().setSpielbaum(this);
 				pane.setTranslateX(posX);
 				pane.setTranslateY(posY);
 				this.getChildren().add(pane);
@@ -140,7 +141,8 @@ public class SpielBaum extends SceneParent {
 
 		while (matchesInSpalte > 0) {
 			for (int i = 0; i < matchesInSpalte; i++) {
-				Pane pane = this.steuerung.getMatches().get(actMatch).getMatchPane();
+				MatchPane pane = this.steuerung.getMatches().get(actMatch).getMatchPane();
+				pane.getMatchStage().setSpielbaum(this);
 				pane.setTranslateX(posX);
 				pane.setTranslateY(posY);
 				this.getChildren().add(pane);
@@ -159,6 +161,7 @@ public class SpielBaum extends SceneParent {
 	private void zeichneFinale() { 
 		
 		MatchPane finaleMatchPane = this.steuerung.getMatches().get(this.steuerung.getMatches().size()-1).getMatchPane();
+		finaleMatchPane.getMatchStage().setSpielbaum(this);
 		
 		this.getChildren().add(finaleMatchPane);
 		

@@ -28,9 +28,12 @@ public class MatchPane extends Pane {
 	private Label l3_toreM1;
 	private Label l4_toreM2;
 
+	private MatchStage matchStage;
+	
 	public MatchPane(IMatch match) {
 		super();
 		this.match = match;
+		this.matchStage = new MatchStage(this.match, this);
 
 		grid.setMinSize(110, 40);
 		grid.setStyle("-fx-background-color: white;");
@@ -45,7 +48,7 @@ public class MatchPane extends Pane {
 
 		grid.setOnMouseReleased((event) -> {
 			// System.out.println(this);
-			new MatchStage(this.match, this);
+			this.matchStage = new MatchStage(this.match, this);
 			System.out
 					.println(this.match.getMannschaft1().getName() + " gegen " + this.match.getMannschaft2().getName());
 			System.out.println(this.getTranslateX());
@@ -75,6 +78,10 @@ public class MatchPane extends Pane {
 		l3_toreM1.setText(Integer.toString(toreM1));
 		l4_toreM2.setText(Integer.toString(toreM2));
 		grid.setStyle("-fx-background-color: green;");
+	}
+	
+	public MatchStage getMatchStage() {
+		return this.matchStage;
 	}
 
 }

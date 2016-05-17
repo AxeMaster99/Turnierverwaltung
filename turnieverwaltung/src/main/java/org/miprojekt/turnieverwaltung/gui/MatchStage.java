@@ -5,6 +5,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import org.miprojekt.turnieverwaltung.Steuerung;
+import org.miprojekt.turnieverwaltung.gui.windows.SpielBaum;
 
 import interfaces.IMatch;
 import javafx.animation.Animation;
@@ -54,6 +55,8 @@ public class MatchStage extends Stage {
 
 	private Boolean matchBeendet = false;
 
+	private SpielBaum spielBaum = null;
+	
 	public MatchStage(IMatch match, MatchPane matchPane) {
 		super();
 		this.match = match;
@@ -199,6 +202,10 @@ public class MatchStage extends Stage {
 		}));
 		timeline.setCycleCount(timerdauer);
 		timeline.play();
+	}
+	
+	public void setSpielbaum(SpielBaum spielbaum) {
+		this.spielBaum = spielbaum;
 	}
 
 }
