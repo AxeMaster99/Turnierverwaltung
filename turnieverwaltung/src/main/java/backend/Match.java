@@ -41,10 +41,18 @@ public class Match implements IMatch {
 		this.matchPane = new MatchPane(this);
 	}
 
+	public void setMannschaft1(Mannschaft m1) {
+		this.mannschaft1 = m1;
+	}
+	
 	public Mannschaft getMannschaft1() {
 		return mannschaft1;
 	}
 
+	public void setMannschaft2(Mannschaft m2) {
+		this.mannschaft1 = m2;
+	}
+	
 	public Mannschaft getMannschaft2() {
 		return mannschaft2;
 	}

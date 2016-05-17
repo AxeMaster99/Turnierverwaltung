@@ -198,6 +198,7 @@ public class MatchStage extends Stage {
 				b_TorMannschaft2.setDisable(true);
 				matchBeendet = true;
 				this.match.setSieger();
+				this.spielBaum.updateSpielBaum();
 				this.close();
 			}
 		}));

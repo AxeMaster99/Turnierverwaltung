@@ -190,4 +190,30 @@ public class SpielBaum extends SceneParent {
 		gc.strokeLine(fmX, fmY, m2X, m2Y);
 	}
 	
+	public void updateSpielBaum() {
+		
+		System.out.println("update spielbaum");
+		
+		for(int i = 0; i < this.steuerung.getMatches().size(); i++) {
+			if(this.steuerung.getMatches().get(i) instanceof FolgeMatch) {
+				
+				if(((FolgeMatch) this.steuerung.getMatches().get(i)).getPrevMatch1().isGameFinished() && 
+						((FolgeMatch) this.steuerung.getMatches().get(i)).getPrevMatch2().isGameFinished()) {
+					
+					FolgeMatch actMatch = (FolgeMatch) this.steuerung.getMatches().get(i);
+					IMatch prevMatch1 = actMatch.getPrevMatch1();
+					IMatch prevMatch2 = actMatch.getPrevMatch2();
+					
+					// Mannschaften in Folgematch eintragen
+					this.steuerung.getMatches().get(i).setMannschaft1(prevMatch1.getSieger());
+					this.steuerung.getMatches().get(i).setMannschaft2(prevMatch2.getSieger());
+					
+					// Labels anpassen
+					this.steuerung.getMatches().get(i).getMatchPane().updateMannschaftsLabels();
+					
+				}
+			}
+		}
+	}
+	
 }
