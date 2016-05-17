@@ -70,7 +70,7 @@ public class Steuerung {
 	private void erstelleSeite(int anzahlMatchesZus, int start, int stop) throws Exception {
 
 		int actMatch = start;
-		for (int i = start; i < stop; i += 2) {
+		for (int i = start; i <= stop; i += 2) {
 			matches.add(new MatchFactory().addMannschaft(teams.get(i)).addMannschaft(teams.get(i + 1)).build());
 		}
 		for (int i = 0; i < (anzahlMatchesZus / 2); i++) {
