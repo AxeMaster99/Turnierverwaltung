@@ -17,12 +17,14 @@ import javafx.geometry.Bounds;
 import javafx.geometry.Point2D;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Alert.AlertType;
 
 public class SpielBaum extends SceneParent {
 
@@ -222,6 +224,14 @@ public class SpielBaum extends SceneParent {
 					this.steuerung.getMatches().get(i).getMatchPane().updateMannschaftsLabelM2();
 				}
 				
+			}
+			
+			if (this.steuerung.getMatches().get(i) instanceof FinalMatch && this.steuerung.getMatches().get(i).isGameFinished()) {
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Information");
+				alert.setHeaderText("Sieger des Turniers");
+				alert.setContentText("Der Sieger des Turniers ist: "+ this.steuerung.getMatches().get(i).getSieger());
+				alert.showAndWait();
 			}
 		}
 	}

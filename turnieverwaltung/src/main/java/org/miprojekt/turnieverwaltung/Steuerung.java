@@ -25,7 +25,7 @@ public class Steuerung {
 	public void erstelleMatches(ObservableList<String> teams) throws Exception {
 		this.teams = teams;
 
-		// Collections.shuffle(teams); // beste ZEILE
+		Collections.shuffle(teams); // beste ZEILE
 
 		switch (this.teams.size()) {
 		case 2:
