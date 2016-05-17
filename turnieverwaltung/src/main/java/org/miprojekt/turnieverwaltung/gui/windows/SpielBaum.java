@@ -1,4 +1,5 @@
 package org.miprojekt.turnieverwaltung.gui.windows;
+
 import java.util.ArrayList;
 
 import org.miprojekt.turnieverwaltung.Main;
@@ -31,18 +32,17 @@ public class SpielBaum extends SceneParent {
 
 	public SpielBaum(Main main, ObservableList<String> teams) throws Exception {
 		super(main);
-		
-		
-//		String style = getClass().getResource("style.css").toExternalForm();
-//		this.getStylesheets().addAll(style);
-		
+
+		// String style = getClass().getResource("style.css").toExternalForm();
+		// this.getStylesheets().addAll(style);
+
 		this.teams = teams;
 		this.setStyle("-fx-background-color: #999999");
 		steuerung.erstelleMatches(teams);
 
 		canvas.setMouseTransparent(true);
 		this.getChildren().add(canvas);
-		
+
 		this.zeichneSpielBaumLinks();
 		this.zeichneSpielBaumRechts();
 		this.zeichneLinienLinks();
@@ -51,9 +51,10 @@ public class SpielBaum extends SceneParent {
 	}
 
 	private void zeichneLinienLinks() {
-		for (int i = 0; i < this.steuerung.getMatches().size()/2; i++) {
-			if (this.steuerung.getMatches().get(i) instanceof FolgeMatch && !(this.steuerung.getMatches().get(i) instanceof FinalMatch)) {
-				
+		for (int i = 0; i < this.steuerung.getMatches().size() / 2; i++) {
+			if (this.steuerung.getMatches().get(i) instanceof FolgeMatch
+					&& !(this.steuerung.getMatches().get(i) instanceof FinalMatch)) {
+
 				MatchPane fm = this.steuerung.getMatches().get(i).getMatchPane();
 				MatchPane m1 = ((FolgeMatch) this.steuerung.getMatches().get(i)).getPrevMatch1().getMatchPane();
 				MatchPane m2 = ((FolgeMatch) this.steuerung.getMatches().get(i)).getPrevMatch2().getMatchPane();
@@ -75,16 +76,17 @@ public class SpielBaum extends SceneParent {
 			}
 		}
 	}
-	
+
 	private void zeichneLinienRechts() {
-		for (int i = this.steuerung.getMatches().size()/2; i < this.steuerung.getMatches().size(); i++) {
-			if (this.steuerung.getMatches().get(i) instanceof FolgeMatch && !(this.steuerung.getMatches().get(i) instanceof FinalMatch)) {
-				
+		for (int i = this.steuerung.getMatches().size() / 2; i < this.steuerung.getMatches().size(); i++) {
+			if (this.steuerung.getMatches().get(i) instanceof FolgeMatch
+					&& !(this.steuerung.getMatches().get(i) instanceof FinalMatch)) {
+
 				MatchPane fm = this.steuerung.getMatches().get(i).getMatchPane();
 				MatchPane m1 = ((FolgeMatch) this.steuerung.getMatches().get(i)).getPrevMatch1().getMatchPane();
 				MatchPane m2 = ((FolgeMatch) this.steuerung.getMatches().get(i)).getPrevMatch2().getMatchPane();
 
-				double fmX = fm.getTranslateX() +110;
+				double fmX = fm.getTranslateX() + 110;
 				double fmY = fm.getTranslateY() + 20;
 				double m1X = m1.getTranslateX();
 				double m1Y = m1.getTranslateY() + 20;
@@ -157,63 +159,71 @@ public class SpielBaum extends SceneParent {
 		}
 
 	}
-	
-	private void zeichneFinale() { 
-		
-		MatchPane finaleMatchPane = this.steuerung.getMatches().get(this.steuerung.getMatches().size()-1).getMatchPane();
+
+	private void zeichneFinale() {
+
+		MatchPane finaleMatchPane = this.steuerung.getMatches().get(this.steuerung.getMatches().size() - 1)
+				.getMatchPane();
 		finaleMatchPane.getMatchStage().setSpielbaum(this);
-		
+
 		this.getChildren().add(finaleMatchPane);
-		
+
 		// ermittle Position finalMatchPane
-		double x1 = this.steuerung.getMatches().get(this.steuerung.getMatches().size() / 2 - 1).getMatchPane().getTranslateX() + 110;
-		double x2 = this.steuerung.getMatches().get(this.steuerung.getMatches().size()-2).getMatchPane().getTranslateX();
+		double x1 = this.steuerung.getMatches().get(this.steuerung.getMatches().size() / 2 - 1).getMatchPane()
+				.getTranslateX() + 110;
+		double x2 = this.steuerung.getMatches().get(this.steuerung.getMatches().size() - 2).getMatchPane()
+				.getTranslateX();
 		double mitte = x1 + (x2 - x1) / 2;
-		
+
 		// finalMatchPane positionieren
 		finaleMatchPane.setTranslateX(mitte - 55);
-		finaleMatchPane.setTranslateY(this.steuerung.getMatches().get(this.steuerung.getMatches().size() / 2 - 1).getMatchPane().getTranslateY());
-		
+		finaleMatchPane.setTranslateY(this.steuerung.getMatches().get(this.steuerung.getMatches().size() / 2 - 1)
+				.getMatchPane().getTranslateY());
+
 		// Striche zu finalMatchPane zeichnen
 		double fmX = finaleMatchPane.getTranslateX();
 		double fmY = finaleMatchPane.getTranslateY() + 20;
-				
-		double m1X = this.steuerung.getMatches().get(this.steuerung.getMatches().size() / 2 - 1).getMatchPane().getTranslateX() + 110;
-		double m1Y = this.steuerung.getMatches().get(this.steuerung.getMatches().size() / 2 - 1).getMatchPane().getTranslateY() + 20;
-		double m2X = this.steuerung.getMatches().get(this.steuerung.getMatches().size()-2).getMatchPane().getTranslateX();
-		double m2Y = this.steuerung.getMatches().get(this.steuerung.getMatches().size()-2).getMatchPane().getTranslateY() + 20;
-		
+
+		double m1X = this.steuerung.getMatches().get(this.steuerung.getMatches().size() / 2 - 1).getMatchPane()
+				.getTranslateX() + 110;
+		double m1Y = this.steuerung.getMatches().get(this.steuerung.getMatches().size() / 2 - 1).getMatchPane()
+				.getTranslateY() + 20;
+		double m2X = this.steuerung.getMatches().get(this.steuerung.getMatches().size() - 2).getMatchPane()
+				.getTranslateX();
+		double m2Y = this.steuerung.getMatches().get(this.steuerung.getMatches().size() - 2).getMatchPane()
+				.getTranslateY() + 20;
+
 		gc.setFill(Color.BLACK);
 		gc.setStroke(Color.BLACK);
 		gc.setLineWidth(3);
 		gc.strokeLine(fmX, fmY, m1X, m1Y);
 		gc.strokeLine(fmX, fmY, m2X, m2Y);
 	}
-	
+
 	public void updateSpielBaum() {
-		
+
 		System.out.println("update spielbaum");
-		
-		for(int i = 0; i < this.steuerung.getMatches().size(); i++) {
-			if(this.steuerung.getMatches().get(i) instanceof FolgeMatch) {
-				
-				if(((FolgeMatch) this.steuerung.getMatches().get(i)).getPrevMatch1().isGameFinished() || 
-						((FolgeMatch) this.steuerung.getMatches().get(i)).getPrevMatch2().isGameFinished()) {
-					
-					FolgeMatch actMatch = (FolgeMatch) this.steuerung.getMatches().get(i);
+
+		for (int i = 0; i < this.steuerung.getMatches().size(); i++) {
+			if (this.steuerung.getMatches().get(i) instanceof FolgeMatch) {
+
+				FolgeMatch actMatch = (FolgeMatch) this.steuerung.getMatches().get(i);
+
+				if (((FolgeMatch) this.steuerung.getMatches().get(i)).getPrevMatch1().isGameFinished()) {
 					IMatch prevMatch1 = actMatch.getPrevMatch1();
-					IMatch prevMatch2 = actMatch.getPrevMatch2();
-					
-					// Mannschaften in Folgematch eintragen
 					this.steuerung.getMatches().get(i).setMannschaft1(prevMatch1.getSieger());
-					this.steuerung.getMatches().get(i).setMannschaft2(prevMatch2.getSieger());
-					
-					// Labels anpassen
-					this.steuerung.getMatches().get(i).getMatchPane().updateMannschaftsLabels();
-					
+					this.steuerung.getMatches().get(i).getMatchPane().updateMannschaftsLabelM1();
+
 				}
+
+				if (((FolgeMatch) this.steuerung.getMatches().get(i)).getPrevMatch2().isGameFinished()) {
+					IMatch prevMatch2 = actMatch.getPrevMatch2();
+					this.steuerung.getMatches().get(i).setMannschaft2(prevMatch2.getSieger());
+					this.steuerung.getMatches().get(i).getMatchPane().updateMannschaftsLabelM2();
+				}
+				
 			}
 		}
 	}
-	
+
 }

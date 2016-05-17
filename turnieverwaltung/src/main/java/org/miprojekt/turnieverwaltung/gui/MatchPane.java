@@ -85,8 +85,11 @@ public class MatchPane extends Pane {
 		return this.matchStage;
 	}
 	
-	public void updateMannschaftsLabels() {
+	public void updateMannschaftsLabelM1() {
 		l1_mannschaft.setText(this.match.getMannschaft1().getName());
+	}
+	
+	public void updateMannschaftsLabelM2() {
 		l2_mannschaft.setText(this.match.getMannschaft2().getName());
 	}
 
