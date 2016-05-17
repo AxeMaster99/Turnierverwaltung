@@ -23,5 +23,9 @@ public interface IMatch {
 	public int getIndex();
 	
 	public void setSieger();
+	
+	public void setToreM1(int toreM1);
+
+	public void setToreM2(int toreM2);
 
 }

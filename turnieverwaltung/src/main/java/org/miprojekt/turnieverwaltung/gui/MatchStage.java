@@ -33,7 +33,7 @@ public class MatchStage extends Stage {
 
 	private MatchPane matchPane;
 	private IMatch match;
-	
+
 	private Timeline timeline;
 
 	private final double SPIELMINUTEN = 2;
@@ -49,8 +49,8 @@ public class MatchStage extends Stage {
 	private Button b_TorMannschaft1 = new Button("Tor M1");
 	private Button b_TorMannschaft2 = new Button("Tor M2");
 	private Button b_Start_Stopp = new Button("Start");
-	
-	private Boolean matchBeendet=false;
+
+	private Boolean matchBeendet = false;
 
 	public MatchStage(IMatch match, MatchPane matchPane) {
 		super();
@@ -64,12 +64,16 @@ public class MatchStage extends Stage {
 				Alert alert = new Alert(AlertType.CONFIRMATION);
 				alert.setTitle("Warnung");
 				alert.setHeaderText("Wirklich schließen?");
-				alert.setContentText("Wollen sie das Fenster wirklich schließen? Das Spiel ist noch nicht beendet.");
+				alert.setContentText(
+						"Wollen sie das Fenster wirklich schließen? Das Spiel ist noch nicht beendet und muss dann neu gestartet werden.");
 				Optional<ButtonType> result = alert.showAndWait();
 				if (result.get() == ButtonType.OK) {
 					this.matchPane.setDisable(false);
+					this.match.setToreM1(0);
+					this.match.setToreM2(0);
+					this.stoppeSpiel();
 					this.close();
-					
+
 				} else {
 					WindowEvent.consume();
 					alert.close();
@@ -128,7 +132,6 @@ public class MatchStage extends Stage {
 		grid.add(l_timerdauer, 1, 2);
 		GridPane.setHalignment(l_timerdauer, HPos.CENTER);
 
-
 		// grid.setGridLinesVisible(true);
 		root.getChildren().add(grid);
 
@@ -183,7 +186,7 @@ public class MatchStage extends Stage {
 				b_Start_Stopp.setDisable(true);
 				b_TorMannschaft1.setDisable(true);
 				b_TorMannschaft2.setDisable(true);
-				matchBeendet=true;
+				matchBeendet = true;
 				this.match.setSieger();
 				this.close();
 			}

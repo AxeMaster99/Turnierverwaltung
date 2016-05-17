@@ -92,6 +92,14 @@ public class Match implements IMatch {
 	public int getToreM2() {
 		return this.toreM2;
 	}
+	
+	public void setToreM1(int toreM1) {
+		this.toreM1=toreM1;
+	}
+
+	public void setToreM2(int toreM2) {
+		this.toreM2=toreM2;
+	}
 
 	@Override
 	public MatchPane getMatchPane() {
