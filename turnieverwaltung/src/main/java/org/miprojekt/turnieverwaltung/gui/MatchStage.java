@@ -56,7 +56,7 @@ public class MatchStage extends Stage {
 	private Boolean matchBeendet = false;
 
 	private SpielBaum spielBaum = null;
-	
+
 	public MatchStage(IMatch match, MatchPane matchPane) {
 		super();
 		this.match = match;
@@ -69,8 +69,7 @@ public class MatchStage extends Stage {
 				Alert alert = new Alert(AlertType.CONFIRMATION);
 				alert.setTitle("Warnung");
 				alert.setHeaderText("Wirklich schließen?");
-				alert.setContentText(
-						"Wollen sie das Fenster wirklich schließen? Das Spiel ist noch nicht beendet..");
+				alert.setContentText("Wollen sie das Fenster wirklich schließen? Das Spiel ist noch nicht beendet..");
 				Optional<ButtonType> result = alert.showAndWait();
 				if (result.get() == ButtonType.OK) {
 					this.matchPane.setDisable(false);
@@ -80,7 +79,7 @@ public class MatchStage extends Stage {
 						b_TorMannschaft1.setDisable(true);
 						b_TorMannschaft2.setDisable(true);
 					}
-					this.spielGestartet=false;
+					this.spielGestartet = false;
 					this.close();
 
 				} else {
@@ -205,9 +204,23 @@ public class MatchStage extends Stage {
 		timeline.setCycleCount(timerdauer);
 		timeline.play();
 	}
-	
+
 	public void setSpielbaum(SpielBaum spielbaum) {
 		this.spielBaum = spielbaum;
+	}
+
+	public void setLabelM1(String label) {
+		l_Mannschaft1.setText(label);
+		if (!l_Mannschaft2.getText().equals("...")) {
+			this.setTitle(l_Mannschaft1.getText()+" vs " +l_Mannschaft2.getText());
+		}
+	}
+
+	public void setLabelM2(String label) {
+		l_Mannschaft2.setText(label);
+		if (!l_Mannschaft1.getText().equals("...")) {
+			this.setTitle(l_Mannschaft1.getText()+" vs " +l_Mannschaft2.getText());
+		}
 	}
 
 }

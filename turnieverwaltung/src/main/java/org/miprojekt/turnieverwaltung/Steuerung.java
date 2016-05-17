@@ -34,7 +34,7 @@ public class Steuerung {
 			break;
 		case 4:
 			anzahlSpalten = 3;
-			anzahlMatchesZus = 0;
+			anzahlMatchesZus = 1;
 			break;
 		case 8:
 			anzahlSpalten = 5;
@@ -71,7 +71,8 @@ public class Steuerung {
 
 		int actMatch = start;
 		for (int i = start; i <stop; i += 2) {
-			if(start > 1) {
+			if(start >= 1) // hier du NOOOBBB
+				{
 				matches.add(new MatchFactory().addMannschaft(teams.get(i+1)).addMannschaft(teams.get(i + 2)).build());
 			} else {
 				matches.add(new MatchFactory().addMannschaft(teams.get(i)).addMannschaft(teams.get(i + 1)).build());
