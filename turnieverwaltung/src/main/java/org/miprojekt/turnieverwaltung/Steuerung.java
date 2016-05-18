@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import org.miprojekt.turnieverwaltung.gui.MatchPane;
+import org.miprojekt.turnieverwaltung.gui.windows.SpielBaum;
 
 import backend.FinalMatch;
 import backend.FolgeMatch;
@@ -24,7 +25,7 @@ public class Steuerung {
 
 	public void erstelleMatches(ObservableList<String> teams) throws Exception {
 		this.teams = teams;
-
+		
 		Collections.shuffle(teams); // beste ZEILE
 
 		switch (this.teams.size()) {

@@ -2,6 +2,7 @@ package org.miprojekt.turnieverwaltung.gui;
 
 import org.miprojekt.turnieverwaltung.Steuerung;
 import org.miprojekt.turnieverwaltung.gui.MatchStage.Status;
+import org.miprojekt.turnieverwaltung.gui.windows.SpielBaum;
 
 import backend.FolgeMatch;
 import backend.Match;
@@ -37,8 +38,6 @@ public class MatchPane extends Pane {
 	public MatchPane(IMatch match) {
 		super();
 		this.match = match;
-		this.matchStage = new MatchStage(this.match, this);
-		this.matchStage.hide();
 
 		grid.setMinSize(110, 40);
 		grid.setStyle("-fx-background-color: white;");
@@ -53,6 +52,7 @@ public class MatchPane extends Pane {
 		});
 
 		grid.setOnMouseReleased((event) -> {
+						
 			// Überprüfen, ob die davorigen Spiele bereits beendet
 			if (this.match instanceof FolgeMatch && (!((FolgeMatch) match).getPrevMatch1().isGameFinished()
 					|| !((FolgeMatch) match).getPrevMatch2().isGameFinished())) {
@@ -62,7 +62,9 @@ public class MatchPane extends Pane {
 				alert.setContentText("Die voherigen Spiele müssen erst beendet werden.");
 				alert.showAndWait();
 			} else {
-				// System.out.println(this);
+				this.matchStage = new MatchStage(this.match, this);
+				this.matchStage.setSpielbaum((SpielBaum) this.getParent());
+				
 				this.matchStage.show();
 				System.out.println(
 						this.match.getMannschaft1().getName() + " gegen " + this.match.getMannschaft2().getName());
