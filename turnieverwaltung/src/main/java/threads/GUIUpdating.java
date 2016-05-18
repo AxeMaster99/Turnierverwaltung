@@ -18,7 +18,7 @@ public class GUIUpdating extends Thread {
 	@Override
 	public void run() {
 		while (match.getToreM1() == match.getToreM2()) {
-			System.out.print(""); // ture nichts (ohne diese Zeile funktioniert es nich?!)
+			System.out.print(""); // tue nichts (ohne diese Zeile funktioniert es nich?!)
 		}
 		Platform.runLater(new Runnable() {
 			@Override
