@@ -1,6 +1,5 @@
 package org.miprojekt.turnieverwaltung;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.miprojekt.turnieverwaltung.gui.windows.Mannschaftsnamen;
@@ -8,7 +7,6 @@ import org.miprojekt.turnieverwaltung.gui.windows.Settings;
 import org.miprojekt.turnieverwaltung.gui.windows.SpielBaum;
 import org.miprojekt.turnieverwaltung.gui.windows.Splashscreen;
 
-import backend.Match;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;

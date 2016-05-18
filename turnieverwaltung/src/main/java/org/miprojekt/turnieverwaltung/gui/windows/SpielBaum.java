@@ -1,6 +1,5 @@
 package org.miprojekt.turnieverwaltung.gui.windows;
 
-import java.util.ArrayList;
 
 import org.miprojekt.turnieverwaltung.Main;
 import org.miprojekt.turnieverwaltung.gui.MatchPane;
@@ -8,42 +7,27 @@ import org.miprojekt.turnieverwaltung.gui.SceneParent;
 
 import backend.FinalMatch;
 import backend.FolgeMatch;
-import backend.Mannschaft;
-import backend.Match;
 import interfaces.IMatch;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.geometry.Bounds;
-import javafx.geometry.Point2D;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Alert.AlertType;
 
 public class SpielBaum extends SceneParent {
 
 	private Canvas canvas = new Canvas(1400, 700);
 	private GraphicsContext gc = canvas.getGraphicsContext2D();
-	private GraphicsContext gc1 = canvas.getGraphicsContext2D();
-	private GraphicsContext gc2 = canvas.getGraphicsContext2D();
-	private GraphicsContext gc3 = canvas.getGraphicsContext2D();
-	private GraphicsContext gc4 = canvas.getGraphicsContext2D();
 	
 	private ObservableList<String> teams = FXCollections.observableArrayList();
 
 	public SpielBaum(Main main, ObservableList<String> teams) throws Exception {
 		super(main);
-
-		// String style = getClass().getResource("style.css").toExternalForm();
-		// this.getStylesheets().addAll(style);
 
 		this.teams = teams;
 		this.setStyle("-fx-background-color: #999999");

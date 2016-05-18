@@ -1,11 +1,8 @@
 package backend;
 
 import org.miprojekt.turnieverwaltung.gui.MatchPane;
-import org.miprojekt.turnieverwaltung.gui.windows.SpielBaum;
 
 import interfaces.IMatch;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 
 public class Match implements IMatch {
 	
@@ -74,8 +71,6 @@ public class Match implements IMatch {
 		} else {
 			this.sieger = mannschaft2;
 		}
-
-		// TODO: Unentschieden?
 
 		System.out.println("Das Spiel endetete " + toreM1 + ":" + toreM2 + ". " + sieger + " hat gewonnen.");
 		this.matchPane.setLabelErgebnis(toreM1,toreM2);
