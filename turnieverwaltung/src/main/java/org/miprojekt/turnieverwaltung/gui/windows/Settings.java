@@ -18,7 +18,7 @@ import javafx.scene.shape.Rectangle;
 public class Settings extends SceneParent {
 
 	Label l_teams = new Label("Teamanzahl");
-	final ObservableList<Integer> options = FXCollections.observableArrayList(2, 4, 8, 16, 32);
+	final ObservableList<Integer> options = FXCollections.observableArrayList(4, 8, 16, 32);
 	ComboBox<Integer> c_teams = new ComboBox<Integer>(options);
 	GridPane grid = new GridPane();
 	Button b_teams = new Button("Bestätigen");
@@ -27,7 +27,7 @@ public class Settings extends SceneParent {
 	public Settings(Main main) {
 		super(main);
 
-		c_teams.setValue(2);
+		c_teams.setValue(4);
 
 		b_teams.setOnAction((event) -> {
 			main.setMannschaftsnamenScreen(c_teams.getValue(),"mannschaftsnamen");

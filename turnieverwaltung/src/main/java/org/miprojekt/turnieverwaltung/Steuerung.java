@@ -20,10 +20,6 @@ public class Steuerung {
 		Collections.shuffle(teams); // beste ZEILE
 
 		switch (this.teams.size()) {
-		case 2:
-			anzahlSpalten = 1;
-			anzahlMatchesZus = 0;
-			break;
 		case 4:
 			anzahlSpalten = 3;
 			anzahlMatchesZus = 1;
