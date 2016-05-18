@@ -1,6 +1,5 @@
 package org.miprojekt.turnieverwaltung.gui.windows;
 
-import java.util.ArrayList;
 
 import org.miprojekt.turnieverwaltung.Main;
 import org.miprojekt.turnieverwaltung.gui.MatchPane;
@@ -8,24 +7,16 @@ import org.miprojekt.turnieverwaltung.gui.SceneParent;
 
 import backend.FinalMatch;
 import backend.FolgeMatch;
-import backend.Mannschaft;
-import backend.Match;
 import interfaces.IMatch;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.geometry.Bounds;
-import javafx.geometry.Point2D;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Alert.AlertType;
 
 public class SpielBaum extends SceneParent {

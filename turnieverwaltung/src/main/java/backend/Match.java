@@ -1,11 +1,8 @@
 package backend;
 
 import org.miprojekt.turnieverwaltung.gui.MatchPane;
-import org.miprojekt.turnieverwaltung.gui.windows.SpielBaum;
 
 import interfaces.IMatch;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 
 public class Match implements IMatch {
 	

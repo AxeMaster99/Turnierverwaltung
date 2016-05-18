@@ -4,8 +4,6 @@ import org.miprojekt.turnieverwaltung.gui.MatchStage;
 
 import interfaces.IMatch;
 import javafx.application.Platform;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 
 public class GUIUpdating extends Thread {
 

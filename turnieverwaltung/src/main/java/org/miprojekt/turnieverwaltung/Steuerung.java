@@ -3,17 +3,10 @@ package org.miprojekt.turnieverwaltung;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import org.miprojekt.turnieverwaltung.gui.MatchPane;
-
-import backend.FinalMatch;
-import backend.FolgeMatch;
-import backend.Mannschaft;
-import backend.Match;
 import backend.MatchFactory;
 import interfaces.IMatch;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.layout.Pane;
 
 public class Steuerung {
 

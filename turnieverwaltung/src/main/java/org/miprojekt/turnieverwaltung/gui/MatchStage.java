@@ -1,20 +1,13 @@
 package org.miprojekt.turnieverwaltung.gui;
 
 import java.util.Optional;
-import java.util.Timer;
-import java.util.TimerTask;
 
-import org.miprojekt.turnieverwaltung.Steuerung;
 import org.miprojekt.turnieverwaltung.gui.windows.SpielBaum;
 
 import interfaces.IMatch;
-import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.HPos;
 import javafx.scene.Scene;
