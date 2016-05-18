@@ -32,18 +32,11 @@ public class SpielBaum extends SceneParent {
 
 	private Canvas canvas = new Canvas(1400, 700);
 	private GraphicsContext gc = canvas.getGraphicsContext2D();
-	private GraphicsContext gc1 = canvas.getGraphicsContext2D();
-	private GraphicsContext gc2 = canvas.getGraphicsContext2D();
-	private GraphicsContext gc3 = canvas.getGraphicsContext2D();
-	private GraphicsContext gc4 = canvas.getGraphicsContext2D();
 	
 	private ObservableList<String> teams = FXCollections.observableArrayList();
 
 	public SpielBaum(Main main, ObservableList<String> teams) throws Exception {
 		super(main);
-
-		// String style = getClass().getResource("style.css").toExternalForm();
-		// this.getStylesheets().addAll(style);
 
 		this.teams = teams;
 		this.setStyle("-fx-background-color: #999999");

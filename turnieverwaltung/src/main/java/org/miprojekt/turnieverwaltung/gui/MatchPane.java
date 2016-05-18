@@ -62,7 +62,6 @@ public class MatchPane extends Pane {
 				alert.setContentText("Die voherigen Spiele müssen erst beendet werden.");
 				alert.showAndWait();
 			} else {
-				// System.out.println(this);
 				this.matchStage.show();
 				System.out.println(
 						this.match.getMannschaft1().getName() + " gegen " + this.match.getMannschaft2().getName());

@@ -71,7 +71,7 @@ public class Steuerung {
 
 		int actMatch = start;
 		for (int i = start; i <stop; i += 2) {
-			if(start >= 1) // hier du NOOOBBB
+			if(start >= 1)
 				{
 				matches.add(new MatchFactory().addMannschaft(teams.get(i+1)).addMannschaft(teams.get(i + 2)).build());
 			} else {
