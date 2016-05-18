@@ -1,5 +1,7 @@
 package org.miprojekt.turnieverwaltung.gui.windows;
 
+import javax.swing.JLabel;
+
 import org.miprojekt.turnieverwaltung.Main;
 import org.miprojekt.turnieverwaltung.gui.SceneParent;
 
@@ -7,10 +9,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Rectangle;
@@ -34,7 +38,7 @@ public class Settings extends SceneParent {
 		});
 
 		grid.add(l_teams, 0, 0);
-		GridPane.setHalignment(l_teams, HPos.RIGHT);
+		// GridPane.setHalignment(l_teams, HPos.RIGHT);
 		
 		grid.add(c_teams, 1, 0);
 		c_teams.setMinWidth(100);
@@ -51,7 +55,9 @@ public class Settings extends SceneParent {
 		grid.setVgap(10);
 		
 		grid.setPadding(new Insets(20));
-
+		grid.setMinSize(this.getWidth(), this.getHeight());
+		grid.setAlignment(Pos.CENTER);
+		
 		this.getChildren().add(grid);
 	}
 
