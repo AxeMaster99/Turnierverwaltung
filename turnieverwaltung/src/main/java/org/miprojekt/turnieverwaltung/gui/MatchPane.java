@@ -32,11 +32,13 @@ public class MatchPane extends Pane {
 		this.match = match;
 
 		grid.setMinSize(110, 40);
-		grid.setStyle("-fx-background-color: white;");
+		grid.setStyle("-fx-background-color: white;-fx-background-radius: 5;-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);");
+		
+
 
 		grid.setOnMouseEntered((MouseEvent e) -> {
 			currentStyle = grid.getStyle();
-			grid.setStyle("-fx-background-color: CCCCCC;");
+			grid.setStyle("-fx-background-color: CCCCCC;-fx-background-radius: 5;-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);");
 		});
 
 		grid.setOnMouseExited((MouseEvent e) -> {
@@ -87,7 +89,7 @@ public class MatchPane extends Pane {
 	public void setLabelErgebnis(int toreM1, int toreM2) {
 		l3_toreM1.setText(Integer.toString(toreM1));
 		l4_toreM2.setText(Integer.toString(toreM2));
-		grid.setStyle("-fx-background-color: green;");
+		grid.setStyle("-fx-background-color: green;-fx-background-radius: 5;-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);");
 	}
 
 	public MatchStage getMatchStage() {
@@ -107,13 +109,13 @@ public class MatchPane extends Pane {
 	public void statusFarbeAendern(Status state) {
 		switch (state) {
 		case clickable:
-			grid.setStyle("-fx-background-color: white;");
+			grid.setStyle("-fx-background-color: white;-fx-background-radius: 5;-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);");
 			break;
 		case closed:
-			grid.setStyle("-fx-background-color: orange;");
+			grid.setStyle("-fx-background-color: orange;-fx-background-radius: 5;-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);");
 			break;
 		case running:
-			grid.setStyle("-fx-background-color: yellow;");
+			grid.setStyle("-fx-background-color: yellow;-fx-background-radius: 5;-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);");
 			break;
 		default:
 			break;
@@ -124,5 +126,6 @@ public class MatchPane extends Pane {
 		return currentStyle;
 
 	}
+
 
 }
