@@ -23,6 +23,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Alert.AlertType;
 
@@ -30,6 +32,11 @@ public class SpielBaum extends SceneParent {
 
 	private Canvas canvas = new Canvas(1400, 700);
 	private GraphicsContext gc = canvas.getGraphicsContext2D();
+	private GraphicsContext gc1 = canvas.getGraphicsContext2D();
+	private GraphicsContext gc2 = canvas.getGraphicsContext2D();
+	private GraphicsContext gc3 = canvas.getGraphicsContext2D();
+	private GraphicsContext gc4 = canvas.getGraphicsContext2D();
+	
 	private ObservableList<String> teams = FXCollections.observableArrayList();
 
 	public SpielBaum(Main main, ObservableList<String> teams) throws Exception {
@@ -50,6 +57,47 @@ public class SpielBaum extends SceneParent {
 		this.zeichneLinienLinks();
 		this.zeichneLinienRechts();
 		this.zeichneFinale();
+		this.zeichneLegende();
+	}
+
+	private void zeichneLegende() {
+		MatchPane mp = this.steuerung.getMatches().get(this.teams.size()/4-1).getMatchPane();
+		double mpY = mp.getTranslateY()+70;
+		
+		Font font = new Font(16);
+		
+		Label l0_legende = new Label("Legende:");
+		l0_legende.setFont(font);
+		l0_legende.setTranslateX(10);
+		l0_legende.setTranslateY(mpY+3);
+		Label l1_orange = new Label("Spiel Unterbrochen");
+		l1_orange.setTranslateX(140);
+		l1_orange.setTranslateY(mpY+7);
+		Label l2_green= new Label("Spiel Beendet");
+		l2_green.setTranslateX(340);
+		l2_green.setTranslateY(mpY+7);
+		Label l3_yellow= new Label("Spiel Laufend");
+		l3_yellow.setTranslateX(540);
+		l3_yellow.setTranslateY(mpY+7);
+		Label l4_white= new Label("Spiel noch nicht gestartet");
+		l4_white.setTranslateX(740);
+		l4_white.setTranslateY(mpY+7);
+		
+		Rectangle rectangleOrange = new Rectangle(30,30,Color.ORANGE);
+		rectangleOrange.relocate(100, mpY);
+		this.getChildren().add(rectangleOrange);
+		
+		Rectangle rectangleGreen = new Rectangle(30,30,Color.GREEN);
+		rectangleGreen.relocate(300, mpY);
+		this.getChildren().add(rectangleGreen);
+		
+		Rectangle rectangleYellow = new Rectangle(30,30,Color.YELLOW);
+		rectangleYellow.relocate(500, mpY);
+		this.getChildren().add(rectangleYellow);
+		
+		Rectangle rectangleWhite = new Rectangle(30,30,Color.WHITE);
+		rectangleWhite.relocate(700, mpY);
+		this.getChildren().addAll(rectangleWhite,l1_orange,l2_green,l3_yellow,l4_white,l0_legende);
 	}
 
 	private void zeichneLinienLinks() {
@@ -70,8 +118,8 @@ public class SpielBaum extends SceneParent {
 
 				// System.out.println(fmBoundsX + " | "+fmBoundsY);
 
-				gc.setFill(Color.BLACK);
-				gc.setStroke(Color.BLACK);
+				//gc.setFill(Color.BLACK);
+				//gc.setStroke(Color.BLACK);
 				gc.setLineWidth(3);
 				gc.strokeLine(fmX, fmY, m1X, m1Y);
 				gc.strokeLine(fmX, fmY, m2X, m2Y);

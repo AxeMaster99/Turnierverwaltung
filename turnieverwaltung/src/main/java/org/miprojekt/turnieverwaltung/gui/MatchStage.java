@@ -29,6 +29,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import threads.WaitForButtonPressed;
 
 public class MatchStage extends Stage {
 
@@ -38,6 +39,10 @@ public class MatchStage extends Stage {
 
 	private MatchPane matchPane;
 	private IMatch match;
+	Thread t1;
+
+	private Pane root = new Pane();
+	private GridPane grid = new GridPane();
 
 	private Timeline timeline;
 
@@ -49,6 +54,7 @@ public class MatchStage extends Stage {
 	private Label l_Spielstand = new Label();
 	private Label l_Mannschaft1 = new Label();
 	private Label l_Mannschaft2 = new Label();
+	private Label l_unentschieden = new Label("Das Spiel ist noch nicht entschieden. Das nächste Tor entscheidet.");
 
 	private Label l_timer = new Label("Verbleibende Zeit: ");
 	private Label l_timerdauer = new Label(timerdauer / 60 + ":0" + timerdauer % 60);
@@ -56,8 +62,6 @@ public class MatchStage extends Stage {
 	private Button b_TorMannschaft1 = new Button("Tor M1");
 	private Button b_TorMannschaft2 = new Button("Tor M2");
 	private Button b_Start_Stopp = new Button("Start");
-
-	private Boolean matchBeendet = false;
 
 	private SpielBaum spielBaum = null;
 
@@ -68,10 +72,13 @@ public class MatchStage extends Stage {
 
 		this.setOnCloseRequest((WindowEvent) -> {
 
-			if (matchBeendet == true) {
+			if (spielGestartet == false) {
 				this.close();
+				this.matchPane.setDisable(false);
+				this.matchPane.statusFarbeAendern(Status.clickable);
+
 			} else {
-				if (spielGestartet) {
+				if (timeline.getStatus() == javafx.animation.Animation.Status.RUNNING) {
 					this.stoppeSpiel();
 				}
 				Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -99,8 +106,6 @@ public class MatchStage extends Stage {
 			}
 		});
 
-		Pane root = new Pane();
-		GridPane grid = new GridPane();
 		grid.setMinWidth(350);
 		grid.setMinHeight(200);
 		grid.setAlignment(Pos.CENTER);
@@ -149,6 +154,9 @@ public class MatchStage extends Stage {
 
 		grid.add(l_timerdauer, 1, 2);
 		GridPane.setHalignment(l_timerdauer, HPos.CENTER);
+
+		l_unentschieden.setVisible(false);
+		grid.add(l_unentschieden, 0, 3, 3, 1);
 
 		// grid.setGridLinesVisible(true);
 		root.getChildren().add(grid);
@@ -201,19 +209,25 @@ public class MatchStage extends Stage {
 			} else {
 				l_timerdauer.setText(timerdauer / 60 + ":0" + timerdauer % 60);
 			}
-			if (timerdauer == 0) {
-				b_Start_Stopp.setText("Start");
-				b_Start_Stopp.setDisable(true);
-				b_TorMannschaft1.setDisable(true);
-				b_TorMannschaft2.setDisable(true);
-				matchBeendet = true;
-				this.match.setSieger();
-				this.spielBaum.updateSpielBaum();
-				this.close();
-			}
 		}));
+
+		timeline.setOnFinished((e) -> {
+			if (this.match.getToreM1() == this.match.getToreM2()) {
+				l_unentschieden.setVisible(true);
+				new WaitForButtonPressed(match, this).start();
+			} else {
+				this.beendeSpiel();
+			}
+		});
+
 		timeline.setCycleCount(timerdauer);
 		timeline.play();
+	}
+
+	public void beendeSpiel() {
+		this.match.setSieger();
+		this.spielBaum.updateSpielBaum();
+		this.close();
 	}
 
 	public void setSpielbaum(SpielBaum spielbaum) {
