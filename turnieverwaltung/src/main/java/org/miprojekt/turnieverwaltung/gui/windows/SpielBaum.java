@@ -68,18 +68,30 @@ public class SpielBaum extends SceneParent {
 		l4_white.setTranslateY(mpY+7);
 		
 		Rectangle rectangleOrange = new Rectangle(30,30,Color.ORANGE);
+		rectangleOrange.setStroke(Color.BLACK);
+		rectangleOrange.setArcWidth(10);
+		rectangleOrange.setArcHeight(10);
 		rectangleOrange.relocate(100, mpY);
 		this.getChildren().add(rectangleOrange);
 		
 		Rectangle rectangleGreen = new Rectangle(30,30,Color.rgb(127,255,0));
+		rectangleGreen.setStroke(Color.BLACK);
+		rectangleGreen.setArcWidth(10);
+		rectangleGreen.setArcHeight(10);
 		rectangleGreen.relocate(300, mpY);
 		this.getChildren().add(rectangleGreen);
 		
 		Rectangle rectangleYellow = new Rectangle(30,30,Color.YELLOW);
+		rectangleYellow.setStroke(Color.BLACK);
+		rectangleYellow.setArcWidth(10);
+		rectangleYellow.setArcHeight(10);
 		rectangleYellow.relocate(500, mpY);
 		this.getChildren().add(rectangleYellow);
 		
 		Rectangle rectangleWhite = new Rectangle(30,30,Color.WHITE);
+		rectangleWhite.setStroke(Color.BLACK);
+		rectangleWhite.setArcWidth(10);
+		rectangleWhite.setArcHeight(10);
 		rectangleWhite.relocate(700, mpY);
 		this.getChildren().addAll(rectangleWhite,l1_orange,l2_green,l3_yellow,l4_white,l0_legende);
 	}
