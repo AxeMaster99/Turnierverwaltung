@@ -33,6 +33,7 @@ public class Main extends Application {
 		stage.setScene(this.scenes.get("splashscreen"));
 		stage.show();
 	}
+	
 	public Stage getStage() {
 		return this.stage;
 	}
