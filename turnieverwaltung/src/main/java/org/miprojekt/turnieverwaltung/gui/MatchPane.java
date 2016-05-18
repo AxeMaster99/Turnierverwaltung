@@ -44,7 +44,7 @@ public class MatchPane extends Pane {
 		});
 
 		grid.setOnMouseReleased((event) -> {
-						
+
 			// Überprüfen, ob die davorigen Spiele bereits beendet
 			if (this.match instanceof FolgeMatch && (!((FolgeMatch) match).getPrevMatch1().isGameFinished()
 					|| !((FolgeMatch) match).getPrevMatch2().isGameFinished())) {
@@ -56,7 +56,7 @@ public class MatchPane extends Pane {
 			} else {
 				this.matchStage = new MatchStage(this.match, this);
 				this.matchStage.setSpielbaum((SpielBaum) this.getParent());
-				
+
 				this.matchStage.show();
 				System.out.println(
 						this.match.getMannschaft1().getName() + " gegen " + this.match.getMannschaft2().getName());

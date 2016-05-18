@@ -206,16 +206,17 @@ public class MatchStage extends Stage {
 
 		timeline.setOnFinished((e) -> {
 			if (this.match.getToreM1() == this.match.getToreM2()) {
-				Platform.runLater(new Runnable(){
+				Platform.runLater(new Runnable() {
 
 					@Override
 					public void run() {
 						Alert alert = new Alert(AlertType.INFORMATION);
 						alert.setTitle("Information");
 						alert.setHeaderText("Unentschieden");
-						alert.setContentText("Das Spiel endete Unentschieden. Das nächste Tor entscheidet.");		
+						alert.setContentText("Das Spiel endete Unentschieden. Das nächste Tor entscheidet.");
 						alert.showAndWait();
-					}});
+					}
+				});
 				new GUIUpdating(match, this).start();
 			} else {
 				new GUIUpdating(match, this).start();
@@ -229,6 +230,17 @@ public class MatchStage extends Stage {
 	public void beendeSpiel() {
 		this.close();
 		this.match.setSieger();
+		Platform.runLater(new Runnable() {
+
+			@Override
+			public void run() {
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Information");
+				alert.setHeaderText("Spiel Beendet");
+				alert.setContentText("Das Spiel wurde Beendet. Gewonnen hat: " + match.getSieger());
+				alert.showAndWait();
+			}
+		});
 		this.spielBaum.updateSpielBaum();
 	}
 
