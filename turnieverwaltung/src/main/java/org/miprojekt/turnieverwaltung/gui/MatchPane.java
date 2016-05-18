@@ -98,15 +98,21 @@ public class MatchPane extends Pane {
 		matchStage.setLabelM2(this.match.getMannschaft2().getName());
 	}
 
-	public void statusFarbeAendern(Status status) {
-		if (status == Status.running)
-			grid.setStyle("-fx-background-color: yellow;");
-		else if (status == Status.clickable) {
-			grid.setStyle("-fx-background-color: white;");
-		}
-		else {
-			grid.setStyle("-fx-background-color: orange;");
-		}
+	public void statusFarbeAendern(Status state) {
+		switch(state){
+		case clickable:	grid.setStyle("-fx-background-color: white;");
+			break;
+		case closed:	grid.setStyle("-fx-background-color: orange;");
+			break;
+		case running:	grid.setStyle("-fx-background-color: yellow;");
+			break;
+		default:
+			break;}
+	}
+	
+	public String getCurrentStyle(){
+		return currentStyle;
+		
 	}
 
 }

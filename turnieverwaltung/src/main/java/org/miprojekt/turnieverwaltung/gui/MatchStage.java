@@ -75,7 +75,11 @@ public class MatchStage extends Stage {
 			if (spielGestartet == false) {
 				this.close();
 				this.matchPane.setDisable(false);
-				this.matchPane.statusFarbeAendern(Status.clickable);
+				if (matchPane.getCurrentStyle().equals("-fx-background-color: orange;")) {
+					this.matchPane.statusFarbeAendern(Status.closed);
+				} else {
+					this.matchPane.statusFarbeAendern(Status.clickable);
+				}
 
 			} else {
 				if (timeline.getStatus() == javafx.animation.Animation.Status.RUNNING) {
