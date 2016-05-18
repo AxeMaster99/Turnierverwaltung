@@ -39,7 +39,7 @@ public class MatchPane extends Pane {
 			currentStyle = grid.getStyle();
 			if (this.match.isGameFinished()) {
 				grid.setStyle(
-						"-fx-background-color: darkgreen;-fx-background-radius: 5;-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);");
+						"-fx-background-color: rgba(127,255,0,1);-fx-background-radius: 5;-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);");
 			} else {
 				grid.setStyle(
 						"-fx-background-color: CCCCCC;-fx-background-radius: 5;-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);");
