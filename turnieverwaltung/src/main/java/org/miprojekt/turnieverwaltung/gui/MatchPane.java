@@ -8,8 +8,10 @@ import backend.Match;
 import interfaces.IMatch;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
@@ -51,13 +53,23 @@ public class MatchPane extends Pane {
 		});
 
 		grid.setOnMouseReleased((event) -> {
-			// System.out.println(this);
-			this.matchStage.show();
-			System.out
-					.println(this.match.getMannschaft1().getName() + " gegen " + this.match.getMannschaft2().getName());
-			System.out.println(this.getTranslateX());
-			System.out.println(this.getTranslateY());
-			this.setDisable(true);
+			// Überprüfen, ob die davorigen Spiele bereits beendet
+			if (this.match instanceof FolgeMatch && (!((FolgeMatch) match).getPrevMatch1().isGameFinished()
+					|| !((FolgeMatch) match).getPrevMatch2().isGameFinished())) {
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Info");
+				alert.setHeaderText("Das Spiel kann nicht gestartet werden");
+				alert.setContentText("Die voherigen Spiele müssen erst beendet werden.");
+				alert.showAndWait();
+			} else {
+				// System.out.println(this);
+				this.matchStage.show();
+				System.out.println(
+						this.match.getMannschaft1().getName() + " gegen " + this.match.getMannschaft2().getName());
+				System.out.println(this.getTranslateX());
+				System.out.println(this.getTranslateY());
+				this.setDisable(true);
+			}
 		});
 
 		l1_mannschaft = new Label(this.match.getMannschaft1().getName());
@@ -99,20 +111,24 @@ public class MatchPane extends Pane {
 	}
 
 	public void statusFarbeAendern(Status state) {
-		switch(state){
-		case clickable:	grid.setStyle("-fx-background-color: white;");
+		switch (state) {
+		case clickable:
+			grid.setStyle("-fx-background-color: white;");
 			break;
-		case closed:	grid.setStyle("-fx-background-color: orange;");
+		case closed:
+			grid.setStyle("-fx-background-color: orange;");
 			break;
-		case running:	grid.setStyle("-fx-background-color: yellow;");
+		case running:
+			grid.setStyle("-fx-background-color: yellow;");
 			break;
 		default:
-			break;}
+			break;
+		}
 	}
-	
-	public String getCurrentStyle(){
+
+	public String getCurrentStyle() {
 		return currentStyle;
-		
+
 	}
 
 }
