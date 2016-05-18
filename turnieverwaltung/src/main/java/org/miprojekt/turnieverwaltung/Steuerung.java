@@ -2,19 +2,10 @@ package org.miprojekt.turnieverwaltung;
 
 import java.util.ArrayList;
 import java.util.Collections;
-
-import org.miprojekt.turnieverwaltung.gui.MatchPane;
-import org.miprojekt.turnieverwaltung.gui.windows.SpielBaum;
-
-import backend.FinalMatch;
-import backend.FolgeMatch;
-import backend.Mannschaft;
-import backend.Match;
 import backend.MatchFactory;
 import interfaces.IMatch;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.layout.Pane;
 
 public class Steuerung {
 
@@ -72,7 +63,7 @@ public class Steuerung {
 
 		int actMatch = start;
 		for (int i = start; i <stop; i += 2) {
-			if(start >= 1) // hier du NOOOBBB
+			if(start >= 1)
 				{
 				matches.add(new MatchFactory().addMannschaft(teams.get(i+1)).addMannschaft(teams.get(i + 2)).build());
 			} else {

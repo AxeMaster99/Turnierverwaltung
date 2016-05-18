@@ -1,24 +1,16 @@
 package org.miprojekt.turnieverwaltung.gui;
 
-import org.miprojekt.turnieverwaltung.Steuerung;
 import org.miprojekt.turnieverwaltung.gui.MatchStage.Status;
 import org.miprojekt.turnieverwaltung.gui.windows.SpielBaum;
 
 import backend.FolgeMatch;
-import backend.Match;
 import interfaces.IMatch;
-import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import javafx.scene.input.MouseEvent;
 
 public class MatchPane extends Pane {
