@@ -4,13 +4,15 @@ import org.miprojekt.turnieverwaltung.gui.MatchStage;
 
 import interfaces.IMatch;
 import javafx.application.Platform;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
-public class WaitForButtonPressed extends Thread {
+public class GUIUpdating extends Thread {
 
 	private IMatch match;
 	private MatchStage matchStage;
 
-	public WaitForButtonPressed(IMatch match, MatchStage matchStage) {
+	public GUIUpdating(IMatch match, MatchStage matchStage) {
 		this.match = match;
 		this.matchStage = matchStage;
 	}

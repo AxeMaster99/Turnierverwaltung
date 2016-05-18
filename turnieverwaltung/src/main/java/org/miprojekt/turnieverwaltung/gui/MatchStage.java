@@ -29,7 +29,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import threads.WaitForButtonPressed;
+import threads.GUIUpdating;
 
 public class MatchStage extends Stage {
 
@@ -54,7 +54,6 @@ public class MatchStage extends Stage {
 	private Label l_Spielstand = new Label();
 	private Label l_Mannschaft1 = new Label();
 	private Label l_Mannschaft2 = new Label();
-	private Label l_unentschieden = new Label("Das Spiel ist noch nicht entschieden. Das nächste Tor entscheidet.");
 
 	private Label l_timer = new Label("Verbleibende Zeit: ");
 	private Label l_timerdauer = new Label(timerdauer / 60 + ":0" + timerdauer % 60);
@@ -159,9 +158,6 @@ public class MatchStage extends Stage {
 		grid.add(l_timerdauer, 1, 2);
 		GridPane.setHalignment(l_timerdauer, HPos.CENTER);
 
-		l_unentschieden.setVisible(false);
-		grid.add(l_unentschieden, 0, 3, 3, 1);
-
 		// grid.setGridLinesVisible(true);
 		root.getChildren().add(grid);
 
@@ -217,10 +213,19 @@ public class MatchStage extends Stage {
 
 		timeline.setOnFinished((e) -> {
 			if (this.match.getToreM1() == this.match.getToreM2()) {
-				l_unentschieden.setVisible(true);
-				new WaitForButtonPressed(match, this).start();
+				Platform.runLater(new Runnable(){
+
+					@Override
+					public void run() {
+						Alert alert = new Alert(AlertType.INFORMATION);
+						alert.setTitle("Information");
+						alert.setHeaderText("Unentschieden");
+						alert.setContentText("Das Spiel endete Unentschieden. Das nächste Tor entscheidet.");		
+						alert.showAndWait();
+					}});
+				new GUIUpdating(match, this).start();
 			} else {
-				this.beendeSpiel();
+				new GUIUpdating(match, this).start();
 			}
 		});
 
@@ -229,9 +234,9 @@ public class MatchStage extends Stage {
 	}
 
 	public void beendeSpiel() {
+		this.close();
 		this.match.setSieger();
 		this.spielBaum.updateSpielBaum();
-		this.close();
 	}
 
 	public void setSpielbaum(SpielBaum spielbaum) {
