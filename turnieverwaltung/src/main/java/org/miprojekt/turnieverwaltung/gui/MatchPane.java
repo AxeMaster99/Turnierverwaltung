@@ -32,17 +32,20 @@ public class MatchPane extends Pane {
 		this.match = match;
 
 		grid.setMinSize(110, 40);
-		grid.setStyle(
-				"-fx-background-color: white;-fx-background-radius: 5;-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);");
+		grid.setStyle("-fx-background-color: white;"
+				+ "-fx-background-radius: 5;-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);"
+				+ "-fx-border-color:black;" + "-fx-border-radius:5;");
 
 		grid.setOnMouseEntered((MouseEvent e) -> {
 			currentStyle = grid.getStyle();
 			if (this.match.isGameFinished()) {
-				grid.setStyle(
-						"-fx-background-color: rgba(0,170,0,1);-fx-background-radius: 5;-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);");
+				grid.setStyle("-fx-background-color: rgba(0,170,0,1);"
+						+ "-fx-background-radius: 5;-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);"
+						+ "-fx-border-color:black;" + "-fx-border-radius:5;");
 			} else {
-				grid.setStyle(
-						"-fx-background-color: CCCCCC;-fx-background-radius: 5;-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);");
+				grid.setStyle("-fx-background-color: CCCCCC;"
+						+ "-fx-background-radius: 5;-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);"
+						+ "-fx-border-color:black;" + "-fx-border-radius:5;");
 			}
 		});
 
@@ -100,8 +103,9 @@ public class MatchPane extends Pane {
 	public void setLabelErgebnis(int toreM1, int toreM2) {
 		l3_toreM1.setText(Integer.toString(toreM1));
 		l4_toreM2.setText(Integer.toString(toreM2));
-		grid.setStyle(
-				"-fx-background-color: rgba(127,255,0,1);-fx-background-radius: 5;-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);");
+		grid.setStyle("-fx-background-color: rgba(127,255,0,1);"
+				+ "-fx-background-radius: 5;-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);"
+				+ "-fx-border-color:black;" + "-fx-border-radius:5;");
 	}
 
 	public MatchStage getMatchStage() {
@@ -121,16 +125,19 @@ public class MatchPane extends Pane {
 	public void statusFarbeAendern(Status state) {
 		switch (state) {
 		case clickable:
-			grid.setStyle(
-					"-fx-background-color: white;-fx-background-radius: 5;-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);");
+			grid.setStyle("-fx-background-color: white;"
+					+ "-fx-background-radius: 5;-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);"
+					+ "-fx-border-color:black;" + "-fx-border-radius:5;");
 			break;
 		case closed:
-			grid.setStyle(
-					"-fx-background-color: orange;-fx-background-radius: 5;-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);");
+			grid.setStyle("-fx-background-color: orange;"
+					+ "-fx-background-radius: 5;-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);"
+					+ "-fx-border-color:black;" + "-fx-border-radius:5;");
 			break;
 		case running:
-			grid.setStyle(
-					"-fx-background-color: yellow;-fx-background-radius: 5;-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);");
+			grid.setStyle("-fx-background-color: yellow;"
+					+ "-fx-background-radius: 5;-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);"
+					+ "-fx-border-color:black;" + "-fx-border-radius:5;");
 			break;
 		default:
 			break;
