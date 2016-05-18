@@ -55,6 +55,12 @@ public class MatchPane extends Pane {
 				alert.setHeaderText("Das Spiel kann nicht gestartet werden");
 				alert.setContentText("Die voherigen Spiele müssen erst beendet werden.");
 				alert.showAndWait();
+			} else if(this.match.isGameFinished()) {
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Info");
+				alert.setHeaderText("Das Spiel wurde schon beendet");
+				alert.setContentText("Ergebnis: "+this.match.getToreM1()+":"+this.match.getToreM2());
+				alert.showAndWait();
 			} else {
 				this.matchStage = new MatchStage(this.match, this);
 				this.matchStage.setSpielbaum((SpielBaum) this.getParent());

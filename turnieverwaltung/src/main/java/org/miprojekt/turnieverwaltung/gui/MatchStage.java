@@ -241,6 +241,7 @@ public class MatchStage extends Stage {
 				alert.showAndWait();
 			}
 		});
+		this.match.getMatchPane().setDisable(false);
 		this.spielBaum.updateSpielBaum();
 	}
 
