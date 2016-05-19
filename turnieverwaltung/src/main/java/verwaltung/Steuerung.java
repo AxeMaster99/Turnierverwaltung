@@ -3,6 +3,8 @@ package verwaltung;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import org.apache.logging.log4j.Logger;
+
 import backend.MatchFactory;
 import interfaces.IMatch;
 import javafx.collections.FXCollections;
@@ -15,7 +17,12 @@ public class Steuerung {
 	private ArrayList<IMatch> matches = new ArrayList<IMatch>();
 	private int anzahlSpalten = 0;
 	private int anzahlMatchesZus = 0;
-
+	private static final Logger log = Logger.getLogger(Steuerung.class.getClass());
+	
+	public Steuerung() {
+		
+	}
+	
 	public void erstelleMatches(ObservableList<String> teams) throws Exception {
 		this.teams = teams;
 		
