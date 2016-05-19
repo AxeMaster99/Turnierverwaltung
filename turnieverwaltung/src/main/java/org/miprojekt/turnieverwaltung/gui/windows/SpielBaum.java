@@ -16,6 +16,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
@@ -50,6 +51,12 @@ public class SpielBaum extends SceneParent {
 		// Menü
 		MenuBar menubar = new MenuBar();
 		Menu toolMenu = new Menu("Tools");
+		MenuItem ranglisteMenuItem = new MenuItem("Rangliste");
+		toolMenu.getItems().add(ranglisteMenuItem);
+				
+		ranglisteMenuItem.setOnAction((WindowEvent) -> {
+			System.out.println("Zeige Rangliste an");
+		});
 		
 		menubar.getMenus().addAll(toolMenu);
 		menubar.prefWidthProperty().bind(this.widthProperty());
