@@ -55,9 +55,8 @@ public class Settings extends SceneParent {
 		grid.setHgap(10);
 		grid.setVgap(10);
 
-		grid.setPrefSize(500,200);
+		grid.setMinSize(500,200);
 		grid.setAlignment(Pos.CENTER);
-		grid.setGridLinesVisible(true);
 
 		this.getChildren().add(grid);
 		

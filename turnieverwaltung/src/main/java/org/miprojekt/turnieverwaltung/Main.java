@@ -43,7 +43,7 @@ public class Main extends Application {
 	}
 
 	public void setMannschaftsnamenScreen(int anzahlMannschaften, String screenName) {
-		this.scenes.put(screenName, new Scene(new Mannschaftsnamen(this,anzahlMannschaften),WINDOWWIDTH,WINDOWHEIGHT));
+		this.scenes.put(screenName, new Scene(new Mannschaftsnamen(this,anzahlMannschaften),500,630));
 		this.getStage().setScene(this.getScreen(screenName));
 	}
 	
