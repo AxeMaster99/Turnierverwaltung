@@ -194,7 +194,7 @@ public class SpielBaum extends SceneParent {
 			matchesInSpalte = matchesInSpalte / 2;
 			offset += sprungY / 2;
 			sprungY = sprungY * 2;
-			posY = 10 + offset;
+			posY = 40 + offset;
 			posX += sprungX;
 		}
 
@@ -222,7 +222,7 @@ public class SpielBaum extends SceneParent {
 			matchesInSpalte = matchesInSpalte / 2;
 			offset += sprungY / 2;
 			sprungY = sprungY * 2;
-			posY = 10 + offset;
+			posY = 40 + offset;
 			posX -= sprungX;
 		}
 

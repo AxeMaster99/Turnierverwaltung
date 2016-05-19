@@ -7,6 +7,8 @@ import org.miprojekt.turnieverwaltung.gui.windows.Settings;
 import org.miprojekt.turnieverwaltung.gui.windows.SpielBaum;
 import org.miprojekt.turnieverwaltung.gui.windows.Splashscreen;
 
+import com.sun.glass.ui.Window;
+
 import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
@@ -48,7 +50,7 @@ public class Main extends Application {
 	}
 	
 	public void setSpielBaumScreen(String screenName, ObservableList<String> teams) throws Exception {
-		this.scenes.put(screenName, new Scene(new SpielBaum(this,teams),WINDOWWIDTH,WINDOWHEIGHT));
+		this.scenes.put(screenName, new Scene(new SpielBaum(this,teams)));
 		this.getStage().setScene(this.getScreen(screenName));
 	}
 	
