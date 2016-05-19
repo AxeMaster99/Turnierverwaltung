@@ -10,6 +10,7 @@ import javafx.collections.ObservableList;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -27,39 +28,39 @@ public class Settings extends SceneParent {
 	GridPane grid = new GridPane();
 	Button b_teams = new Button("Bestätigen");
 
-	
 	public Settings(Main main) {
 		super(main);
 
 		c_teams.setValue(4);
 
 		b_teams.setOnAction((event) -> {
-			main.setMannschaftsnamenScreen(c_teams.getValue(),"mannschaftsnamen");
+			main.setMannschaftsnamenScreen(c_teams.getValue(), "mannschaftsnamen");
 		});
 
 		grid.add(l_teams, 0, 0);
-		// GridPane.setHalignment(l_teams, HPos.RIGHT);
-		
+		//GridPane.setHalignment(l_teams, HPos.RIGHT);
+
 		grid.add(c_teams, 1, 0);
 		c_teams.setMinWidth(100);
 		grid.add(b_teams, 2, 0);
 		b_teams.setMinWidth(100);
-		
+
 		grid.setPadding(new Insets(25));
-		
+
 		ColumnConstraints col1 = new ColumnConstraints(100);
 		ColumnConstraints col2 = new ColumnConstraints(100);
-		grid.getColumnConstraints().addAll(col1,col2);
+		ColumnConstraints col3 = new ColumnConstraints(100);
+		grid.getColumnConstraints().addAll(col1, col2,col3);
 
 		grid.setHgap(10);
 		grid.setVgap(10);
-		
-		grid.setPadding(new Insets(20));
-		grid.setMinSize(this.getWidth(), this.getHeight());
-		grid.setAlignment(Pos.CENTER);
-		
-		this.getChildren().add(grid);
-	}
 
+		grid.setPrefSize(500,200);
+		grid.setAlignment(Pos.CENTER);
+		grid.setGridLinesVisible(true);
+
+		this.getChildren().add(grid);
+		
+	}
 
 }

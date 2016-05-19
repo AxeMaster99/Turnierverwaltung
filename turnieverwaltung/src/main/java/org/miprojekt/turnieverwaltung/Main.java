@@ -29,7 +29,7 @@ public class Main extends Application {
 		stage.setTitle("Turnierverwaltung");
 				
 		this.scenes.put("splashscreen", new Scene(new Splashscreen(this), WINDOWWIDTH, WINDOWHEIGHT));
-		this.scenes.put("settings", new Scene(new Settings(this), WINDOWWIDTH, WINDOWHEIGHT));
+		this.scenes.put("settings", new Scene(new Settings(this), 500, 200));
 		stage.setScene(this.scenes.get("splashscreen"));
 		stage.show();
 	}
