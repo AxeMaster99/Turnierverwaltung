@@ -27,7 +27,7 @@ public class SettingsScreen extends SceneParent {
 		c_teams.setValue(4);
 
 		b_teams.setOnAction((event) -> {
-			main.setMannschaftsnamenScreen(c_teams.getValue(), "mannschaftsnamen");
+			main.setTeamScreen(c_teams.getValue(), "mannschaftsnamen");
 		});
 
 		grid.add(l_teams, 0, 0);

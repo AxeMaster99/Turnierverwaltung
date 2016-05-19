@@ -41,12 +41,12 @@ public class Main extends Application {
 		return this.scenes.get(key);
 	}
 
-	public void setMannschaftsnamenScreen(int anzahlMannschaften, String screenName) {
+	public void setTeamScreen(int anzahlMannschaften, String screenName) {
 		this.scenes.put(screenName, new Scene(new TeamScreen(this,anzahlMannschaften),500,630));
 		this.getStage().setScene(this.getScreen(screenName));
 	}
 	
-	public void setSpielBaumScreen(String screenName, ObservableList<String> teams) throws Exception {
+	public void setTreeScreen(String screenName, ObservableList<String> teams) throws Exception {
 		this.scenes.put(screenName, new Scene(new TreeScreen(this,teams)));
 		this.getStage().setScene(this.getScreen(screenName));
 	}
