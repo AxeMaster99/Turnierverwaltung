@@ -1,8 +1,12 @@
 package backend;
 
+import javafx.beans.property.SimpleStringProperty;
+
 public class Mannschaft {
 		private String name = "...";
-		private Spieler spieler;
+		//private Spieler spieler;
+		private int punkte=0;
+		private int tordifferenz=0;
 		
 		public Mannschaft() {
 			this.name = "...";
@@ -24,5 +28,22 @@ public class Mannschaft {
 		public String getName() {
 			return this.name;
 		}
+		
+		public void addPunkte(){
+			this.punkte +=3;
+		}
+		
+		public void aendereTordifferenz(int tore){
+			this.tordifferenz+=tore;
+		}
+
+		public int getPunkte() {
+			return punkte;
+		}
+
+		public int getTordifferenz() {
+			return tordifferenz;
+		}
+		
 		
 }

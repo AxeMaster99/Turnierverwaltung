@@ -3,6 +3,7 @@ package org.miprojekt.turnieverwaltung.gui.windows;
 
 import org.miprojekt.turnieverwaltung.Main;
 import org.miprojekt.turnieverwaltung.gui.MatchPane;
+import org.miprojekt.turnieverwaltung.gui.RangStage;
 import org.miprojekt.turnieverwaltung.gui.SceneParent;
 
 import backend.FinalMatch;
@@ -54,9 +55,10 @@ public class SpielBaum extends SceneParent {
 		Menu toolMenu = new Menu("Tools");
 		MenuItem ranglisteMenuItem = new MenuItem("Rangliste");
 		toolMenu.getItems().add(ranglisteMenuItem);
-				
+		
 		ranglisteMenuItem.setOnAction((WindowEvent) -> {
 			System.out.println("Zeige Rangliste an");
+			this.steuerung.erstelleRangliste();
 		});
 		
 		menubar.getMenus().addAll(toolMenu);

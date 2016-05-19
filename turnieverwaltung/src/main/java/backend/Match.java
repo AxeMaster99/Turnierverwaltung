@@ -5,14 +5,14 @@ import org.miprojekt.turnieverwaltung.gui.MatchPane;
 import interfaces.IMatch;
 
 public class Match implements IMatch {
-	
-	
+
 	private static int indexCounter = 1;
 	private int index;
 	protected Mannschaft mannschaft1 = new Mannschaft("...");;
 	protected Mannschaft mannschaft2 = new Mannschaft("...");;
 	private MatchPane matchPane;
 	protected Mannschaft sieger;
+	protected Mannschaft verlierer;
 	private int toreM1 = 0;
 	private int toreM2 = 0;
 
@@ -41,7 +41,7 @@ public class Match implements IMatch {
 	public void setMannschaft1(Mannschaft m1) {
 		this.mannschaft1 = m1;
 	}
-	
+
 	public Mannschaft getMannschaft1() {
 		return mannschaft1;
 	}
@@ -49,7 +49,7 @@ public class Match implements IMatch {
 	public void setMannschaft2(Mannschaft m2) {
 		this.mannschaft2 = m2;
 	}
-	
+
 	public Mannschaft getMannschaft2() {
 		return mannschaft2;
 	}
@@ -68,12 +68,19 @@ public class Match implements IMatch {
 	public void setSieger() {
 		if (toreM1 > toreM2) {
 			this.sieger = mannschaft1;
+			this.verlierer = mannschaft2;
+			this.sieger.aendereTordifferenz(toreM1 - toreM2);
+			this.verlierer.aendereTordifferenz(toreM2 - toreM1);
+
 		} else {
 			this.sieger = mannschaft2;
+			this.verlierer = mannschaft1;
+			this.sieger.aendereTordifferenz(toreM2 - toreM1);
+			this.verlierer.aendereTordifferenz(toreM1 - toreM2);
 		}
-
+		this.sieger.addPunkte();
 		System.out.println("Das Spiel endetete " + toreM1 + ":" + toreM2 + ". " + sieger + " hat gewonnen.");
-		this.matchPane.setLabelErgebnis(toreM1,toreM2);
+		this.matchPane.setLabelErgebnis(toreM1, toreM2);
 	}
 
 	public Mannschaft getSieger() {
@@ -95,27 +102,25 @@ public class Match implements IMatch {
 	public int getToreM2() {
 		return this.toreM2;
 	}
-	
+
 	public void setToreM1(int toreM1) {
-		this.toreM1=toreM1;
+		this.toreM1 = toreM1;
 	}
 
 	public void setToreM2(int toreM2) {
-		this.toreM2=toreM2;
+		this.toreM2 = toreM2;
 	}
 
 	public MatchPane getMatchPane() {
 		return this.matchPane;
 	}
-	
+
 	public boolean isGameFinished() {
-		if(this.sieger != null) {
+		if (this.sieger != null) {
 			return true;
 		} else {
 			return false;
 		}
 	}
-	
-	
 
 }

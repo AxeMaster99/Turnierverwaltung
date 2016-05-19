@@ -2,6 +2,9 @@ package org.miprojekt.turnieverwaltung;
 
 import java.util.ArrayList;
 import java.util.Collections;
+
+import org.miprojekt.turnieverwaltung.gui.RangStage;
+
 import backend.MatchFactory;
 import interfaces.IMatch;
 import javafx.collections.FXCollections;
@@ -17,7 +20,7 @@ public class Steuerung {
 	public void erstelleMatches(ObservableList<String> teams) throws Exception {
 		this.teams = teams;
 		
-		Collections.shuffle(teams); // beste ZEILE
+		//Collections.shuffle(teams); // beste ZEILE
 
 		switch (this.teams.size()) {
 		case 4:
@@ -85,6 +88,11 @@ public class Steuerung {
 
 	public int getAnzahlSpalten() {
 		return this.anzahlSpalten;
+	}
+
+	public void erstelleRangliste() {
+		RangStage rangliste = new RangStage(this.matches);
+		
 	}
 
 }
