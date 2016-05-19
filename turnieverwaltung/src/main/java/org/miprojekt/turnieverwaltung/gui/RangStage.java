@@ -60,11 +60,10 @@ public class RangStage extends Stage {
         table.setItems(mannschaften);
         table.getColumns().addAll(nameCol,pntCol,torCol);
         
-        table.getSortOrder().add(torCol);
-        torCol.setSortType(TableColumn.SortType.DESCENDING);
         table.getSortOrder().add(pntCol);
         pntCol.setSortType(TableColumn.SortType.DESCENDING);
-
+        table.getSortOrder().add(torCol);
+        torCol.setSortType(TableColumn.SortType.DESCENDING);
 
 		grid.add(table, 0, 0);
 		root.getChildren().add(grid);
