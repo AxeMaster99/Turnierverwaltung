@@ -29,6 +29,7 @@ public class RangStage extends Stage {
 	@SuppressWarnings("unchecked")
 	public RangStage(ArrayList<IMatch> matches) {
 		super();
+		this.setTitle("Rangliste");
 		this.matches = matches;		
 		
 		for (int i=0; i<(this.matches.size()/4+1);i++){
@@ -59,6 +60,12 @@ public class RangStage extends Stage {
         table.setItems(mannschaften);
         table.getColumns().addAll(nameCol,pntCol,torCol);
         
+        table.getSortOrder().add(torCol);
+        torCol.setSortType(TableColumn.SortType.DESCENDING);
+        table.getSortOrder().add(pntCol);
+        pntCol.setSortType(TableColumn.SortType.DESCENDING);
+
+
 		grid.add(table, 0, 0);
 		root.getChildren().add(grid);
 		
@@ -68,6 +75,7 @@ public class RangStage extends Stage {
 		grid.setAlignment(Pos.CENTER);
 		Scene scene = new Scene(root,400,500);
 		this.setScene(scene);
+		
 		this.show();
 		
 	}
