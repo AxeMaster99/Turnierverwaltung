@@ -1,7 +1,5 @@
 package backend;
 
-import javafx.beans.property.SimpleStringProperty;
-
 public class Mannschaft {
 		private String name = "...";
 		//private Spieler spieler;

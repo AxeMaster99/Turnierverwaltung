@@ -1,8 +1,7 @@
 package backend;
 
-import org.miprojekt.turnieverwaltung.gui.MatchPane;
-
 import interfaces.IMatch;
+import panes.MatchPane;
 
 public class Match implements IMatch {
 

@@ -1,10 +1,8 @@
-package org.miprojekt.turnieverwaltung.gui;
-
-import org.miprojekt.turnieverwaltung.Main;
-import org.miprojekt.turnieverwaltung.Steuerung;
+package panes;
 
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
+import verwaltung.Main;
+import verwaltung.Steuerung;
 
 public class SceneParent extends Pane {
 

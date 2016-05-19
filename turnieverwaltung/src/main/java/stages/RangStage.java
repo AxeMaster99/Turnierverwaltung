@@ -1,7 +1,6 @@
-package org.miprojekt.turnieverwaltung.gui;
+package stages;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 import backend.Mannschaft;
 import interfaces.IMatch;
@@ -9,7 +8,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -77,9 +75,7 @@ public class RangStage extends Stage {
 		grid.setAlignment(Pos.CENTER);
 		Scene scene = new Scene(root,400,500);
 		this.setScene(scene);
-		
-		this.show();
-		
+				
 	}
 
 }

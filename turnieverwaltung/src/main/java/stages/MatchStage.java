@@ -1,8 +1,6 @@
-package org.miprojekt.turnieverwaltung.gui;
+package stages;
 
 import java.util.Optional;
-
-import org.miprojekt.turnieverwaltung.gui.windows.SpielBaum;
 
 import interfaces.IMatch;
 import javafx.animation.KeyFrame;
@@ -22,7 +20,9 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import threads.GUIUpdating;
+import panes.MatchPane;
+import screens.TreeScreen;
+import threads.GUIUpdateThread;
 
 public class MatchStage extends Stage {
 
@@ -39,7 +39,7 @@ public class MatchStage extends Stage {
 
 	private Timeline timeline;
 
-	private final double SPIELMINUTEN = 2;
+	//private final double SPIELMINUTEN = 2; TODO: Spielminuten enablen
 	private int timerdauer = 5;
 
 	private Boolean spielGestartet = false;
@@ -55,7 +55,7 @@ public class MatchStage extends Stage {
 	private Button b_TorMannschaft2 = new Button("Tor M2");
 	private Button b_Start_Stopp = new Button("Start");
 
-	private SpielBaum spielBaum = null;
+	private TreeScreen spielBaum = null;
 
 	public MatchStage(IMatch match, MatchPane matchPane) {
 		super();
@@ -217,9 +217,9 @@ public class MatchStage extends Stage {
 						alert.showAndWait();
 					}
 				});
-				new GUIUpdating(match, this).start();
+				new GUIUpdateThread(match, this).start();
 			} else {
-				new GUIUpdating(match, this).start();
+				new GUIUpdateThread(match, this).start();
 			}
 		});
 
@@ -245,7 +245,7 @@ public class MatchStage extends Stage {
 		this.spielBaum.updateSpielBaum();
 	}
 
-	public void setSpielbaum(SpielBaum spielbaum) {
+	public void setSpielbaum(TreeScreen spielbaum) {
 		this.spielBaum = spielbaum;
 	}
 

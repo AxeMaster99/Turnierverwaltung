@@ -1,16 +1,15 @@
 package threads;
 
-import org.miprojekt.turnieverwaltung.gui.MatchStage;
-
 import interfaces.IMatch;
 import javafx.application.Platform;
+import stages.MatchStage;
 
-public class GUIUpdating extends Thread {
+public class GUIUpdateThread extends Thread {
 
 	private IMatch match;
 	private MatchStage matchStage;
 
-	public GUIUpdating(IMatch match, MatchStage matchStage) {
+	public GUIUpdateThread(IMatch match, MatchStage matchStage) {
 		this.match = match;
 		this.matchStage = matchStage;
 	}

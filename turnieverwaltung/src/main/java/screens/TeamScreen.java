@@ -1,9 +1,6 @@
-package org.miprojekt.turnieverwaltung.gui.windows;
+package screens;
 
 import java.util.Optional;
-
-import org.miprojekt.turnieverwaltung.Main;
-import org.miprojekt.turnieverwaltung.gui.SceneParent;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,12 +18,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
+import panes.SceneParent;
+import verwaltung.Main;
 
 
-public class Mannschaftsnamen extends SceneParent {
+public class TeamScreen extends SceneParent {
 
 	private int anzahlMannschaften;
 	private int cnt = 0;
@@ -44,7 +42,7 @@ public class Mannschaftsnamen extends SceneParent {
 	private Button b_autofill = new Button("aut. füllen");
 	private TextField t_teamnames = new TextField();
 
-	public Mannschaftsnamen(Main main, int anzahlMannschaften) {
+	public TeamScreen(Main main, int anzahlMannschaften) {
 		super(main);
 		this.anzahlMannschaften = anzahlMannschaften;
 	    

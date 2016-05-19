@@ -1,8 +1,7 @@
 package interfaces;
 
-import org.miprojekt.turnieverwaltung.gui.MatchPane;
-
 import backend.Mannschaft;
+import panes.MatchPane;
 
 public interface IMatch {
 

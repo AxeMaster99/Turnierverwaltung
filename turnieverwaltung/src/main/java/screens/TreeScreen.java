@@ -1,17 +1,11 @@
-package org.miprojekt.turnieverwaltung.gui.windows;
+package screens;
 
-
-import org.miprojekt.turnieverwaltung.Main;
-import org.miprojekt.turnieverwaltung.gui.MatchPane;
-import org.miprojekt.turnieverwaltung.gui.RangStage;
-import org.miprojekt.turnieverwaltung.gui.SceneParent;
 
 import backend.FinalMatch;
 import backend.FolgeMatch;
 import interfaces.IMatch;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.geometry.Pos;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
@@ -22,18 +16,20 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
+import panes.MatchPane;
+import panes.SceneParent;
+import verwaltung.Main;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.layout.VBox;
 
 
-public class SpielBaum extends SceneParent {
+public class TreeScreen extends SceneParent {
 
 	private Canvas canvas = new Canvas(1400, 700);
 	private GraphicsContext gc = canvas.getGraphicsContext2D();
 	
 	private ObservableList<String> teams = FXCollections.observableArrayList();
 
-	public SpielBaum(Main main, ObservableList<String> teams) throws Exception {
+	public TreeScreen(Main main, ObservableList<String> teams) throws Exception {
 		super(main);
 
 		this.teams = teams;

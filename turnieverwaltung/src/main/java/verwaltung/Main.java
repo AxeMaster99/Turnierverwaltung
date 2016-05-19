@@ -1,18 +1,15 @@
-package org.miprojekt.turnieverwaltung;
+package verwaltung;
 
 import java.util.HashMap;
-
-import org.miprojekt.turnieverwaltung.gui.windows.Mannschaftsnamen;
-import org.miprojekt.turnieverwaltung.gui.windows.Settings;
-import org.miprojekt.turnieverwaltung.gui.windows.SpielBaum;
-import org.miprojekt.turnieverwaltung.gui.windows.Splashscreen;
-
-import com.sun.glass.ui.Window;
 
 import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import screens.SettingsScreen;
+import screens.SplashScreen;
+import screens.TeamScreen;
+import screens.TreeScreen;
 
 public class Main extends Application {
 	
@@ -30,8 +27,8 @@ public class Main extends Application {
 		this.stage = stage;	
 		stage.setTitle("Turnierverwaltung");
 				
-		this.scenes.put("splashscreen", new Scene(new Splashscreen(this), WINDOWWIDTH, WINDOWHEIGHT));
-		this.scenes.put("settings", new Scene(new Settings(this), 500, 200));
+		this.scenes.put("splashscreen", new Scene(new SplashScreen(this), WINDOWWIDTH, WINDOWHEIGHT));
+		this.scenes.put("settings", new Scene(new SettingsScreen(this), 500, 200));
 		stage.setScene(this.scenes.get("splashscreen"));
 		stage.show();
 	}
@@ -45,12 +42,12 @@ public class Main extends Application {
 	}
 
 	public void setMannschaftsnamenScreen(int anzahlMannschaften, String screenName) {
-		this.scenes.put(screenName, new Scene(new Mannschaftsnamen(this,anzahlMannschaften),500,630));
+		this.scenes.put(screenName, new Scene(new TeamScreen(this,anzahlMannschaften),500,630));
 		this.getStage().setScene(this.getScreen(screenName));
 	}
 	
 	public void setSpielBaumScreen(String screenName, ObservableList<String> teams) throws Exception {
-		this.scenes.put(screenName, new Scene(new SpielBaum(this,teams)));
+		this.scenes.put(screenName, new Scene(new TreeScreen(this,teams)));
 		this.getStage().setScene(this.getScreen(screenName));
 	}
 	

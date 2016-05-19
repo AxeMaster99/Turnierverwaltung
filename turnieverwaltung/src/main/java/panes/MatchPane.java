@@ -1,7 +1,4 @@
-package org.miprojekt.turnieverwaltung.gui;
-
-import org.miprojekt.turnieverwaltung.gui.MatchStage.Status;
-import org.miprojekt.turnieverwaltung.gui.windows.SpielBaum;
+package panes;
 
 import backend.FolgeMatch;
 import interfaces.IMatch;
@@ -11,6 +8,9 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
+import screens.TreeScreen;
+import stages.MatchStage;
+import stages.MatchStage.Status;
 import javafx.scene.input.MouseEvent;
 
 public class MatchPane extends Pane {
@@ -71,7 +71,7 @@ public class MatchPane extends Pane {
 				alert.showAndWait();
 			} else {
 				this.matchStage = new MatchStage(this.match, this);
-				this.matchStage.setSpielbaum((SpielBaum) this.getParent());
+				this.matchStage.setSpielbaum((TreeScreen) this.getParent());
 
 				this.matchStage.show();
 				System.out.println(

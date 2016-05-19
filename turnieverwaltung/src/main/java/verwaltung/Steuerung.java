@@ -1,14 +1,13 @@
-package org.miprojekt.turnieverwaltung;
+package verwaltung;
 
 import java.util.ArrayList;
 import java.util.Collections;
-
-import org.miprojekt.turnieverwaltung.gui.RangStage;
 
 import backend.MatchFactory;
 import interfaces.IMatch;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import stages.RangStage;
 
 public class Steuerung {
 
@@ -92,6 +91,7 @@ public class Steuerung {
 
 	public void erstelleRangliste() {
 		RangStage rangliste = new RangStage(this.matches);
+		rangliste.show();
 		
 	}
 

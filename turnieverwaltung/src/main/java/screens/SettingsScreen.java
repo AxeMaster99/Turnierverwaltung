@@ -1,34 +1,27 @@
-package org.miprojekt.turnieverwaltung.gui.windows;
+package screens;
 
-import javax.swing.JLabel;
-
-import org.miprojekt.turnieverwaltung.Main;
-import org.miprojekt.turnieverwaltung.gui.SceneParent;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
-import javafx.scene.shape.Rectangle;
+import panes.SceneParent;
+import verwaltung.Main;
 
-public class Settings extends SceneParent {
+public class SettingsScreen extends SceneParent {
 
-	Label l_teams = new Label("Teamanzahl");
-	final ObservableList<Integer> options = FXCollections.observableArrayList(4, 8, 16, 32);
-	ComboBox<Integer> c_teams = new ComboBox<Integer>(options);
-	GridPane grid = new GridPane();
-	Button b_teams = new Button("Bestätigen");
+	private Label l_teams = new Label("Teamanzahl");
+	private final ObservableList<Integer> options = FXCollections.observableArrayList(4, 8, 16, 32);
+	private ComboBox<Integer> c_teams = new ComboBox<Integer>(options);
+	private GridPane grid = new GridPane();
+	private Button b_teams = new Button("Bestätigen");
 
-	public Settings(Main main) {
+	public SettingsScreen(Main main) {
 		super(main);
 
 		c_teams.setValue(4);
