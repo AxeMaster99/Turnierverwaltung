@@ -14,10 +14,14 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.VBox;
+
 
 public class SpielBaum extends SceneParent {
 
@@ -42,6 +46,15 @@ public class SpielBaum extends SceneParent {
 		this.zeichneLinienRechts();
 		this.zeichneFinale();
 		this.zeichneLegende();
+		
+		// Menü
+		MenuBar menubar = new MenuBar();
+		Menu toolMenu = new Menu("Tools");
+		
+		menubar.getMenus().addAll(toolMenu);
+		menubar.prefWidthProperty().bind(this.widthProperty());
+		this.getChildren().add(menubar);
+		
 	}
 
 	private void zeichneLegende() {
@@ -153,7 +166,7 @@ public class SpielBaum extends SceneParent {
 	private void zeichneSpielBaumLinks() {
 		int offset = 0;
 		int posX = 10;
-		int posY = 10;
+		int posY = 40;
 		int matchesInSpalte = teams.size() / 4;
 		int actMatch = 0;
 		int sprungY = 70;
@@ -181,7 +194,7 @@ public class SpielBaum extends SceneParent {
 	private void zeichneSpielBaumRechts() {
 		int offset = 0;
 		int posX = (this.steuerung.getAnzahlSpalten() * 130) - 20;
-		int posY = 10;
+		int posY = 40;
 		int matchesInSpalte = teams.size() / 4;
 		int actMatch = this.steuerung.getMatches().size() / 2;
 		int sprungY = 70;
