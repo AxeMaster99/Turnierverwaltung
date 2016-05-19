@@ -64,6 +64,9 @@ public class RangStage extends Stage {
         pntCol.setSortType(TableColumn.SortType.DESCENDING);
         table.getSortOrder().add(torCol);
         torCol.setSortType(TableColumn.SortType.DESCENDING);
+        pntCol.setSortable(false);
+        torCol.setSortable(false);
+        nameCol.setSortable(false);
 
 		grid.add(table, 0, 0);
 		root.getChildren().add(grid);
