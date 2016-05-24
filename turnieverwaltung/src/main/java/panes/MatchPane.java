@@ -6,14 +6,13 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
-import screens.TreeScreen;
 import stages.MatchStage;
 import stages.MatchStage.Status;
+import verwaltung.Steuerung;
 import javafx.scene.input.MouseEvent;
 
-public class MatchPane extends Pane {
+public class MatchPane extends SceneParent {
 
 	private IMatch match;
 	private GridPane grid = new GridPane();
@@ -27,7 +26,8 @@ public class MatchPane extends Pane {
 
 	private MatchStage matchStage;
 
-	public MatchPane(IMatch match) {
+	public MatchPane(IMatch match,Steuerung steuerung) {
+		super(steuerung);
 		this.match = match;
 		
 		grid.setMinSize(110, 40);
@@ -70,7 +70,6 @@ public class MatchPane extends Pane {
 				alert.showAndWait();
 			} else {
 				this.matchStage = new MatchStage(this.match, this);
-				this.matchStage.setSpielbaum((TreeScreen) this.getParent());
 
 				this.matchStage.show();
 				System.out.println(

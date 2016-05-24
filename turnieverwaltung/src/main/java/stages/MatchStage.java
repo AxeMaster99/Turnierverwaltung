@@ -21,7 +21,6 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import panes.MatchPane;
-import screens.TreeScreen;
 import threads.GUIUpdateThread;
 
 public class MatchStage extends Stage {
@@ -54,8 +53,6 @@ public class MatchStage extends Stage {
 	private Button b_TorMannschaft1 = new Button("Tor M1");
 	private Button b_TorMannschaft2 = new Button("Tor M2");
 	private Button b_Start_Stopp = new Button("Start");
-
-	private TreeScreen spielBaum = null;
 
 	public MatchStage(IMatch match, MatchPane matchPane) {
 		super();
@@ -242,11 +239,7 @@ public class MatchStage extends Stage {
 			}
 		});
 		this.match.getMatchPane().setDisable(false);
-		this.spielBaum.updateSpielBaum();
-	}
-
-	public void setSpielbaum(TreeScreen spielbaum) {
-		this.spielBaum = spielbaum;
+		this.matchPane.getSteuerung().updateSpielBaum();
 	}
 
 	public void setLabelM1(String label) {

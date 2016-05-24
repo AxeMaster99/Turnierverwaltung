@@ -9,25 +9,32 @@ import backend.MatchFactory;
 import interfaces.IMatch;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.Scene;
+import screens.SettingsScreen;
+import screens.SplashScreen;
+import screens.TeamScreen;
+import screens.TreeScreen;
 import stages.RangStage;
 
 public class Steuerung {
 
+	private TreeScreen spielBaum;
 	private Main main;
 	private RangStage rangliste;
 	private ObservableList<String> teams = FXCollections.observableArrayList();
 	private ArrayList<IMatch> matches = new ArrayList<IMatch>();
 	private int anzahlSpalten = 0;
 	private int anzahlMatchesZus = 0;
-//	private static final Logger log = Logger.getLogger(Steuerung.class.getClass());
-	
+	// private static final Logger log =
+	// Logger.getLogger(Steuerung.class.getClass());
+
 	public Steuerung(Main main) {
 		this.main = main;
 	}
-	
+
 	public void erstelleMatches(ObservableList<String> teams) throws Exception {
 		this.teams = teams;
-		
+
 		Collections.shuffle(teams); // beste ZEILE
 
 		switch (this.teams.size()) {
@@ -52,12 +59,12 @@ public class Steuerung {
 		}
 
 		erstelleSeite(anzahlMatchesZus, 0, this.teams.size() / 2);
-		erstelleSeite(anzahlMatchesZus, (this.teams.size() / 2)-1, this.teams.size() - 1);
+		erstelleSeite(anzahlMatchesZus, (this.teams.size() / 2) - 1, this.teams.size() - 1);
 
 		IMatch prevFinal1 = this.matches.get(this.matches.size() / 2 - 1);
 		IMatch prevFinal2 = this.matches.get(this.matches.size() - 1);
 
-		this.matches.add(new MatchFactory().addMatch(prevFinal1).addMatch(prevFinal2).isFinalMatch().build());
+		this.matches.add(new MatchFactory(this).addMatch(prevFinal1).addMatch(prevFinal2).isFinalMatch().build());
 
 		for (int i = 0; i < matches.size(); i++) {
 			System.out.println(this.matches.get(i).toString());
@@ -69,12 +76,12 @@ public class Steuerung {
 	private void erstelleSeite(int anzahlMatchesZus, int start, int stop) throws Exception {
 
 		int actMatch = start;
-		for (int i = start; i <stop; i += 2) {
-			if(start >= 1)
-				{
-				matches.add(new MatchFactory().addMannschaft(teams.get(i+1)).addMannschaft(teams.get(i + 2)).build());
+		for (int i = start; i < stop; i += 2) {
+			if (start >= 1) {
+				matches.add(
+						new MatchFactory(this).addMannschaft(teams.get(i + 1)).addMannschaft(teams.get(i + 2)).build());
 			} else {
-				matches.add(new MatchFactory().addMannschaft(teams.get(i)).addMannschaft(teams.get(i + 1)).build());
+				matches.add(new MatchFactory(this).addMannschaft(teams.get(i)).addMannschaft(teams.get(i + 1)).build());
 			}
 		}
 		for (int i = 0; i < (anzahlMatchesZus / 2); i++) {
@@ -83,7 +90,7 @@ public class Steuerung {
 			IMatch pm2 = matches.get(actMatch + 1);
 
 			// beste Fabrik
-			matches.add(new MatchFactory().addMatch(pm1).addMatch(pm2).build());
+			matches.add(new MatchFactory(this).addMatch(pm1).addMatch(pm2).build());
 
 			actMatch = actMatch + 2;
 		}
@@ -103,19 +110,65 @@ public class Steuerung {
 		rangliste.show();
 	}
 
+	/**
+	 * sets the TeamScreen with width=500 and height=630. The screen isn't
+	 * maximized and its size is set to scene.
+	 * 
+	 * @param anzahlMannschaften
+	 *            number of teams that were chosen in the last screen.
+	 * @param screenName
+	 *            the key of the screen which will be set.
+	 */
 	public void setTeamScreen(int anzahlMannschaften, String screenName) {
-		this.main.setTeamScreen(anzahlMannschaften, screenName);
+		main.getScenes().put(screenName, new Scene(new TeamScreen(this, anzahlMannschaften), 500, 630));
+		main.getStage().setScene(main.getScene(screenName));
+		main.getStage().setMaximized(false);
+		main.getStage().sizeToScene();
+		main.getStage().centerOnScreen();
 	}
 
-	public void setSettingsScreen() {
-		this.main.setSettingsScreen();
-	}
-
+	/**
+	 * sets the TreeScreen with width and height maximized.
+	 * 
+	 * @param screenName
+	 *            the key of the screen which will be set.
+	 * @param teams
+	 *            an observable list of the teams.
+	 * @throws Exception
+	 */
 	public void setTreeScreen(String screenName, ObservableList<String> teams) throws Exception {
-		this.main.setTreeScreen(screenName, teams);
+		spielBaum = new TreeScreen(this,teams);
+		main.getScenes().put(screenName, new Scene(spielBaum));
+		main.getStage().setScene(main.getScene(screenName));
+		main.getStage().setMaximized(true);
 	}
-	
-	public Main getMain (){
+
+	/**
+	 * sets the SettingsScreen with width=500 and height=200. The stage's size
+	 * is set to the scene-size and centered to the screen.
+	 */
+	public void setSettingsScreen() {
+		main.getScenes().put("settings", new Scene(new SettingsScreen(this), 500, 200));
+		main.getStage().setScene(main.getScene("settings"));
+		main.getStage().setMaximized(false);
+		main.getStage().sizeToScene();
+		main.getStage().centerOnScreen();
+	}
+
+	/**
+	 * sets the SplashScreen with Maximized width and height.
+	 */
+	public void setSplashScreen() {
+		main.getScenes().put("splashscreen", new Scene(new SplashScreen(this)));
+		main.getStage().setScene(main.getScene("splashscreen"));
+		main.getStage().setMaximized(true);
+	}
+
+	public Main getMain() {
 		return this.main;
+	}
+
+	public void updateSpielBaum() {
+		this.spielBaum.updateSpielBaum();
 	}
 }

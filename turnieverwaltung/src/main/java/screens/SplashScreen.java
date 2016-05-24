@@ -6,11 +6,9 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.util.Duration;
 import panes.SceneParent;
-import verwaltung.Main;
 import verwaltung.Steuerung;
 
 public class SplashScreen extends SceneParent {

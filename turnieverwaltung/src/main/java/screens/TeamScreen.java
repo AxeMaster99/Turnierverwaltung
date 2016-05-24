@@ -21,7 +21,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import panes.SceneParent;
-import verwaltung.Main;
 import verwaltung.Steuerung;
 
 

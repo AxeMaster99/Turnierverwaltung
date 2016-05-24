@@ -2,6 +2,7 @@ package backend;
 
 import interfaces.IMatch;
 import panes.MatchPane;
+import verwaltung.Steuerung;
 
 public class Match implements IMatch {
 
@@ -14,19 +15,22 @@ public class Match implements IMatch {
 	protected Mannschaft verlierer;
 	private int toreM1 = 0;
 	private int toreM2 = 0;
+	private Steuerung steuerung;
 
-	public Match() {
+	public Match(Steuerung steuerung) {
+		this.steuerung = steuerung;
 		this.index = indexCounter;
 		indexCounter++;
-		this.matchPane = new MatchPane(this);
+		this.matchPane = new MatchPane(this,steuerung);
 	}
 
-	public Match(Mannschaft m1, Mannschaft m2) {
+	public Match(Steuerung steuerung, Mannschaft m1, Mannschaft m2) {
+		this.steuerung = steuerung;
 		this.index = indexCounter;
 		indexCounter++;
 		this.mannschaft1 = m1;
 		this.mannschaft2 = m2;
-		this.matchPane = new MatchPane(this);
+		this.matchPane = new MatchPane(this,steuerung);
 	}
 
 	public Match(IMatch m1, IMatch m2) {
@@ -34,7 +38,7 @@ public class Match implements IMatch {
 		indexCounter++;
 		this.mannschaft1 = new Mannschaft("...");
 		this.mannschaft2 = new Mannschaft("...");
-		this.matchPane = new MatchPane(this);
+		this.matchPane = new MatchPane(this,steuerung);
 	}
 
 	public void setMannschaft1(Mannschaft m1) {

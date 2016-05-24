@@ -18,7 +18,6 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import panes.MatchPane;
 import panes.SceneParent;
-import verwaltung.Main;
 import verwaltung.Steuerung;
 import javafx.scene.control.Alert.AlertType;
 
