@@ -187,7 +187,7 @@ public class TeamScreen extends SceneParent {
 		});
 
 		b_back.setOnAction((event) -> {
-			main.getStage().setScene(main.getScreen("settings"));
+			main.getStage().setScene(main.getScene("settings"));
 		});
 
 		b_autofill.setOnAction((event) -> {

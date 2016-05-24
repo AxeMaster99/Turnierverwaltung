@@ -7,6 +7,7 @@ import javafx.event.EventHandler;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.util.Duration;
 import panes.SceneParent;
 import verwaltung.Main;
@@ -19,7 +20,7 @@ public class SplashScreen extends SceneParent {
 		
 		super(main);
 		
-		BorderPane bp = new BorderPane();
+		GridPane grid = new GridPane();
 		
 		Image bgImage = new Image("images/splashscreen.jpg");
 		ImageView bgImageView = new ImageView();
@@ -27,10 +28,9 @@ public class SplashScreen extends SceneParent {
 		
 		bgImageView.fitHeightProperty().bind(main.getStage().heightProperty());
 		bgImageView.fitWidthProperty().bind(main.getStage().widthProperty());
+		grid.add(bgImageView, 0, 0);
 		
-		bp.setCenter(bgImageView);
-		
-		this.getChildren().add(bp);
+		this.getChildren().add(grid);
 		
 		timer = new Timeline(new KeyFrame(Duration.seconds(2.1), new EventHandler<ActionEvent>() {
 		    @Override
