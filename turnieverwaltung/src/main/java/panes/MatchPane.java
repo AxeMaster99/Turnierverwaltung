@@ -26,10 +26,10 @@ public class MatchPane extends SceneParent {
 
 	private MatchStage matchStage;
 
-	public MatchPane(IMatch match,Steuerung steuerung) {
+	public MatchPane(IMatch match, Steuerung steuerung) {
 		super(steuerung);
 		this.match = match;
-		
+
 		grid.setMinSize(110, 40);
 		grid.setStyle("-fx-background-color: white;"
 				+ "-fx-background-radius: 5;-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);"
@@ -69,9 +69,11 @@ public class MatchPane extends SceneParent {
 				alert.setContentText("Ergebnis: " + this.match.getToreM1() + ":" + this.match.getToreM2());
 				alert.showAndWait();
 			} else {
-				this.matchStage = new MatchStage(this.match, this);
-
+				if (this.matchStage == null) {
+					this.matchStage = new MatchStage(this.match, this);
+				}
 				this.matchStage.show();
+
 				System.out.println(
 						this.match.getMannschaft1().getName() + " gegen " + this.match.getMannschaft2().getName());
 				System.out.println(this.getTranslateX());
