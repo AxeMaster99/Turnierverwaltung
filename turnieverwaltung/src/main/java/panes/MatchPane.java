@@ -13,7 +13,7 @@ import stages.MatchStage;
 import stages.MatchStage.Status;
 import javafx.scene.input.MouseEvent;
 
-public class MatchPane extends Pane {
+public class MatchPane extends SceneParent {
 
 	private IMatch match;
 	private GridPane grid = new GridPane();

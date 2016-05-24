@@ -13,6 +13,7 @@ import stages.RangStage;
 
 public class Steuerung {
 
+	private RangStage rangliste;
 	private ObservableList<String> teams = FXCollections.observableArrayList();
 	private ArrayList<IMatch> matches = new ArrayList<IMatch>();
 	private int anzahlSpalten = 0;
@@ -97,9 +98,7 @@ public class Steuerung {
 	}
 
 	public void erstelleRangliste() {
-		RangStage rangliste = new RangStage(this.matches);
+		rangliste = new RangStage(this.matches);
 		rangliste.show();
-		
 	}
-
 }
