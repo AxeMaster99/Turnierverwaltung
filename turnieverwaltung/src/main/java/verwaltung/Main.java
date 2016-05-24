@@ -13,8 +13,6 @@ import screens.TreeScreen;
 
 public class Main extends Application {
 	
-	private final int WINDOWWIDTH = 1400;
-	private final int WINDOWHEIGHT = 650;
 	private Stage stage;
 	private HashMap<String, Scene> scenes = new HashMap<String, Scene>();
 	
@@ -26,10 +24,7 @@ public class Main extends Application {
 	public void start(Stage stage) throws Exception {
 		this.stage = stage;	
 		stage.setTitle("Turnierverwaltung");
-				
-		this.scenes.put("splashscreen", new Scene(new SplashScreen(this), WINDOWWIDTH, WINDOWHEIGHT));
-		this.scenes.put("settings", new Scene(new SettingsScreen(this), 500, 200));
-		stage.setScene(this.scenes.get("splashscreen"));
+		this.setSplashScreen();
 		stage.show();
 	}
 	
@@ -43,12 +38,28 @@ public class Main extends Application {
 
 	public void setTeamScreen(int anzahlMannschaften, String screenName) {
 		this.scenes.put(screenName, new Scene(new TeamScreen(this,anzahlMannschaften),500,630));
-		this.getStage().setScene(this.getScreen(screenName));
+		this.stage.setScene(this.getScreen(screenName));
+		stage.centerOnScreen();
+		stage.setMaximized(false);
 	}
 	
 	public void setTreeScreen(String screenName, ObservableList<String> teams) throws Exception {
 		this.scenes.put(screenName, new Scene(new TreeScreen(this,teams)));
-		this.getStage().setScene(this.getScreen(screenName));
+		this.stage.setScene(this.getScreen(screenName));
+		stage.setMaximized(true);
+	}
+	
+	public void setSettingsScreen(){
+		this.scenes.put("settings", new Scene(new SettingsScreen(this), 500, 200));
+		this.stage.setScene(this.getScreen("settings"));
+		stage.centerOnScreen();
+		stage.setMaximized(false);
+	}
+	
+	private void setSplashScreen(){
+		this.scenes.put("splashscreen", new Scene(new SplashScreen(this), 500, 200));
+		this.stage.setScene(this.getScreen("splashscreen"));
+		stage.setMaximized(true);
 	}
 	
 }

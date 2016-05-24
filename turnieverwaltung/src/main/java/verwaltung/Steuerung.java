@@ -17,7 +17,7 @@ public class Steuerung {
 	private ArrayList<IMatch> matches = new ArrayList<IMatch>();
 	private int anzahlSpalten = 0;
 	private int anzahlMatchesZus = 0;
-	private static final Logger log = Logger.getLogger(Steuerung.class.getClass());
+//	private static final Logger log = Logger.getLogger(Steuerung.class.getClass());
 	
 	public Steuerung() {
 		
