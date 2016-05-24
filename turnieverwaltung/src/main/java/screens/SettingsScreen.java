@@ -12,6 +12,7 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import panes.SceneParent;
 import verwaltung.Main;
+import verwaltung.Steuerung;
 
 public class SettingsScreen extends SceneParent {
 
@@ -21,13 +22,13 @@ public class SettingsScreen extends SceneParent {
 	private GridPane grid = new GridPane();
 	private Button b_teams = new Button("Bestätigen");
 
-	public SettingsScreen(Main main) {
-		super(main);
+	public SettingsScreen(Steuerung steuerung) {
+		super(steuerung);
 
 		c_teams.setValue(4);
 
 		b_teams.setOnAction((event) -> {
-			main.setTeamScreen(c_teams.getValue(), "mannschaftsnamen");
+			steuerung.setTeamScreen(c_teams.getValue(), "mannschaftsnamen");
 		});
 
 		grid.add(l_teams, 0, 0);

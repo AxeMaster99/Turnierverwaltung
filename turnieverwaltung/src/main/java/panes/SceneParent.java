@@ -6,13 +6,11 @@ import verwaltung.Steuerung;
 
 public class SceneParent extends Pane {
 
-	protected Main main;
-	protected Steuerung steuerung = new Steuerung();
+	protected Steuerung steuerung;
 
-	public SceneParent(){}
 	
-	public SceneParent(Main main) {
-		this.main = main;
+	public SceneParent(Steuerung steuerung) {
+		this.steuerung = steuerung;
 	}
 	
 	public Steuerung getSteuerung(){

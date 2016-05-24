@@ -11,14 +11,15 @@ import javafx.scene.layout.GridPane;
 import javafx.util.Duration;
 import panes.SceneParent;
 import verwaltung.Main;
+import verwaltung.Steuerung;
 
 public class SplashScreen extends SceneParent {
 
 	private Timeline timer;
 	
-	public SplashScreen(Main main) {
+	public SplashScreen(Steuerung steuerung) {
 		
-		super(main);
+		super(steuerung);
 		
 		GridPane grid = new GridPane();
 		
@@ -26,8 +27,8 @@ public class SplashScreen extends SceneParent {
 		ImageView bgImageView = new ImageView();
 		bgImageView.setImage(bgImage);
 		
-		bgImageView.fitHeightProperty().bind(main.getStage().heightProperty());
-		bgImageView.fitWidthProperty().bind(main.getStage().widthProperty());
+		bgImageView.fitHeightProperty().bind(steuerung.getMain().getStage().heightProperty());
+		bgImageView.fitWidthProperty().bind(steuerung.getMain().getStage().widthProperty());
 		grid.add(bgImageView, 0, 0);
 		
 		this.getChildren().add(grid);
@@ -35,7 +36,7 @@ public class SplashScreen extends SceneParent {
 		timer = new Timeline(new KeyFrame(Duration.seconds(2.1), new EventHandler<ActionEvent>() {
 		    @Override
 		    public void handle(ActionEvent event) {
-		    	main.setSettingsScreen();
+		    	steuerung.setSettingsScreen();
 		    	timer.stop();
 		    }
 		}));

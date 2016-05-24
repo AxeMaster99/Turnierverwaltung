@@ -13,7 +13,7 @@ import stages.MatchStage;
 import stages.MatchStage.Status;
 import javafx.scene.input.MouseEvent;
 
-public class MatchPane extends SceneParent {
+public class MatchPane extends Pane {
 
 	private IMatch match;
 	private GridPane grid = new GridPane();
@@ -28,9 +28,8 @@ public class MatchPane extends SceneParent {
 	private MatchStage matchStage;
 
 	public MatchPane(IMatch match) {
-		super();
 		this.match = match;
-
+		
 		grid.setMinSize(110, 40);
 		grid.setStyle("-fx-background-color: white;"
 				+ "-fx-background-radius: 5;-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);"

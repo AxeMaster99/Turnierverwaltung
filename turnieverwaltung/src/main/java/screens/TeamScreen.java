@@ -22,6 +22,7 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import panes.SceneParent;
 import verwaltung.Main;
+import verwaltung.Steuerung;
 
 
 public class TeamScreen extends SceneParent {
@@ -42,8 +43,8 @@ public class TeamScreen extends SceneParent {
 	private Button b_autofill = new Button("aut. füllen");
 	private TextField t_teamnames = new TextField();
 
-	public TeamScreen(Main main, int anzahlMannschaften) {
-		super(main);
+	public TeamScreen(Steuerung steuerung, int anzahlMannschaften) {
+		super(steuerung);
 		this.anzahlMannschaften = anzahlMannschaften;
 	    
 		ColumnConstraints col1 = new ColumnConstraints(100);
@@ -187,7 +188,7 @@ public class TeamScreen extends SceneParent {
 		});
 
 		b_back.setOnAction((event) -> {
-			main.getStage().setScene(main.getScene("settings"));
+			steuerung.getMain().getStage().setScene(steuerung.getMain().getScene("settings"));
 		});
 
 		b_autofill.setOnAction((event) -> {
@@ -202,7 +203,7 @@ public class TeamScreen extends SceneParent {
 		
 		b_submit.setOnAction((event)->{
 			try {
-				main.setTreeScreen("spielbaum",teams);
+				steuerung.setTreeScreen("spielbaum",teams);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

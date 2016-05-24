@@ -13,6 +13,7 @@ import stages.RangStage;
 
 public class Steuerung {
 
+	private Main main;
 	private RangStage rangliste;
 	private ObservableList<String> teams = FXCollections.observableArrayList();
 	private ArrayList<IMatch> matches = new ArrayList<IMatch>();
@@ -20,8 +21,8 @@ public class Steuerung {
 	private int anzahlMatchesZus = 0;
 //	private static final Logger log = Logger.getLogger(Steuerung.class.getClass());
 	
-	public Steuerung() {
-		
+	public Steuerung(Main main) {
+		this.main = main;
 	}
 	
 	public void erstelleMatches(ObservableList<String> teams) throws Exception {
@@ -100,5 +101,21 @@ public class Steuerung {
 	public void erstelleRangliste() {
 		rangliste = new RangStage(this.matches);
 		rangliste.show();
+	}
+
+	public void setTeamScreen(int anzahlMannschaften, String screenName) {
+		this.main.setTeamScreen(anzahlMannschaften, screenName);
+	}
+
+	public void setSettingsScreen() {
+		this.main.setSettingsScreen();
+	}
+
+	public void setTreeScreen(String screenName, ObservableList<String> teams) throws Exception {
+		this.main.setTreeScreen(screenName, teams);
+	}
+	
+	public Main getMain (){
+		return this.main;
 	}
 }

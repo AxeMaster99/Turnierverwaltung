@@ -19,6 +19,7 @@ import javafx.scene.text.Font;
 import panes.MatchPane;
 import panes.SceneParent;
 import verwaltung.Main;
+import verwaltung.Steuerung;
 import javafx.scene.control.Alert.AlertType;
 
 
@@ -29,8 +30,8 @@ public class TreeScreen extends SceneParent {
 	
 	private ObservableList<String> teams = FXCollections.observableArrayList();
 
-	public TreeScreen(Main main, ObservableList<String> teams) throws Exception {
-		super(main);
+	public TreeScreen(Steuerung steuerung, ObservableList<String> teams) throws Exception {
+		super(steuerung);
 
 		this.teams = teams;
 		this.setStyle("-fx-background-color: #999999");

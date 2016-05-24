@@ -15,6 +15,7 @@ import screens.TreeScreen;
 public class Main extends Application {
 	
 	private Stage stage;
+	private Steuerung steuerung;
 	private HashMap<String, Scene> scenes = new HashMap<String, Scene>();
 	
 	public static void main(String args[]) {
@@ -23,6 +24,7 @@ public class Main extends Application {
 	
 	@Override
 	public void start(Stage stage) throws Exception {
+		this.steuerung = new Steuerung(this);
 		this.stage = stage;	
 		stage.setTitle("Turnierverwaltung");
 		this.setSplashScreen();
@@ -56,7 +58,7 @@ public class Main extends Application {
 	 * 		the key of the screen which will be set.
 	 */
 	public void setTeamScreen(int anzahlMannschaften, String screenName) {
-		this.scenes.put(screenName, new Scene(new TeamScreen(this,anzahlMannschaften),500,630));
+		this.scenes.put(screenName, new Scene(new TeamScreen(steuerung,anzahlMannschaften),500,630));
 		this.stage.setScene(this.getScene(screenName));
 		stage.setMaximized(false);
 		stage.sizeToScene();
@@ -71,7 +73,7 @@ public class Main extends Application {
 	 * @throws Exception
 	 */
 	public void setTreeScreen(String screenName, ObservableList<String> teams) throws Exception {
-		this.scenes.put(screenName, new Scene(new TreeScreen(this,teams)));
+		this.scenes.put(screenName, new Scene(new TreeScreen(steuerung,teams)));
 		this.stage.setScene(this.getScene(screenName));
 		stage.setMaximized(true);
 	}
@@ -81,7 +83,7 @@ public class Main extends Application {
 	 * set to the scene-size and centered to the screen.
 	 */
 	public void setSettingsScreen(){
-		this.scenes.put("settings", new Scene(new SettingsScreen(this),500,200));
+		this.scenes.put("settings", new Scene(new SettingsScreen(steuerung),500,200));
 		this.stage.setScene(this.getScene("settings"));
 		stage.setMaximized(false);
 		stage.sizeToScene();
@@ -91,7 +93,7 @@ public class Main extends Application {
 	 * sets the SplashScreen with Maximized width and height.
 	 */
 	private void setSplashScreen(){
-		this.scenes.put("splashscreen", new Scene(new SplashScreen(this)));
+		this.scenes.put("splashscreen", new Scene(new SplashScreen(steuerung)));
 		this.stage.setScene(this.getScene("splashscreen"));
 		stage.setMaximized(true);
 	}
