@@ -95,7 +95,7 @@ public class TeamScreen extends SceneParent {
 	//	grid.setGridLinesVisible(true);
 		
 		GridPane.setHalignment(b_add, HPos.CENTER);
-		grid.setMinSize(500,200);
+		grid.setMinSize(500,630);
 		grid.setAlignment(Pos.CENTER);
 		
 		b_add.setOnAction((event) -> {
@@ -213,6 +213,12 @@ public class TeamScreen extends SceneParent {
 		this.getChildren().add(grid);
 	}
 	
+	/**
+	 * updates the progress bar and the progress indicator. If the value of cnt
+	 * equals the value of anzahlMannschaften, the button which adds a team is disabled 
+	 * and the button "submit" is enabled.
+	 * If a team is deleted, the button "add" is enabled again.
+	 */
 
 	public void updateFortschritt() {
 		double cnt_double = cnt;
