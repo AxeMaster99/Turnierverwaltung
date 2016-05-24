@@ -178,5 +178,11 @@ public class Steuerung {
 	public RangStage getRangStage() {
 		return this.rangliste;
 	}
+
+	public void setGroupScreen(String screenName, ObservableList<String> teams) {
+		main.getScenes().put(screenName, new Scene(new GroupScreen(this,teams)));
+		main.getStage().setScene(main.getScene("groupscreen"));
+		main.getStage().setMaximized(true);
+	}
 	
 }
