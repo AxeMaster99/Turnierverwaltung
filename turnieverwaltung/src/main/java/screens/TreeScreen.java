@@ -16,10 +16,13 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import panes.MatchPane;
 import panes.SceneParent;
 import verwaltung.Steuerung;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 
 public class TreeScreen extends SceneParent {
@@ -32,8 +35,17 @@ public class TreeScreen extends SceneParent {
 	public TreeScreen(Steuerung steuerung, ObservableList<String> teams) throws Exception {
 		super(steuerung);
 
+		Image bgImage = new Image("images/boden_wiese.jpg");
+		ImageView bgImageView = new ImageView();
+		bgImageView.setImage(bgImage);		
+		bgImageView.setOpacity(0.7);
+		bgImageView.fitHeightProperty().bind(steuerung.getMain().getStage().heightProperty());
+		bgImageView.fitWidthProperty().bind(steuerung.getMain().getStage().widthProperty());
+		this.getChildren().add(bgImageView);
+
+		
 		this.teams = teams;
-		this.setStyle("-fx-background-color: #999999");
+		this.setStyle("-fx-background-color: black;");
 		steuerung.erstelleMatches(teams);
 
 		canvas.setMouseTransparent(true);
@@ -67,22 +79,35 @@ public class TreeScreen extends SceneParent {
 		MatchPane mp = this.steuerung.getMatches().get(this.teams.size()/4-1).getMatchPane();
 		double mpY = mp.getTranslateY()+70;
 		
-		Font font = new Font(16);
+		Font font = Font.font("Arial", FontWeight.BOLD, 16);
 		
 		Label l0_legende = new Label("Legende:");
 		l0_legende.setFont(font);
+		l0_legende.setTextFill(Color.WHITE);
 		l0_legende.setTranslateX(10);
-		l0_legende.setTranslateY(mpY+3);
+		l0_legende.setTranslateY(mpY+7);
+		
 		Label l1_orange = new Label("Spiel Unterbrochen");
+		l1_orange.setFont(font);
+		l1_orange.setTextFill(Color.WHITE);
 		l1_orange.setTranslateX(140);
 		l1_orange.setTranslateY(mpY+7);
+		
 		Label l2_green= new Label("Spiel Beendet");
+		l2_green.setFont(font);
+		l2_green.setTextFill(Color.WHITE);
 		l2_green.setTranslateX(340);
 		l2_green.setTranslateY(mpY+7);
+		
 		Label l3_yellow= new Label("Spiel Laufend");
+		l3_yellow.setFont(font);
+		l3_yellow.setTextFill(Color.WHITE);
 		l3_yellow.setTranslateX(540);
 		l3_yellow.setTranslateY(mpY+7);
+		
 		Label l4_white= new Label("Spiel noch nicht gestartet");
+		l4_white.setFont(font);
+		l4_white.setTextFill(Color.WHITE);
 		l4_white.setTranslateX(740);
 		l4_white.setTranslateY(mpY+7);
 		
@@ -132,10 +157,8 @@ public class TreeScreen extends SceneParent {
 				double m2X = m2.getTranslateX() + 110;
 				double m2Y = m2.getTranslateY() + 20;
 
-				// System.out.println(fmBoundsX + " | "+fmBoundsY);
-
-				//gc.setFill(Color.BLACK);
-				//gc.setStroke(Color.BLACK);
+				gc.setFill(Color.GOLD);
+				gc.setStroke(Color.GOLD);
 				gc.setLineWidth(3);
 				gc.strokeLine(fmX, fmY, m1X, m1Y);
 				gc.strokeLine(fmX, fmY, m2X, m2Y);
@@ -161,8 +184,8 @@ public class TreeScreen extends SceneParent {
 
 				// System.out.println(fmBoundsX + " | "+fmBoundsY);
 
-				gc.setFill(Color.BLACK);
-				gc.setStroke(Color.BLACK);
+				gc.setFill(Color.GOLD);
+				gc.setStroke(Color.GOLD);
 				gc.setLineWidth(3);
 				gc.strokeLine(fmX, fmY, m1X, m1Y);
 				gc.strokeLine(fmX, fmY, m2X, m2Y);
@@ -259,8 +282,8 @@ public class TreeScreen extends SceneParent {
 		double m2Y = this.steuerung.getMatches().get(this.steuerung.getMatches().size() - 2).getMatchPane()
 				.getTranslateY() + 20;
 
-		gc.setFill(Color.BLACK);
-		gc.setStroke(Color.BLACK);
+		gc.setFill(Color.GOLD);
+		gc.setStroke(Color.GOLD);
 		gc.setLineWidth(3);
 		gc.strokeLine(fmX, fmY, m1X, m1Y);
 		gc.strokeLine(fmX, fmY, m2X, m2Y);
