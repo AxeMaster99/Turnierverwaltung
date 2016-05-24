@@ -3,7 +3,8 @@ package verwaltung;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.core.Logger;
 
 import backend.MatchFactory;
 import interfaces.IMatch;
@@ -25,9 +26,9 @@ public class Steuerung {
 	private ArrayList<IMatch> matches = new ArrayList<IMatch>();
 	private int anzahlSpalten = 0;
 	private int anzahlMatchesZus = 0;
-	// private static final Logger log =
-	// Logger.getLogger(Steuerung.class.getClass());
-
+	
+	private static final Logger logger = (Logger) LogManager.getLogger("Steuerung");
+	
 	public Steuerung(Main main) {
 		this.main = main;
 	}
@@ -64,11 +65,11 @@ public class Steuerung {
 		IMatch prevFinal1 = this.matches.get(this.matches.size() / 2 - 1);
 		IMatch prevFinal2 = this.matches.get(this.matches.size() - 1);
 
-		this.matches.add(new MatchFactory(this).addMatch(prevFinal1).addMatch(prevFinal2).isFinalMatch().build());
-
+		// this.matches.add(new MatchFactory(this).addMatch(prevFinal1).addMatch(prevFinal2).isFinalMatch().build());
+		this.matches.add(MatchFactory.build(this, prevFinal1, prevFinal2, true));
+		
 		for (int i = 0; i < matches.size(); i++) {
-			System.out.println(this.matches.get(i).toString());
-			System.out.println();
+			logger.info(this.matches.get(i).toString());
 		}
 
 	}
@@ -78,10 +79,11 @@ public class Steuerung {
 		int actMatch = start;
 		for (int i = start; i < stop; i += 2) {
 			if (start >= 1) {
-				matches.add(
-						new MatchFactory(this).addMannschaft(teams.get(i + 1)).addMannschaft(teams.get(i + 2)).build());
+				// matches.add(new MatchFactory(this).addMannschaft(teams.get(i + 1)).addMannschaft(teams.get(i + 2)).build());
+				matches.add(MatchFactory.build(this, teams.get(i+1), teams.get(i+2)));
 			} else {
-				matches.add(new MatchFactory(this).addMannschaft(teams.get(i)).addMannschaft(teams.get(i + 1)).build());
+				// matches.add(new MatchFactory(this).addMannschaft(teams.get(i)).addMannschaft(teams.get(i + 1)).build());
+				matches.add(MatchFactory.build(this, teams.get(i), teams.get(i+1)));
 			}
 		}
 		for (int i = 0; i < (anzahlMatchesZus / 2); i++) {
@@ -90,8 +92,9 @@ public class Steuerung {
 			IMatch pm2 = matches.get(actMatch + 1);
 
 			// beste Fabrik
-			matches.add(new MatchFactory(this).addMatch(pm1).addMatch(pm2).build());
-
+			// matches.add(new MatchFactory(this).addMatch(pm1).addMatch(pm2).build());
+			matches.add(MatchFactory.build(this, pm1, pm2));
+			
 			actMatch = actMatch + 2;
 		}
 
@@ -171,4 +174,5 @@ public class Steuerung {
 	public void updateSpielBaum() {
 		this.spielBaum.updateSpielBaum();
 	}
+	
 }

@@ -21,6 +21,10 @@ public class RangStage extends Stage {
 	private ObservableList<Mannschaft> mannschaften = FXCollections.observableArrayList();
 	private TableView<Mannschaft> table = new TableView<Mannschaft>();
 
+	TableColumn<Mannschaft, String> nameCol;
+	TableColumn<Mannschaft, Integer> pntCol;
+	TableColumn<Mannschaft, Integer> torCol;
+
 	private Pane root = new Pane();
 	private GridPane grid = new GridPane();
 
@@ -40,14 +44,13 @@ public class RangStage extends Stage {
 			mannschaften.add(this.matches.get(i).getMannschaft2());
 		}
 
-		TableColumn<Mannschaft, String> nameCol = new TableColumn<Mannschaft, String>("Mannschaftsname");
+		nameCol = new TableColumn<Mannschaft, String>("Mannschaftsname");
 		nameCol.setMinWidth(150);
 		nameCol.setCellValueFactory(new PropertyValueFactory<Mannschaft, String>("name"));
 
-		TableColumn<Mannschaft, Integer> pntCol = new TableColumn<Mannschaft, Integer>("Punkte");
+		pntCol = new TableColumn<Mannschaft, Integer>("Punkte");
 		pntCol.setMinWidth(100);
 		pntCol.setCellValueFactory(new PropertyValueFactory<Mannschaft, Integer>("punkte"));
-
 		TableColumn<Mannschaft, Integer> torCol = new TableColumn<Mannschaft, Integer>("Tordifferenz");
 		torCol.setMinWidth(100);
 		torCol.setCellValueFactory(new PropertyValueFactory<Mannschaft, Integer>("tordifferenz"));
@@ -55,10 +58,12 @@ public class RangStage extends Stage {
 		table.setItems(mannschaften);
 		table.getColumns().addAll(nameCol, pntCol, torCol);
 
+		
 		table.getSortOrder().add(pntCol);
 		pntCol.setSortType(TableColumn.SortType.DESCENDING);
 		table.getSortOrder().add(torCol);
 		torCol.setSortType(TableColumn.SortType.DESCENDING);
+
 		// pntCol.setSortable(false);
 		// torCol.setSortable(false);
 		// nameCol.setSortable(false);
@@ -72,7 +77,6 @@ public class RangStage extends Stage {
 		grid.setAlignment(Pos.CENTER);
 		Scene scene = new Scene(root, 400, 500);
 		this.setScene(scene);
-
 	}
 
 }
