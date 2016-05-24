@@ -238,6 +238,10 @@ public class MatchStage extends Stage {
 				alert.showAndWait();
 			}
 		});
+		
+		// update rangStage
+		this.matchPane.getSteuerung().getRangStage().updateTable();
+		
 		this.match.getMatchPane().setDisable(false);
 		this.matchPane.getSteuerung().updateSpielBaum();
 	}
