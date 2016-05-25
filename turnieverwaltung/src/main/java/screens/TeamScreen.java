@@ -203,6 +203,7 @@ public class TeamScreen extends SceneParent {
 		b_submit.setOnAction((event)->{
 			try {
 				steuerung.setTreeScreen("spielBaum",teams);
+//				steuerung.setGroupScreen("groupscreen",teams);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
