@@ -89,6 +89,10 @@ public class Match implements IMatch {
 	public Mannschaft getSieger() {
 		return this.sieger;
 	}
+	
+	public Mannschaft getVerlierer() {
+		return this.verlierer;
+	}
 
 	public void incrementToreM1() {
 		this.toreM1++;

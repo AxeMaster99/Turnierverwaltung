@@ -18,6 +18,9 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import verwaltung.Steuerung;
 
+// Turnierrangliste: Fenster kann während dem Turnier offen gelassen werden. Aktualisiert sich automatisch und zeigt Mannschaftsname, Punkte und Tordifferenz an. 
+// Standardmäßig wird nach Punktestand, bei gleichem Punktestand nach Tordifferenz absteigend sortiert.
+
 public class RangStage extends Stage {
 
 	private Steuerung steuerung;

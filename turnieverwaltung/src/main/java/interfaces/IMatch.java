@@ -25,6 +25,8 @@ public interface IMatch {
 	
 	public Mannschaft getSieger();
 	
+	public Mannschaft getVerlierer();
+	
 	public void setToreM1(int toreM1);
 
 	public void setToreM2(int toreM2);

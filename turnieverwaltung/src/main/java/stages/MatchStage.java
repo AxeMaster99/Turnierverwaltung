@@ -233,7 +233,7 @@ public class MatchStage extends Stage {
 			public void run() {
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("Information");
-				alert.setHeaderText("Spiel Beendet");
+				alert.setHeaderText("Spiel Nr." + match.getIndex() + " (" + match.getSieger() + " vs " + match.getVerlierer() + ") ist beendet.");
 				alert.setContentText("Das Spiel wurde Beendet. Gewonnen hat: " + match.getSieger());
 				alert.showAndWait();
 			}

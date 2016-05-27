@@ -16,9 +16,7 @@ public class Spieler {
 		public int[] getTreffer() {
 			return Treffer;
 		}
-		//public void addTreffer(int SpielID) {          SpielID fehlt noch
-		//	Treffer [SpielID] ++;
-		//}
+		
 		public String getRolle() {
 			return Rolle;
 		}
