@@ -21,21 +21,20 @@ public class SettingsScreen extends SceneParent {
 	private final ObservableList<Integer> options = FXCollections.observableArrayList(4, 8, 16, 32);
 	private final ObservableList<Integer> durations = FXCollections.observableArrayList(5, 30, 45, 60,75, 90);
 	private ComboBox<Integer> c_teams = new ComboBox<Integer>(options);
-	private ComboBox<Integer> setMatchDuration = new ComboBox<Integer>(durations);
+	private ComboBox<Integer> c_duration= new ComboBox<Integer>(durations);
 	private GridPane grid = new GridPane();
 	private Button b_teams = new Button("Bestätigen");
 
 	public SettingsScreen(Steuerung steuerung) {
 		super(steuerung);
 		
-		setMatchDuration.setValue(90);		
-			
-		
+		c_duration.setValue(5);		
+				
 		c_teams.setValue(4);
 
 		b_teams.setOnAction((event) -> {
 			steuerung.setTeamScreen(c_teams.getValue(), "mannschaftsnamen");
-			MatchStage.setDuration(setMatchDuration.getValue());
+			//MatchStage.setTimerdauer(c_duration.getValue()); To_Do: Beim setzten des Values aus dem Dropdown hakt es noch. So wird bisher der Standartwert 5 Sek genommen
 		});
 
 		grid.add(l_teams, 0, 0);
@@ -46,8 +45,8 @@ public class SettingsScreen extends SceneParent {
 		c_teams.setMinWidth(100);
 		grid.add(b_teams, 2, 1);
 		b_teams.setMinWidth(100);
-		grid.add(setMatchDuration, 1, 1);
-		setMatchDuration.setMinWidth(100);
+		grid.add(c_duration, 1, 1);
+		c_duration.setMinWidth(100);
 		
 		
 		grid.setPadding(new Insets(25));
@@ -60,7 +59,7 @@ public class SettingsScreen extends SceneParent {
 		grid.setHgap(10);
 		grid.setVgap(10);
 
-		grid.setMinSize(500,300);
+		grid.setMinSize(500,200);
 		grid.setAlignment(Pos.CENTER);
 
 		this.getChildren().add(grid);

@@ -39,7 +39,7 @@ public class MatchStage extends Stage {
 	private Timeline timeline;
 
 	//private final double SPIELMINUTEN = 2; TODO: Spielminuten enablen
-	private static int timerdauer = 5; //bisher aus Testgründen noch sekunden, kann bei "Release" auf Minuten gesetzt werden
+	private int timerdauer = 5; //bisher aus Testgründen noch sekunden, kann bei "Release" auf Minuten gesetzt werden
 
 	private Boolean spielGestartet = false;
 
@@ -191,14 +191,13 @@ public class MatchStage extends Stage {
 		timeline.stop();
 	}
 
+	//timerdauer / 60 + ":0" + timerdauer % 60
+	
 	private void starteSpiel() {
+		// int matchTimer = timerdauer;
 		this.timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
 			timerdauer--;
-			if (timerdauer % 60 >= 10) {
-				l_timerdauer.setText(timerdauer / 60 + ":" + timerdauer % 60);
-			} else {
-				l_timerdauer.setText(timerdauer / 60 + ":0" + timerdauer % 60);
-			}
+			l_timerdauer.setText(String.format("%02d:%02d", timerdauer / 60, timerdauer % 60));
 		}));
 
 		timeline.setOnFinished((e) -> {
@@ -260,8 +259,8 @@ public class MatchStage extends Stage {
 		}
 	}
 
-	public static void setDuration(int duration){
-		timerdauer = duration;
+	public void setTimerdauer(int duration){
+		this.timerdauer = duration;
 	}
 	
 }
