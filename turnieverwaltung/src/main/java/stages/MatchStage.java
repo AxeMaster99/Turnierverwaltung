@@ -39,7 +39,7 @@ public class MatchStage extends Stage {
 	private Timeline timeline;
 
 	//private final double SPIELMINUTEN = 2; TODO: Spielminuten enablen
-	private int timerdauer = 5;
+	private static int timerdauer = 5; //bisher aus Testgründen noch sekunden, kann bei "Release" auf Minuten gesetzt werden
 
 	private Boolean spielGestartet = false;
 
@@ -48,7 +48,7 @@ public class MatchStage extends Stage {
 	private Label l_Mannschaft2 = new Label();
 
 	private Label l_timer = new Label("Verbleibende Zeit: ");
-	private Label l_timerdauer = new Label(timerdauer / 60 + ":0" + timerdauer % 60);
+	private Label l_timerdauer = new Label(String.format("%02d:%02d", timerdauer / 60, timerdauer % 60));
 
 	private Button b_TorMannschaft1 = new Button("Tor M1");
 	private Button b_TorMannschaft2 = new Button("Tor M2");
@@ -260,4 +260,8 @@ public class MatchStage extends Stage {
 		}
 	}
 
+	public static void setDuration(int duration){
+		timerdauer = duration;
+	}
+	
 }
