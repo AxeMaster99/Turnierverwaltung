@@ -15,7 +15,7 @@ import stages.MatchStage;
 import verwaltung.Steuerung;
 
 public class SettingsScreen extends SceneParent {
-
+	
 	private Label l_teams = new Label("Teamanzahl");
 	private Label l_matchDauer = new Label("Match dauer");
 	private final ObservableList<Integer> options = FXCollections.observableArrayList(4, 8, 16, 32);
@@ -34,7 +34,7 @@ public class SettingsScreen extends SceneParent {
 
 		b_teams.setOnAction((event) -> {
 			steuerung.setTeamScreen(c_teams.getValue(), "mannschaftsnamen");
-			//MatchStage.setTimerdauer(c_duration.getValue()); To_Do: Beim setzten des Values aus dem Dropdown hakt es noch. So wird bisher der Standartwert 5 Sek genommen
+			MatchStage.setTimerdauer(c_duration.getValue()); 
 		});
 
 		grid.add(l_teams, 0, 0);
@@ -64,6 +64,7 @@ public class SettingsScreen extends SceneParent {
 
 		this.getChildren().add(grid);
 		
+		
 	}
-
+		
 }

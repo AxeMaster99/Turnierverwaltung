@@ -22,6 +22,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import panes.MatchPane;
 import threads.GUIUpdateThread;
+//import screens.SettingsScreen;
 
 public class MatchStage extends Stage {
 
@@ -37,9 +38,9 @@ public class MatchStage extends Stage {
 	private GridPane grid = new GridPane();
 
 	private Timeline timeline;
-
+	private int matchTimer = -1; // Every Game gets his individual timer, initial value -1 to check if timer has had runtime before on resuming a paused Match
 	//private final double SPIELMINUTEN = 2; TODO: Spielminuten enablen
-	private int timerdauer = 5; //bisher aus Testgründen noch sekunden, kann bei "Release" auf Minuten gesetzt werden
+	public static int timerdauer = 5; //bisher aus Testgründen noch sekunden, kann bei "Release" auf Minuten gesetzt werden
 
 	private Boolean spielGestartet = false;
 
@@ -194,10 +195,12 @@ public class MatchStage extends Stage {
 	//timerdauer / 60 + ":0" + timerdauer % 60
 	
 	private void starteSpiel() {
-		// int matchTimer = timerdauer;
+		
+		if(matchTimer == -1){
+		matchTimer = timerdauer;}
 		this.timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
-			timerdauer--;
-			l_timerdauer.setText(String.format("%02d:%02d", timerdauer / 60, timerdauer % 60));
+			matchTimer--;
+			l_timerdauer.setText(String.format("%02d:%02d", matchTimer / 60, matchTimer % 60));
 		}));
 
 		timeline.setOnFinished((e) -> {
@@ -219,7 +222,7 @@ public class MatchStage extends Stage {
 			}
 		});
 
-		timeline.setCycleCount(timerdauer);
+		timeline.setCycleCount(matchTimer);
 		timeline.play();
 	}
 
@@ -232,7 +235,7 @@ public class MatchStage extends Stage {
 			public void run() {
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("Information");
-				alert.setHeaderText("Spiel Nr." + match.getIndex() + " (" + match.getSieger() + " vs " + match.getVerlierer() + ") ist beendet.");
+				alert.setHeaderText("Spiel Nr." + match.getIndex() + " ist beendet.\n(" + match.getSieger() + " vs " + match.getVerlierer() + ")");
 				alert.setContentText("Das Spiel wurde Beendet. Gewonnen hat: " + match.getSieger());
 				alert.showAndWait();
 			}
@@ -259,8 +262,8 @@ public class MatchStage extends Stage {
 		}
 	}
 
-	public void setTimerdauer(int duration){
-		this.timerdauer = duration;
+	public static void setTimerdauer(int duration){
+		timerdauer = duration;
 	}
 	
 }
