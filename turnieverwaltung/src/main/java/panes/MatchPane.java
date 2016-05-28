@@ -8,6 +8,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import stages.MatchStage;
+import stages.MatchStage.Event;
 import stages.MatchStage.Status;
 import verwaltung.Steuerung;
 import javafx.scene.input.MouseEvent;
@@ -16,7 +17,7 @@ public class MatchPane extends SceneParent {
 
 	private IMatch match;
 	private GridPane grid = new GridPane();
-	private String currentStyle;
+	private String savedStyle;
 
 	private Label l1_mannschaft;
 	private Label l2_mannschaft;
@@ -36,24 +37,17 @@ public class MatchPane extends SceneParent {
 				+ "-fx-border-color:black;" + "-fx-border-radius:5;");
 
 		grid.setOnMouseEntered((MouseEvent e) -> {
-			currentStyle = grid.getStyle();
-			if (this.match.isGameFinished()) {
-				grid.setStyle("-fx-background-color: rgba(0,170,0,1);"
-						+ "-fx-background-radius: 5;-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);"
-						+ "-fx-border-color:black;" + "-fx-border-radius:5;");
-			} else {
-				grid.setStyle("-fx-background-color: CCCCCC;"
-						+ "-fx-background-radius: 5;-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);"
-						+ "-fx-border-color:black;" + "-fx-border-radius:5;");
-			}
+			this.savedStyle=grid.getStyle();
+			grid.setStyle("-fx-background-color: #CCCCCC;"
+					+ "-fx-background-radius: 5;-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);"
+					+ "-fx-border-color:black;" + "-fx-border-radius:5;");
 		});
 
 		grid.setOnMouseExited((MouseEvent e) -> {
-			grid.setStyle(currentStyle);
+			grid.setStyle(savedStyle);
 		});
 
 		grid.setOnMouseReleased((event) -> {
-
 			// Überprüfen, ob die davorigen Spiele bereits beendet
 			if (this.match instanceof FolgeMatch && (!((FolgeMatch) match).getPrevMatch1().isGameFinished()
 					|| !((FolgeMatch) match).getPrevMatch2().isGameFinished())) {
@@ -78,7 +72,7 @@ public class MatchPane extends SceneParent {
 						this.match.getMannschaft1().getName() + " gegen " + this.match.getMannschaft2().getName());
 				System.out.println(this.getTranslateX());
 				System.out.println(this.getTranslateY());
-				this.setDisable(true);
+				matchStage.switchState(Event.click);
 			}
 		});
 
@@ -103,9 +97,7 @@ public class MatchPane extends SceneParent {
 	public void setLabelErgebnis(int toreM1, int toreM2) {
 		l3_toreM1.setText(Integer.toString(toreM1));
 		l4_toreM2.setText(Integer.toString(toreM2));
-		grid.setStyle("-fx-background-color: rgba(127,255,0,1);"
-				+ "-fx-background-radius: 5;-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);"
-				+ "-fx-border-color:black;" + "-fx-border-radius:5;");
+		this.matchStage.switchState(Event.timer_finished);
 	}
 
 	public MatchStage getMatchStage() {
@@ -122,31 +114,8 @@ public class MatchPane extends SceneParent {
 		// matchStage.setLabelM2(this.match.getMannschaft2().getName());
 	}
 
-	public void statusFarbeAendern(Status state) {
-		switch (state) {
-		case clickable:
-			grid.setStyle("-fx-background-color: white;"
-					+ "-fx-background-radius: 5;-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);"
-					+ "-fx-border-color:black;" + "-fx-border-radius:5;");
-			break;
-		case closed:
-			grid.setStyle("-fx-background-color: orange;"
-					+ "-fx-background-radius: 5;-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);"
-					+ "-fx-border-color:black;" + "-fx-border-radius:5;");
-			break;
-		case running:
-			grid.setStyle("-fx-background-color: yellow;"
-					+ "-fx-background-radius: 5;-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);"
-					+ "-fx-border-color:black;" + "-fx-border-radius:5;");
-			break;
-		default:
-			break;
-		}
-	}
-
-	public String getCurrentStyle() {
-		return currentStyle;
-
+	public GridPane getGrid() {
+		return this.grid;
 	}
 
 }

@@ -21,14 +21,22 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import panes.MatchPane;
+import stages.MatchStage.Event;
+import stages.MatchStage.Status;
 import threads.GUIUpdateThread;
 //import screens.SettingsScreen;
 
 public class MatchStage extends Stage {
 
 	public enum Status {
-		clickable, running, closed
+		clickable_white, unclickable_white, clickable_yellow, unclickable_yellow, clickable_orange, unclickable_orange, finished_green, hovered
 	}
+
+	public enum Event {
+		start_stop, hide, close, click, timer_finished, hover
+	}
+
+	private Status currentState = Status.clickable_white;
 
 	private MatchPane matchPane;
 	private IMatch match;
@@ -38,11 +46,14 @@ public class MatchStage extends Stage {
 	private GridPane grid = new GridPane();
 
 	private Timeline timeline;
-	private int matchTimer = -1; // Every Game gets his individual timer, initial value -1 to check if timer has had runtime before on resuming a paused Match
-	//private final double SPIELMINUTEN = 2; TODO: Spielminuten enablen
-	public static int timerdauer = 5; //bisher aus Testgründen noch sekunden, kann bei "Release" auf Minuten gesetzt werden
-
-	private Boolean spielGestartet = false;
+	private int matchTimer = -1; // Every Game gets his individual timer,
+									// initial value -1 to check if timer has
+									// had runtime before on resuming a paused
+									// Match
+	// private final double SPIELMINUTEN = 2; TODO: Spielminuten enablen
+	public static int timerdauer = 5; // bisher aus Testgründen noch sekunden,
+										// kann bei "Release" auf Minuten
+										// gesetzt werden
 
 	private Label l_Spielstand = new Label();
 	private Label l_Mannschaft1 = new Label();
@@ -54,7 +65,7 @@ public class MatchStage extends Stage {
 	private Button b_TorMannschaft1 = new Button("Tor M1");
 	private Button b_TorMannschaft2 = new Button("Tor M2");
 	private Button b_Start_Stopp = new Button("Start");
-	
+
 	public MatchStage(IMatch match, MatchPane matchPane) {
 		super();
 		this.match = match;
@@ -62,19 +73,11 @@ public class MatchStage extends Stage {
 
 		this.setOnCloseRequest((WindowEvent) -> {
 
-			if (spielGestartet == false) {
+			if (this.currentState == Status.unclickable_white || this.currentState == Status.unclickable_orange) {
 				this.close();
-				this.matchPane.setDisable(false);
-				if (matchPane.getCurrentStyle().equals("-fx-background-color: orange;")) {
-					this.matchPane.statusFarbeAendern(Status.closed);
-				} else {
-					this.matchPane.statusFarbeAendern(Status.clickable);
-				}
-
+				this.switchState(Event.close);
 			} else {
-				if (timeline.getStatus() == javafx.animation.Animation.Status.RUNNING) {
-					this.stoppeSpiel();
-				}
+				this.stoppeSpiel();
 				Alert alert = new Alert(AlertType.CONFIRMATION);
 				alert.setTitle("Warnung");
 				alert.setHeaderText("Wirklich schließen?");
@@ -82,16 +85,8 @@ public class MatchStage extends Stage {
 						"Wollen sie das Fenster wirklich schließen? Der Timer wird dann gestoppt und das Spiel muss später fortgesetzt werden.");
 				Optional<ButtonType> result = alert.showAndWait();
 				if (result.get() == ButtonType.OK) {
-					this.matchPane.setDisable(false);
-					if (spielGestartet) {
-						b_Start_Stopp.setText("Start");
-						this.matchPane.statusFarbeAendern(Status.closed);
-						b_TorMannschaft1.setDisable(true);
-						b_TorMannschaft2.setDisable(true);
-					}
-					this.spielGestartet = false;
+					this.switchState(Event.close);
 					this.close();
-
 				} else {
 					WindowEvent.consume();
 					alert.close();
@@ -169,21 +164,7 @@ public class MatchStage extends Stage {
 		});
 
 		b_Start_Stopp.setOnAction((event) -> {
-			if (b_Start_Stopp.getText().equals("Stop")) {
-
-				this.stoppeSpiel();
-				b_Start_Stopp.setText("Start");
-				b_TorMannschaft1.setDisable(true);
-				b_TorMannschaft2.setDisable(true);
-
-			} else {
-				this.spielGestartet = true;
-				this.starteSpiel();
-				this.matchPane.statusFarbeAendern(Status.running);
-				b_Start_Stopp.setText("Stop");
-				b_TorMannschaft1.setDisable(false);
-				b_TorMannschaft2.setDisable(false);
-			}
+			this.switchState(Event.start_stop);
 		});
 
 	}
@@ -192,12 +173,11 @@ public class MatchStage extends Stage {
 		timeline.stop();
 	}
 
-	//timerdauer / 60 + ":0" + timerdauer % 60
-	
 	private void starteSpiel() {
-		
-		if(matchTimer == -1){
-		matchTimer = timerdauer;}
+
+		if (matchTimer == -1) {
+			matchTimer = timerdauer;
+		}
 		this.timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
 			matchTimer--;
 			l_timerdauer.setText(String.format("%02d:%02d", matchTimer / 60, matchTimer % 60));
@@ -235,15 +215,16 @@ public class MatchStage extends Stage {
 			public void run() {
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("Information");
-				alert.setHeaderText("Spiel Nr." + match.getIndex() + " ist beendet.\n(" + match.getSieger() + " vs " + match.getVerlierer() + ")");
+				alert.setHeaderText("Spiel Nr." + match.getIndex() + " ist beendet.\n(" + match.getSieger() + " vs "
+						+ match.getVerlierer() + ")");
 				alert.setContentText("Das Spiel wurde Beendet. Gewonnen hat: " + match.getSieger());
 				alert.showAndWait();
 			}
 		});
-		
+
 		// update rangStage
 		this.matchPane.getSteuerung().getRangStage().updateTable();
-		
+
 		this.match.getMatchPane().setDisable(false);
 		this.matchPane.getSteuerung().updateSpielBaum();
 	}
@@ -262,8 +243,101 @@ public class MatchStage extends Stage {
 		}
 	}
 
-	public static void setTimerdauer(int duration){
+	public static void setTimerdauer(int duration) {
 		timerdauer = duration;
 	}
-	
+
+	public void switchState(Event e) {
+		switch (currentState) {
+		case clickable_orange:
+			if (e == Event.click) {
+				this.matchPane.setDisable(true);
+				currentState = Status.unclickable_orange;
+			}
+			break;
+		case clickable_white:
+			if (e == Event.click) {
+				this.matchPane.setDisable(true);
+				currentState = Status.unclickable_white;
+			}
+			break;
+		case clickable_yellow:
+			if (e == Event.click) {
+				this.matchPane.setDisable(true);
+				currentState = Status.unclickable_yellow;
+			} else if (e == Event.timer_finished) {
+				this.matchPane.getGrid()
+						.setStyle("-fx-background-color: rgba(127,255,0,1);"
+								+ "-fx-background-radius: 5;-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);"
+								+ "-fx-border-color:black;" + "-fx-border-radius:5;");
+				this.currentState = Status.finished_green;
+			}
+			break;
+		case finished_green:
+			break;
+		case unclickable_orange:
+			if (e == Event.start_stop) {
+				this.starteSpiel();
+				this.matchPane.getGrid()
+						.setStyle("-fx-background-color: yellow;"
+								+ "-fx-background-radius: 5;-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);"
+								+ "-fx-border-color:black;" + "-fx-border-radius:5;");
+				b_TorMannschaft1.setDisable(false);
+				b_TorMannschaft2.setDisable(false);
+				b_Start_Stopp.setText("Stop");
+				this.currentState = Status.unclickable_yellow;
+			} else if (e == Event.close) {
+				this.matchPane.setDisable(false);
+				this.currentState = Status.clickable_orange;
+			}
+			break;
+		case unclickable_white:
+			if (e == Event.close || e == Event.hide) {
+				this.matchPane.setDisable(false);
+				this.currentState = Status.clickable_white;
+			} else if (e == Event.start_stop) {
+				this.starteSpiel();
+				this.matchPane.getGrid()
+						.setStyle("-fx-background-color: yellow;"
+								+ "-fx-background-radius: 5;-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);"
+								+ "-fx-border-color:black;" + "-fx-border-radius:5;");
+				b_TorMannschaft1.setDisable(false);
+				b_TorMannschaft2.setDisable(false);
+				b_Start_Stopp.setText("Stop");
+				this.currentState = Status.unclickable_yellow;
+			}
+			break;
+		case unclickable_yellow:
+			if (e == Event.close) {
+				this.matchPane.getGrid()
+						.setStyle("-fx-background-color: orange;"
+								+ "-fx-background-radius: 5;-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);"
+								+ "-fx-border-color:black;" + "-fx-border-radius:5;");
+				b_Start_Stopp.setText("Start");
+				this.matchPane.setDisable(false);
+				b_TorMannschaft1.setDisable(true);
+				b_TorMannschaft2.setDisable(true);
+				this.currentState = Status.clickable_orange;
+			} else if (e == Event.start_stop) {
+				this.matchPane.getGrid()
+						.setStyle("-fx-background-color: orange;"
+								+ "-fx-background-radius: 5;-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);"
+								+ "-fx-border-color:black;" + "-fx-border-radius:5;");
+				this.stoppeSpiel();
+				b_Start_Stopp.setText("Start");
+				b_TorMannschaft1.setDisable(true);
+				b_TorMannschaft2.setDisable(true);
+				this.currentState = Status.unclickable_orange;
+			} else if (e == Event.timer_finished) {
+				this.matchPane.getGrid()
+						.setStyle("-fx-background-color: rgba(127,255,0,1);"
+								+ "-fx-background-radius: 5;-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);"
+								+ "-fx-border-color:black;" + "-fx-border-radius:5;");
+				this.currentState = Status.finished_green;
+			}
+			break;
+		default:
+			break;
+		}
+	}
 }
