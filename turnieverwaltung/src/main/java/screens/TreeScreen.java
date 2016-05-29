@@ -1,6 +1,9 @@
 package screens;
 
+import com.sun.javafx.stage.StageHelper;
 
+import stages.MatchStage;
+import stages.MatchStage.Event;
 import backend.FinalMatch;
 import backend.FolgeMatch;
 import interfaces.IMatch;
@@ -17,6 +20,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.stage.Stage;
 import panes.MatchPane;
 import panes.SceneParent;
 import verwaltung.Steuerung;
@@ -24,12 +28,11 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-
 public class TreeScreen extends SceneParent {
 
 	private Canvas canvas = new Canvas(1400, 700);
 	private GraphicsContext gc = canvas.getGraphicsContext2D();
-	
+
 	private ObservableList<String> teams = FXCollections.observableArrayList();
 
 	public TreeScreen(Steuerung steuerung, ObservableList<String> teams) throws Exception {
@@ -37,13 +40,12 @@ public class TreeScreen extends SceneParent {
 
 		Image bgImage = new Image("images/boden_wiese.jpg");
 		ImageView bgImageView = new ImageView();
-		bgImageView.setImage(bgImage);		
+		bgImageView.setImage(bgImage);
 		bgImageView.setOpacity(0.7);
 		bgImageView.fitHeightProperty().bind(steuerung.getMain().getStage().heightProperty());
 		bgImageView.fitWidthProperty().bind(steuerung.getMain().getStage().widthProperty());
 		this.getChildren().add(bgImageView);
 
-		
 		this.teams = teams;
 		this.setStyle("-fx-background-color: black;");
 		steuerung.erstelleMatches(teams);
@@ -51,24 +53,39 @@ public class TreeScreen extends SceneParent {
 		canvas.setMouseTransparent(true);
 		this.getChildren().add(canvas);
 
+		bgImageView.setOnMouseReleased((event) -> {
+			@SuppressWarnings("restriction")
+			ObservableList<Stage> stages = StageHelper.getStages();
+			Stage [] stagesArray = new Stage[stages.size()];
+			for (int i=0; i<stages.size();i++){
+				stagesArray[i]=stages.get(i);
+			}
+			for (int i = 0; i < stagesArray.length; i++) {
+				if (stagesArray[i] instanceof MatchStage) {
+					MatchStage matchStage = (MatchStage) stagesArray[i];
+					matchStage.switchState(Event.hide);
+				}
+			}
+		});
+
 		this.zeichneSpielBaumLinks();
 		this.zeichneSpielBaumRechts();
 		this.zeichneLinienLinks();
 		this.zeichneLinienRechts();
 		this.zeichneFinale();
 		this.zeichneLegende();
-		
+
 		// Menü
 		MenuBar menubar = new MenuBar();
 		Menu toolMenu = new Menu("Tools");
 		MenuItem ranglisteMenuItem = new MenuItem("Rangliste");
 		toolMenu.getItems().add(ranglisteMenuItem);
-		
+
 		ranglisteMenuItem.setOnAction((WindowEvent) -> {
 			System.out.println("Zeige Rangliste an");
 			this.steuerung.erstelleRangliste();
 		});
-		
+
 		menubar.getMenus().addAll(toolMenu);
 		menubar.prefWidthProperty().bind(this.widthProperty());
 		this.getChildren().add(menubar);
@@ -76,69 +93,69 @@ public class TreeScreen extends SceneParent {
 	}
 
 	private void zeichneLegende() {
-		MatchPane mp = this.steuerung.getMatches().get(this.teams.size()/4-1).getMatchPane();
-		double mpY = mp.getTranslateY()+70;
-		
+		MatchPane mp = this.steuerung.getMatches().get(this.teams.size() / 4 - 1).getMatchPane();
+		double mpY = mp.getTranslateY() + 70;
+
 		Font font = Font.font("Arial", FontWeight.BOLD, 16);
-		
+
 		Label l0_legende = new Label("Legende:");
 		l0_legende.setFont(font);
 		l0_legende.setTextFill(Color.WHITE);
 		l0_legende.setTranslateX(10);
-		l0_legende.setTranslateY(mpY+7);
-		
+		l0_legende.setTranslateY(mpY + 7);
+
 		Label l1_orange = new Label("Spiel Unterbrochen");
 		l1_orange.setFont(font);
 		l1_orange.setTextFill(Color.WHITE);
 		l1_orange.setTranslateX(140);
-		l1_orange.setTranslateY(mpY+7);
-		
-		Label l2_green= new Label("Spiel Beendet");
+		l1_orange.setTranslateY(mpY + 7);
+
+		Label l2_green = new Label("Spiel Beendet");
 		l2_green.setFont(font);
 		l2_green.setTextFill(Color.WHITE);
 		l2_green.setTranslateX(340);
-		l2_green.setTranslateY(mpY+7);
-		
-		Label l3_yellow= new Label("Spiel Laufend");
+		l2_green.setTranslateY(mpY + 7);
+
+		Label l3_yellow = new Label("Spiel Laufend");
 		l3_yellow.setFont(font);
 		l3_yellow.setTextFill(Color.WHITE);
 		l3_yellow.setTranslateX(540);
-		l3_yellow.setTranslateY(mpY+7);
-		
-		Label l4_white= new Label("Spiel noch nicht gestartet");
+		l3_yellow.setTranslateY(mpY + 7);
+
+		Label l4_white = new Label("Spiel noch nicht gestartet");
 		l4_white.setFont(font);
 		l4_white.setTextFill(Color.WHITE);
 		l4_white.setTranslateX(740);
-		l4_white.setTranslateY(mpY+7);
-		
-		Rectangle rectangleOrange = new Rectangle(30,30,Color.ORANGE);
+		l4_white.setTranslateY(mpY + 7);
+
+		Rectangle rectangleOrange = new Rectangle(30, 30, Color.ORANGE);
 		rectangleOrange.setStroke(Color.BLACK);
 		rectangleOrange.setArcWidth(10);
 		rectangleOrange.setArcHeight(10);
 		rectangleOrange.relocate(100, mpY);
 		this.getChildren().add(rectangleOrange);
-		
-		Rectangle rectangleGreen = new Rectangle(30,30,Color.rgb(127,255,0));
+
+		Rectangle rectangleGreen = new Rectangle(30, 30, Color.rgb(127, 255, 0));
 		rectangleGreen.setStroke(Color.BLACK);
 		rectangleGreen.setArcWidth(10);
 		rectangleGreen.setArcHeight(10);
 		rectangleGreen.relocate(300, mpY);
 		this.getChildren().add(rectangleGreen);
-		
-		Rectangle rectangleYellow = new Rectangle(30,30,Color.YELLOW);
+
+		Rectangle rectangleYellow = new Rectangle(30, 30, Color.YELLOW);
 		rectangleYellow.setStroke(Color.BLACK);
 		rectangleYellow.setArcWidth(10);
 		rectangleYellow.setArcHeight(10);
 		rectangleYellow.relocate(500, mpY);
 		this.getChildren().add(rectangleYellow);
-		
-		Rectangle rectangleWhite = new Rectangle(30,30,Color.WHITE);
+
+		Rectangle rectangleWhite = new Rectangle(30, 30, Color.WHITE);
 		rectangleWhite.setStroke(Color.BLACK);
 		rectangleWhite.setArcWidth(10);
 		rectangleWhite.setArcHeight(10);
 		rectangleWhite.relocate(700, mpY);
-		this.getChildren().addAll(rectangleWhite,l1_orange,l2_green,l3_yellow,l4_white,l0_legende);
-	
+		this.getChildren().addAll(rectangleWhite, l1_orange, l2_green, l3_yellow, l4_white, l0_legende);
+
 	}
 
 	private void zeichneLinienLinks() {
@@ -246,7 +263,6 @@ public class TreeScreen extends SceneParent {
 			posY = 40 + offset;
 			posX -= sprungX;
 		}
-
 	}
 
 	private void zeichneFinale() {
@@ -310,17 +326,16 @@ public class TreeScreen extends SceneParent {
 					this.steuerung.getMatches().get(i).setMannschaft2(prevMatch2.getSieger());
 					this.steuerung.getMatches().get(i).getMatchPane().updateMannschaftsLabelM2();
 				}
-				
 			}
-			
-			if (this.steuerung.getMatches().get(i) instanceof FinalMatch && this.steuerung.getMatches().get(i).isGameFinished()) {
+
+			if (this.steuerung.getMatches().get(i) instanceof FinalMatch
+					&& this.steuerung.getMatches().get(i).isGameFinished()) {
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("Information");
 				alert.setHeaderText("Sieger des Turniers");
-				alert.setContentText("Der Sieger des Turniers ist: "+ this.steuerung.getMatches().get(i).getSieger());
+				alert.setContentText("Der Sieger des Turniers ist: " + this.steuerung.getMatches().get(i).getSieger());
 				alert.showAndWait();
 			}
 		}
 	}
-
 }

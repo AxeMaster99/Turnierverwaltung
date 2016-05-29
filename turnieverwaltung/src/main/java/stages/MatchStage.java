@@ -2,10 +2,13 @@ package stages;
 
 import java.util.Optional;
 
+import com.sun.javafx.stage.StageHelper;
+
 import interfaces.IMatch;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.geometry.HPos;
 import javafx.scene.Scene;
@@ -19,6 +22,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import javafx.util.Duration;
 import panes.MatchPane;
 import stages.MatchStage.Event;
@@ -65,6 +69,7 @@ public class MatchStage extends Stage {
 	private Button b_TorMannschaft1 = new Button("Tor M1");
 	private Button b_TorMannschaft2 = new Button("Tor M2");
 	private Button b_Start_Stopp = new Button("Start");
+	private Button b_hide = new Button("Hide");
 
 	public MatchStage(IMatch match, MatchPane matchPane) {
 		super();
@@ -74,7 +79,6 @@ public class MatchStage extends Stage {
 		this.setOnCloseRequest((WindowEvent) -> {
 
 			if (this.currentState == Status.unclickable_white || this.currentState == Status.unclickable_orange) {
-				this.close();
 				this.switchState(Event.close);
 			} else {
 				this.stoppeSpiel();
@@ -144,6 +148,9 @@ public class MatchStage extends Stage {
 		grid.add(l_timerdauer, 1, 2);
 		GridPane.setHalignment(l_timerdauer, HPos.CENTER);
 
+		grid.add(b_hide, 2, 2);
+		GridPane.setHalignment(b_hide, HPos.LEFT);
+
 		// grid.setGridLinesVisible(true);
 		root.getChildren().add(grid);
 
@@ -165,6 +172,10 @@ public class MatchStage extends Stage {
 
 		b_Start_Stopp.setOnAction((event) -> {
 			this.switchState(Event.start_stop);
+		});
+
+		b_hide.setOnAction((event) -> {
+			this.switchState(Event.hide);
 		});
 
 	}
@@ -289,10 +300,15 @@ public class MatchStage extends Stage {
 			} else if (e == Event.close) {
 				this.matchPane.setDisable(false);
 				this.currentState = Status.clickable_orange;
+			} else if (e == Event.hide) {
+				this.hide();
+				this.matchPane.setDisable(false);
+				this.currentState = Status.clickable_orange;
 			}
 			break;
 		case unclickable_white:
-			if (e == Event.close || e == Event.hide) {
+			if (e == Event.close) {
+				this.close();
 				this.matchPane.setDisable(false);
 				this.currentState = Status.clickable_white;
 			} else if (e == Event.start_stop) {
@@ -305,6 +321,10 @@ public class MatchStage extends Stage {
 				b_TorMannschaft2.setDisable(false);
 				b_Start_Stopp.setText("Stop");
 				this.currentState = Status.unclickable_yellow;
+			} else if (e == Event.hide) {
+				this.hide();
+				this.matchPane.setDisable(false);
+				this.currentState = Status.clickable_white;
 			}
 			break;
 		case unclickable_yellow:
@@ -334,6 +354,10 @@ public class MatchStage extends Stage {
 								+ "-fx-background-radius: 5;-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);"
 								+ "-fx-border-color:black;" + "-fx-border-radius:5;");
 				this.currentState = Status.finished_green;
+			} else if (e == Event.hide) {
+				this.hide();
+				this.matchPane.setDisable(false);
+				this.currentState = Status.clickable_yellow;
 			}
 			break;
 		default:
