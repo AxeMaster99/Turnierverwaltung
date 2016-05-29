@@ -154,8 +154,13 @@ public class TreeScreen extends SceneParent {
 		rectangleWhite.setArcWidth(10);
 		rectangleWhite.setArcHeight(10);
 		rectangleWhite.relocate(700, mpY);
-		this.getChildren().addAll(rectangleWhite, l1_orange, l2_green, l3_yellow, l4_white, l0_legende);
 
+		Label l5_hide = new Label("Geöffnete Match-Fenster lassen sich per Klick auf einen beliebigen Punkt des Bildes schließen.");
+		l5_hide.setFont(font);
+		l5_hide.setTextFill(Color.WHITE);
+		l5_hide.setTranslateX(10);
+		l5_hide.setTranslateY(mpY + 35);
+		this.getChildren().addAll(rectangleWhite, l1_orange, l2_green, l3_yellow, l4_white, l0_legende, l5_hide);
 	}
 
 	private void zeichneLinienLinks() {

@@ -1,12 +1,16 @@
 package panes;
 
+import com.sun.javafx.stage.StageHelper;
+
 import backend.FolgeMatch;
 import interfaces.IMatch;
+import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
 import stages.MatchStage;
 import stages.MatchStage.Event;
 import stages.MatchStage.Status;
@@ -47,7 +51,7 @@ public class MatchPane extends SceneParent {
 			grid.setStyle(savedStyle);
 		});
 
-		grid.setOnMouseReleased((event) -> {
+		grid.setOnMouseReleased((event) -> {	
 			// Überprüfen, ob die davorigen Spiele bereits beendet
 			if (this.match instanceof FolgeMatch && (!((FolgeMatch) match).getPrevMatch1().isGameFinished()
 					|| !((FolgeMatch) match).getPrevMatch2().isGameFinished())) {

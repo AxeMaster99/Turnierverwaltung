@@ -203,8 +203,9 @@ public class MatchStage extends Stage {
 						Alert alert = new Alert(AlertType.INFORMATION);
 						alert.setTitle("Information");
 						alert.setHeaderText("Unentschieden");
-						alert.setContentText("Das Spiel endete Unentschieden. Das nächste Tor entscheidet.");
+						alert.setContentText("Spiel " + match.getIndex() + " endete Unentschieden. Das nächste Tor entscheidet.");
 						alert.showAndWait();
+						switchState(Event.click);
 					}
 				});
 				new GUIUpdateThread(match, this).start();
