@@ -55,7 +55,7 @@ public class MatchStage extends Stage {
 									// had runtime before on resuming a paused
 									// Match
 	// private final double SPIELMINUTEN = 2; TODO: Spielminuten enablen
-	public static int timerdauer = 5; // bisher aus Testgründen noch sekunden,
+	private static int timerdauer = 5; // bisher aus Testgründen noch sekunden,
 										// kann bei "Release" auf Minuten
 										// gesetzt werden
 
