@@ -202,7 +202,11 @@ public class TeamScreen extends SceneParent {
 		
 		b_submit.setOnAction((event)->{
 			try {
-				steuerung.setTreeScreen("spielBaum",teams);
+				if(this.steuerung.getTurnierType() == "KO-Turnier") {
+					steuerung.setTreeScreen("spielBaum",teams);
+				} else {
+					this.steuerung.setGroupScreen("groupscreen", teams);
+				}
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

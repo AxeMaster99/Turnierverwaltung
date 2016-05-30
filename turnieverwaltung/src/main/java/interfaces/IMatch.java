@@ -2,6 +2,7 @@ package interfaces;
 
 import backend.Mannschaft;
 import panes.MatchPane;
+import stages.MatchStage;
 
 public interface IMatch {
 

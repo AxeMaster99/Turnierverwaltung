@@ -11,6 +11,7 @@ import interfaces.IMatch;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
+import screens.GroupScreen;
 import screens.SettingsScreen;
 import screens.SplashScreen;
 import screens.TeamScreen;
@@ -19,6 +20,7 @@ import stages.RangStage;
 
 public class Steuerung {
 
+	private String turnierType;
 	private TreeScreen spielBaum;
 	private Main main;
 	private RangStage rangliste;
@@ -166,6 +168,12 @@ public class Steuerung {
 		main.getStage().setScene(main.getScene("splashscreen"));
 		main.getStage().setMaximized(true);
 	}
+	
+	public void setGroupScreen(String screenName, ObservableList<String> teams) {
+		main.getScenes().put(screenName, new Scene(new GroupScreen(this,teams)));
+		main.getStage().setScene(main.getScene("groupscreen"));
+		main.getStage().setMaximized(true);
+	}
 
 	public Main getMain() {
 		return this.main;
@@ -177,6 +185,14 @@ public class Steuerung {
 	
 	public RangStage getRangStage() {
 		return this.rangliste;
+	}
+
+	public void setTurnierType(String turnierType) {
+		this.turnierType = turnierType;
+	}
+	
+	public String getTurnierType() {
+		return turnierType;
 	}
 
 }

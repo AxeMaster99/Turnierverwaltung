@@ -2,6 +2,7 @@ package backend;
 
 import interfaces.IMatch;
 import panes.MatchPane;
+import stages.MatchStage;
 import verwaltung.Steuerung;
 
 public class Match implements IMatch {
