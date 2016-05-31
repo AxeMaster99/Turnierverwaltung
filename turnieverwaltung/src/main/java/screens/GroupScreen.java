@@ -48,7 +48,7 @@ public class GroupScreen extends SceneParent {
 		toolMenu.getItems().add(simulateErgebnisse);
 		
 		ranglisteMenuItem.setOnAction((WindowEvent) -> {	
-			// new RangStage(steuerung, teams).show();
+			//new RangStage(steuerung);
 		});
 	
 		simulateErgebnisse.setOnAction((WindowEvent) -> {

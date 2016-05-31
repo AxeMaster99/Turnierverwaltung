@@ -89,14 +89,16 @@ public class GroupMatchStage extends MatchStage implements IMatchStage {
 			public void run() {
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("Information");
-				alert.setHeaderText("Spiel Nr." + match.getIndex() + " ist beendet.\n(" + match.getMannschaft1() + " vs "
-						+ match.getMannschaft2() + ")");
-				alert.setContentText("Das Spiel wurde Beendet. " + (match.getUnentschieden()? "Es endete Unentschieden, die Punkte werden verteilt." : ("Gewonnen hat: ")+match.getSieger()));
+				alert.setHeaderText("Spiel Nr." + match.getIndex() + " ist beendet.\n(" + match.getMannschaft1()
+						+ " vs " + match.getMannschaft2() + ")");
+				alert.setContentText("Das Spiel wurde Beendet. "
+						+ (match.getUnentschieden() ? "Es endete Unentschieden, die Punkte werden verteilt."
+								: ("Gewonnen hat: ") + match.getSieger()));
 				alert.showAndWait();
 			}
 		});
 	}
-	
+
 	public void switchState(Event e) {
 		switch (currentState) {
 		case closed:
@@ -106,7 +108,7 @@ public class GroupMatchStage extends MatchStage implements IMatchStage {
 			}
 			break;
 		case finished:
-			if(e==Event.click){
+			if (e == Event.click) {
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("Info");
 				alert.setHeaderText("Das Spiel wurde schon beendet");

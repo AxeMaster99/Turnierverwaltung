@@ -34,7 +34,7 @@ public class Steuerung {
 	
 	public Steuerung(Main main) {
 		this.main = main;
-		// rangliste = new RangStage(this);
+		this.rangliste = new RangStage(this);
 	}
 
 	public void erstelleMatches(ObservableList<String> teams) throws Exception {
