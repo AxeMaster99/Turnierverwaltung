@@ -47,7 +47,7 @@ public class SettingsScreen extends SceneParent {
 
 		grid.add(c_types, 1, 0);
 		grid.add(c_teams, 1, 1);
-		c_teams.setMinWidth(100);
+		c_types.setMinWidth(200);
 		grid.add(b_teams, 2, 2);
 		b_teams.setMinWidth(100);
 		grid.add(c_duration, 1, 2);
