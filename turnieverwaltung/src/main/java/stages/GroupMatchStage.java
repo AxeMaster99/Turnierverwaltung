@@ -105,6 +105,13 @@ public class GroupMatchStage extends MatchStage {
 			}
 			break;
 		case finished:
+			if(e==Event.click){
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Info");
+				alert.setHeaderText("Das Spiel wurde schon beendet");
+				alert.setContentText("Ergebnis: " + this.match.getToreM1() + ":" + this.match.getToreM2());
+				alert.showAndWait();
+			}
 			break;
 		case hidden:
 			if (e == Event.click) {
@@ -164,6 +171,10 @@ public class GroupMatchStage extends MatchStage {
 		default:
 			break;
 		}
+	}
+
+	public IMatch getMatch() {
+		return this.match;
 	}
 
 }

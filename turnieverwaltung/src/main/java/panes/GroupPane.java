@@ -6,8 +6,10 @@ import backend.Mannschaft;
 import interfaces.IMatch;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -18,6 +20,9 @@ import verwaltung.Steuerung;
 
 public class GroupPane extends Pane {
 
+	private boolean randomThusDisable = false;
+
+	private ArrayList<GroupMatchStage> gms = new ArrayList<GroupMatchStage>();
 	private ObservableList<IMatch> matches = FXCollections.observableArrayList();
 	private TableView<IMatch> table = new TableView<IMatch>();
 
@@ -52,16 +57,37 @@ public class GroupPane extends Pane {
 		this.getChildren().add(table);
 
 		table.setOnMouseReleased((event) -> {
-			IMatch match = table.getSelectionModel().getSelectedItem();
-			
-			GroupMatchStage gms = new GroupMatchStage(this,match);
-			gms.switchState(Event.click);
-			
+
+			if (this.randomThusDisable == true) {
+				IMatch match = table.getSelectionModel().getSelectedItem();
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Info");
+				alert.setHeaderText("Das Spiel wurde schon beendet");
+				alert.setContentText("Ergebnis: " + match.getToreM1() + ":" + match.getToreM2());
+				alert.showAndWait();
+			} else {
+				boolean gefunden = false;
+				for (int index = 0; index < gms.size(); index++) {
+					if (gms.get(index).getMatch() == table.getSelectionModel().getSelectedItem()) {
+						gms.get(index).switchState(Event.click);
+						gefunden = true;
+					}
+				}
+				if (gefunden == false) {
+					GroupMatchStage neueStage = new GroupMatchStage(this, table.getSelectionModel().getSelectedItem());
+					gms.add(neueStage);
+					neueStage.switchState(Event.click);
+				}
+			}
 		});
 	}
 
 	public TableView<IMatch> getTable() {
 		return this.table;
+	}
+
+	public void setDisable() {
+		this.randomThusDisable = true;
 	}
 
 }

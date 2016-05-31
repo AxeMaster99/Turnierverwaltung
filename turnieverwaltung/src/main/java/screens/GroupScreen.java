@@ -60,6 +60,7 @@ public class GroupScreen extends SceneParent {
 			}
 			for(int i = 0; i < groupPanes.size(); i++) {
 				groupPanes.get(i).getTable().refresh();
+				groupPanes.get(i).setDisable();
 			}
 			
 		});
