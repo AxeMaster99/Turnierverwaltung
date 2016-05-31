@@ -23,6 +23,8 @@ public class MatchPane extends SceneParent {
 	private GridPane grid = new GridPane();
 	private String savedStyle;
 
+	private Label l0_matchnummer;
+	
 	private Label l1_mannschaft;
 	private Label l2_mannschaft;
 
@@ -79,20 +81,23 @@ public class MatchPane extends SceneParent {
 				matchStage.switchState(Event.click);
 			}
 		});
-
+		
+		Font font = new Font(14);
+		l0_matchnummer = new Label("Match ID " + Integer.toString(this.match.getIndex()));
+		l0_matchnummer.setFont(font);
 		l1_mannschaft = new Label(this.match.getMannschaft1().getName());
 		l2_mannschaft = new Label(this.match.getMannschaft2().getName());
 		l3_toreM1 = new Label("");
 		l4_toreM2 = new Label("");
-		Font font = new Font(14);
 		l3_toreM1.setFont(font);
 		l4_toreM2.setFont(font);
 
-		grid.add(l1_mannschaft, 0, 0);
-		grid.add(l2_mannschaft, 0, 1);
+		grid.add(l0_matchnummer, 0, 0);
+		grid.add(l1_mannschaft, 0, 1);
+		grid.add(l2_mannschaft, 0, 2);
 
-		grid.add(l3_toreM1, 1, 0);
-		grid.add(l4_toreM2, 1, 1);
+		grid.add(l3_toreM1, 1, 1);
+		grid.add(l4_toreM2, 1, 2);
 
 		grid.setHgap(15);
 		this.getChildren().add(grid);

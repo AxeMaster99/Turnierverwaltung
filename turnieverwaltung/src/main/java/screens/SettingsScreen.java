@@ -30,7 +30,7 @@ public class SettingsScreen extends SceneParent {
 	public SettingsScreen(Steuerung steuerung) {
 		super(steuerung);
 
-		c_types.setValue("KO Turnier");
+		c_types.setValue("KO-Turnier");
 		c_duration.setValue(5);
 		c_teams.setValue(16);
 
