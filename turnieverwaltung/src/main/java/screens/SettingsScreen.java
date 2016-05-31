@@ -30,9 +30,9 @@ public class SettingsScreen extends SceneParent {
 	public SettingsScreen(Steuerung steuerung) {
 		super(steuerung);
 
-		c_types.setValue("KO-Turnier");
+		c_types.setValue("KO Turnier");
 		c_duration.setValue(5);
-		c_teams.setValue(4);
+		c_teams.setValue(16);
 
 		b_teams.setOnAction((event) -> {
 			this.steuerung.setTurnierType(c_types.getValue());
@@ -47,11 +47,12 @@ public class SettingsScreen extends SceneParent {
 
 		grid.add(c_types, 1, 0);
 		grid.add(c_teams, 1, 1);
-		c_types.setMinWidth(200);
-		grid.add(b_teams, 2, 2);
-		b_teams.setMinWidth(100);
 		grid.add(c_duration, 1, 2);
-		c_duration.setMinWidth(100);
+		grid.add(b_teams, 1, 3);
+		c_types.setMinWidth(200);
+		c_duration.setMinWidth(200);
+		c_types.setMinWidth(200);
+		c_teams.setMinWidth(200);
 
 		grid.setPadding(new Insets(25));
 
