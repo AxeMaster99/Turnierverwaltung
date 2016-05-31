@@ -1,19 +1,15 @@
 package panes;
 
-import com.sun.javafx.stage.StageHelper;
-
 import backend.FolgeMatch;
 import interfaces.IMatch;
-import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
-import javafx.stage.Stage;
 import stages.MatchStage;
 import stages.MatchStage.Event;
-import stages.MatchStage.Status;
+import stages.TreeMatchStage;
 import verwaltung.Steuerung;
 import javafx.scene.input.MouseEvent;
 
@@ -29,7 +25,7 @@ public class MatchPane extends SceneParent {
 	private Label l3_toreM1;
 	private Label l4_toreM2;
 
-	private MatchStage matchStage;
+	private TreeMatchStage treeMatchStage;
 
 	public MatchPane(IMatch match, Steuerung steuerung) {
 		super(steuerung);
@@ -67,16 +63,15 @@ public class MatchPane extends SceneParent {
 				alert.setContentText("Ergebnis: " + this.match.getToreM1() + ":" + this.match.getToreM2());
 				alert.showAndWait();
 			} else {
-				if (this.matchStage == null) {
-					this.matchStage = new MatchStage(this.match, this);
+				if (this.treeMatchStage == null) {
+					this.treeMatchStage = new TreeMatchStage(this.match, this);
 				}
-				this.matchStage.show();
-
+				this.treeMatchStage.show();
 				System.out.println(
 						this.match.getMannschaft1().getName() + " gegen " + this.match.getMannschaft2().getName());
 				System.out.println(this.getTranslateX());
 				System.out.println(this.getTranslateY());
-				matchStage.switchState(Event.click);
+				this.treeMatchStage.switchState(Event.click);
 			}
 		});
 
@@ -101,11 +96,11 @@ public class MatchPane extends SceneParent {
 	public void setLabelErgebnis(int toreM1, int toreM2) {
 		l3_toreM1.setText(Integer.toString(toreM1));
 		l4_toreM2.setText(Integer.toString(toreM2));
-		this.matchStage.switchState(Event.timer_finished);
+		this.treeMatchStage.switchState(Event.timer_finished);
 	}
 
 	public MatchStage getMatchStage() {
-		return this.matchStage;
+		return this.treeMatchStage;
 	}
 
 	public void updateMannschaftsLabelM1() {

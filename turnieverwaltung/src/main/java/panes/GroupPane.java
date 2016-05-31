@@ -11,6 +11,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import stages.GroupMatchStage;
 import stages.MatchStage;
 import stages.MatchStage.Event;
 import verwaltung.Steuerung;
@@ -53,8 +54,8 @@ public class GroupPane extends Pane {
 		table.setOnMouseReleased((event) -> {
 			IMatch match = table.getSelectionModel().getSelectedItem();
 			
-			MatchStage ms = new MatchStage(match);
-			ms.switchState(Event.click);
+			GroupMatchStage gms = new GroupMatchStage(match);
+			gms.switchState(Event.click);
 			
 		});
 	}

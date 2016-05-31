@@ -2,8 +2,10 @@ package screens;
 
 import com.sun.javafx.stage.StageHelper;
 
+import stages.GroupMatchStage;
 import stages.MatchStage;
 import stages.MatchStage.Event;
+import stages.TreeMatchStage;
 import backend.FinalMatch;
 import backend.FolgeMatch;
 import interfaces.IMatch;
@@ -56,14 +58,14 @@ public class TreeScreen extends SceneParent {
 		bgImageView.setOnMouseReleased((event) -> {
 			@SuppressWarnings("restriction")
 			ObservableList<Stage> stages = StageHelper.getStages();
-			Stage [] stagesArray = new Stage[stages.size()];
-			for (int i=0; i<stages.size();i++){
-				stagesArray[i]=stages.get(i);
+			Stage[] stagesArray = new Stage[stages.size()];
+			for (int i = 0; i < stages.size(); i++) {
+				stagesArray[i] = stages.get(i);
 			}
 			for (int i = 0; i < stagesArray.length; i++) {
-				if (stagesArray[i] instanceof MatchStage) {
-					MatchStage matchStage = (MatchStage) stagesArray[i];
-					matchStage.switchState(Event.hide);
+				if (stagesArray[i] instanceof TreeMatchStage) {
+					TreeMatchStage treeMatchStage = (TreeMatchStage) stagesArray[i];
+					treeMatchStage.switchState(Event.hide);
 				}
 			}
 		});
@@ -155,7 +157,8 @@ public class TreeScreen extends SceneParent {
 		rectangleWhite.setArcHeight(10);
 		rectangleWhite.relocate(700, mpY);
 
-		Label l5_hide = new Label("Geöffnete Match-Fenster lassen sich per Klick auf einen beliebigen Punkt des Bildes schließen.");
+		Label l5_hide = new Label(
+				"Geöffnete Match-Fenster lassen sich per Klick auf einen beliebigen Punkt des Bildes schließen.");
 		l5_hide.setFont(font);
 		l5_hide.setTextFill(Color.WHITE);
 		l5_hide.setTranslateX(10);
