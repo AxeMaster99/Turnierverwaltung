@@ -21,8 +21,8 @@ public class SettingsScreen extends SceneParent {
 //	private Label l_teams = new Label("Teamanzahl");
 //	private Label l_matchDauer = new Label("Match dauer");
 	private final ObservableList<String> types = FXCollections.observableArrayList("KO-Turnier", "Gruppen + KO");
-	private final ObservableList<String> options = FXCollections.observableArrayList( "4", "8", "16", "32");
-	private final ObservableList<String> durations = FXCollections.observableArrayList( "5", "30", "45", "60", "75", "90");
+	private final ObservableList<String> options = FXCollections.observableArrayList( "4 Teams", "8 Teams", "16 Teams", "32 Teams");
+	private final ObservableList<String> durations = FXCollections.observableArrayList( "5 Minuten", "30 Minuten", "45 Minuten", "60 Minuten", "75 Minuten", "90 Minuten");
 	private ComboBox<String> c_types = new ComboBox<String>(types);
 	private ComboBox<String> c_teams = new ComboBox<String>(options);
 	private ComboBox<String> c_duration = new ComboBox<String>(durations);
@@ -47,8 +47,17 @@ public class SettingsScreen extends SceneParent {
 			}
 			else {
 				this.steuerung.setTurnierType(c_types.getValue());
-				steuerung.setTeamScreen(Integer.parseInt((c_teams.getValue())), "mannschaftsnamen");
-				MatchStage.setTimerdauer(Integer.parseInt(c_duration.getValue()));
+				String teamsCut = c_teams.getValue().substring(0, 2);
+				if(teamsCut.charAt(1) == ' '){
+					teamsCut = teamsCut.substring(0,1);
+				}
+				steuerung.setTeamScreen(Integer.parseInt(teamsCut), "mannschaftsnamen");
+				String durationCut = c_duration.getValue().substring(0, 2);
+				if(durationCut.charAt(1) == ' '){
+					durationCut = durationCut.substring(0,1);
+				}
+				MatchStage.setTimerdauer(Integer.parseInt(durationCut));
+				System.out.println("Anzahl Teams: " + teamsCut + "\nMatchdauer: " + durationCut);
 				}
 			});
 			
