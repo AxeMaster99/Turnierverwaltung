@@ -141,29 +141,6 @@ public abstract class MatchStage extends Stage {
 	protected void stoppeSpiel() {
 		timeline.stop();
 	}
-	
-	public void beendeSpiel() {
-		this.close();
-		this.match.setSieger();
-		Platform.runLater(new Runnable() {
-
-			@Override
-			public void run() {
-				Alert alert = new Alert(AlertType.INFORMATION);
-				alert.setTitle("Information");
-				alert.setHeaderText("Spiel Nr." + match.getIndex() + " ist beendet.\n(" + match.getSieger() + " vs "
-						+ match.getVerlierer() + ")");
-				alert.setContentText("Das Spiel wurde Beendet. Gewonnen hat: " + match.getSieger());
-				alert.showAndWait();
-			}
-		});
-
-		// update rangStage
-		this.matchPane.getSteuerung().getRangStage().updateTable();
-
-		this.match.getMatchPane().setDisable(false);
-		this.matchPane.getSteuerung().updateSpielBaum();
-	}
 
 	public void setLabelM1(String label) {
 		l_Mannschaft1.setText(label);

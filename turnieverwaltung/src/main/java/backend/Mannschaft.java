@@ -42,6 +42,10 @@ public class Mannschaft {
 		public int getTordifferenz() {
 			return tordifferenz;
 		}
+
+		public void addPunkteUnentschieden() {
+			this.punkte+=1;
+		}
 		
 		
 }

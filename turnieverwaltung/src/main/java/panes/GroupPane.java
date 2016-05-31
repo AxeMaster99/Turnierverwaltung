@@ -54,7 +54,7 @@ public class GroupPane extends Pane {
 		table.setOnMouseReleased((event) -> {
 			IMatch match = table.getSelectionModel().getSelectedItem();
 			
-			GroupMatchStage gms = new GroupMatchStage(match);
+			GroupMatchStage gms = new GroupMatchStage(this,match);
 			gms.switchState(Event.click);
 			
 		});

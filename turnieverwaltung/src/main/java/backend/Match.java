@@ -17,12 +17,13 @@ public class Match implements IMatch {
 	private int toreM1 = 0;
 	private int toreM2 = 0;
 	private Steuerung steuerung;
+	private Boolean unentschieden = false;
 
 	public Match(Steuerung steuerung) {
 		this.steuerung = steuerung;
 		this.index = indexCounter;
 		indexCounter++;
-		this.matchPane = new MatchPane(this,steuerung);
+		this.matchPane = new MatchPane(this, steuerung);
 	}
 
 	public Match(Steuerung steuerung, Mannschaft m1, Mannschaft m2) {
@@ -31,7 +32,7 @@ public class Match implements IMatch {
 		indexCounter++;
 		this.mannschaft1 = m1;
 		this.mannschaft2 = m2;
-		this.matchPane = new MatchPane(this,steuerung);
+		this.matchPane = new MatchPane(this, steuerung);
 	}
 
 	public Match(IMatch m1, IMatch m2) {
@@ -39,7 +40,7 @@ public class Match implements IMatch {
 		indexCounter++;
 		this.mannschaft1 = new Mannschaft("...");
 		this.mannschaft2 = new Mannschaft("...");
-		this.matchPane = new MatchPane(this,steuerung);
+		this.matchPane = new MatchPane(this, steuerung);
 	}
 
 	public void setMannschaft1(Mannschaft m1) {
@@ -70,27 +71,51 @@ public class Match implements IMatch {
 	}
 
 	public void setSieger() {
-		if (toreM1 > toreM2) {
-			this.sieger = mannschaft1;
-			this.verlierer = mannschaft2;
-			this.sieger.aendereTordifferenz(toreM1 - toreM2);
-			this.verlierer.aendereTordifferenz(toreM2 - toreM1);
+		if (this.steuerung.getTurnierType().equals("KO-Turnier")) {
+			if (toreM1 > toreM2) {
+				this.sieger = mannschaft1;
+				this.verlierer = mannschaft2;
+				this.sieger.aendereTordifferenz(toreM1 - toreM2);
+				this.verlierer.aendereTordifferenz(toreM2 - toreM1);
 
+			} else {
+				this.sieger = mannschaft2;
+				this.verlierer = mannschaft1;
+				this.sieger.aendereTordifferenz(toreM2 - toreM1);
+				this.verlierer.aendereTordifferenz(toreM1 - toreM2);
+			}
+			this.sieger.addPunkte();
+			System.out.println("Das Spiel endetete " + toreM1 + ":" + toreM2 + ". " + sieger + " hat gewonnen.");
 		} else {
-			this.sieger = mannschaft2;
-			this.verlierer = mannschaft1;
-			this.sieger.aendereTordifferenz(toreM2 - toreM1);
-			this.verlierer.aendereTordifferenz(toreM1 - toreM2);
+			if (toreM1 > toreM2) {
+				this.sieger = mannschaft1;
+				this.verlierer = mannschaft2;
+				this.sieger.aendereTordifferenz(toreM1 - toreM2);
+				this.verlierer.aendereTordifferenz(toreM2 - toreM1);
+				this.sieger.addPunkte();
+				System.out.println("Das Spiel endetete " + toreM1 + ":" + toreM2 + ". " + sieger + " hat gewonnen.");
+
+			} else if (toreM1 < toreM2) {
+				this.sieger = mannschaft2;
+				this.verlierer = mannschaft1;
+				this.sieger.aendereTordifferenz(toreM2 - toreM1);
+				this.verlierer.aendereTordifferenz(toreM1 - toreM2);
+				this.sieger.addPunkte();
+				System.out.println("Das Spiel endetete " + toreM1 + ":" + toreM2 + ". " + sieger + " hat gewonnen.");
+			} else {
+				this.unentschieden=true;
+				this.mannschaft1.addPunkteUnentschieden();
+				this.mannschaft2.addPunkteUnentschieden();
+				System.out.println("Das Spiel endetete Unentschieden. Punkte werden verteilt.");
+			}
+
 		}
-		this.sieger.addPunkte();
-		System.out.println("Das Spiel endetete " + toreM1 + ":" + toreM2 + ". " + sieger + " hat gewonnen.");
-		this.matchPane.setLabelErgebnis(toreM1, toreM2);
 	}
 
 	public Mannschaft getSieger() {
 		return this.sieger;
 	}
-	
+
 	public Mannschaft getVerlierer() {
 		return this.verlierer;
 	}
@@ -129,6 +154,14 @@ public class Match implements IMatch {
 		} else {
 			return false;
 		}
+	}
+
+	public Steuerung getSteuerung() {
+		return this.steuerung;
+	}
+	
+	public boolean getUnentschieden(){
+		return this.unentschieden;
 	}
 
 }

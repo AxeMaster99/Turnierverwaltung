@@ -3,6 +3,7 @@ package interfaces;
 import backend.Mannschaft;
 import panes.MatchPane;
 import stages.MatchStage;
+import verwaltung.Steuerung;
 
 public interface IMatch {
 
@@ -38,4 +39,7 @@ public interface IMatch {
 	
 	public void setMannschaft2(Mannschaft m2);
 
+	public Steuerung getSteuerung();
+
+	public boolean getUnentschieden();
 }

@@ -28,6 +28,7 @@ public class Steuerung {
 	private ArrayList<IMatch> matches = new ArrayList<IMatch>();
 	private int anzahlSpalten = 0;
 	private int anzahlMatchesZus = 0;
+	private GroupScreen groupScreen;
 	
 	private static final Logger logger = (Logger) LogManager.getLogger("Steuerung");
 	
@@ -170,7 +171,8 @@ public class Steuerung {
 	}
 	
 	public void setGroupScreen(String screenName, ObservableList<String> teams) {
-		main.getScenes().put(screenName, new Scene(new GroupScreen(this,teams)));
+		this.groupScreen = new GroupScreen(this,teams);
+		main.getScenes().put(screenName, new Scene(this.groupScreen));
 		main.getStage().setScene(main.getScene("groupscreen"));
 		main.getStage().setMaximized(true);
 	}
