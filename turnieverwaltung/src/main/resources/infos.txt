@@ -1,0 +1,29 @@
+
+	Abgabe: 07.07.
+
+	Da das Projekt eine Prüfungsvorleistung ist,
+	wird von 06. - 10. Juni der aktuelle Stand überprüft,
+	um eine Zulassung zur Klausur zu ermöglichen
+
+	Beinhaltet sein muss:
+	
+
+	(X) Einsatz von Interfaces bzw. Vererbung
+	(X) Sinnvoller Einsatz einer Package-Struktur
+	(?) Verwendung von Exceptions
+	(X) Grafische Oberfläche (JavaFX)
+	(-) Logging mit sinnvollem Einsatz der Log-Stufen
+	(-) Dokumentation der Klassenstruktur mit UML-Klassendiagrammen
+	(X) Threads
+	(?) Einsatz von Streams und Lambda-Funktionen auf Collections (funktionale Programmierung)
+	(-) Dokumentation und Test-Fälle
+	(X) Verwenden von Factories
+	
+
+	Todo:
+	
+	- Interface für MatchStage (Dani)
+	- Logger in alle Klassen (Samu)
+	- UML-Diagramme (Dani)
+	- JavaDocs (...)
+	- Tests
