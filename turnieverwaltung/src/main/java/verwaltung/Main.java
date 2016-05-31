@@ -3,6 +3,7 @@ package verwaltung;
 import java.util.HashMap;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -22,6 +23,7 @@ public class Main extends Application {
 	public void start(Stage stage) throws Exception {
 		this.steuerung = new Steuerung(this);
 		this.stage = stage;	
+		this.stage.setOnCloseRequest(e -> Platform.exit());
 		stage.setTitle("Turnierverwaltung");
 		steuerung.setSplashScreen();
 		stage.show();
@@ -47,6 +49,10 @@ public class Main extends Application {
 
 	public HashMap<String,Scene> getScenes() {
 		return scenes;
+	}
+	
+	public Steuerung getSteuerung() {
+		return this.steuerung;
 	}
 
 

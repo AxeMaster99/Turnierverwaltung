@@ -29,8 +29,8 @@ public class GroupPane extends Pane {
 
 	TableColumn<IMatch, Mannschaft> team1Col = new TableColumn<IMatch, Mannschaft>("Mannschaft 1");
 	TableColumn<IMatch, Mannschaft> team2Col = new TableColumn<IMatch, Mannschaft>("Mannschaft 2");
-	TableColumn<IMatch, Integer> tor1Col = new TableColumn<IMatch, Integer>("T - M1");
-	TableColumn<IMatch, Integer> tor2Col = new TableColumn<IMatch, Integer>("T - M2");
+	TableColumn<IMatch, Integer> tor1Col = new TableColumn<IMatch, Integer>("T1");
+	TableColumn<IMatch, Integer> tor2Col = new TableColumn<IMatch, Integer>("T2");
 
 	@SuppressWarnings("unchecked")
 	public GroupPane(Steuerung steuerung, ObservableList<IMatch> matches, int i, ArrayList<Mannschaft> teams) {

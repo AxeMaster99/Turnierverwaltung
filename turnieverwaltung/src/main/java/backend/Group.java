@@ -1,31 +1,48 @@
 package backend;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+
 public class Group {
-	private Mannschaft m1;
-	private Mannschaft m2;
-	private Mannschaft m3;
-	private Mannschaft m4;
+	
+	private ArrayList<Mannschaft> mannschaften = new ArrayList<Mannschaft>();
 
 	public Group(Mannschaft m1,Mannschaft m2,Mannschaft m3,Mannschaft m4){
-		this.m1=m1;
-		this.m2=m2;
-		this.m3=m3;
-		this.m4=m4;
+		Collections.addAll(this.mannschaften, m1, m2, m3, m4);
 	}
 
-	public Mannschaft getM1() {
-		return m1;
+	public Mannschaft getMannschaft(int i) {
+		return this.mannschaften.get((i-1));
 	}
-
-	public Mannschaft getM2() {
-		return m2;
+	
+	public ArrayList<Mannschaft> getMannschaften() {
+		return this.mannschaften;
 	}
-
-	public Mannschaft getM3() {
-		return m3;
+	
+	public ArrayList<String> getGruppenSieger() {
+				
+		Collections.sort(this.mannschaften, new Comparator<Mannschaft>() {
+			@Override
+			public int compare(Mannschaft m1, Mannschaft m2) {
+				
+				int m1pnkt = m1.getPunkte() * 100 + m1.getTordifferenz();
+				int m2pnkt = m2.getPunkte() * 100 + m2.getTordifferenz();
+				
+				if(m1pnkt > m2pnkt) {
+					return -1;
+				} else {
+					return 1;
+				}
+				
+			}
+		});
+	
+		ArrayList<String> sieger = new ArrayList<String>();
+		sieger.add(this.mannschaften.get(0).getName());
+		sieger.add(this.mannschaften.get(1).getName());
+	
+		return sieger;
 	}
-
-	public Mannschaft getM4() {
-		return m4;
-	}
+	
 }

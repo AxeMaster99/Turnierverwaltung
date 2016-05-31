@@ -1,6 +1,8 @@
 package screens;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Random;
 
 import backend.Group;
@@ -8,11 +10,14 @@ import backend.Mannschaft;
 import backend.MatchFactory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.stage.WindowEvent;
@@ -47,6 +52,7 @@ public class GroupScreen extends SceneParent {
 		});
 	
 		simulateErgebnisse.setOnAction((WindowEvent) -> {
+			
 			for(int i = 0; i < matches.size(); i++) {
 				
 				Random random = new Random();
@@ -58,6 +64,7 @@ public class GroupScreen extends SceneParent {
 			
 				matches.get(i).setSieger();	
 			}
+			
 			for(int i = 0; i < groupPanes.size(); i++) {
 				groupPanes.get(i).getTable().refresh();
 				groupPanes.get(i).setDisable();
@@ -70,7 +77,8 @@ public class GroupScreen extends SceneParent {
 		this.getChildren().add(menubar);
 		
 		this.teamnamen = teamnamen;
-		// Collections.shuffle(this.teamnamen);
+		Collections.shuffle(this.teamnamen);
+		
 		for (int i = 0; i < this.teamnamen.size(); i++) {
 			teams.add(new Mannschaft(this.teamnamen.get(i)));
 		}
@@ -81,17 +89,17 @@ public class GroupScreen extends SceneParent {
 
 		for (int i = 0; i < this.groups.size(); i++) {
 			matches.add(
-					MatchFactory.build(steuerung, groups.get(i).getM1().getName(), groups.get(i).getM2().getName()));
+					MatchFactory.build(steuerung, groups.get(i).getMannschaft(1), groups.get(i).getMannschaft(2)));
 			matches.add(
-					MatchFactory.build(steuerung, groups.get(i).getM3().getName(), groups.get(i).getM4().getName()));
+					MatchFactory.build(steuerung, groups.get(i).getMannschaft(3), groups.get(i).getMannschaft(4)));
 			matches.add(
-					MatchFactory.build(steuerung, groups.get(i).getM1().getName(), groups.get(i).getM3().getName()));
+					MatchFactory.build(steuerung, groups.get(i).getMannschaft(1), groups.get(i).getMannschaft(3)));
 			matches.add(
-					MatchFactory.build(steuerung, groups.get(i).getM2().getName(), groups.get(i).getM4().getName()));
+					MatchFactory.build(steuerung, groups.get(i).getMannschaft(2), groups.get(i).getMannschaft(4)));
 			matches.add(
-					MatchFactory.build(steuerung, groups.get(i).getM1().getName(), groups.get(i).getM4().getName()));
+					MatchFactory.build(steuerung, groups.get(i).getMannschaft(1), groups.get(i).getMannschaft(4)));
 			matches.add(
-					MatchFactory.build(steuerung, groups.get(i).getM2().getName(), groups.get(i).getM3().getName()));
+					MatchFactory.build(steuerung, groups.get(i).getMannschaft(2), groups.get(i).getMannschaft(3)));
 		}
 
 		for (int i = 0; i < this.matches.size(); i++) {
@@ -112,6 +120,57 @@ public class GroupScreen extends SceneParent {
 				x=25;
 			}
 		}
+		
+		System.out.println();
+		System.out.println();
+	
+		Button weiterBtn = new Button("weiter");
+		weiterBtn.setMinWidth(80);
+		weiterBtn.setTranslateX(this.groupPanes.get(this.groupPanes.size()-1).getTranslateX() + 
+				this.groupPanes.get(this.groupPanes.size()-1).getTable().getMaxWidth() - weiterBtn.getMinWidth());
+		weiterBtn.setTranslateY(this.groupPanes.get(this.groupPanes.size()-1).getTranslateY() + 
+				this.groupPanes.get(this.groupPanes.size()-1).getTable().getMaxHeight() + 25);
+		this.getChildren().add(weiterBtn);
+		
+		
+		weiterBtn.setOnAction((WindowEvent) -> {	
+			
+			boolean alleFertig = true;
+			for(int i = 0; i < this.matches.size(); i++) {
+				if(!this.matches.get(i).isGameFinished()) {
+					alleFertig = false;
+					break;
+				}
+			}
+			
+			if(!alleFertig) {
+				Alert missingInput = new Alert(AlertType.INFORMATION);
+				missingInput.setTitle("Fehler");
+				missingInput.setHeaderText("Nicht alle Matches gespielt");
+				missingInput.setContentText("Für die Endrunde müssen erst alle Spiele beendet sein!");
+				missingInput.showAndWait();
+			} else {
+				
+				ObservableList<String> alleSieger = FXCollections.observableArrayList();
+				
+				for(int i = 0; i < groups.size(); i++) {
+					System.out.println("Sieger Gruppe "+(i+1));
+					System.out.println(this.groups.get(i).getGruppenSieger().get(0));
+					System.out.println(this.groups.get(i).getGruppenSieger().get(1));
+					alleSieger.add(this.groups.get(i).getGruppenSieger().get(0));
+					alleSieger.add(this.groups.get(i).getGruppenSieger().get(1));
+				}
+				
+				try {
+					this.steuerung.setTreeScreen("spielBaum", alleSieger);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+		});
+	
 
 	}
 

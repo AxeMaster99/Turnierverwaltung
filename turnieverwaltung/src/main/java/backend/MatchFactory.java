@@ -16,5 +16,9 @@ public abstract class MatchFactory {
 	public static IMatch build(Steuerung s, IMatch m1, IMatch m2, boolean isFinal) {
 		return new FinalMatch(s, m1, m2);
 	}
+
+	public static IMatch build(Steuerung steuerung, Mannschaft mannschaft, Mannschaft mannschaft2) {
+		return new Match(steuerung, mannschaft, mannschaft2);
+	}
 	
 }

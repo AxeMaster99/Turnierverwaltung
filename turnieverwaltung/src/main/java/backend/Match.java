@@ -149,7 +149,7 @@ public class Match implements IMatch {
 	}
 
 	public boolean isGameFinished() {
-		if (this.sieger != null) {
+		if (this.sieger != null || this.unentschieden == true) {
 			return true;
 		} else {
 			return false;
