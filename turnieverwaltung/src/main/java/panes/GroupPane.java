@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import backend.Mannschaft;
 import interfaces.IMatch;
+import interfaces.IMatchStage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
@@ -74,8 +75,8 @@ public class GroupPane extends Pane {
 					}
 				}
 				if (gefunden == false) {
-					GroupMatchStage neueStage = new GroupMatchStage(this, table.getSelectionModel().getSelectedItem());
-					gms.add(neueStage);
+					IMatchStage neueStage = new GroupMatchStage(this, table.getSelectionModel().getSelectedItem());
+					gms.add((GroupMatchStage) neueStage);
 					neueStage.switchState(Event.click);
 				}
 			}

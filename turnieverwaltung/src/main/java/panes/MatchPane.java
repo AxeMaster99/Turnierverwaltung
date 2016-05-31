@@ -2,6 +2,7 @@ package panes;
 
 import backend.FolgeMatch;
 import interfaces.IMatch;
+import interfaces.IMatchStage;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
@@ -27,7 +28,7 @@ public class MatchPane extends SceneParent {
 	private Label l3_toreM1;
 	private Label l4_toreM2;
 
-	private TreeMatchStage treeMatchStage;
+	private IMatchStage treeMatchStage;
 
 	public MatchPane(IMatch match, Steuerung steuerung) {
 		super(steuerung);
@@ -104,7 +105,7 @@ public class MatchPane extends SceneParent {
 		this.treeMatchStage.switchState(Event.timer_finished);
 	}
 
-	public MatchStage getMatchStage() {
+	public IMatchStage getMatchStage() {
 		return this.treeMatchStage;
 	}
 

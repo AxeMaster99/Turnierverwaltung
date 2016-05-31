@@ -2,6 +2,7 @@ package stages;
 
 
 import interfaces.IMatch;
+import interfaces.IMatchStage;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
@@ -22,7 +23,7 @@ import panes.MatchPane;
 import threads.GUIUpdateThread;
 //import screens.SettingsScreen;
 
-public abstract class MatchStage extends Stage {
+public abstract class MatchStage extends Stage implements IMatchStage {
 
 	public enum Event {
 		start_stop, hide, close, click, timer_finished, hover

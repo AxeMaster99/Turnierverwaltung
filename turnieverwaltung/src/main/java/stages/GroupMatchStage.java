@@ -3,6 +3,7 @@ package stages;
 import java.util.Optional;
 
 import interfaces.IMatch;
+import interfaces.IMatchStage;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
@@ -15,7 +16,7 @@ import stages.MatchStage.Event;
 import threads.GUIUpdateThread;
 import verwaltung.Steuerung;
 
-public class GroupMatchStage extends MatchStage {
+public class GroupMatchStage extends MatchStage implements IMatchStage {
 
 	public enum Status {
 		closed, opened, hidden, started, stopped, finished
