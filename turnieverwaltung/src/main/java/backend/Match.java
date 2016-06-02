@@ -1,14 +1,16 @@
 package backend;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.core.Logger;
+
 import interfaces.IMatch;
 import panes.MatchPane;
-import stages.MatchStage;
 import verwaltung.Steuerung;
 
 public class Match implements IMatch {
-
+	
 	private static int indexCounter = 1;
-	private int index;
+	protected int index;
 	protected Mannschaft mannschaft1 = new Mannschaft("...");;
 	protected Mannschaft mannschaft2 = new Mannschaft("...");;
 	private MatchPane matchPane;
@@ -18,12 +20,14 @@ public class Match implements IMatch {
 	private int toreM2 = 0;
 	private Steuerung steuerung;
 	private Boolean unentschieden = false;
-
+	private static final Logger logger = (Logger) LogManager.getLogger("Match");
+	
+	
 	public Match(Steuerung steuerung) {
 		this.steuerung = steuerung;
 		this.index = indexCounter;
 		indexCounter++;
-		this.matchPane = new MatchPane(this, steuerung);
+		this.matchPane = new MatchPane(this);
 	}
 
 	public Match(Steuerung steuerung, Mannschaft m1, Mannschaft m2) {
@@ -32,7 +36,7 @@ public class Match implements IMatch {
 		indexCounter++;
 		this.mannschaft1 = m1;
 		this.mannschaft2 = m2;
-		this.matchPane = new MatchPane(this, steuerung);
+		this.matchPane = new MatchPane(this);
 	}
 
 	public Match(IMatch m1, IMatch m2) {
@@ -40,7 +44,7 @@ public class Match implements IMatch {
 		indexCounter++;
 		this.mannschaft1 = new Mannschaft("...");
 		this.mannschaft2 = new Mannschaft("...");
-		this.matchPane = new MatchPane(this, steuerung);
+		this.matchPane = new MatchPane(this);
 	}
 
 	public void setMannschaft1(Mannschaft m1) {
@@ -64,9 +68,9 @@ public class Match implements IMatch {
 	}
 
 	public String toString() {
-		String ret = "Begegnung Nr. " + this.index;
-		ret += "\nMannschaft1:" + this.getMannschaft1().getName();
-		ret += "\nMannschaft2:" + this.getMannschaft2().getName();
+		String ret = "Begegnung Nr. " + this.index + ": ";
+		ret += this.getMannschaft1().getName();
+		ret += " gegen " + this.getMannschaft2().getName();
 		return ret;
 	}
 
@@ -85,7 +89,7 @@ public class Match implements IMatch {
 				this.verlierer.aendereTordifferenz(toreM1 - toreM2);
 			}
 			this.sieger.addPunkte();
-			System.out.println("Das Spiel endetete " + toreM1 + ":" + toreM2 + ". " + sieger + " hat gewonnen.");
+			logger.info("Das Spiel endetete " + toreM1 + ":" + toreM2 + ". " + sieger + " hat gewonnen.");
 		} else {
 			if (toreM1 > toreM2) {
 				this.sieger = mannschaft1;
@@ -93,7 +97,7 @@ public class Match implements IMatch {
 				this.sieger.aendereTordifferenz(toreM1 - toreM2);
 				this.verlierer.aendereTordifferenz(toreM2 - toreM1);
 				this.sieger.addPunkte();
-				System.out.println("Das Spiel endetete " + toreM1 + ":" + toreM2 + ". " + sieger + " hat gewonnen.");
+				logger.info("Das Spiel endetete " + toreM1 + ":" + toreM2 + ". " + sieger + " hat gewonnen.");
 
 			} else if (toreM1 < toreM2) {
 				this.sieger = mannschaft2;
@@ -101,12 +105,12 @@ public class Match implements IMatch {
 				this.sieger.aendereTordifferenz(toreM2 - toreM1);
 				this.verlierer.aendereTordifferenz(toreM1 - toreM2);
 				this.sieger.addPunkte();
-				System.out.println("Das Spiel endetete " + toreM1 + ":" + toreM2 + ". " + sieger + " hat gewonnen.");
+				logger.info("Das Spiel endetete " + toreM1 + ":" + toreM2 + ". " + sieger + " hat gewonnen.");
 			} else {
 				this.unentschieden=true;
 				this.mannschaft1.addPunkteUnentschieden();
 				this.mannschaft2.addPunkteUnentschieden();
-				System.out.println("Das Spiel endetete Unentschieden. Punkte werden verteilt.");
+				logger.info("Das Spiel endetete Unentschieden. Punkte werden verteilt.");
 			}
 
 		}

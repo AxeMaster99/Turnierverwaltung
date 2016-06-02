@@ -1,5 +1,8 @@
 package screens;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.core.Logger;
+
 import com.sun.javafx.stage.StageHelper;
 
 import stages.GroupMatchStage;
@@ -24,22 +27,26 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import panes.MatchPane;
-import panes.SceneParent;
 import verwaltung.Steuerung;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 
-public class TreeScreen extends SceneParent {
+public class TreeScreen extends Pane {
 
 	private Canvas canvas = new Canvas(1400, 700);
 	private GraphicsContext gc = canvas.getGraphicsContext2D();
+	private Steuerung steuerung;
 
 	private ObservableList<String> teams = FXCollections.observableArrayList();
 
+	private static final Logger logger = (Logger) LogManager.getLogger("TreeScreen");
+	
 	public TreeScreen(Steuerung steuerung, ObservableList<String> teams) throws Exception {
-		super(steuerung);
-
+		
+		this.steuerung = steuerung;
+		
 		Image bgImage = new Image("images/boden_wiese.jpg");
 		ImageView bgImageView = new ImageView();
 		bgImageView.setImage(bgImage);
@@ -84,7 +91,7 @@ public class TreeScreen extends SceneParent {
 		toolMenu.getItems().add(ranglisteMenuItem);
 
 		ranglisteMenuItem.setOnAction((WindowEvent) -> {
-			System.out.println("Zeige Rangliste an");
+			logger.info("Zeige Rangliste an");
 			this.steuerung.erstelleRangliste();
 		});
 
@@ -207,7 +214,7 @@ public class TreeScreen extends SceneParent {
 				double m2X = m2.getTranslateX();
 				double m2Y = m2.getTranslateY() + 20;
 
-				// System.out.println(fmBoundsX + " | "+fmBoundsY);
+				// logger.info(fmBoundsX + " | "+fmBoundsY);
 
 				gc.setFill(Color.GOLD);
 				gc.setStroke(Color.GOLD);
@@ -315,7 +322,7 @@ public class TreeScreen extends SceneParent {
 
 	public void updateSpielBaum() {
 
-		System.out.println("update spielbaum");
+		logger.info("update spielbaum");
 
 		for (int i = 0; i < this.steuerung.getMatches().size(); i++) {
 			if (this.steuerung.getMatches().get(i) instanceof FolgeMatch) {

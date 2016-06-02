@@ -23,10 +23,9 @@ public class FolgeMatch extends Match {
 	}
 	
 	public String toString() {
-		String ret = "Folgematch\n";
-		ret = super.toString();
-		ret += "\nVorheriges Match1: " + this.prevMatch1.getIndex();
-		ret += "\nVorheriges Match2: " + this.prevMatch2.getIndex();
+		String ret = "Begegnung Nr. " + this.index + ": ";
+		ret += " Sieger Match " + this.prevMatch1.getIndex();
+		ret += " gegen Sieger Match " + this.prevMatch2.getIndex();
 		return ret;
 	}
 	

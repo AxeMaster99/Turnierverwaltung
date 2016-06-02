@@ -20,11 +20,11 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
-import panes.SceneParent;
+import javafx.scene.layout.Pane;
 import verwaltung.Steuerung;
 
 
-public class TeamScreen extends SceneParent {
+public class TeamScreen extends Pane {
 
 	private int anzahlMannschaften;
 	private int cnt = 0;
@@ -43,7 +43,6 @@ public class TeamScreen extends SceneParent {
 	private TextField t_teamnames = new TextField();
 
 	public TeamScreen(Steuerung steuerung, int anzahlMannschaften) {
-		super(steuerung);
 		this.anzahlMannschaften = anzahlMannschaften;
 	    
 		ColumnConstraints col1 = new ColumnConstraints(100);
@@ -202,10 +201,10 @@ public class TeamScreen extends SceneParent {
 		
 		b_submit.setOnAction((event)->{
 			try {
-				if(this.steuerung.getTurnierType() == "KO-Turnier") {
+				if(steuerung.getTurnierType() == "KO-Turnier") {
 					steuerung.setTreeScreen("spielBaum",teams);
 				} else {
-					this.steuerung.setGroupScreen("groupscreen", teams);
+					steuerung.setGroupScreen("groupscreen", teams);
 				}
 			} catch (Exception e) {
 				// TODO Auto-generated catch block

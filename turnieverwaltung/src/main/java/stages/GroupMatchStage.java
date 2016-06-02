@@ -12,9 +12,6 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert.AlertType;
 import javafx.util.Duration;
 import panes.GroupPane;
-import stages.MatchStage.Event;
-import threads.GUIUpdateThread;
-import verwaltung.Steuerung;
 
 public class GroupMatchStage extends MatchStage implements IMatchStage {
 
@@ -27,7 +24,6 @@ public class GroupMatchStage extends MatchStage implements IMatchStage {
 
 	public GroupMatchStage(GroupPane groupPane, IMatch match) {
 		super(match);
-		this.groupPane = groupPane;
 
 		this.setOnCloseRequest((WindowEvent) -> {
 

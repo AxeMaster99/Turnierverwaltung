@@ -7,18 +7,16 @@ import javafx.event.EventHandler;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.util.Duration;
-import panes.SceneParent;
 import verwaltung.Steuerung;
 
-public class SplashScreen extends SceneParent {
+public class SplashScreen extends Pane {
 
 	private Timeline timer;
 	
 	public SplashScreen(Steuerung steuerung) {
-		
-		super(steuerung);
-		
+				
 		GridPane grid = new GridPane();
 		
 		Image bgImage = new Image("images/splashscreen.jpg");

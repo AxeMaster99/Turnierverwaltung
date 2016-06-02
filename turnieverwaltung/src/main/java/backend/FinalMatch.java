@@ -10,7 +10,7 @@ public final class FinalMatch extends FolgeMatch implements IMatch {
 	}
 	
 	public String toString() {
-		return "Finale\n" + super.toString();
+		return "Finale: " + super.toString();
 	}
 	
 }

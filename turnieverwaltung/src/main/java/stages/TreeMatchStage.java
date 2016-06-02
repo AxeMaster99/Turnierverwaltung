@@ -10,7 +10,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert.AlertType;
 import javafx.util.Duration;
-import panes.MatchPane;
 import threads.GUIUpdateThread;
 
 public class TreeMatchStage extends MatchStage {
@@ -21,8 +20,8 @@ public class TreeMatchStage extends MatchStage {
 
 	private Status currentState = Status.clickable_white;
 
-	public TreeMatchStage(IMatch match, MatchPane matchPane) {
-		super(match, matchPane);
+	public TreeMatchStage(IMatch match) {
+		super(match);
 
 		this.setOnCloseRequest((WindowEvent) -> {
 
@@ -85,7 +84,7 @@ public class TreeMatchStage extends MatchStage {
 			} else {
 				new GUIUpdateThread(match, this).start();
 			}
-			this.matchPane.setLabelErgebnis(this.match.getToreM1(), this.match.getToreM2());
+			this.match.getMatchPane().setLabelErgebnis(this.match.getToreM1(), this.match.getToreM2());
 		});
 
 		timeline.setCycleCount(matchTimer);
@@ -107,33 +106,32 @@ public class TreeMatchStage extends MatchStage {
 				alert.showAndWait();
 			}
 		});
-
-		this.matchPane.getSteuerung().getRangStage().updateTable();
-		this.matchPane.setDisable(false);
-		this.matchPane.getSteuerung().updateSpielBaum();
+		this.match.getSteuerung().updateSpielBaum();
+		this.match.getSteuerung().getRangStage().updateTable();
+		this.match.getMatchPane().setDisable(false);
 	}
 
 	public void switchState(Event e) {
 		switch (currentState) {
 		case clickable_orange:
 			if (e == Event.click) {
-				this.matchPane.setDisable(true);
+				this.match.getMatchPane().setDisable(true);
 				currentState = Status.unclickable_orange;
 			}
 			break;
 		case clickable_white:
 			if (e == Event.click) {
-				this.matchPane.setDisable(true);
+				this.match.getMatchPane().setDisable(true);
 				currentState = Status.unclickable_white;
 			}
 			break;
 		case clickable_yellow:
 			if (e == Event.click) {
 				this.show();
-				this.matchPane.setDisable(true);
+				this.match.getMatchPane().setDisable(true);
 				currentState = Status.unclickable_yellow;
 			} else if (e == Event.timer_finished) {
-				this.matchPane.getGrid()
+				this.match.getMatchPane().getGrid()
 						.setStyle("-fx-background-color: rgba(127,255,0,1);"
 								+ "-fx-background-radius: 5;-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);"
 								+ "-fx-border-color:black;" + "-fx-border-radius:5;");
@@ -145,7 +143,7 @@ public class TreeMatchStage extends MatchStage {
 		case unclickable_orange:
 			if (e == Event.start_stop) {
 				this.starteSpiel();
-				this.matchPane.getGrid()
+				this.match.getMatchPane().getGrid()
 						.setStyle("-fx-background-color: yellow;"
 								+ "-fx-background-radius: 5;-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);"
 								+ "-fx-border-color:black;" + "-fx-border-radius:5;");
@@ -154,22 +152,22 @@ public class TreeMatchStage extends MatchStage {
 				b_Start_Stopp.setText("Stop");
 				this.currentState = Status.unclickable_yellow;
 			} else if (e == Event.close) {
-				this.matchPane.setDisable(false);
+				this.match.getMatchPane().setDisable(false);
 				this.currentState = Status.clickable_orange;
 			} else if (e == Event.hide) {
 				this.hide();
-				this.matchPane.setDisable(false);
+				this.match.getMatchPane().setDisable(false);
 				this.currentState = Status.clickable_orange;
 			}
 			break;
 		case unclickable_white:
 			if (e == Event.close) {
 				this.close();
-				this.matchPane.setDisable(false);
+				this.match.getMatchPane().setDisable(false);
 				this.currentState = Status.clickable_white;
 			} else if (e == Event.start_stop) {
 				this.starteSpiel();
-				this.matchPane.getGrid()
+				this.match.getMatchPane().getGrid()
 						.setStyle("-fx-background-color: yellow;"
 								+ "-fx-background-radius: 5;-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);"
 								+ "-fx-border-color:black;" + "-fx-border-radius:5;");
@@ -179,23 +177,23 @@ public class TreeMatchStage extends MatchStage {
 				this.currentState = Status.unclickable_yellow;
 			} else if (e == Event.hide) {
 				this.hide();
-				this.matchPane.setDisable(false);
+				this.match.getMatchPane().setDisable(false);
 				this.currentState = Status.clickable_white;
 			}
 			break;
 		case unclickable_yellow:
 			if (e == Event.close) {
-				this.matchPane.getGrid()
+				this.match.getMatchPane().getGrid()
 						.setStyle("-fx-background-color: orange;"
 								+ "-fx-background-radius: 5;-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);"
 								+ "-fx-border-color:black;" + "-fx-border-radius:5;");
 				b_Start_Stopp.setText("Start");
-				this.matchPane.setDisable(false);
+				this.match.getMatchPane().setDisable(false);
 				b_TorMannschaft1.setDisable(true);
 				b_TorMannschaft2.setDisable(true);
 				this.currentState = Status.clickable_orange;
 			} else if (e == Event.start_stop) {
-				this.matchPane.getGrid()
+				this.match.getMatchPane().getGrid()
 						.setStyle("-fx-background-color: orange;"
 								+ "-fx-background-radius: 5;-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);"
 								+ "-fx-border-color:black;" + "-fx-border-radius:5;");
@@ -205,14 +203,14 @@ public class TreeMatchStage extends MatchStage {
 				b_TorMannschaft2.setDisable(true);
 				this.currentState = Status.unclickable_orange;
 			} else if (e == Event.timer_finished) {
-				this.matchPane.getGrid()
+				this.match.getMatchPane().getGrid()
 						.setStyle("-fx-background-color: rgba(127,255,0,1);"
 								+ "-fx-background-radius: 5;-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);"
 								+ "-fx-border-color:black;" + "-fx-border-radius:5;");
 				this.currentState = Status.finished_green;
 			} else if (e == Event.hide) {
 				this.hide();
-				this.matchPane.setDisable(false);
+				this.match.getMatchPane().setDisable(false);
 				this.currentState = Status.clickable_yellow;
 			}
 			break;

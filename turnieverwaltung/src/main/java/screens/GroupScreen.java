@@ -5,6 +5,9 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Random;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.core.Logger;
+
 import backend.Group;
 import backend.Mannschaft;
 import backend.MatchFactory;
@@ -20,15 +23,15 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.WindowEvent;
 import panes.GroupPane;
-import panes.SceneParent;
 import stages.MatchStage;
 import stages.RangStage;
 import verwaltung.Steuerung;
 import interfaces.IMatch;
 
-public class GroupScreen extends SceneParent {
+public class GroupScreen extends Pane {
 
 	private ObservableList<String> teamnamen = FXCollections.observableArrayList();
 	private ArrayList<Mannschaft> teams = new ArrayList<Mannschaft>();
@@ -36,8 +39,9 @@ public class GroupScreen extends SceneParent {
 	private ObservableList<IMatch> matches = FXCollections.observableArrayList();
 	private ArrayList<GroupPane> groupPanes = new ArrayList<GroupPane>();
 	
+	private static final Logger logger = (Logger) LogManager.getLogger("GroupScreen");
+	
 	public GroupScreen(Steuerung steuerung, ObservableList<String> teamnamen) {
-		super(steuerung);
 		
 		MenuBar menubar = new MenuBar();
 		Menu toolMenu = new Menu("Tools");
@@ -103,7 +107,7 @@ public class GroupScreen extends SceneParent {
 		}
 
 		for (int i = 0; i < this.matches.size(); i++) {
-			System.out.println(this.matches.get(i).toString());
+			logger.info(this.matches.get(i).toString());
 		}
 
 		int x = 25;
@@ -120,9 +124,6 @@ public class GroupScreen extends SceneParent {
 				x=25;
 			}
 		}
-		
-		System.out.println();
-		System.out.println();
 	
 		Button weiterBtn = new Button("weiter");
 		weiterBtn.setMinWidth(80);
@@ -154,15 +155,15 @@ public class GroupScreen extends SceneParent {
 				ObservableList<String> alleSieger = FXCollections.observableArrayList();
 				
 				for(int i = 0; i < groups.size(); i++) {
-					System.out.println("Sieger Gruppe "+(i+1));
-					System.out.println(this.groups.get(i).getGruppenSieger().get(0));
-					System.out.println(this.groups.get(i).getGruppenSieger().get(1));
+					logger.info("Sieger Gruppe "+(i+1));
+					logger.info(this.groups.get(i).getGruppenSieger().get(0));
+					logger.info(this.groups.get(i).getGruppenSieger().get(1));
 					alleSieger.add(this.groups.get(i).getGruppenSieger().get(0));
 					alleSieger.add(this.groups.get(i).getGruppenSieger().get(1));
 				}
 				
 				try {
-					this.steuerung.setTreeScreen("spielBaum", alleSieger);
+					steuerung.setTreeScreen("spielBaum", alleSieger);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

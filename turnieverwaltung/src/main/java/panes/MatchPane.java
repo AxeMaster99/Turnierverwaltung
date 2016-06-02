@@ -1,5 +1,8 @@
 package panes;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.core.Logger;
+
 import backend.FolgeMatch;
 import interfaces.IMatch;
 import interfaces.IMatchStage;
@@ -7,6 +10,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import stages.MatchStage;
 import stages.MatchStage.Event;
@@ -14,7 +18,7 @@ import stages.TreeMatchStage;
 import verwaltung.Steuerung;
 import javafx.scene.input.MouseEvent;
 
-public class MatchPane extends SceneParent {
+public class MatchPane extends Pane {
 
 	private IMatch match;
 	private GridPane grid = new GridPane();
@@ -30,8 +34,9 @@ public class MatchPane extends SceneParent {
 
 	private IMatchStage treeMatchStage;
 
-	public MatchPane(IMatch match, Steuerung steuerung) {
-		super(steuerung);
+	private static final Logger logger = (Logger) LogManager.getLogger("MatchPane");
+	
+	public MatchPane(IMatch match) {
 		this.match = match;
 
 		grid.setMinSize(110, 40);
@@ -67,13 +72,13 @@ public class MatchPane extends SceneParent {
 				alert.showAndWait();
 			} else {
 				if (this.treeMatchStage == null) {
-					this.treeMatchStage = new TreeMatchStage(this.match, this);
+					this.treeMatchStage = new TreeMatchStage(this.match);
 				}
 				this.treeMatchStage.show();
-				System.out.println(
+				logger.info(
 						this.match.getMannschaft1().getName() + " gegen " + this.match.getMannschaft2().getName());
-				System.out.println(this.getTranslateX());
-				System.out.println(this.getTranslateY());
+				logger.info(this.getTranslateX());
+				logger.info(this.getTranslateY());
 				this.treeMatchStage.switchState(Event.click);
 			}
 		});

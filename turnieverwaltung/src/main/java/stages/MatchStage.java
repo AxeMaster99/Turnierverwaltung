@@ -29,7 +29,6 @@ public abstract class MatchStage extends Stage implements IMatchStage {
 		start_stop, hide, close, click, timer_finished, hover
 	}
 
-	protected MatchPane matchPane;
 	protected IMatch match;
 	protected Thread t1;
 
@@ -132,11 +131,6 @@ public abstract class MatchStage extends Stage implements IMatchStage {
 			this.match.incrementToreM2();
 			l_Spielstand.setText(this.match.getToreM1() + ":" + this.match.getToreM2());
 		});
-	}
-
-	public MatchStage(IMatch match, MatchPane matchPane) {
-		this(match);
-		this.matchPane = matchPane;
 	}
 
 	protected void stoppeSpiel() {
