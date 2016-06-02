@@ -43,6 +43,8 @@ public class GroupScreen extends Pane {
 	
 	public GroupScreen(Steuerung steuerung, ObservableList<String> teamnamen) {
 		
+		logger.warn("GroupScreen started");
+		
 		MenuBar menubar = new MenuBar();
 		Menu toolMenu = new Menu("Tools");
 		MenuItem ranglisteMenuItem = new MenuItem("Rangliste");

@@ -36,6 +36,8 @@ public class SettingsScreen extends Pane {
 
 	public SettingsScreen(Steuerung steuerung) {
 
+		logger.warn("SettingsScreen started");
+		
 		c_types.setValue("Turnierart");
 		c_duration.setValue("Matchdauer");
 		c_teams.setValue("Anzahl Teams");

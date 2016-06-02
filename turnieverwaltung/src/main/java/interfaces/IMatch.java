@@ -11,8 +11,6 @@ public interface IMatch {
 
 	public Mannschaft getMannschaft2();
 
-	public MatchPane getMatchPane();
-
 	public void incrementToreM1();
 
 	public void incrementToreM2();

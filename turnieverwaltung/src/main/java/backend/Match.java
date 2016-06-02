@@ -13,7 +13,6 @@ public class Match implements IMatch {
 	protected int index;
 	protected Mannschaft mannschaft1 = new Mannschaft("...");;
 	protected Mannschaft mannschaft2 = new Mannschaft("...");;
-	private MatchPane matchPane;
 	protected Mannschaft sieger;
 	protected Mannschaft verlierer;
 	private int toreM1 = 0;
@@ -22,12 +21,10 @@ public class Match implements IMatch {
 	private Boolean unentschieden = false;
 	private static final Logger logger = (Logger) LogManager.getLogger("Match");
 	
-	
 	public Match(Steuerung steuerung) {
 		this.steuerung = steuerung;
 		this.index = indexCounter;
 		indexCounter++;
-		this.matchPane = new MatchPane(this);
 	}
 
 	public Match(Steuerung steuerung, Mannschaft m1, Mannschaft m2) {
@@ -36,7 +33,6 @@ public class Match implements IMatch {
 		indexCounter++;
 		this.mannschaft1 = m1;
 		this.mannschaft2 = m2;
-		this.matchPane = new MatchPane(this);
 	}
 
 	public Match(IMatch m1, IMatch m2) {
@@ -44,7 +40,6 @@ public class Match implements IMatch {
 		indexCounter++;
 		this.mannschaft1 = new Mannschaft("...");
 		this.mannschaft2 = new Mannschaft("...");
-		this.matchPane = new MatchPane(this);
 	}
 
 	public void setMannschaft1(Mannschaft m1) {
@@ -146,10 +141,6 @@ public class Match implements IMatch {
 
 	public void setToreM2(int toreM2) {
 		this.toreM2 = toreM2;
-	}
-
-	public MatchPane getMatchPane() {
-		return this.matchPane;
 	}
 
 	public boolean isGameFinished() {

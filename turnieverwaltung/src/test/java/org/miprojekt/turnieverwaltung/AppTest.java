@@ -17,10 +17,8 @@ import verwaltung.Steuerung;
 /**
  * Unit test for simple App.
  */
-public class AppTest extends Application {
-    /**
-     * Dummy test method
-     */
+public class AppTest {
+
     @Test
     public void testApp() {
         Assert.assertTrue( true );
@@ -30,10 +28,8 @@ public class AppTest extends Application {
     @Test
     public void testeGruppenSieger() {
 
-    	Main main = new Main();
-    	main.launch(null);
-    	
-    	Steuerung s = main.getSteuerung();
+    	Steuerung s = new Steuerung();
+    	s.setTurnierType("KO-wadawdaawd");
     	
     	Mannschaft m1 = new Mannschaft("Mannschaft 1");
     	Mannschaft m2 = new Mannschaft("Mannschaft 2");
@@ -73,19 +69,12 @@ public class AppTest extends Application {
     	matches[1].setSieger();
     	matches[2].setSieger();
     	matches[3].setSieger();
-    	matches[4].setSieger();
+    	matches[4].setSieger(); 
     	matches[5].setSieger();
 
-    	Assert.assertEquals(m3, gruppe.getGruppenSieger().get(0));
+    	Assert.assertEquals(m3.getName(), gruppe.getGruppenSieger().get(0));
     	
     	Platform.exit();
-    }
-
-
-	@Override
-	public void start(Stage primaryStage) throws Exception {
-		
-	}
-    
+    }    
     
 }

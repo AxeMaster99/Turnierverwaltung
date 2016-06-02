@@ -2,6 +2,9 @@ package screens;
 
 import java.util.Optional;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.HPos;
@@ -41,8 +44,13 @@ public class TeamScreen extends Pane {
 	private Button b_back = new Button("zurück");
 	private Button b_autofill = new Button("aut. füllen");
 	private TextField t_teamnames = new TextField();
+	private static final Logger logger = (Logger) LogManager.getLogger("TeamScreen");
 
+	
 	public TeamScreen(Steuerung steuerung, int anzahlMannschaften) {
+		
+		logger.warn("TeamScreen started");
+		
 		this.anzahlMannschaften = anzahlMannschaften;
 	    
 		ColumnConstraints col1 = new ColumnConstraints(100);

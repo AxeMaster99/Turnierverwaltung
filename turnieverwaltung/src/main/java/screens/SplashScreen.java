@@ -1,5 +1,8 @@
 package screens;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.core.Logger;
+
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -14,9 +17,12 @@ import verwaltung.Steuerung;
 public class SplashScreen extends Pane {
 
 	private Timeline timer;
+	private static final Logger logger = (Logger) LogManager.getLogger("SplashScreen");
 	
 	public SplashScreen(Steuerung steuerung) {
 				
+		logger.warn("SplashScreen started");
+		
 		GridPane grid = new GridPane();
 		
 		Image bgImage = new Image("images/splashscreen.jpg");
