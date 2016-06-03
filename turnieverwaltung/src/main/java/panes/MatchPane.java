@@ -47,17 +47,35 @@ public class MatchPane extends Pane {
 				+ "-fx-background-radius: 5;-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);"
 				+ "-fx-border-color:black;" + "-fx-border-radius:5;");
 
-		grid.setOnMouseEntered((MouseEvent e) -> {
-			this.savedStyle=grid.getStyle();
-			grid.setStyle("-fx-background-color: #CCCCCC;"
-					+ "-fx-background-radius: 5;-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);"
-					+ "-fx-border-color:black;" + "-fx-border-radius:5;");
-		});
+		this.gridInitMouseEnteredListener();
+		this.gridInitMouseExitedListener();
+		this.gridInitMouseClickListener(match);	
+		this.gridInitComponents();
+	}
 
-		grid.setOnMouseExited((MouseEvent e) -> {
-			grid.setStyle(savedStyle);
-		});
+	private void gridInitComponents() {
+		Font font = new Font(14);
+		l0_matchnummer = new Label("Match ID " + Integer.toString(this.match.getIndex()));
+		l0_matchnummer.setFont(font);
+		l1_mannschaft = new Label(this.match.getMannschaft1().getName());
+		l2_mannschaft = new Label(this.match.getMannschaft2().getName());
+		l3_toreM1 = new Label("");
+		l4_toreM2 = new Label("");
+		l3_toreM1.setFont(font);
+		l4_toreM2.setFont(font);
 
+		grid.add(l0_matchnummer, 0, 0);
+		grid.add(l1_mannschaft, 0, 1);
+		grid.add(l2_mannschaft, 0, 2);
+
+		grid.add(l3_toreM1, 1, 1);
+		grid.add(l4_toreM2, 1, 2);
+
+		grid.setHgap(15);
+		this.getChildren().add(grid);		
+	}
+
+	private void gridInitMouseClickListener(IMatch match) {
 		grid.setOnMouseReleased((event) -> {	
 			// Überprüfen, ob die davorigen Spiele bereits beendet
 			if (this.match instanceof FolgeMatch && (!((FolgeMatch) match).getPrevMatch1().isGameFinished()
@@ -85,26 +103,21 @@ public class MatchPane extends Pane {
 				this.treeMatchStage.switchState(Event.click);
 			}
 		});
-		
-		Font font = new Font(14);
-		l0_matchnummer = new Label("Match ID " + Integer.toString(this.match.getIndex()));
-		l0_matchnummer.setFont(font);
-		l1_mannschaft = new Label(this.match.getMannschaft1().getName());
-		l2_mannschaft = new Label(this.match.getMannschaft2().getName());
-		l3_toreM1 = new Label("");
-		l4_toreM2 = new Label("");
-		l3_toreM1.setFont(font);
-		l4_toreM2.setFont(font);
+	}
 
-		grid.add(l0_matchnummer, 0, 0);
-		grid.add(l1_mannschaft, 0, 1);
-		grid.add(l2_mannschaft, 0, 2);
+	private void gridInitMouseExitedListener() {
+		grid.setOnMouseExited((MouseEvent e) -> {
+			grid.setStyle(savedStyle);
+		});
+	}
 
-		grid.add(l3_toreM1, 1, 1);
-		grid.add(l4_toreM2, 1, 2);
-
-		grid.setHgap(15);
-		this.getChildren().add(grid);
+	private void gridInitMouseEnteredListener() {
+		grid.setOnMouseEntered((MouseEvent e) -> {
+			this.savedStyle=grid.getStyle();
+			grid.setStyle("-fx-background-color: #CCCCCC;"
+					+ "-fx-background-radius: 5;-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);"
+					+ "-fx-border-color:black;" + "-fx-border-radius:5;");
+		});
 	}
 
 	public void setLabelErgebnis(int toreM1, int toreM2) {

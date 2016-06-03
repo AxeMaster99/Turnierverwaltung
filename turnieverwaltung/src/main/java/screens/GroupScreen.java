@@ -13,8 +13,12 @@ import backend.Mannschaft;
 import backend.MatchFactory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.HPos;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -34,6 +38,7 @@ import interfaces.IMatch;
 
 public class GroupScreen extends Pane {
 
+	private GridPane grid = new GridPane();
 	private ObservableList<String> teamnamen = FXCollections.observableArrayList();
 	private ArrayList<Mannschaft> teams = new ArrayList<Mannschaft>();
 	private ArrayList<Group> groups = new ArrayList<Group>();
@@ -81,7 +86,9 @@ public class GroupScreen extends Pane {
 
 		menubar.getMenus().addAll(toolMenu);
 		menubar.prefWidthProperty().bind(this.widthProperty());
-		this.getChildren().add(menubar);
+
+		grid.add(menubar, 0, 0, 5, 1);
+		GridPane.setMargin(menubar, new Insets(0, 0, 30, 0));
 
 		this.teamnamen = teamnamen;
 		Collections.shuffle(this.teamnamen);
@@ -108,28 +115,37 @@ public class GroupScreen extends Pane {
 			logger.info(this.matches.get(i).toString());
 		}
 
-		int x = 25;
-		int y = 50;
+		int colBot = 0;
 		for (int i = 0; i < this.groups.size(); i++) {
 			GroupPane pane = new GroupPane(steuerung, this.matches, i, teams);
+			GridPane.setMargin(pane, new Insets(5, 0, 10, 20));
 			this.groupPanes.add(pane);
-			pane.setTranslateX(x);
-			pane.setTranslateY(y);
-			this.getChildren().add(pane);
-			x += 310;
-			if (x > 1000) {
-				y += 300;
-				x = 25;
+			if (i < 4) {
+				Label groupLabel = new Label("Gruppe " + this.getCharForNumber(i));
+				this.grid.add(groupLabel, i, 1);
+				GridPane.setMargin(groupLabel, new Insets(0, 0, 0, 20));
+				this.grid.add(this.groupPanes.get(i), i, 2);
+			} else {
+				Label groupLabel = new Label("Gruppe " + this.getCharForNumber(i));
+				this.grid.add(groupLabel, colBot, 3);
+				GridPane.setMargin(groupLabel, new Insets(0, 0, 0, 20));
+				this.grid.add(this.groupPanes.get(i), colBot, 4);
+				colBot++;
 			}
 		}
 
 		Button weiterBtn = new Button("weiter");
 		weiterBtn.setMinWidth(80);
-		weiterBtn.setTranslateX(this.groupPanes.get(this.groupPanes.size() - 1).getTranslateX()
-				+ this.groupPanes.get(this.groupPanes.size() - 1).getTable().getMaxWidth() - weiterBtn.getMinWidth());
-		weiterBtn.setTranslateY(this.groupPanes.get(this.groupPanes.size() - 1).getTranslateY()
-				+ this.groupPanes.get(this.groupPanes.size() - 1).getTable().getMaxHeight() + 25);
-		this.getChildren().add(weiterBtn);
+		int pos;
+		if (groups.size() == 4) {
+			pos = 3;
+		} else {
+			pos = (groups.size() / 2) - 1;
+		}
+		grid.add(weiterBtn, (pos > 0 ? pos : ++pos), 5);
+		GridPane.setHalignment(weiterBtn, HPos.RIGHT);
+		// grid.setGridLinesVisible(true);
+		this.getChildren().add(grid);
 
 		weiterBtn.setOnAction((WindowEvent) -> {
 
@@ -167,9 +183,11 @@ public class GroupScreen extends Pane {
 					e.printStackTrace();
 				}
 			}
-
 		});
+	}
 
+	private String getCharForNumber(int i) {
+		return i > -1 && i < 26 ? String.valueOf((char) (i + 65)) : null;
 	}
 
 }

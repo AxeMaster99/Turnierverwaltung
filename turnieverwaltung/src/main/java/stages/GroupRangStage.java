@@ -32,7 +32,7 @@ public class GroupRangStage extends Stage {
 
 		grid.setMinWidth(400);
 		grid.setMinHeight(650);
-		grid.setAlignment(Pos.CENTER);
+		grid.setAlignment(Pos.TOP_LEFT);
 		grid.setPadding(new Insets(10));
 
 		Scene scene = new Scene(root, 650, 650);
@@ -45,7 +45,7 @@ public class GroupRangStage extends Stage {
 			mannschaften.add(teams.get(i));
 		}
 		int rowLeft = 0;
-		int rowRight=0;
+		int rowRight = 0;
 		int numberOfGroups = mannschaften.size() / 4;
 		int start = 0;
 		int ende = 4;
@@ -61,20 +61,20 @@ public class GroupRangStage extends Stage {
 			this.tables.get(i).getColumns().addAll(tables.get(i).nameCol, tables.get(i).pntCol, tables.get(i).torCol);
 			this.tables.get(i).setMaxHeight(135);
 			GridPane.setMargin(tables.get(i), new Insets(0, 15, 5, 0));
-			
+
 			tables.get(i).getSortOrder().add(tables.get(i).pntCol);
 			tables.get(i).pntCol.setSortType(TableColumn.SortType.DESCENDING);
 			tables.get(i).getSortOrder().add(tables.get(i).torCol);
 			tables.get(i).torCol.setSortType(TableColumn.SortType.DESCENDING);
 
 			if (rowLeft < 8) {
-				grid.add(new Label("Gruppe " + this.getCharForNumber(i + 1)), 0, rowLeft);
+				grid.add(new Label("Gruppe " + this.getCharForNumber(i)), 0, rowLeft);
 				grid.add(tables.get(i), 0, rowLeft + 1);
 				rowLeft += 2;
 			} else {
-				grid.add(new Label("Gruppe " + this.getCharForNumber(i + 1)), 1, rowRight);
+				grid.add(new Label("Gruppe " + this.getCharForNumber(i)), 1, rowRight);
 				grid.add(tables.get(i), 1, rowRight + 1);
-				rowRight+=2;
+				rowRight += 2;
 			}
 		}
 	}
@@ -87,7 +87,7 @@ public class GroupRangStage extends Stage {
 	}
 
 	private String getCharForNumber(int i) {
-		return i > 0 && i < 27 ? String.valueOf((char) (i + 64)) : null;
+		return i > -1 && i < 26 ? String.valueOf((char) (i + 65)) : null;
 	}
 
 }
