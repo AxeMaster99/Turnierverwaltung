@@ -24,6 +24,7 @@ public class GroupMatchStage extends MatchStage implements IMatchStage {
 
 	public GroupMatchStage(GroupPane groupPane, IMatch match) {
 		super(match);
+		this.groupPane=groupPane;
 
 		this.setOnCloseRequest((WindowEvent) -> {
 
