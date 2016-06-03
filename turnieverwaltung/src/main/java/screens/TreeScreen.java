@@ -45,25 +45,59 @@ public class TreeScreen extends Pane {
 	private ArrayList<IMatch> matches;
 
 	private static final Logger logger = (Logger) LogManager.getLogger("TreeScreen");
-	
+
 	public TreeScreen(Steuerung steuerung, ArrayList<IMatch> matches, int anzahlTeams) throws Exception {
-		
+
 		this.steuerung = steuerung;
 		this.anzahlTeams = anzahlTeams;
 		this.matches = matches;
-		
+
+		// Picture in background
+		ImageView bgImageView = this.setImage();
+		this.getChildren().add(bgImageView);
+
+		this.setStyle("-fx-background-color: black;");
+		canvas.setMouseTransparent(true);
+		this.getChildren().add(canvas);
+
+		this.zeichneSpielBaumLinks();
+		this.zeichneSpielBaumRechts();
+		this.zeichneLinienLinks();
+		this.zeichneLinienRechts();
+		this.zeichneFinale();
+		this.zeichneLegende(anzahlTeams);
+
+		// Menü
+		MenuBar menubar = this.setMenuBar();
+		this.getChildren().add(menubar);
+
+	}
+
+	private MenuBar setMenuBar() {
+
+		MenuBar menubar = new MenuBar();
+		Menu toolMenu = new Menu("Tools");
+		MenuItem ranglisteMenuItem = new MenuItem("Rangliste");
+		toolMenu.getItems().add(ranglisteMenuItem);
+
+		ranglisteMenuItem.setOnAction((WindowEvent) -> {
+			logger.info("Zeige Rangliste an");
+			this.steuerung.erstelleRangliste();
+		});
+
+		menubar.getMenus().addAll(toolMenu);
+		menubar.prefWidthProperty().bind(this.widthProperty());
+		return menubar;
+	}
+
+	private ImageView setImage() {
+
 		Image bgImage = new Image("images/boden_wiese.jpg");
 		ImageView bgImageView = new ImageView();
 		bgImageView.setImage(bgImage);
 		bgImageView.setOpacity(0.7);
-		bgImageView.fitHeightProperty().bind(steuerung.getMain().getStage().heightProperty());
-		bgImageView.fitWidthProperty().bind(steuerung.getMain().getStage().widthProperty());
-		this.getChildren().add(bgImageView);
-
-		this.setStyle("-fx-background-color: black;");
-
-		canvas.setMouseTransparent(true);
-		this.getChildren().add(canvas);
+		bgImageView.fitHeightProperty().bind(this.steuerung.getMain().getStage().heightProperty());
+		bgImageView.fitWidthProperty().bind(this.steuerung.getMain().getStage().widthProperty());
 
 		bgImageView.setOnMouseReleased((event) -> {
 			@SuppressWarnings("restriction")
@@ -79,33 +113,11 @@ public class TreeScreen extends Pane {
 				}
 			}
 		});
-
-		this.zeichneSpielBaumLinks();
-		this.zeichneSpielBaumRechts();
-		this.zeichneLinienLinks();
-		this.zeichneLinienRechts();
-		this.zeichneFinale();
-		this.zeichneLegende(anzahlTeams);
-
-		// Menü
-		MenuBar menubar = new MenuBar();
-		Menu toolMenu = new Menu("Tools");
-		MenuItem ranglisteMenuItem = new MenuItem("Rangliste");
-		toolMenu.getItems().add(ranglisteMenuItem);
-
-		ranglisteMenuItem.setOnAction((WindowEvent) -> {
-			logger.info("Zeige Rangliste an");
-			this.steuerung.erstelleRangliste();
-		});
-
-		menubar.getMenus().addAll(toolMenu);
-		menubar.prefWidthProperty().bind(this.widthProperty());
-		this.getChildren().add(menubar);
-
+		return bgImageView;
 	}
 
 	private void zeichneLegende(int unterstesPane) {
-		MatchPane mp = this.matches.get(anzahlTeams/4-1).getMatchPane();
+		MatchPane mp = this.matches.get(anzahlTeams / 4 - 1).getMatchPane();
 		double mpY = mp.getTranslateY() + 70;
 
 		Font font = Font.font("Arial", FontWeight.BOLD, 16);
@@ -178,19 +190,18 @@ public class TreeScreen extends Pane {
 
 	private void zeichneLinienLinks() {
 		for (int i = 0; i < this.matches.size() / 2; i++) {
-			if (this.matches.get(i) instanceof FolgeMatch
-					&& !(this.matches.get(i) instanceof FinalMatch)) {
+			if (this.matches.get(i) instanceof FolgeMatch && !(this.matches.get(i) instanceof FinalMatch)) {
 
 				MatchPane fm = this.matches.get(i).getMatchPane();
 				MatchPane m1 = ((FolgeMatch) this.matches.get(i)).getPrevMatch1().getMatchPane();
 				MatchPane m2 = ((FolgeMatch) this.matches.get(i)).getPrevMatch2().getMatchPane();
 
 				double fmX = fm.getTranslateX();
-				double fmY = fm.getTranslateY() + 20;
+				double fmY = fm.getTranslateY() + fm.getMinHeight() / 2;
 				double m1X = m1.getTranslateX() + 110;
-				double m1Y = m1.getTranslateY() + 20;
+				double m1Y = m1.getTranslateY() + fm.getMinHeight() / 2;
 				double m2X = m2.getTranslateX() + 110;
-				double m2Y = m2.getTranslateY() + 20;
+				double m2Y = m2.getTranslateY() + fm.getMinHeight() / 2;
 
 				gc.setFill(Color.GOLD);
 				gc.setStroke(Color.GOLD);
@@ -203,19 +214,18 @@ public class TreeScreen extends Pane {
 
 	private void zeichneLinienRechts() {
 		for (int i = this.matches.size() / 2; i < this.matches.size(); i++) {
-			if (this.matches.get(i) instanceof FolgeMatch
-					&& !(this.matches.get(i) instanceof FinalMatch)) {
+			if (this.matches.get(i) instanceof FolgeMatch && !(this.matches.get(i) instanceof FinalMatch)) {
 
 				MatchPane fm = this.matches.get(i).getMatchPane();
 				MatchPane m1 = ((FolgeMatch) this.matches.get(i)).getPrevMatch1().getMatchPane();
 				MatchPane m2 = ((FolgeMatch) this.matches.get(i)).getPrevMatch2().getMatchPane();
 
 				double fmX = fm.getTranslateX() + 110;
-				double fmY = fm.getTranslateY() + 20;
+				double fmY = fm.getTranslateY() + fm.getMinHeight() / 2;;
 				double m1X = m1.getTranslateX();
-				double m1Y = m1.getTranslateY() + 20;
+				double m1Y = m1.getTranslateY() + fm.getMinHeight() / 2;;
 				double m2X = m2.getTranslateX();
-				double m2Y = m2.getTranslateY() + 20;
+				double m2Y = m2.getTranslateY() + fm.getMinHeight() / 2;;
 
 				// logger.info(fmBoundsX + " | "+fmBoundsY);
 
@@ -282,35 +292,27 @@ public class TreeScreen extends Pane {
 
 	private void zeichneFinale() {
 
-		MatchPane finaleMatchPane = this.matches.get(this.matches.size() - 1)
-				.getMatchPane();
+		MatchPane finaleMatchPane = this.matches.get(this.matches.size() - 1).getMatchPane();
 
 		this.getChildren().add(finaleMatchPane);
 
 		// ermittle Position finalMatchPane
-		double x1 = this.matches.get(this.matches.size() / 2 - 1).getMatchPane()
-				.getTranslateX() + 110;
-		double x2 = this.matches.get(this.matches.size() - 2).getMatchPane()
-				.getTranslateX();
+		double x1 = this.matches.get(this.matches.size() / 2 - 1).getMatchPane().getTranslateX() + 110;
+		double x2 = this.matches.get(this.matches.size() - 2).getMatchPane().getTranslateX();
 		double mitte = x1 + (x2 - x1) / 2;
 
 		// finalMatchPane positionieren
 		finaleMatchPane.setTranslateX(mitte - 55);
-		finaleMatchPane.setTranslateY(this.matches.get(this.matches.size() / 2 - 1)
-				.getMatchPane().getTranslateY());
+		finaleMatchPane.setTranslateY(this.matches.get(this.matches.size() / 2 - 1).getMatchPane().getTranslateY());
 
 		// Striche zu finalMatchPane zeichnen
 		double fmX = finaleMatchPane.getTranslateX();
-		double fmY = finaleMatchPane.getTranslateY() + 20;
+		double fmY = finaleMatchPane.getTranslateY() + finaleMatchPane.getMinHeight() / 2;
 
-		double m1X = this.matches.get(this.matches.size() / 2 - 1).getMatchPane()
-				.getTranslateX() + 110;
-		double m1Y = this.matches.get(this.matches.size() / 2 - 1).getMatchPane()
-				.getTranslateY() + 20;
-		double m2X = this.matches.get(this.matches.size() - 2).getMatchPane()
-				.getTranslateX();
-		double m2Y = this.matches.get(this.matches.size() - 2).getMatchPane()
-				.getTranslateY() + 20;
+		double m1X = this.matches.get(this.matches.size() / 2 - 1).getMatchPane().getTranslateX() + 110;
+		double m1Y = this.matches.get(this.matches.size() / 2 - 1).getMatchPane().getTranslateY() + finaleMatchPane.getMinHeight() / 2;
+		double m2X = this.matches.get(this.matches.size() - 2).getMatchPane().getTranslateX();
+		double m2Y = this.matches.get(this.matches.size() - 2).getMatchPane().getTranslateY() + finaleMatchPane.getMinHeight() / 2;
 
 		gc.setFill(Color.GOLD);
 		gc.setStroke(Color.GOLD);
@@ -342,8 +344,7 @@ public class TreeScreen extends Pane {
 				}
 			}
 
-			if (this.matches.get(i) instanceof FinalMatch
-					&& this.matches.get(i).isGameFinished()) {
+			if (this.matches.get(i) instanceof FinalMatch && this.matches.get(i).isGameFinished()) {
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("Information");
 				alert.setHeaderText("Sieger des Turniers");

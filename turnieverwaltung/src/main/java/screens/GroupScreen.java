@@ -65,10 +65,11 @@ public class GroupScreen extends Pane {
 				int ergM1 = random.nextInt(6);
 				int ergM2 = random.nextInt(6);
 
-				matches.get(i).setToreM1(ergM1);
-				matches.get(i).setToreM2(ergM2);
-
-				matches.get(i).setSieger();
+				if (matches.get(i).isGameFinished() == false) {
+					matches.get(i).setToreM1(ergM1);
+					matches.get(i).setToreM2(ergM2);
+					matches.get(i).setSieger();
+				}
 			}
 
 			for (int i = 0; i < groupPanes.size(); i++) {

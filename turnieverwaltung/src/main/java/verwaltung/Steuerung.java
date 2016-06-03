@@ -44,7 +44,6 @@ public class Steuerung {
 		Collections.shuffle(teams); // beste ZEILE
 
 		this.berechneSpaltenUndMatches(this.teams.size());
-
 		this.erstelleSeite(anzahlMatchesZus, 0, this.teams.size() / 2);
 		this.erstelleSeite(anzahlMatchesZus, (this.teams.size() / 2) - 1, this.teams.size() - 1);
 		this.erstelleFinale();

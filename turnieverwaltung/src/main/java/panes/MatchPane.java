@@ -31,15 +31,18 @@ public class MatchPane extends Pane {
 
 	private Label l3_toreM1;
 	private Label l4_toreM2;
-
+	private final double minHeight=60;
+	
 	private IMatchStage treeMatchStage;
 
 	private static final Logger logger = (Logger) LogManager.getLogger("MatchPane");
 	
 	public MatchPane(IMatch match) {
 		this.match = match;
-
-		grid.setMinSize(110, 40);
+		this.setMinHeight(minHeight);
+		
+		
+		grid.setMinSize(110, minHeight);
 		grid.setStyle("-fx-background-color: white;"
 				+ "-fx-background-radius: 5;-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);"
 				+ "-fx-border-color:black;" + "-fx-border-radius:5;");
