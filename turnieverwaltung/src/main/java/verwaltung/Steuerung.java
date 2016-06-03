@@ -16,32 +16,51 @@ import screens.SettingsScreen;
 import screens.SplashScreen;
 import screens.TeamScreen;
 import screens.TreeScreen;
-import stages.RangStage;
+import stages.GroupRangStage;
+import stages.TreeRangStage;
 
 public class Steuerung {
 
 	private String turnierType;
 	private TreeScreen spielBaum;
 	private Main main;
-	private RangStage rangliste;
+	private TreeRangStage tRangliste = new TreeRangStage();
+	private GroupRangStage gRangliste = new GroupRangStage();
 	private ObservableList<String> teams = FXCollections.observableArrayList();
 	private ArrayList<IMatch> matches = new ArrayList<IMatch>();
 	private int anzahlSpalten = 0;
 	private int anzahlMatchesZus = 0;
 	private GroupScreen groupScreen;
-	
+
 	private static final Logger logger = (Logger) LogManager.getLogger("Steuerung");
-	
+
 	public Steuerung(Main main) {
 		this.main = main;
-		this.rangliste = new RangStage(this);
 	}
 
-	public void erstelleMatches(ObservableList<String> teams) throws Exception {
+	private void erstelleMatches(ObservableList<String> teams) throws Exception {
 		this.teams = teams;
 
 		Collections.shuffle(teams); // beste ZEILE
 
+		this.berechneSpaltenUndMatches(this.teams.size());
+
+		this.erstelleSeite(anzahlMatchesZus, 0, this.teams.size() / 2);
+		this.erstelleSeite(anzahlMatchesZus, (this.teams.size() / 2) - 1, this.teams.size() - 1);
+		this.erstelleFinale();
+
+		for (int i = 0; i < matches.size(); i++) {
+			logger.info(this.matches.get(i).toString());
+		}
+	}
+
+	private void erstelleFinale() {
+		IMatch prevFinal1 = this.matches.get(this.matches.size() / 2 - 1);
+		IMatch prevFinal2 = this.matches.get(this.matches.size() - 1);
+		this.matches.add(MatchFactory.build(this, prevFinal1, prevFinal2, true));
+	}
+
+	private void berechneSpaltenUndMatches(int numberOfTeams) {
 		switch (this.teams.size()) {
 		case 4:
 			anzahlSpalten = 3;
@@ -62,43 +81,28 @@ public class Steuerung {
 		default:
 			anzahlSpalten = 0;
 		}
-
-		erstelleSeite(anzahlMatchesZus, 0, this.teams.size() / 2);
-		erstelleSeite(anzahlMatchesZus, (this.teams.size() / 2) - 1, this.teams.size() - 1);
-
-		IMatch prevFinal1 = this.matches.get(this.matches.size() / 2 - 1);
-		IMatch prevFinal2 = this.matches.get(this.matches.size() - 1);
-
-		// this.matches.add(new MatchFactory(this).addMatch(prevFinal1).addMatch(prevFinal2).isFinalMatch().build());
-		this.matches.add(MatchFactory.build(this, prevFinal1, prevFinal2, true));
-		
-		for (int i = 0; i < matches.size(); i++) {
-			logger.info(this.matches.get(i).toString());
-		}
-
 	}
 
 	private void erstelleSeite(int anzahlMatchesZus, int start, int stop) throws Exception {
 
+		// StandartMatches
 		int actMatch = start;
 		for (int i = start; i < stop; i += 2) {
 			if (start >= 1) {
-				// matches.add(new MatchFactory(this).addMannschaft(teams.get(i + 1)).addMannschaft(teams.get(i + 2)).build());
-				matches.add(MatchFactory.build(this, teams.get(i+1), teams.get(i+2)));
+				this.matches.add(MatchFactory.build(this, teams.get(i + 1), teams.get(i + 2)));
 			} else {
-				// matches.add(new MatchFactory(this).addMannschaft(teams.get(i)).addMannschaft(teams.get(i + 1)).build());
-				matches.add(MatchFactory.build(this, teams.get(i), teams.get(i+1)));
+				this.matches.add(MatchFactory.build(this, teams.get(i), teams.get(i + 1)));
 			}
 		}
+
+		// FolgeMatches
 		for (int i = 0; i < (anzahlMatchesZus / 2); i++) {
 
 			IMatch pm1 = matches.get(actMatch);
 			IMatch pm2 = matches.get(actMatch + 1);
-
 			// beste Fabrik
-			// matches.add(new MatchFactory(this).addMatch(pm1).addMatch(pm2).build());
-			matches.add(MatchFactory.build(this, pm1, pm2));
-			
+			this.matches.add(MatchFactory.build(this, pm1, pm2));
+
 			actMatch = actMatch + 2;
 		}
 
@@ -113,7 +117,8 @@ public class Steuerung {
 	}
 
 	public void erstelleRangliste() {
-		rangliste.show();
+		this.tRangliste.initializeTable(this.matches);
+		this.tRangliste.show();
 	}
 
 	/**
@@ -143,7 +148,8 @@ public class Steuerung {
 	 * @throws Exception
 	 */
 	public void setTreeScreen(String screenName, ObservableList<String> teams) throws Exception {
-		spielBaum = new TreeScreen(this,teams);
+		this.erstelleMatches(teams);
+		spielBaum = new TreeScreen(this, matches,this.teams.size());
 		main.getScenes().put(screenName, new Scene(spielBaum));
 		main.getStage().setScene(main.getScene(screenName));
 		main.getStage().setMaximized(true);
@@ -169,9 +175,9 @@ public class Steuerung {
 		main.getStage().setScene(main.getScene("splashscreen"));
 		main.getStage().setMaximized(true);
 	}
-	
+
 	public void setGroupScreen(String screenName, ObservableList<String> teams) {
-		this.groupScreen = new GroupScreen(this,teams);
+		this.groupScreen = new GroupScreen(this, teams);
 		main.getScenes().put(screenName, new Scene(this.groupScreen));
 		main.getStage().setScene(main.getScene("groupscreen"));
 		main.getStage().setMaximized(true);
@@ -184,15 +190,19 @@ public class Steuerung {
 	public void updateSpielBaum() {
 		this.spielBaum.updateSpielBaum();
 	}
+
+	public TreeRangStage getTRangStage() {
+		return this.tRangliste;
+	}
 	
-	public RangStage getRangStage() {
-		return this.rangliste;
+	public GroupRangStage getgRangStage(){
+		return this.gRangliste;
 	}
 
 	public void setTurnierType(String turnierType) {
 		this.turnierType = turnierType;
 	}
-	
+
 	public String getTurnierType() {
 		return turnierType;
 	}

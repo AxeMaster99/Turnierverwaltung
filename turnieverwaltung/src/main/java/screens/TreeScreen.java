@@ -1,5 +1,7 @@
 package screens;
 
+import java.util.ArrayList;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
 
@@ -37,15 +39,18 @@ public class TreeScreen extends Pane {
 
 	private Canvas canvas = new Canvas(1400, 700);
 	private GraphicsContext gc = canvas.getGraphicsContext2D();
+	private int anzahlTeams;
 	private Steuerung steuerung;
 
-	private ObservableList<String> teams = FXCollections.observableArrayList();
+	private ArrayList<IMatch> matches;
 
 	private static final Logger logger = (Logger) LogManager.getLogger("TreeScreen");
 	
-	public TreeScreen(Steuerung steuerung, ObservableList<String> teams) throws Exception {
+	public TreeScreen(Steuerung steuerung, ArrayList<IMatch> matches, int anzahlTeams) throws Exception {
 		
 		this.steuerung = steuerung;
+		this.anzahlTeams = anzahlTeams;
+		this.matches = matches;
 		
 		Image bgImage = new Image("images/boden_wiese.jpg");
 		ImageView bgImageView = new ImageView();
@@ -55,9 +60,7 @@ public class TreeScreen extends Pane {
 		bgImageView.fitWidthProperty().bind(steuerung.getMain().getStage().widthProperty());
 		this.getChildren().add(bgImageView);
 
-		this.teams = teams;
 		this.setStyle("-fx-background-color: black;");
-		steuerung.erstelleMatches(teams);
 
 		canvas.setMouseTransparent(true);
 		this.getChildren().add(canvas);
@@ -82,7 +85,7 @@ public class TreeScreen extends Pane {
 		this.zeichneLinienLinks();
 		this.zeichneLinienRechts();
 		this.zeichneFinale();
-		this.zeichneLegende();
+		this.zeichneLegende(anzahlTeams);
 
 		// Menü
 		MenuBar menubar = new MenuBar();
@@ -101,8 +104,8 @@ public class TreeScreen extends Pane {
 
 	}
 
-	private void zeichneLegende() {
-		MatchPane mp = this.steuerung.getMatches().get(this.teams.size() / 4 - 1).getMatchPane();
+	private void zeichneLegende(int unterstesPane) {
+		MatchPane mp = this.matches.get(anzahlTeams/4-1).getMatchPane();
 		double mpY = mp.getTranslateY() + 70;
 
 		Font font = Font.font("Arial", FontWeight.BOLD, 16);
@@ -174,13 +177,13 @@ public class TreeScreen extends Pane {
 	}
 
 	private void zeichneLinienLinks() {
-		for (int i = 0; i < this.steuerung.getMatches().size() / 2; i++) {
-			if (this.steuerung.getMatches().get(i) instanceof FolgeMatch
-					&& !(this.steuerung.getMatches().get(i) instanceof FinalMatch)) {
+		for (int i = 0; i < this.matches.size() / 2; i++) {
+			if (this.matches.get(i) instanceof FolgeMatch
+					&& !(this.matches.get(i) instanceof FinalMatch)) {
 
-				MatchPane fm = this.steuerung.getMatches().get(i).getMatchPane();
-				MatchPane m1 = ((FolgeMatch) this.steuerung.getMatches().get(i)).getPrevMatch1().getMatchPane();
-				MatchPane m2 = ((FolgeMatch) this.steuerung.getMatches().get(i)).getPrevMatch2().getMatchPane();
+				MatchPane fm = this.matches.get(i).getMatchPane();
+				MatchPane m1 = ((FolgeMatch) this.matches.get(i)).getPrevMatch1().getMatchPane();
+				MatchPane m2 = ((FolgeMatch) this.matches.get(i)).getPrevMatch2().getMatchPane();
 
 				double fmX = fm.getTranslateX();
 				double fmY = fm.getTranslateY() + 20;
@@ -199,13 +202,13 @@ public class TreeScreen extends Pane {
 	}
 
 	private void zeichneLinienRechts() {
-		for (int i = this.steuerung.getMatches().size() / 2; i < this.steuerung.getMatches().size(); i++) {
-			if (this.steuerung.getMatches().get(i) instanceof FolgeMatch
-					&& !(this.steuerung.getMatches().get(i) instanceof FinalMatch)) {
+		for (int i = this.matches.size() / 2; i < this.matches.size(); i++) {
+			if (this.matches.get(i) instanceof FolgeMatch
+					&& !(this.matches.get(i) instanceof FinalMatch)) {
 
-				MatchPane fm = this.steuerung.getMatches().get(i).getMatchPane();
-				MatchPane m1 = ((FolgeMatch) this.steuerung.getMatches().get(i)).getPrevMatch1().getMatchPane();
-				MatchPane m2 = ((FolgeMatch) this.steuerung.getMatches().get(i)).getPrevMatch2().getMatchPane();
+				MatchPane fm = this.matches.get(i).getMatchPane();
+				MatchPane m1 = ((FolgeMatch) this.matches.get(i)).getPrevMatch1().getMatchPane();
+				MatchPane m2 = ((FolgeMatch) this.matches.get(i)).getPrevMatch2().getMatchPane();
 
 				double fmX = fm.getTranslateX() + 110;
 				double fmY = fm.getTranslateY() + 20;
@@ -229,15 +232,14 @@ public class TreeScreen extends Pane {
 		int offset = 0;
 		int posX = 10;
 		int posY = 40;
-		int matchesInSpalte = teams.size() / 4;
+		int matchesInSpalte = anzahlTeams / 4;
 		int actMatch = 0;
 		int sprungY = 70;
 		int sprungX = 140;
 
 		while (matchesInSpalte > 0) {
 			for (int i = 0; i < matchesInSpalte; i++) {
-				MatchPane pane = this.steuerung.getMatches().get(actMatch).getMatchPane();
-				// pane.getMatchStage().setSpielbaum(this);
+				MatchPane pane = this.matches.get(actMatch).getMatchPane();
 				pane.setTranslateX(posX);
 				pane.setTranslateY(posY);
 				this.getChildren().add(pane);
@@ -250,22 +252,20 @@ public class TreeScreen extends Pane {
 			posY = 40 + offset;
 			posX += sprungX;
 		}
-
 	}
 
 	private void zeichneSpielBaumRechts() {
 		int offset = 0;
 		int posX = (this.steuerung.getAnzahlSpalten() * 130) - 20;
 		int posY = 40;
-		int matchesInSpalte = teams.size() / 4;
-		int actMatch = this.steuerung.getMatches().size() / 2;
+		int matchesInSpalte = anzahlTeams / 4;
+		int actMatch = this.matches.size() / 2;
 		int sprungY = 70;
 		int sprungX = 140;
 
 		while (matchesInSpalte > 0) {
 			for (int i = 0; i < matchesInSpalte; i++) {
-				MatchPane pane = this.steuerung.getMatches().get(actMatch).getMatchPane();
-				// pane.getMatchStage().setSpielbaum(this);
+				MatchPane pane = this.matches.get(actMatch).getMatchPane();
 				pane.setTranslateX(posX);
 				pane.setTranslateY(posY);
 				this.getChildren().add(pane);
@@ -282,35 +282,34 @@ public class TreeScreen extends Pane {
 
 	private void zeichneFinale() {
 
-		MatchPane finaleMatchPane = this.steuerung.getMatches().get(this.steuerung.getMatches().size() - 1)
+		MatchPane finaleMatchPane = this.matches.get(this.matches.size() - 1)
 				.getMatchPane();
-		// finaleMatchPane.getMatchStage().setSpielbaum(this);
 
 		this.getChildren().add(finaleMatchPane);
 
 		// ermittle Position finalMatchPane
-		double x1 = this.steuerung.getMatches().get(this.steuerung.getMatches().size() / 2 - 1).getMatchPane()
+		double x1 = this.matches.get(this.matches.size() / 2 - 1).getMatchPane()
 				.getTranslateX() + 110;
-		double x2 = this.steuerung.getMatches().get(this.steuerung.getMatches().size() - 2).getMatchPane()
+		double x2 = this.matches.get(this.matches.size() - 2).getMatchPane()
 				.getTranslateX();
 		double mitte = x1 + (x2 - x1) / 2;
 
 		// finalMatchPane positionieren
 		finaleMatchPane.setTranslateX(mitte - 55);
-		finaleMatchPane.setTranslateY(this.steuerung.getMatches().get(this.steuerung.getMatches().size() / 2 - 1)
+		finaleMatchPane.setTranslateY(this.matches.get(this.matches.size() / 2 - 1)
 				.getMatchPane().getTranslateY());
 
 		// Striche zu finalMatchPane zeichnen
 		double fmX = finaleMatchPane.getTranslateX();
 		double fmY = finaleMatchPane.getTranslateY() + 20;
 
-		double m1X = this.steuerung.getMatches().get(this.steuerung.getMatches().size() / 2 - 1).getMatchPane()
+		double m1X = this.matches.get(this.matches.size() / 2 - 1).getMatchPane()
 				.getTranslateX() + 110;
-		double m1Y = this.steuerung.getMatches().get(this.steuerung.getMatches().size() / 2 - 1).getMatchPane()
+		double m1Y = this.matches.get(this.matches.size() / 2 - 1).getMatchPane()
 				.getTranslateY() + 20;
-		double m2X = this.steuerung.getMatches().get(this.steuerung.getMatches().size() - 2).getMatchPane()
+		double m2X = this.matches.get(this.matches.size() - 2).getMatchPane()
 				.getTranslateX();
-		double m2Y = this.steuerung.getMatches().get(this.steuerung.getMatches().size() - 2).getMatchPane()
+		double m2Y = this.matches.get(this.matches.size() - 2).getMatchPane()
 				.getTranslateY() + 20;
 
 		gc.setFill(Color.GOLD);
@@ -324,31 +323,31 @@ public class TreeScreen extends Pane {
 
 		logger.info("update spielbaum");
 
-		for (int i = 0; i < this.steuerung.getMatches().size(); i++) {
-			if (this.steuerung.getMatches().get(i) instanceof FolgeMatch) {
+		for (int i = 0; i < this.matches.size(); i++) {
+			if (this.matches.get(i) instanceof FolgeMatch) {
 
-				FolgeMatch actMatch = (FolgeMatch) this.steuerung.getMatches().get(i);
+				FolgeMatch actMatch = (FolgeMatch) this.matches.get(i);
 
-				if (((FolgeMatch) this.steuerung.getMatches().get(i)).getPrevMatch1().isGameFinished()) {
+				if (((FolgeMatch) this.matches.get(i)).getPrevMatch1().isGameFinished()) {
 					IMatch prevMatch1 = actMatch.getPrevMatch1();
-					this.steuerung.getMatches().get(i).setMannschaft1(prevMatch1.getSieger());
-					this.steuerung.getMatches().get(i).getMatchPane().updateMannschaftsLabelM1();
+					this.matches.get(i).setMannschaft1(prevMatch1.getSieger());
+					this.matches.get(i).getMatchPane().updateMannschaftsLabelM1();
 
 				}
 
-				if (((FolgeMatch) this.steuerung.getMatches().get(i)).getPrevMatch2().isGameFinished()) {
+				if (((FolgeMatch) this.matches.get(i)).getPrevMatch2().isGameFinished()) {
 					IMatch prevMatch2 = actMatch.getPrevMatch2();
-					this.steuerung.getMatches().get(i).setMannschaft2(prevMatch2.getSieger());
-					this.steuerung.getMatches().get(i).getMatchPane().updateMannschaftsLabelM2();
+					this.matches.get(i).setMannschaft2(prevMatch2.getSieger());
+					this.matches.get(i).getMatchPane().updateMannschaftsLabelM2();
 				}
 			}
 
-			if (this.steuerung.getMatches().get(i) instanceof FinalMatch
-					&& this.steuerung.getMatches().get(i).isGameFinished()) {
+			if (this.matches.get(i) instanceof FinalMatch
+					&& this.matches.get(i).isGameFinished()) {
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("Information");
 				alert.setHeaderText("Sieger des Turniers");
-				alert.setContentText("Der Sieger des Turniers ist: " + this.steuerung.getMatches().get(i).getSieger());
+				alert.setContentText("Der Sieger des Turniers ist: " + this.matches.get(i).getSieger());
 				alert.showAndWait();
 			}
 		}

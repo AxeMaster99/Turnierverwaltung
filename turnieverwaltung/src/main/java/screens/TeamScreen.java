@@ -97,6 +97,18 @@ public class TeamScreen extends Pane {
 		grid.setMinSize(500,630);
 		grid.setAlignment(Pos.CENTER);
 		
+		this.addListener(anzahlMannschaften);
+		this.deleteListener();
+		this.editListener();
+		this.teamnamesEnterListener();
+		this.backListener(steuerung);
+		this.autoFillListener(anzahlMannschaften);
+		this.submitListener(steuerung);
+		
+		this.getChildren().add(grid);
+	}
+
+	private void addListener(int anzahlMannschaften) {
 		b_add.setOnAction((event) -> {
 			if (cnt >= anzahlMannschaften) {
 				Alert alert = new Alert(AlertType.ERROR);
@@ -132,7 +144,9 @@ public class TeamScreen extends Pane {
 				t_teamnames.setText("");
 			}
 		});
+	}
 
+	private void deleteListener() {
 		b_delete.setOnAction((event) -> {
 			if (lb_teams.getSelectionModel().getSelectedItem() == null) {
 				Alert alert = new Alert(AlertType.ERROR);
@@ -146,7 +160,9 @@ public class TeamScreen extends Pane {
 				updateFortschritt();
 			}
 		});
+	}
 
+	private void editListener() {
 		b_edit.setOnAction((event) -> {
 			if (lb_teams.getSelectionModel().getSelectedItem() == null) {
 				Alert alert = new Alert(AlertType.ERROR);
@@ -178,27 +194,23 @@ public class TeamScreen extends Pane {
 				}
 			}
 		});
+	}
 
+	private void teamnamesEnterListener() {
 		t_teamnames.setOnKeyReleased((KeyEvent event) -> {
 			if (event.getCode() == KeyCode.ENTER) {
 				b_add.fire();
 			}
 		});
+	}
 
+	private void backListener(Steuerung steuerung) {
 		b_back.setOnAction((event) -> {
-			steuerung.getMain().getStage().setScene(steuerung.getMain().getScene("settings"));
+			steuerung.setSettingsScreen();
 		});
+	}
 
-		b_autofill.setOnAction((event) -> {
-			teams.clear();
-			for (int i = 1; i <= anzahlMannschaften; i++) {
-
-				teams.add("Mannschaft " + i);
-			}
-			cnt = anzahlMannschaften;
-			updateFortschritt();
-		});
-		
+	private void submitListener(Steuerung steuerung) {
 		b_submit.setOnAction((event)->{
 			try {
 				if(steuerung.getTurnierType() == "KO-Turnier") {
@@ -211,9 +223,18 @@ public class TeamScreen extends Pane {
 				e.printStackTrace();
 			}
 		});
-		
+	}
 
-		this.getChildren().add(grid);
+	private void autoFillListener(int anzahlMannschaften) {
+		b_autofill.setOnAction((event) -> {
+			teams.clear();
+			for (int i = 1; i <= anzahlMannschaften; i++) {
+
+				teams.add("Mannschaft " + i);
+			}
+			cnt = anzahlMannschaften;
+			updateFortschritt();
+		});
 	}
 	
 	/**
@@ -238,5 +259,4 @@ public class TeamScreen extends Pane {
 			t_teamnames.setDisable(false);
 		}
 	}
-
 }

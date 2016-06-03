@@ -116,12 +116,10 @@ public class MatchPane extends Pane {
 
 	public void updateMannschaftsLabelM1() {
 		l1_mannschaft.setText(this.match.getMannschaft1().getName());
-		// matchStage.setLabelM1(this.match.getMannschaft1().getName());
 	}
 
 	public void updateMannschaftsLabelM2() {
 		l2_mannschaft.setText(this.match.getMannschaft2().getName());
-		// matchStage.setLabelM2(this.match.getMannschaft2().getName());
 	}
 
 	public GridPane getGrid() {

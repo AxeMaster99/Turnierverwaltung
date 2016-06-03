@@ -84,7 +84,6 @@ public class TreeMatchStage extends MatchStage {
 			} else {
 				new GUIUpdateThread(match, this).start();
 			}
-			this.match.getMatchPane().setLabelErgebnis(this.match.getToreM1(), this.match.getToreM2());
 		});
 
 		timeline.setCycleCount(matchTimer);
@@ -107,7 +106,7 @@ public class TreeMatchStage extends MatchStage {
 			}
 		});
 		this.match.getSteuerung().updateSpielBaum();
-		this.match.getSteuerung().getRangStage().updateTable();
+		this.match.getSteuerung().getTRangStage().updateTable();
 		this.match.getMatchPane().setDisable(false);
 	}
 

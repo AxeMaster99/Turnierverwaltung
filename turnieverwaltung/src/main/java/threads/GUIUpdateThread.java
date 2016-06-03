@@ -25,6 +25,7 @@ public class GUIUpdateThread extends Thread {
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
+				match.getMatchPane().setLabelErgebnis(match.getToreM1(), match.getToreM2());
 				if (matchStage instanceof TreeMatchStage) {
 					((TreeMatchStage) matchStage).beendeSpiel();
 				} else {
