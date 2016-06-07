@@ -20,13 +20,8 @@ import verwaltung.Steuerung;
 
 public class SettingsScreen extends Pane {
 
-	// private Label l_turnierTypes = new Label("Turnierart");
-	// private Label l_teams = new Label("Teamanzahl");
-	// private Label l_matchDauer = new Label("Match dauer");
-
 	private final ObservableList<String> types = FXCollections.observableArrayList("KO-Turnier", "Gruppen + KO");
-	private final ObservableList<String> options = FXCollections.observableArrayList("4 Teams (Nur KO)!", "8 Teams",
-			"16 Teams", "32 Teams");
+	private final ObservableList<String> options = FXCollections.observableArrayList("8 Teams", "16 Teams", "32 Teams");
 	private final ObservableList<String> durations = FXCollections.observableArrayList("5 Minuten", "30 Minuten",
 			"45 Minuten", "60 Minuten", "75 Minuten", "90 Minuten");
 	private ComboBox<String> c_types = new ComboBox<String>(types);
@@ -39,25 +34,35 @@ public class SettingsScreen extends Pane {
 	public SettingsScreen(Steuerung steuerung) {
 
 		c_types.setValue("Turnierart");
-		c_duration.setValue("Matchdauer");
 		c_teams.setValue("Anzahl Teams");
+		c_teams.setDisable(true);
+		c_duration.setValue("Matchdauer");
+		c_duration.setDisable(true);
+
+		c_types.setOnAction((event) -> {
+			if (c_types.getValue().equals("KO-Turnier")) {
+				c_teams.getItems().add(0, "4 Teams");
+				c_teams.setValue("Anzahl Teams");
+			} else if (c_types.getValue().equals("Gruppen + KO") && c_teams.getItems().get(0).equals("4 Teams")) {
+				c_teams.getItems().remove(0);
+				c_teams.setValue("Anzahl Teams");
+				c_teams.autosize();
+			}
+			c_teams.setDisable(false);
+		});
+
+		c_teams.setOnAction((event) -> {
+			c_duration.setDisable(false);
+		});
 
 		b_teams.setOnAction((event) -> {
-			if (c_types.getValue().equals("Turnierart") || c_duration.getValue().equals("Matchdauer")
-					|| c_teams.getValue().equals("Anzahl Teams")) {
+
+			if (c_types.getValue().equals("KO-Turnier") || c_teams.getValue().equals("Anzahl Teams") || c_duration.getValue().equals("Matchdauer")) {
 				Alert missingInput = new Alert(AlertType.INFORMATION);
 				missingInput.setTitle("Fehler");
-				missingInput.setHeaderText("Eingaben fehlen!");
-				missingInput.setContentText("Zum fortfahren alle Werte angeben.");
+				missingInput.setHeaderText("Es fehlt mindestens eine Eingabe");
+				missingInput.setContentText("Zum fortfahren alle Felder ausfüllen.");
 				missingInput.showAndWait();
-			}
-
-			else if (!c_types.getValue().equals("KO-Turnier") && c_teams.getValue().equals("4 Teams (Nur KO)!")) {
-				Alert wrongInput = new Alert(AlertType.INFORMATION);
-				wrongInput.setTitle("Fehler");
-				wrongInput.setHeaderText("4 Teams sind nur für den Typ 'KO' gestattet!");
-				wrongInput.setContentText("Zum fortfahren andere Teamanzahl angeben.");
-				wrongInput.showAndWait();
 			}
 
 			else {
@@ -75,11 +80,6 @@ public class SettingsScreen extends Pane {
 				logger.info("Anzahl Teams: " + teamsCut + ", Matchdauer: " + durationCut);
 			}
 		});
-
-		// grid.add(l_turnierTypes, 0, 0);
-		// grid.add(l_teams, 0, 1);
-		// grid.add(l_matchDauer, 0, 2);
-		// GridPane.setHalignment(l_teams, HPos.RIGHT);
 
 		grid.add(c_types, 0, 0);
 		grid.add(c_teams, 0, 1);

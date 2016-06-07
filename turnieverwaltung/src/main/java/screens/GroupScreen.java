@@ -26,8 +26,13 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.WindowEvent;
 import panes.GroupPane;
 import stages.GroupRangStage;
@@ -48,6 +53,18 @@ public class GroupScreen extends Pane {
 	private static final Logger logger = (Logger) LogManager.getLogger("GroupScreen");
 
 	public GroupScreen(Steuerung steuerung, ObservableList<String> teamnamen) {
+
+		this.setStyle("-fx-background-color:black;");
+
+		// ImageView bgImageView = this.setImage();
+
+		Image bgImage = new Image("images/boden_wiese.jpg");
+		ImageView bgImageView = new ImageView();
+		bgImageView.setImage(bgImage);
+		bgImageView.setOpacity(0.7);
+		bgImageView.fitHeightProperty().bind(steuerung.getMain().getStage().heightProperty());
+		bgImageView.fitWidthProperty().bind(steuerung.getMain().getStage().widthProperty());
+		this.getChildren().add(bgImageView);
 
 		MenuBar menubar = new MenuBar();
 		Menu toolMenu = new Menu("Tools");
@@ -115,6 +132,7 @@ public class GroupScreen extends Pane {
 			logger.info(this.matches.get(i).toString());
 		}
 
+		Font font = Font.font("Arial", FontWeight.BOLD, 16);
 		int colBot = 0;
 		for (int i = 0; i < this.groups.size(); i++) {
 			GroupPane pane = new GroupPane(steuerung, this.matches, i, teams);
@@ -123,11 +141,17 @@ public class GroupScreen extends Pane {
 			if (i < 4) {
 				Label groupLabel = new Label("Gruppe " + this.getCharForNumber(i));
 				this.grid.add(groupLabel, i, 1);
+				groupLabel.setFont(font);
+				groupLabel.setTextFill(Color.WHITE);
+				
 				GridPane.setMargin(groupLabel, new Insets(0, 0, 0, 20));
 				this.grid.add(this.groupPanes.get(i), i, 2);
 			} else {
 				Label groupLabel = new Label("Gruppe " + this.getCharForNumber(i));
 				this.grid.add(groupLabel, colBot, 3);
+				groupLabel.setFont(font);
+				groupLabel.setTextFill(Color.WHITE);
+
 				GridPane.setMargin(groupLabel, new Insets(0, 0, 0, 20));
 				this.grid.add(this.groupPanes.get(i), colBot, 4);
 				colBot++;
