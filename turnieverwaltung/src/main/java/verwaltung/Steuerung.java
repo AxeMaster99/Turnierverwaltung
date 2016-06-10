@@ -205,5 +205,9 @@ public class Steuerung {
 	public String getTurnierType() {
 		return turnierType;
 	}
+	
+	public int getAnzahlMatchesZus(){
+		return anzahlMatchesZus;
+	}
 
 }

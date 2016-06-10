@@ -20,7 +20,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import panes.MatchPane;
-import threads.GUIUpdateThread;
+import threads.WaitForButtonThread;
 //import screens.SettingsScreen;
 
 public abstract class MatchStage extends Stage implements IMatchStage {

@@ -16,8 +16,8 @@ public class Match implements IMatch {
 	private MatchPane matchPane;
 	protected Mannschaft sieger;
 	protected Mannschaft verlierer;
-	private int toreM1 = 0;
-	private int toreM2 = 0;
+	private volatile int toreM1 = 0;
+	private volatile int toreM2 = 0;
 	private Steuerung steuerung;
 	private Boolean unentschieden = false;
 	private static final Logger logger = (Logger) LogManager.getLogger("Match");

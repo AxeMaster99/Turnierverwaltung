@@ -94,10 +94,18 @@ public class GroupScreen extends Pane {
 				}
 			}
 
-			for (int i = 0; i < groupPanes.size(); i++) {
+			/*	for (int i = 0; i < groupPanes.size(); i++) {
 				groupPanes.get(i).getTable().refresh();
 				groupPanes.get(i).setDisable();
-			}
+			}*/
+
+			groupPanes
+				.stream()
+				.parallel()
+				.forEach(pane -> {
+					pane.getTable().refresh();
+					pane.setDisable();
+			});
 
 		});
 
@@ -110,9 +118,13 @@ public class GroupScreen extends Pane {
 		this.teamnamen = teamnamen;
 		Collections.shuffle(this.teamnamen);
 
-		for (int i = 0; i < this.teamnamen.size(); i++) {
+		/*for (int i = 0; i < this.teamnamen.size(); i++) {
 			teams.add(new Mannschaft(this.teamnamen.get(i)));
-		}
+		}*/
+		teamnamen
+			.stream()
+			.forEach(team->teams.add(new Mannschaft(team)));
+		
 		steuerung.getgRangStage().initializeTable(teams);
 
 		for (int i = 0; i < this.teamnamen.size(); i += 4) {
@@ -128,10 +140,14 @@ public class GroupScreen extends Pane {
 			matches.add(MatchFactory.build(steuerung, groups.get(i).getMannschaft(2), groups.get(i).getMannschaft(3)));
 		}
 
-		for (int i = 0; i < this.matches.size(); i++) {
+		/*for (int i = 0; i < this.matches.size(); i++) {
 			logger.info(this.matches.get(i).toString());
-		}
-
+		}*/
+		matches
+			.stream()
+			.forEach(match-> logger.info(match.toString()));
+		
+		
 		Font font = Font.font("Arial", FontWeight.BOLD, 16);
 		int colBot = 0;
 		for (int i = 0; i < this.groups.size(); i++) {
@@ -143,7 +159,7 @@ public class GroupScreen extends Pane {
 				this.grid.add(groupLabel, i, 1);
 				groupLabel.setFont(font);
 				groupLabel.setTextFill(Color.WHITE);
-				
+
 				GridPane.setMargin(groupLabel, new Insets(0, 0, 0, 20));
 				this.grid.add(this.groupPanes.get(i), i, 2);
 			} else {

@@ -6,22 +6,22 @@ import stages.GroupMatchStage;
 import stages.MatchStage;
 import stages.TreeMatchStage;
 
-public class GUIUpdateThread extends Thread {
+public class WaitForButtonThread extends Thread {
 
 	private IMatch match;
 	private MatchStage matchStage;
+	
 
-	public GUIUpdateThread(IMatch match, MatchStage matchStage) {
+	public WaitForButtonThread(IMatch match, MatchStage matchStage) {
 		this.match = match;
-		this.matchStage = matchStage;
+		this.matchStage = matchStage;	
 	}
 
 	@Override
 	public void run() {
-		while (match.getToreM1() == match.getToreM2()) {
-			System.out.print(""); // tue nichts (ohne diese Zeile funktioniert
-									// es nich?!)
-		}
+		
+		while (this.match.getToreM1() == this.match.getToreM2()) {} // don't do anything
+		
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {

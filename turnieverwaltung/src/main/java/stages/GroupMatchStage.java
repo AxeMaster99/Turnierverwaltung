@@ -77,7 +77,7 @@ public class GroupMatchStage extends MatchStage implements IMatchStage {
 		timeline.play();
 	}
 
-	public void beendeSpiel() {
+	public synchronized void beendeSpiel() {
 		this.close();
 		this.match.setSieger();
 		Platform.runLater(new Runnable() {

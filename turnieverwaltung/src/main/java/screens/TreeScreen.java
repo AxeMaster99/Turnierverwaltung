@@ -1,6 +1,7 @@
 package screens;
 
 import java.util.ArrayList;
+import java.util.Spliterator;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
@@ -41,6 +42,7 @@ public class TreeScreen extends Pane {
 	private GraphicsContext gc = canvas.getGraphicsContext2D();
 	private int anzahlTeams;
 	private Steuerung steuerung;
+	private int cnt = 0;
 
 	private ArrayList<IMatch> matches;
 
@@ -62,8 +64,7 @@ public class TreeScreen extends Pane {
 
 		this.zeichneSpielBaumLinks();
 		this.zeichneSpielBaumRechts();
-		this.zeichneLinienLinks();
-		this.zeichneLinienRechts();
+		this.zeichneLinien();
 		this.zeichneFinale();
 		this.zeichneLegende(anzahlTeams);
 
@@ -188,55 +189,112 @@ public class TreeScreen extends Pane {
 		this.getChildren().addAll(rectangleWhite, l1_orange, l2_green, l3_yellow, l4_white, l0_legende, l5_hide);
 	}
 
-	private void zeichneLinienLinks() {
-		for (int i = 0; i < this.matches.size() / 2; i++) {
-			if (this.matches.get(i) instanceof FolgeMatch && !(this.matches.get(i) instanceof FinalMatch)) {
+	private void zeichneLinien() {
+		gc.setFill(Color.GOLD);
+		gc.setStroke(Color.GOLD);
+		gc.setLineWidth(3);
 
-				MatchPane fm = this.matches.get(i).getMatchPane();
-				MatchPane m1 = ((FolgeMatch) this.matches.get(i)).getPrevMatch1().getMatchPane();
-				MatchPane m2 = ((FolgeMatch) this.matches.get(i)).getPrevMatch2().getMatchPane();
+		int anzahlMatchesZus = steuerung.getAnzahlMatchesZus();
 
-				double fmX = fm.getTranslateX();
-				double fmY = fm.getTranslateY() + fm.getMinHeight() / 2;
-				double m1X = m1.getTranslateX() + 110;
-				double m1Y = m1.getTranslateY() + fm.getMinHeight() / 2;
-				double m2X = m2.getTranslateX() + 110;
-				double m2Y = m2.getTranslateY() + fm.getMinHeight() / 2;
+		matches
+			.stream()
+			.filter(match -> (match instanceof FolgeMatch))
+			.filter(match -> !(match instanceof FinalMatch))
+			.limit(anzahlMatchesZus).forEach(match -> {
+				
+					MatchPane fm = match.getMatchPane();
+					MatchPane m1 = ((FolgeMatch) match).getPrevMatch1().getMatchPane();
+					MatchPane m2 = ((FolgeMatch) match).getPrevMatch2().getMatchPane();
 
-				gc.setFill(Color.GOLD);
-				gc.setStroke(Color.GOLD);
-				gc.setLineWidth(3);
-				gc.strokeLine(fmX, fmY, m1X, m1Y);
-				gc.strokeLine(fmX, fmY, m2X, m2Y);
-			}
-		}
+					double fmX;
+					double fmY;
+					double m1X;
+					double m1Y;
+					double m2X;
+					double m2Y;
+
+					if (cnt < anzahlMatchesZus / 2) {
+						fmX = fm.getTranslateX();
+						fmY = fm.getTranslateY() + fm.getMinHeight() / 2;
+						m1X = m1.getTranslateX() + 110;
+						m1Y = m1.getTranslateY() + fm.getMinHeight() / 2;
+						m2X = m2.getTranslateX() + 110;
+						m2Y = m2.getTranslateY() + fm.getMinHeight() / 2;
+					} else {
+						fmX = fm.getTranslateX() + 110;
+						fmY = fm.getTranslateY() + fm.getMinHeight() / 2;
+						m1X = m1.getTranslateX();
+						m1Y = m1.getTranslateY() + fm.getMinHeight() / 2;
+						m2X = m2.getTranslateX();
+						m2Y = m2.getTranslateY() + fm.getMinHeight() / 2;
+					}
+					gc.strokeLine(fmX, fmY, m1X, m1Y);
+					gc.strokeLine(fmX, fmY, m2X, m2Y);
+					cnt++;
+				});
+		cnt=0;
+
+		/*
+		 * for (int i = 0; i < this.matches.size() / 2; i++) { if
+		 * (this.matches.get(i) instanceof FolgeMatch && !(this.matches.get(i)
+		 * instanceof FinalMatch)) {
+		 * 
+		 * MatchPane fm = this.matches.get(i).getMatchPane(); MatchPane m1 =
+		 * ((FolgeMatch) this.matches.get(i)).getPrevMatch1().getMatchPane();
+		 * MatchPane m2 = ((FolgeMatch)
+		 * this.matches.get(i)).getPrevMatch2().getMatchPane();
+		 * 
+		 * double fmX = fm.getTranslateX(); double fmY = fm.getTranslateY() +
+		 * fm.getMinHeight() / 2; double m1X = m1.getTranslateX() + 110; double
+		 * m1Y = m1.getTranslateY() + fm.getMinHeight() / 2; double m2X =
+		 * m2.getTranslateX() + 110; double m2Y = m2.getTranslateY() +
+		 * fm.getMinHeight() / 2;
+		 * 
+		 * gc.setFill(Color.GOLD); gc.setStroke(Color.GOLD); gc.setLineWidth(3);
+		 * gc.strokeLine(fmX, fmY, m1X, m1Y); gc.strokeLine(fmX, fmY, m2X, m2Y);
+		 */
 	}
 
-	private void zeichneLinienRechts() {
-		for (int i = this.matches.size() / 2; i < this.matches.size(); i++) {
-			if (this.matches.get(i) instanceof FolgeMatch && !(this.matches.get(i) instanceof FinalMatch)) {
+	/*
+	 * private void zeichneLinienRechts() { gc.setFill(Color.GOLD);
+	 * gc.setStroke(Color.GOLD); gc.setLineWidth(3); matches .stream()
+	 * .skip(this.matches.size()/2) .filter(match -> (match instanceof
+	 * FolgeMatch)) .filter(match -> !(match instanceof FinalMatch))
+	 * .forEach(match -> { MatchPane fm = match.getMatchPane(); MatchPane m1 =
+	 * ((FolgeMatch) match).getPrevMatch1().getMatchPane(); MatchPane m2 =
+	 * ((FolgeMatch) match).getPrevMatch2().getMatchPane();
+	 * 
+	 * double fmX = fm.getTranslateX() + 110; double fmY = fm.getTranslateY() +
+	 * fm.getMinHeight() / 2;; double m1X = m1.getTranslateX(); double m1Y =
+	 * m1.getTranslateY() + fm.getMinHeight() / 2;; double m2X =
+	 * m2.getTranslateX(); double m2Y = m2.getTranslateY() + fm.getMinHeight() /
+	 * 2;;
+	 * 
+	 * gc.strokeLine(fmX, fmY, m1X, m1Y); gc.strokeLine(fmX, fmY, m2X, m2Y); });
+	 */
 
-				MatchPane fm = this.matches.get(i).getMatchPane();
-				MatchPane m1 = ((FolgeMatch) this.matches.get(i)).getPrevMatch1().getMatchPane();
-				MatchPane m2 = ((FolgeMatch) this.matches.get(i)).getPrevMatch2().getMatchPane();
-
-				double fmX = fm.getTranslateX() + 110;
-				double fmY = fm.getTranslateY() + fm.getMinHeight() / 2;;
-				double m1X = m1.getTranslateX();
-				double m1Y = m1.getTranslateY() + fm.getMinHeight() / 2;;
-				double m2X = m2.getTranslateX();
-				double m2Y = m2.getTranslateY() + fm.getMinHeight() / 2;;
-
-				// logger.info(fmBoundsX + " | "+fmBoundsY);
-
-				gc.setFill(Color.GOLD);
-				gc.setStroke(Color.GOLD);
-				gc.setLineWidth(3);
-				gc.strokeLine(fmX, fmY, m1X, m1Y);
-				gc.strokeLine(fmX, fmY, m2X, m2Y);
-			}
-		}
-	}
+	/*
+	 * for (int i = this.matches.size() / 2; i < this.matches.size(); i++) { if
+	 * (this.matches.get(i) instanceof FolgeMatch && !(this.matches.get(i)
+	 * instanceof FinalMatch)) {
+	 * 
+	 * MatchPane fm = this.matches.get(i).getMatchPane(); MatchPane m1 =
+	 * ((FolgeMatch) this.matches.get(i)).getPrevMatch1().getMatchPane();
+	 * MatchPane m2 = ((FolgeMatch)
+	 * this.matches.get(i)).getPrevMatch2().getMatchPane();
+	 * 
+	 * double fmX = fm.getTranslateX() + 110; double fmY = fm.getTranslateY() +
+	 * fm.getMinHeight() / 2;; double m1X = m1.getTranslateX(); double m1Y =
+	 * m1.getTranslateY() + fm.getMinHeight() / 2;; double m2X =
+	 * m2.getTranslateX(); double m2Y = m2.getTranslateY() + fm.getMinHeight() /
+	 * 2;;
+	 * 
+	 * // logger.info(fmBoundsX + " | "+fmBoundsY);
+	 * 
+	 * gc.setFill(Color.GOLD); gc.setStroke(Color.GOLD); gc.setLineWidth(3);
+	 * gc.strokeLine(fmX, fmY, m1X, m1Y); gc.strokeLine(fmX, fmY, m2X, m2Y); } }
+	 * }
+	 */
 
 	private void zeichneSpielBaumLinks() {
 		int offset = 0;
@@ -310,9 +368,11 @@ public class TreeScreen extends Pane {
 		double fmY = finaleMatchPane.getTranslateY() + finaleMatchPane.getMinHeight() / 2;
 
 		double m1X = this.matches.get(this.matches.size() / 2 - 1).getMatchPane().getTranslateX() + 110;
-		double m1Y = this.matches.get(this.matches.size() / 2 - 1).getMatchPane().getTranslateY() + finaleMatchPane.getMinHeight() / 2;
+		double m1Y = this.matches.get(this.matches.size() / 2 - 1).getMatchPane().getTranslateY()
+				+ finaleMatchPane.getMinHeight() / 2;
 		double m2X = this.matches.get(this.matches.size() - 2).getMatchPane().getTranslateX();
-		double m2Y = this.matches.get(this.matches.size() - 2).getMatchPane().getTranslateY() + finaleMatchPane.getMinHeight() / 2;
+		double m2Y = this.matches.get(this.matches.size() - 2).getMatchPane().getTranslateY()
+				+ finaleMatchPane.getMinHeight() / 2;
 
 		gc.setFill(Color.GOLD);
 		gc.setStroke(Color.GOLD);

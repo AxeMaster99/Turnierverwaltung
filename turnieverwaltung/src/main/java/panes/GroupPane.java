@@ -9,6 +9,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -25,6 +26,7 @@ public class GroupPane extends Pane {
 
 	private ArrayList<GroupMatchStage> gms = new ArrayList<GroupMatchStage>();
 	private ObservableList<IMatch> matches = FXCollections.observableArrayList();
+	
 	private TableView<IMatch> table = new TableView<IMatch>();
 
 	TableColumn<IMatch, Mannschaft> team1Col = new TableColumn<IMatch, Mannschaft>("Mannschaft 1");
@@ -40,25 +42,22 @@ public class GroupPane extends Pane {
 			this.matches.add(matches.get(start));
 			start++;
 		}
-
+		
 		team1Col.setCellValueFactory(new PropertyValueFactory<IMatch, Mannschaft>("mannschaft1"));
-
 		team2Col.setCellValueFactory(new PropertyValueFactory<IMatch, Mannschaft>("mannschaft2"));
-
 		tor1Col.setCellValueFactory(new PropertyValueFactory<IMatch, Integer>("toreM1"));
-
 		tor2Col.setCellValueFactory(new PropertyValueFactory<IMatch, Integer>("toreM2"));
 
 		table.setItems(this.matches);
 		table.getColumns().addAll(team1Col, tor1Col, tor2Col, team2Col);
-
+				
+		table.setEditable(true);
 		table.setMaxWidth(295);
 		table.setMaxHeight(250);
 
 		this.getChildren().add(table);
 
 		table.setOnMouseReleased((event) -> {
-
 			if (this.randomThusDisable == true) {
 				IMatch match = table.getSelectionModel().getSelectedItem();
 				Alert alert = new Alert(AlertType.INFORMATION);

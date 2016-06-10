@@ -10,7 +10,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert.AlertType;
 import javafx.util.Duration;
-import threads.GUIUpdateThread;
+import threads.WaitForButtonThread;
 
 public class TreeMatchStage extends MatchStage {
 
@@ -80,9 +80,9 @@ public class TreeMatchStage extends MatchStage {
 						switchState(Event.click);
 					}
 				});
-				new GUIUpdateThread(match, this).start();
+				new WaitForButtonThread(match, this).start();
 			} else {
-				new GUIUpdateThread(match, this).start();
+				new WaitForButtonThread(match, this).start();
 			}
 		});
 
@@ -90,7 +90,7 @@ public class TreeMatchStage extends MatchStage {
 		timeline.play();
 	}
 	
-	public void beendeSpiel() {
+	public synchronized void beendeSpiel() {
 		this.close();
 		this.match.setSieger();
 		Platform.runLater(new Runnable() {

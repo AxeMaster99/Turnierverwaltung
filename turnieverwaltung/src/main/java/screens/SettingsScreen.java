@@ -57,7 +57,7 @@ public class SettingsScreen extends Pane {
 
 		b_teams.setOnAction((event) -> {
 
-			if (c_types.getValue().equals("KO-Turnier") || c_teams.getValue().equals("Anzahl Teams") || c_duration.getValue().equals("Matchdauer")) {
+			if (c_types.getValue().equals("Turnierart") || c_teams.getValue().equals("Anzahl Teams") || c_duration.getValue().equals("Matchdauer")) {
 				Alert missingInput = new Alert(AlertType.INFORMATION);
 				missingInput.setTitle("Fehler");
 				missingInput.setHeaderText("Es fehlt mindestens eine Eingabe");
