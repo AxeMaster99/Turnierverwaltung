@@ -50,6 +50,8 @@ public class GroupScreen extends Pane {
 	private ObservableList<IMatch> matches = FXCollections.observableArrayList();
 	private ArrayList<GroupPane> groupPanes = new ArrayList<GroupPane>();
 
+	private Font font = Font.font("Arial", FontWeight.BOLD, 16);
+
 	private static final Logger logger = (Logger) LogManager.getLogger("GroupScreen");
 
 	public GroupScreen(Steuerung steuerung, ObservableList<String> teamnamen) {
@@ -57,6 +59,8 @@ public class GroupScreen extends Pane {
 		this.setStyle("-fx-background-color:black;");
 
 		// ImageView bgImageView = this.setImage();
+
+		this.zeichneLegende(teamnamen.size());
 
 		Image bgImage = new Image("images/boden_wiese.jpg");
 		ImageView bgImageView = new ImageView();
@@ -94,17 +98,15 @@ public class GroupScreen extends Pane {
 				}
 			}
 
-			/*	for (int i = 0; i < groupPanes.size(); i++) {
-				groupPanes.get(i).getTable().refresh();
-				groupPanes.get(i).setDisable();
-			}*/
+			/*
+			 * for (int i = 0; i < groupPanes.size(); i++) {
+			 * groupPanes.get(i).getTable().refresh();
+			 * groupPanes.get(i).setDisable(); }
+			 */
 
-			groupPanes
-				.stream()
-				.parallel()
-				.forEach(pane -> {
-					pane.getTable().refresh();
-					pane.setDisable();
+			groupPanes.stream().parallel().forEach(pane -> {
+				pane.getTable().refresh();
+				pane.setDisable();
 			});
 
 		});
@@ -113,18 +115,17 @@ public class GroupScreen extends Pane {
 		menubar.prefWidthProperty().bind(this.widthProperty());
 
 		grid.add(menubar, 0, 0, 5, 1);
-		GridPane.setMargin(menubar, new Insets(0, 0, 30, 0));
+		GridPane.setMargin(menubar, new Insets(0, 0, 20, 0));
 
 		this.teamnamen = teamnamen;
-//		Collections.shuffle(this.teamnamen);
+		// Collections.shuffle(this.teamnamen);
 
-		/*for (int i = 0; i < this.teamnamen.size(); i++) {
-			teams.add(new Mannschaft(this.teamnamen.get(i)));
-		}*/
-		teamnamen
-			.stream()
-			.forEach(team->teams.add(new Mannschaft(team)));
-		
+		/*
+		 * for (int i = 0; i < this.teamnamen.size(); i++) { teams.add(new
+		 * Mannschaft(this.teamnamen.get(i))); }
+		 */
+		teamnamen.stream().forEach(team -> teams.add(new Mannschaft(team)));
+
 		steuerung.getgRangStage().initializeTable(teams);
 
 		for (int i = 0; i < this.teamnamen.size(); i += 4) {
@@ -140,19 +141,16 @@ public class GroupScreen extends Pane {
 			matches.add(MatchFactory.build(steuerung, groups.get(i).getMannschaft(2), groups.get(i).getMannschaft(3)));
 		}
 
-		/*for (int i = 0; i < this.matches.size(); i++) {
-			logger.info(this.matches.get(i).toString());
-		}*/
-		matches
-			.stream()
-			.forEach(match-> logger.info(match.toString()));
-		
-		
-		Font font = Font.font("Arial", FontWeight.BOLD, 16);
+		/*
+		 * for (int i = 0; i < this.matches.size(); i++) {
+		 * logger.info(this.matches.get(i).toString()); }
+		 */
+		matches.stream().forEach(match -> logger.info(match.toString()));
+
 		int colBot = 0;
 		for (int i = 0; i < this.groups.size(); i++) {
 			GroupPane pane = new GroupPane(steuerung, this.matches, i, teams);
-			GridPane.setMargin(pane, new Insets(5, 0, 10, 20));
+			GridPane.setMargin(pane, new Insets(5, 0, 10, 15));
 			this.groupPanes.add(pane);
 			if (i < 4) {
 				Label groupLabel = new Label("Gruppe " + this.getCharForNumber(i));
@@ -160,7 +158,7 @@ public class GroupScreen extends Pane {
 				groupLabel.setFont(font);
 				groupLabel.setTextFill(Color.WHITE);
 
-				GridPane.setMargin(groupLabel, new Insets(0, 0, 0, 20));
+				GridPane.setMargin(groupLabel, new Insets(0, 0, 0, 15));
 				this.grid.add(this.groupPanes.get(i), i, 2);
 			} else {
 				Label groupLabel = new Label("Gruppe " + this.getCharForNumber(i));
@@ -168,7 +166,7 @@ public class GroupScreen extends Pane {
 				groupLabel.setFont(font);
 				groupLabel.setTextFill(Color.WHITE);
 
-				GridPane.setMargin(groupLabel, new Insets(0, 0, 0, 20));
+				GridPane.setMargin(groupLabel, new Insets(0, 0, 0, 15));
 				this.grid.add(this.groupPanes.get(i), colBot, 4);
 				colBot++;
 			}
@@ -176,6 +174,7 @@ public class GroupScreen extends Pane {
 
 		Button weiterBtn = new Button("weiter");
 		weiterBtn.setMinWidth(80);
+
 		int pos;
 		if (groups.size() == 4) {
 			pos = 3;
@@ -184,6 +183,7 @@ public class GroupScreen extends Pane {
 		}
 		grid.add(weiterBtn, (pos > 0 ? pos : ++pos), 5);
 		GridPane.setHalignment(weiterBtn, HPos.RIGHT);
+		GridPane.setMargin(weiterBtn, new Insets(0,0,5,0));
 		// grid.setGridLinesVisible(true);
 		this.getChildren().add(grid);
 
@@ -224,6 +224,27 @@ public class GroupScreen extends Pane {
 				}
 			}
 		});
+	}
+
+	private void zeichneLegende(int numberOfTeams) {
+		Label l_Legende = new Label("Legende: 'NYO' = noch nicht geöffnet, "
+				+ "'O' = offen, "
+				+ "'R' = laufend, "
+				+ "'S' = gestoppt, "
+				+ "'H' = versteckt (laufend), "
+				+ "'C' = geschlossen/unterbrochen, "
+				+ "'F' = beendet");
+		
+		l_Legende.setFont(font);
+		l_Legende.setTextFill(Color.WHITE);
+		GridPane.setMargin(l_Legende, new Insets(0, 0, 0, 15));
+		
+		if(numberOfTeams>10){
+		grid.add(l_Legende, 0, 5,4,1);
+		}
+		else {
+			grid.add(l_Legende, 0, 6,4,1);
+		}
 	}
 
 	private String getCharForNumber(int i) {

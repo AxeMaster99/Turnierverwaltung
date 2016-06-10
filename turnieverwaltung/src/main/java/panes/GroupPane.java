@@ -55,7 +55,7 @@ public class GroupPane extends Pane {
 		table.getColumns().addAll(team1Col, tor1Col, tor2Col, team2Col,stateCol);
 				
 		table.setEditable(true);
-		table.setMaxWidth(295);
+		table.setMaxWidth(300);
 		table.setMaxHeight(250);
 
 		this.getChildren().add(table);
