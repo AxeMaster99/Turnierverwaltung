@@ -77,7 +77,7 @@ public class GroupMatchStage extends MatchStage implements IMatchStage {
 		timeline.play();
 	}
 
-	public synchronized void beendeSpiel() {
+	public void beendeSpiel() {
 		this.close();
 		this.match.setSieger();
 		Platform.runLater(new Runnable() {
@@ -102,6 +102,8 @@ public class GroupMatchStage extends MatchStage implements IMatchStage {
 			if (e == Event.click) {
 				this.show();
 				this.currentState = Status.opened;
+				this.match.setState("O");
+				this.groupPane.getTable().refresh();
 			}
 			break;
 		case finished:
@@ -117,6 +119,14 @@ public class GroupMatchStage extends MatchStage implements IMatchStage {
 			if (e == Event.click) {
 				this.show();
 				this.currentState = Status.opened;
+				this.match.setState("O");
+				this.groupPane.getTable().refresh();
+			}
+			else if (e==Event.timer_finished){
+				this.beendeSpiel();
+				this.currentState=Status.finished;
+				this.match.setState("F");
+				this.groupPane.getTable().refresh();
 			}
 			break;
 		case opened:
@@ -126,10 +136,16 @@ public class GroupMatchStage extends MatchStage implements IMatchStage {
 				b_TorMannschaft1.setDisable(false);
 				b_TorMannschaft2.setDisable(false);
 				this.currentState = Status.started;
+				this.match.setState("R");
+				this.groupPane.getTable().refresh();
 			} else if (e == Event.hide) {
 				this.hide();
+				this.match.setState("H");
+				this.groupPane.getTable().refresh();
 				this.currentState = Status.hidden;
 			} else if (e == Event.close) {
+				this.match.setState("C");
+				this.groupPane.getTable().refresh();
 				this.currentState = Status.closed;
 				this.close();
 			}
@@ -140,15 +156,26 @@ public class GroupMatchStage extends MatchStage implements IMatchStage {
 				b_Start_Stopp.setText("Start");
 				b_TorMannschaft1.setDisable(true);
 				b_TorMannschaft2.setDisable(true);
+				this.match.setState("S");
+				this.groupPane.getTable().refresh();
 				this.currentState = Status.stopped;
 			} else if (e == Event.timer_finished) {
 				this.beendeSpiel();
 				this.close();
+				this.match.setState("F");
+				this.groupPane.getTable().refresh();
 				this.currentState = Status.finished;
 			} else if (e == Event.hide) {
 				this.hide();
+				this.match.setState("H");
+				this.groupPane.getTable().refresh();
 				this.currentState = Status.hidden;
 			} else if (e == Event.close) {
+				b_Start_Stopp.setText("Start");
+				b_TorMannschaft1.setDisable(true);
+				b_TorMannschaft2.setDisable(true);
+				this.match.setState("C");
+				this.groupPane.getTable().refresh();
 				this.currentState = Status.closed;
 				this.close();
 			}
@@ -159,11 +186,17 @@ public class GroupMatchStage extends MatchStage implements IMatchStage {
 				b_Start_Stopp.setText("Stop");
 				b_TorMannschaft1.setDisable(false);
 				b_TorMannschaft2.setDisable(false);
+				this.match.setState("R");
+				this.groupPane.getTable().refresh();
 				this.currentState = Status.started;
 			} else if (e == Event.hide) {
 				this.hide();
+				this.match.setState("H");
+				this.groupPane.getTable().refresh();
 				this.currentState = Status.hidden;
 			} else if (e == Event.close) {
+				this.match.setState("C");
+				this.groupPane.getTable().refresh();
 				this.currentState = Status.closed;
 				this.close();
 			}

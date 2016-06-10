@@ -33,6 +33,8 @@ public class GroupPane extends Pane {
 	TableColumn<IMatch, Mannschaft> team2Col = new TableColumn<IMatch, Mannschaft>("Mannschaft 2");
 	TableColumn<IMatch, Integer> tor1Col = new TableColumn<IMatch, Integer>("T1");
 	TableColumn<IMatch, Integer> tor2Col = new TableColumn<IMatch, Integer>("T2");
+	TableColumn<IMatch, String> stateCol = new TableColumn<IMatch, String>("State");
+
 
 	@SuppressWarnings("unchecked")
 	public GroupPane(Steuerung steuerung, ObservableList<IMatch> matches, int i, ArrayList<Mannschaft> teams) {
@@ -47,9 +49,10 @@ public class GroupPane extends Pane {
 		team2Col.setCellValueFactory(new PropertyValueFactory<IMatch, Mannschaft>("mannschaft2"));
 		tor1Col.setCellValueFactory(new PropertyValueFactory<IMatch, Integer>("toreM1"));
 		tor2Col.setCellValueFactory(new PropertyValueFactory<IMatch, Integer>("toreM2"));
-
+		stateCol.setCellValueFactory(new PropertyValueFactory<IMatch, String>("state"));
+		
 		table.setItems(this.matches);
-		table.getColumns().addAll(team1Col, tor1Col, tor2Col, team2Col);
+		table.getColumns().addAll(team1Col, tor1Col, tor2Col, team2Col,stateCol);
 				
 		table.setEditable(true);
 		table.setMaxWidth(295);

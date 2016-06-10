@@ -116,7 +116,7 @@ public class GroupScreen extends Pane {
 		GridPane.setMargin(menubar, new Insets(0, 0, 30, 0));
 
 		this.teamnamen = teamnamen;
-		Collections.shuffle(this.teamnamen);
+//		Collections.shuffle(this.teamnamen);
 
 		/*for (int i = 0; i < this.teamnamen.size(); i++) {
 			teams.add(new Mannschaft(this.teamnamen.get(i)));

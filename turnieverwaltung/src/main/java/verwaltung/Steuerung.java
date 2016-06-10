@@ -41,7 +41,7 @@ public class Steuerung {
 	private void erstelleMatches(ObservableList<String> teams) throws Exception {
 		this.teams = teams;
 
-		Collections.shuffle(teams); // beste ZEILE
+//		Collections.shuffle(teams); // beste ZEILE
 
 		this.berechneSpaltenUndMatches(this.teams.size());
 		this.erstelleSeite(anzahlMatchesZus, 0, this.teams.size() / 2);

@@ -42,4 +42,8 @@ public interface IMatch {
 	public Steuerung getSteuerung();
 
 	public boolean getUnentschieden();
+	
+	public void setState(String state);
+	
+	public String getState();
 }

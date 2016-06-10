@@ -11,6 +11,9 @@ public class Match implements IMatch {
 	
 	private static int indexCounter = 1;
 	protected int index;
+	
+	private volatile String state="NYO";
+	
 	protected Mannschaft mannschaft1 = new Mannschaft("...");;
 	protected Mannschaft mannschaft2 = new Mannschaft("...");;
 	private MatchPane matchPane;
@@ -166,6 +169,14 @@ public class Match implements IMatch {
 	
 	public boolean getUnentschieden(){
 		return this.unentschieden;
+	}
+	
+	public void setState(String state){
+		this.state = state;
+	}
+	
+	public String getState(){
+		return this.state;
 	}
 
 }
