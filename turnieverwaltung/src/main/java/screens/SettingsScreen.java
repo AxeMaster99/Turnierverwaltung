@@ -66,7 +66,9 @@ public class SettingsScreen extends Pane {
 			}
 
 			else {
-				steuerung.setTurnierType(c_types.getValue());
+				
+				
+				
 				String teamsCut = c_teams.getValue().substring(0, 2);
 				if (teamsCut.charAt(1) == ' ') {
 					teamsCut = teamsCut.substring(0, 1);

@@ -38,6 +38,10 @@ public class Steuerung {
 		this.main = main;
 	}
 
+	public Steuerung() {
+//for testing
+		}
+
 	private void erstelleMatches(ObservableList<String> teams) throws Exception {
 		this.teams = teams;
 
@@ -187,7 +191,12 @@ public class Steuerung {
 	}
 
 	public void updateSpielBaum() {
-		this.spielBaum.updateSpielBaum();
+		try {
+			this.spielBaum.updateSpielBaum();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public TreeRangStage getTRangStage() {
@@ -196,10 +205,6 @@ public class Steuerung {
 	
 	public GroupRangStage getgRangStage(){
 		return this.gRangliste;
-	}
-
-	public void setTurnierType(String turnierType) {
-		this.turnierType = turnierType;
 	}
 
 	public String getTurnierType() {

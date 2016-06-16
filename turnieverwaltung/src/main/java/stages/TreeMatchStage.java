@@ -11,6 +11,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert.AlertType;
 import javafx.util.Duration;
 import threads.WaitForButtonThread;
+import verwaltung.Steuerung;
 
 public class TreeMatchStage extends MatchStage {
 
@@ -19,9 +20,11 @@ public class TreeMatchStage extends MatchStage {
 	}
 
 	private Status currentState = Status.clickable_white;
-
-	public TreeMatchStage(IMatch match) {
+	private Steuerung steuerung; 
+	
+	public TreeMatchStage(Steuerung steuerung, IMatch match) {
 		super(match);
+		this.steuerung = steuerung;
 
 		this.setOnCloseRequest((WindowEvent) -> {
 
@@ -99,14 +102,24 @@ public class TreeMatchStage extends MatchStage {
 			public void run() {
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("Information");
-				alert.setHeaderText("Spiel Nr." + match.getIndex() + " ist beendet.\n(" + match.getSieger() + " vs "
-						+ match.getVerlierer() + ")");
-				alert.setContentText("Das Spiel wurde Beendet. Gewonnen hat: " + match.getSieger());
+				try {
+					alert.setHeaderText("Spiel Nr." + match.getIndex() + " ist beendet.\n(" + match.getSieger() + " vs "
+							+ match.getVerlierer() + ")");
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				try {
+					alert.setContentText("Das Spiel wurde Beendet. Gewonnen hat: " + match.getSieger());
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				alert.showAndWait();
 			}
 		});
-		this.match.getSteuerung().updateSpielBaum();
-		this.match.getSteuerung().getTRangStage().updateTable();
+		this.steuerung.updateSpielBaum();
+		this.steuerung.getTRangStage().updateTable();
 		this.match.getMatchPane().setDisable(false);
 	}
 

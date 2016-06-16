@@ -216,7 +216,10 @@ public class GroupScreen extends Pane {
 				}
 
 				try {
-					steuerung.setTurnierType("KO-Turnier");
+					for(int i = 0; i < matches.size(); i++) {
+						this.matches.get(i).setTurnierType("KO-Turnier");
+					}
+					
 					steuerung.setTreeScreen("spielBaum", alleSieger);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block

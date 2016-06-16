@@ -382,7 +382,7 @@ public class TreeScreen extends Pane {
 		gc.strokeLine(fmX, fmY, m2X, m2Y);
 	}
 
-	public void updateSpielBaum() {
+	public void updateSpielBaum() throws Exception {
 
 		logger.info("update spielbaum");
 

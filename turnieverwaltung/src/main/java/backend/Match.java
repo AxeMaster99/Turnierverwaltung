@@ -24,13 +24,13 @@ public class Match implements IMatch {
 	private Steuerung steuerung;
 	private Boolean unentschieden = false;
 	private static final Logger logger = (Logger) LogManager.getLogger("Match");
-	
+	private String turnierType = "Gruppenturnier";
 	
 	public Match(Steuerung steuerung) {
 		this.steuerung = steuerung;
 		this.index = indexCounter;
 		indexCounter++;
-		this.matchPane = new MatchPane(this);
+		this.matchPane = new MatchPane(this.steuerung, this);
 	}
 
 	public Match(Steuerung steuerung, Mannschaft m1, Mannschaft m2) {
@@ -39,15 +39,20 @@ public class Match implements IMatch {
 		indexCounter++;
 		this.mannschaft1 = m1;
 		this.mannschaft2 = m2;
-		this.matchPane = new MatchPane(this);
+		this.matchPane = new MatchPane(this.steuerung, this);
 	}
 
-	public Match(IMatch m1, IMatch m2) {
+	public Match(Steuerung steuer, IMatch m1, IMatch m2) {
 		this.index = indexCounter;
 		indexCounter++;
 		this.mannschaft1 = new Mannschaft("...");
 		this.mannschaft2 = new Mannschaft("...");
-		this.matchPane = new MatchPane(this);
+		this.matchPane = new MatchPane(this.steuerung, this);
+	}
+
+	public Match(Mannschaft m1, Mannschaft m2) {
+		this.mannschaft1 = m1;
+		this.mannschaft2 = m2;
 	}
 
 	public void setMannschaft1(Mannschaft m1) {
@@ -77,8 +82,12 @@ public class Match implements IMatch {
 		return ret;
 	}
 
+	public void setTurnierType(String tt) {
+		this.turnierType = tt;
+	}
+	
 	public void setSieger() {
-		if (this.steuerung.getTurnierType().equals("KO-Turnier")) {
+		if (this.turnierType.equals("KO-Turnier")) {
 			if (toreM1 > toreM2) {
 				this.sieger = mannschaft1;
 				this.verlierer = mannschaft2;
@@ -119,7 +128,10 @@ public class Match implements IMatch {
 		}
 	}
 
-	public Mannschaft getSieger() {
+	public Mannschaft getSieger() throws Exception {
+		if(this.sieger == null) {
+			throw new Exception("Sieger steht noch nicht fest");
+		}
 		return this.sieger;
 	}
 
@@ -163,10 +175,6 @@ public class Match implements IMatch {
 		}
 	}
 
-	public Steuerung getSteuerung() {
-		return this.steuerung;
-	}
-	
 	public boolean getUnentschieden(){
 		return this.unentschieden;
 	}

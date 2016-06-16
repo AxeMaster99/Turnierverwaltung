@@ -25,7 +25,7 @@ public interface IMatch {
 	
 	public void setSieger();
 	
-	public Mannschaft getSieger();
+	public Mannschaft getSieger() throws Exception;
 	
 	public Mannschaft getVerlierer();
 	
@@ -39,11 +39,11 @@ public interface IMatch {
 	
 	public void setMannschaft2(Mannschaft m2);
 
-	public Steuerung getSteuerung();
-
 	public boolean getUnentschieden();
 	
 	public void setState(String state);
 	
 	public String getState();
+	
+	public void setTurnierType(String turnierType);
 }

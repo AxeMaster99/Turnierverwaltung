@@ -2,6 +2,9 @@ package org.miprojekt.turnieverwaltung;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+
+import com.sun.javafx.application.PlatformImpl;
 
 import backend.Group;
 import backend.Mannschaft;
@@ -14,27 +17,18 @@ import javafx.stage.Stage;
 import verwaltung.Main;
 import verwaltung.Steuerung;
 
-/**
- * Unit test for simple App.
- */
+
 public class AppTest extends Application {
-    /**
-     * Dummy test method
-     */
+
+	
     @Test
     public void testApp() {
         Assert.assertTrue( true );
     }
     
-    
-    @Test
+   	@Test
     public void testeGruppenSieger() {
-
-    	Main main = new Main();
-    	main.launch(null);
-    	
-    	Steuerung s = main.getSteuerung();
-    	
+   		
     	Mannschaft m1 = new Mannschaft("Mannschaft 1");
     	Mannschaft m2 = new Mannschaft("Mannschaft 2");
     	Mannschaft m3 = new Mannschaft("Mannschaft 3");
@@ -44,12 +38,12 @@ public class AppTest extends Application {
     	
     	IMatch matches[] = new Match[6];
     	
-    	matches[0] = MatchFactory.build(s, m1, m2);
-    	matches[1] = MatchFactory.build(s, m2, m3);
-    	matches[2] = MatchFactory.build(s, m3, m4);
-    	matches[3] = MatchFactory.build(s, m1, m3);
-    	matches[4] = MatchFactory.build(s, m2, m4);
-    	matches[5] = MatchFactory.build(s, m1, m4);
+    	matches[0] = MatchFactory.build(m1, m2);
+    	matches[1] = MatchFactory.build(m2, m3);
+    	matches[2] = MatchFactory.build(m3, m4);
+    	matches[3] = MatchFactory.build(m1, m3);
+    	matches[4] = MatchFactory.build(m2, m4);
+    	matches[5] = MatchFactory.build(m1, m4);
 
     	matches[0].setToreM1(2);
        	matches[0].setToreM2(2);
@@ -76,16 +70,20 @@ public class AppTest extends Application {
     	matches[4].setSieger();
     	matches[5].setSieger();
 
-    	Assert.assertEquals(m3, gruppe.getGruppenSieger().get(0));
+    	Assert.assertEquals(m3.getName(), gruppe.getGruppenSieger().get(0));
     	
+   		Platform.setImplicitExit(true);
     	Platform.exit();
+   		PlatformImpl.exit();
     }
-
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+		// TODO Auto-generated method stub
 		
 	}
+
+
     
     
 }

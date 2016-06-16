@@ -88,9 +88,14 @@ public class GroupMatchStage extends MatchStage implements IMatchStage {
 				alert.setTitle("Information");
 				alert.setHeaderText("Spiel Nr." + match.getIndex() + " ist beendet.\n(" + match.getMannschaft1()
 						+ " vs " + match.getMannschaft2() + ")");
-				alert.setContentText("Das Spiel wurde Beendet. "
-						+ (match.getUnentschieden() ? "Es endete Unentschieden, die Punkte werden verteilt."
-								: ("Gewonnen hat: ") + match.getSieger()));
+				try {
+					alert.setContentText("Das Spiel wurde Beendet. "
+							+ (match.getUnentschieden() ? "Es endete Unentschieden, die Punkte werden verteilt."
+									: ("Gewonnen hat: ") + match.getSieger()));
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				alert.showAndWait();
 			}
 		});

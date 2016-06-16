@@ -34,10 +34,12 @@ public class MatchPane extends Pane {
 	private final double minHeight=60;
 	
 	private IMatchStage treeMatchStage;
+	private Steuerung steuerung;
 
 	private static final Logger logger = (Logger) LogManager.getLogger("MatchPane");
 	
-	public MatchPane(IMatch match) {
+	public MatchPane(Steuerung steuerung, IMatch match) {
+		this.steuerung = steuerung;
 		this.match = match;
 		this.setMinHeight(minHeight);
 		
@@ -93,7 +95,7 @@ public class MatchPane extends Pane {
 				alert.showAndWait();
 			} else {
 				if (this.treeMatchStage == null) {
-					this.treeMatchStage = new TreeMatchStage(this.match);
+					this.treeMatchStage = new TreeMatchStage(this.steuerung, this.match);
 				}
 				this.treeMatchStage.show();
 				logger.info(

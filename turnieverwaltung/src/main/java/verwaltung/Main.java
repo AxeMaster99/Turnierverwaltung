@@ -2,10 +2,13 @@ package verwaltung;
 
 import java.util.HashMap;
 
+import com.sun.javafx.application.PlatformImpl;
+
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 
 
@@ -53,6 +56,17 @@ public class Main extends Application {
 	
 	public Steuerung getSteuerung() {
 		return this.steuerung;
+	}
+	
+	public void close() {
+		this.close();
+		Platform.setImplicitExit(false);
+		stage.close();
+		
+        Platform.exit();
+        System.exit(0);
+   		PlatformImpl.exit();
+
 	}
 
 

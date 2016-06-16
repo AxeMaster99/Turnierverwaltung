@@ -20,5 +20,9 @@ public abstract class MatchFactory {
 	public static IMatch build(Steuerung steuerung, Mannschaft mannschaft, Mannschaft mannschaft2) {
 		return new Match(steuerung, mannschaft, mannschaft2);
 	}
+
+	public static IMatch build(Mannschaft m1, Mannschaft m2) {
+		return new Match(m1, m2);
+	}
 	
 }
