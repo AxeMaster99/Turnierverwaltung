@@ -28,7 +28,7 @@ public class GroupMatchStage extends MatchStage implements IMatchStage {
 
 		this.setOnCloseRequest((WindowEvent) -> {
 
-			if (this.currentState == Status.opened) {
+			if (this.currentState == Status.opened || this.currentState==Status.stopped) {
 				this.switchState(Event.close);
 			} else {
 				this.stoppeSpiel();

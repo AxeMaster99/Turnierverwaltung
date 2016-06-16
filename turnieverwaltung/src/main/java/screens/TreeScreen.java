@@ -200,7 +200,8 @@ public class TreeScreen extends Pane {
 			.stream()
 			.filter(match -> (match instanceof FolgeMatch))
 			.filter(match -> !(match instanceof FinalMatch))
-			.limit(anzahlMatchesZus).forEach(match -> {
+			.limit(anzahlMatchesZus)
+			.forEach(match -> {
 				
 					MatchPane fm = match.getMatchPane();
 					MatchPane m1 = ((FolgeMatch) match).getPrevMatch1().getMatchPane();
