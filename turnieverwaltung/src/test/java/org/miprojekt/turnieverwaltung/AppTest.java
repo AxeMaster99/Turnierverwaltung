@@ -10,6 +10,7 @@ import backend.Group;
 import backend.Mannschaft;
 import backend.Match;
 import backend.MatchFactory;
+import exception.GameUnentschiedenException;
 import interfaces.IMatch;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -18,7 +19,7 @@ import verwaltung.Main;
 import verwaltung.Steuerung;
 
 
-public class AppTest extends Application {
+public class AppTest {
 
 	
     @Test
@@ -63,12 +64,17 @@ public class AppTest extends Application {
     	matches[5].setToreM1(0);
     	matches[5].setToreM2(2);
 
+    	try {
     	matches[0].setSieger();
     	matches[1].setSieger();
     	matches[2].setSieger();
     	matches[3].setSieger();
     	matches[4].setSieger();
     	matches[5].setSieger();
+    	} catch(Exception e) {
+    		System.out.println(e.getMessage());
+    		System.out.println(e.getStackTrace());
+    	}
 
     	Assert.assertEquals(m3.getName(), gruppe.getGruppenSieger().get(0));
     	
@@ -115,12 +121,17 @@ public class AppTest extends Application {
     	matches[5].setToreM1(3);
     	matches[5].setToreM2(0);
 
+    	try {
     	matches[0].setSieger();
     	matches[1].setSieger();
     	matches[2].setSieger();
     	matches[3].setSieger();
     	matches[4].setSieger();
     	matches[5].setSieger();
+    	} catch(Exception e) {
+    		System.out.println(e.getMessage());
+    		System.out.println(e.getStackTrace());
+    	}
   	
     	Assert.assertEquals(m2.getName(), gruppe.getGruppenSieger().get(0));
     	Assert.assertEquals(m3.getName(), gruppe.getGruppenSieger().get(1));
@@ -171,8 +182,9 @@ public class AppTest extends Application {
     	matches[0].setSieger();
     	Assert.assertTrue(matches[0].getUnentschieden());
    	}
- 	@Test
-    public void testeMatchUnentschiedenKO() throws Exception {
+   	
+ 	@Test(expected=GameUnentschiedenException.class)
+    public void testeMatchUnentschiedenKO() throws GameUnentschiedenException {
    		Mannschaft m1 = new Mannschaft("Mannschaft 1");
     	Mannschaft m2 = new Mannschaft("Mannschaft 2");
     	IMatch matches[] = new Match[1];
@@ -183,12 +195,11 @@ public class AppTest extends Application {
     	matches[0].setToreM2(1);
        	
     	matches[0].setSieger();
-    	Assert.assertFalse(matches[0].getUnentschieden());
-    	Assert.assertTrue(matches[0].isGameFinished());
+
    	}
  	
  	@Test
-    public void incrementTore() throws Exception {
+    public void incrementTore() {
    		Mannschaft m1 = new Mannschaft("Mannschaft 1");
     	Mannschaft m2 = new Mannschaft("Mannschaft 2");
     	IMatch matches[] = new Match[1];
@@ -225,13 +236,6 @@ public class AppTest extends Application {
     	Assert.assertEquals(matches[0].getSieger(), m1);
     	Assert.assertEquals(matches[0].getVerlierer(), m2);
    	}
- 	
-	@Override
-	public void start(Stage primaryStage) throws Exception {
-		// TODO Auto-generated method stub
-		
-	}
-
 
     
     

@@ -3,6 +3,7 @@ package backend;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
 
+import exception.GameUnentschiedenException;
 import interfaces.IMatch;
 import panes.MatchPane;
 import verwaltung.Steuerung;
@@ -86,9 +87,12 @@ public class Match implements IMatch {
 		this.turnierType = tt;
 	}
 	
-	public void setSieger() {
+	public void setSieger() throws GameUnentschiedenException {
 		if (this.turnierType.equals("KO-Turnier")) {
-			if (toreM1 > toreM2) {
+			if(toreM1 == toreM2) {
+				throw new GameUnentschiedenException();
+			}
+			else if (toreM1 > toreM2) {
 				this.sieger = mannschaft1;
 				this.verlierer = mannschaft2;
 				this.sieger.aendereTordifferenz(toreM1 - toreM2);

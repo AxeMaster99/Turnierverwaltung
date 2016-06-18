@@ -2,6 +2,10 @@ package stages;
 
 import java.util.Optional;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.core.Logger;
+
+import exception.GameUnentschiedenException;
 import interfaces.IMatch;
 import interfaces.IMatchStage;
 import javafx.animation.KeyFrame;
@@ -15,6 +19,8 @@ import panes.GroupPane;
 
 public class GroupMatchStage extends MatchStage implements IMatchStage {
 
+	private static final Logger logger = (Logger) LogManager.getLogger("MatchStage");
+	
 	public enum Status {
 		closed, opened, hidden, started, stopped, finished
 	}
@@ -79,7 +85,11 @@ public class GroupMatchStage extends MatchStage implements IMatchStage {
 
 	public void beendeSpiel() {
 		this.close();
-		this.match.setSieger();
+		try {
+			this.match.setSieger();
+		} catch(GameUnentschiedenException e) {
+			logger.error(e.getMessage());
+		}
 		Platform.runLater(new Runnable() {
 
 			@Override

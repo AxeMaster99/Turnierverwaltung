@@ -2,6 +2,10 @@ package stages;
 
 import java.util.Optional;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.core.Logger;
+
+import exception.GameUnentschiedenException;
 import interfaces.IMatch;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -15,6 +19,8 @@ import verwaltung.Steuerung;
 
 public class TreeMatchStage extends MatchStage {
 
+	private static final Logger logger = (Logger) LogManager.getLogger("TreeMatchStage");
+	
 	public enum Status {
 		clickable_white, unclickable_white, clickable_yellow, unclickable_yellow, clickable_orange, unclickable_orange, finished_green, hovered
 	}
@@ -95,7 +101,11 @@ public class TreeMatchStage extends MatchStage {
 	
 	public synchronized void beendeSpiel() {
 		this.close();
-		this.match.setSieger();
+		try {
+			this.match.setSieger();
+		} catch(GameUnentschiedenException e) {
+			logger.error(e.getMessage());
+		}
 		Platform.runLater(new Runnable() {
 
 			@Override

@@ -11,6 +11,7 @@ import org.apache.logging.log4j.core.Logger;
 import backend.Group;
 import backend.Mannschaft;
 import backend.MatchFactory;
+import exception.GameUnentschiedenException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.HPos;
@@ -94,7 +95,12 @@ public class GroupScreen extends Pane {
 				if (matches.get(i).isGameFinished() == false) {
 					matches.get(i).setToreM1(ergM1);
 					matches.get(i).setToreM2(ergM2);
-					matches.get(i).setSieger();
+					matches.get(i).setState("F");
+					try {
+						matches.get(i).setSieger();
+					} catch(GameUnentschiedenException e) {
+						logger.error(e.getMessage());
+					}
 				}
 			}
 

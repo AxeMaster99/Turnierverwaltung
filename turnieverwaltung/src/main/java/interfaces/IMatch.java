@@ -1,6 +1,7 @@
 package interfaces;
 
 import backend.Mannschaft;
+import exception.GameUnentschiedenException;
 import panes.MatchPane;
 import stages.MatchStage;
 import verwaltung.Steuerung;
@@ -23,7 +24,7 @@ public interface IMatch {
 
 	public int getIndex();
 	
-	public void setSieger();
+	public void setSieger() throws GameUnentschiedenException;
 	
 	public Mannschaft getSieger() throws Exception;
 	
