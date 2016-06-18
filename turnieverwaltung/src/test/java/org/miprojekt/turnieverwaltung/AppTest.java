@@ -77,6 +77,79 @@ public class AppTest extends Application {
    		PlatformImpl.exit();
     }
 
+//	Tests fuer Match (Sieger, Verlierer)
+   	@Test
+    public void testeMatchSiegerM1() throws Exception {
+   		Mannschaft m1 = new Mannschaft("Mannschaft 1");
+    	Mannschaft m2 = new Mannschaft("Mannschaft 2");
+    	IMatch matches[] = new Match[1];
+    	matches[0] = MatchFactory.build(m1, m2);
+    	
+    	matches[0].setToreM1(3);
+    	matches[0].setToreM2(2);
+       	
+    	matches[0].setSieger();
+       	Assert.assertEquals(matches[0].getSieger(), m1);
+    	Assert.assertEquals(matches[0].getVerlierer(), m2);
+   	}
+   	@Test
+   	public void testeMatchSiegerM2() throws Exception {
+   		IMatch matches[] = new Match[1];
+   		Mannschaft m1 = new Mannschaft("Mannschaft 1");
+    	Mannschaft m2 = new Mannschaft("Mannschaft 2");
+    	matches[0] = MatchFactory.build(m1, m2);
+   		
+   		matches[0].setToreM1(2);
+       	matches[0].setToreM2(3);
+       	
+    	matches[0].setSieger();
+       	Assert.assertEquals(matches[0].getSieger(), m2);
+       	Assert.assertEquals(matches[0].getVerlierer(), m1);
+
+   	}
+   	@Test
+    public void testeMatchUnentschieden() throws Exception {
+   		Mannschaft m1 = new Mannschaft("Mannschaft 1");
+    	Mannschaft m2 = new Mannschaft("Mannschaft 2");
+    	IMatch matches[] = new Match[1];
+    	matches[0] = MatchFactory.build(m1, m2);
+    	
+    	matches[0].setToreM1(1);
+    	matches[0].setToreM2(1);
+       	
+    	matches[0].setSieger();
+    	Assert.assertTrue(matches[0].getUnentschieden());
+   	}
+ 	@Test
+    public void testeMatchUnentschiedenKO() throws Exception {
+   		Mannschaft m1 = new Mannschaft("Mannschaft 1");
+    	Mannschaft m2 = new Mannschaft("Mannschaft 2");
+    	IMatch matches[] = new Match[1];
+    	matches[0] = MatchFactory.build(m1, m2);
+    	matches[0].setTurnierType("KO-Turnier");
+    	
+    	matches[0].setToreM1(1);
+    	matches[0].setToreM2(1);
+       	
+    	matches[0].setSieger();
+    	Assert.assertFalse(matches[0].getUnentschieden());
+    	Assert.assertTrue(matches[0].isGameFinished());
+   	}
+ 	
+ 	@Test
+    public void incrementTore() throws Exception {
+   		Mannschaft m1 = new Mannschaft("Mannschaft 1");
+    	Mannschaft m2 = new Mannschaft("Mannschaft 2");
+    	IMatch matches[] = new Match[1];
+    	matches[0] = MatchFactory.build(m1, m2);
+    	
+    	matches[0].incrementToreM1();
+    	matches[0].incrementToreM2();
+    	
+    	Assert.assertEquals(matches[0].getToreM1(), 1);
+    	Assert.assertEquals(matches[0].getToreM2(), 1);
+   	}
+ 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		// TODO Auto-generated method stub
