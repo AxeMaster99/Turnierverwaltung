@@ -20,16 +20,18 @@ import verwaltung.Steuerung;
 
 public class SettingsScreen extends Pane {
 
+	private static final Logger logger = (Logger) LogManager.getLogger("SettingsScreen");
+	
 	private final ObservableList<String> types = FXCollections.observableArrayList("KO-Turnier", "Gruppen + KO");
 	private final ObservableList<String> options = FXCollections.observableArrayList("8 Teams", "16 Teams", "32 Teams");
-	private final ObservableList<String> durations = FXCollections.observableArrayList("5 Minuten", "30 Minuten",
-			"45 Minuten", "60 Minuten", "75 Minuten", "90 Minuten");
+	private final ObservableList<String> durations = FXCollections.observableArrayList("5 Minuten", "30 Minuten","45 Minuten", "60 Minuten", "75 Minuten", "90 Minuten");
+	
 	private ComboBox<String> c_types = new ComboBox<String>(types);
 	private ComboBox<String> c_teams = new ComboBox<String>(options);
 	private ComboBox<String> c_duration = new ComboBox<String>(durations);
 	private GridPane grid = new GridPane();
 	private Button b_teams = new Button("Bestätigen");
-	private static final Logger logger = (Logger) LogManager.getLogger("SettingsScreen");
+	
 
 	public SettingsScreen(Steuerung steuerung) {
 

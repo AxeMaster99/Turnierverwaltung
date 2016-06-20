@@ -56,6 +56,9 @@ public class Steuerung {
 		this.erstelleFinale();
 
 		for (int i = 0; i < matches.size(); i++) {
+			
+			//macht der was ?
+			
 			logger.info(this.matches.get(i).toString());
 		}
 	}

@@ -105,6 +105,9 @@ public class GroupMatchStage extends MatchStage implements IMatchStage {
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+					
+					
+					logger.error(e.getMessage());
 				}
 				alert.showAndWait();
 			}

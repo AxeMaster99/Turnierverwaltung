@@ -10,22 +10,25 @@ import verwaltung.Steuerung;
 
 public class Match implements IMatch {
 	
+	private static final Logger logger = (Logger) LogManager.getLogger("Match");
+	
 	private static int indexCounter = 1;
-	protected int index;
 	
 	private volatile String state="NYO";
+	private volatile int toreM1 = 0;
+	private volatile int toreM2 = 0;
 	
+	protected int index;
 	protected Mannschaft mannschaft1 = new Mannschaft("...");;
 	protected Mannschaft mannschaft2 = new Mannschaft("...");;
 	private MatchPane matchPane;
 	protected Mannschaft sieger;
 	protected Mannschaft verlierer;
-	private volatile int toreM1 = 0;
-	private volatile int toreM2 = 0;
+	
 	private Steuerung steuerung;
 	private Boolean unentschieden = false;
-	private static final Logger logger = (Logger) LogManager.getLogger("Match");
 	private String turnierType = "Gruppenturnier";
+	
 	
 	public Match(Steuerung steuerung) {
 		this.steuerung = steuerung;
@@ -105,7 +108,7 @@ public class Match implements IMatch {
 				this.verlierer.aendereTordifferenz(toreM1 - toreM2);
 			}
 			this.sieger.addPunkte();
-			logger.info("Das Spiel endetete " + toreM1 + ":" + toreM2 + ". " + sieger + " hat gewonnen.");
+			logger.info("Spielende:" + this.mannschaft1 + " " + toreM1 + ":" + toreM2 + " " + this.mannschaft2);
 		} else {
 			if (toreM1 > toreM2) {
 				this.sieger = mannschaft1;
@@ -113,7 +116,7 @@ public class Match implements IMatch {
 				this.sieger.aendereTordifferenz(toreM1 - toreM2);
 				this.verlierer.aendereTordifferenz(toreM2 - toreM1);
 				this.sieger.addPunkte();
-				logger.info("Das Spiel endetete " + toreM1 + ":" + toreM2 + ". " + sieger + " hat gewonnen.");
+				logger.info("Spielende:" + this.mannschaft1 + " " + toreM1 + ":" + toreM2 + " " + this.mannschaft2);
 
 			} else if (toreM1 < toreM2) {
 				this.sieger = mannschaft2;
@@ -121,12 +124,12 @@ public class Match implements IMatch {
 				this.sieger.aendereTordifferenz(toreM2 - toreM1);
 				this.verlierer.aendereTordifferenz(toreM1 - toreM2);
 				this.sieger.addPunkte();
-				logger.info("Das Spiel endetete " + toreM1 + ":" + toreM2 + ". " + sieger + " hat gewonnen.");
+				logger.info("Spielende:" + this.mannschaft1 + " " + toreM1 + ":" + toreM2 + " " + this.mannschaft2);
 			} else {
 				this.unentschieden=true;
 				this.mannschaft1.addPunkteUnentschieden();
 				this.mannschaft2.addPunkteUnentschieden();
-				logger.info("Das Spiel endetete Unentschieden. Punkte werden verteilt.");
+				logger.info("Spielende:" + this.mannschaft1 + " " + toreM1 + ":" + toreM2 + " " + this.mannschaft2);
 			}
 
 		}

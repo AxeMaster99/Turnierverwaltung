@@ -82,7 +82,7 @@ public class TreeScreen extends Pane {
 		toolMenu.getItems().add(ranglisteMenuItem);
 
 		ranglisteMenuItem.setOnAction((WindowEvent) -> {
-			logger.info("Zeige Rangliste an");
+			logger.debug("Zeige Rangliste an");
 			this.steuerung.erstelleRangliste();
 		});
 
@@ -384,7 +384,7 @@ public class TreeScreen extends Pane {
 
 	public void updateSpielBaum() throws Exception {
 
-		logger.info("update spielbaum");
+		logger.debug("update spielbaum");
 
 		for (int i = 0; i < this.matches.size(); i++) {
 			if (this.matches.get(i) instanceof FolgeMatch) {

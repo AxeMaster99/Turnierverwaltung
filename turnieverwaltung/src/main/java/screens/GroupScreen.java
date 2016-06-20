@@ -151,6 +151,8 @@ public class GroupScreen extends Pane {
 		 * for (int i = 0; i < this.matches.size(); i++) {
 		 * logger.info(this.matches.get(i).toString()); }
 		 */
+		
+		//wo zu ?
 		matches.stream().forEach(match -> logger.info(match.toString()));
 
 		int colBot = 0;
@@ -214,9 +216,7 @@ public class GroupScreen extends Pane {
 				ObservableList<String> alleSieger = FXCollections.observableArrayList();
 
 				for (int i = 0; i < groups.size(); i++) {
-					logger.info("Sieger Gruppe " + (i + 1));
-					logger.info(this.groups.get(i).getGruppenSieger().get(0));
-					logger.info(this.groups.get(i).getGruppenSieger().get(1));
+					logger.info("Sieger Gruppe " + (i + 1) + " " + this.groups.get(i).getGruppenSieger().get(0) + "," + this.groups.get(i).getGruppenSieger().get(1) );
 					alleSieger.add(this.groups.get(i).getGruppenSieger().get(0));
 					alleSieger.add(this.groups.get(i).getGruppenSieger().get(1));
 				}
