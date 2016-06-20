@@ -1,18 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration>
     <Appenders>
-        <File name="A1" fileName="A1.log" append="false">
-            <PatternLayout pattern="%t %-5p %c{2} - %m%n"/>
+        <File name="file" fileName="turnierverwaltung.log" append="true">
+            <PatternLayout pattern="%d{HH:mm:ss} [%t] %-5level %logger{36} - %msg%n"/>
         </File>
+        
+        <!--  Nur ergebnisse in extra datei extra logger  
+        <File name="file_ergebnis" fileName="turnier.log" append="false">
+            <PatternLayout pattern="%d{HH:mm:ss} [%t] %-5level %logger{36} - %msg%n"/>
+        </File>
+        -->
         <Console name="STDOUT" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d %-5p [%t] %C{2} (%F:%L) - %m%n"/>
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
         </Console>
     </Appenders>
     <Loggers>
 
         <!-- You my want to define class or package level per-logger rules -->
         <Root level="info">
-            <AppenderRef ref="STDOUT"/>
+            <AppenderRef ref="file" level="TRACE"/>
+     		<AppenderRef ref="file" level="DEBUG"/>
+     		<AppenderRef ref="file" level="INFO"/>
+     		<AppenderRef ref="file" level="WARN"/>
+     		<AppenderRef ref="file" level="ERROR"/>
+     		<AppenderRef ref="file" level="FATAL"/>
         </Root>
     </Loggers>
 </Configuration>
