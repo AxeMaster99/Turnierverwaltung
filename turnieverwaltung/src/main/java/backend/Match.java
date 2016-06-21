@@ -29,10 +29,10 @@ public class Match implements IMatch {
 	private Boolean unentschieden = false;
 	private String turnierType = "Gruppenturnier";
 	
-	
 	public Match(Steuerung steuerung) {
 		this.steuerung = steuerung;
 		this.index = indexCounter;
+		this.setTurnierType(this.steuerung.getTurnierType());
 		indexCounter++;
 		this.matchPane = new MatchPane(this.steuerung, this);
 	}

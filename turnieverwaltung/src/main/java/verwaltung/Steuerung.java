@@ -213,6 +213,10 @@ public class Steuerung {
 		return this.gRangliste;
 	}
 
+	public void setTurnierType(String type) { 
+		this.turnierType = type;
+	}
+	
 	public String getTurnierType() {
 		return turnierType;
 	}
