@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
 
+import exception.GameNotFinishedException;
 import exception.GameUnentschiedenException;
 import interfaces.IMatch;
 import interfaces.IMatchStage;
@@ -19,8 +20,9 @@ import panes.GroupPane;
 
 public class GroupMatchStage extends MatchStage implements IMatchStage {
 
-	private static final Logger logger = (Logger) LogManager.getLogger("MatchStage");
-	
+	private static final Logger logger = (Logger) LogManager
+			.getLogger("MatchStage");
+
 	public enum Status {
 		closed, opened, hidden, started, stopped, finished
 	}
@@ -30,19 +32,19 @@ public class GroupMatchStage extends MatchStage implements IMatchStage {
 
 	public GroupMatchStage(GroupPane groupPane, IMatch match) {
 		super(match);
-		this.groupPane=groupPane;
+		this.groupPane = groupPane;
 
 		this.setOnCloseRequest((WindowEvent) -> {
 
-			if (this.currentState == Status.opened || this.currentState==Status.stopped) {
+			if (this.currentState == Status.opened
+					|| this.currentState == Status.stopped) {
 				this.switchState(Event.close);
 			} else {
 				this.stoppeSpiel();
 				Alert alert = new Alert(AlertType.CONFIRMATION);
 				alert.setTitle("Warnung");
 				alert.setHeaderText("Wirklich schließen?");
-				alert.setContentText(
-						"Wollen sie das Fenster wirklich schließen? Der Timer wird dann gestoppt und das Spiel muss später fortgesetzt werden.");
+				alert.setContentText("Wollen sie das Fenster wirklich schließen? Der Timer wird dann gestoppt und das Spiel muss später fortgesetzt werden.");
 				Optional<ButtonType> result = alert.showAndWait();
 				if (result.get() == ButtonType.OK) {
 					this.switchState(Event.close);
@@ -69,10 +71,12 @@ public class GroupMatchStage extends MatchStage implements IMatchStage {
 		if (matchTimer == -1) {
 			matchTimer = timerdauer;
 		}
-		this.timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
-			matchTimer--;
-			l_timerdauer.setText(String.format("%02d:%02d", matchTimer / 60, matchTimer % 60));
-		}));
+		this.timeline = new Timeline(new KeyFrame(Duration.seconds(1),
+				event -> {
+					matchTimer--;
+					l_timerdauer.setText(String.format("%02d:%02d",
+							matchTimer / 60, matchTimer % 60));
+				}));
 
 		timeline.setOnFinished((e) -> {
 			this.switchState(Event.timer_finished);
@@ -87,7 +91,7 @@ public class GroupMatchStage extends MatchStage implements IMatchStage {
 		this.close();
 		try {
 			this.match.setSieger();
-		} catch(GameUnentschiedenException e) {
+		} catch (GameUnentschiedenException e) {
 			logger.error(e.getMessage());
 		}
 		Platform.runLater(new Runnable() {
@@ -96,17 +100,14 @@ public class GroupMatchStage extends MatchStage implements IMatchStage {
 			public void run() {
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("Information");
-				alert.setHeaderText("Spiel Nr." + match.getIndex() + " ist beendet.\n(" + match.getMannschaft1()
-						+ " vs " + match.getMannschaft2() + ")");
+				alert.setHeaderText("Spiel Nr." + match.getIndex()
+						+ " ist beendet.\n(" + match.getMannschaft1() + " vs "
+						+ match.getMannschaft2() + ")");
 				try {
 					alert.setContentText("Das Spiel wurde Beendet. "
 							+ (match.getUnentschieden() ? "Es endete Unentschieden, die Punkte werden verteilt."
 									: ("Gewonnen hat: ") + match.getSieger()));
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-					
-					
+				} catch (GameNotFinishedException e) {
 					logger.error(e.getMessage());
 				}
 				alert.showAndWait();
@@ -129,7 +130,8 @@ public class GroupMatchStage extends MatchStage implements IMatchStage {
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("Info");
 				alert.setHeaderText("Das Spiel wurde schon beendet");
-				alert.setContentText("Ergebnis: " + this.match.getToreM1() + ":" + this.match.getToreM2());
+				alert.setContentText("Ergebnis: " + this.match.getToreM1()
+						+ ":" + this.match.getToreM2());
 				alert.showAndWait();
 			}
 			break;
@@ -139,10 +141,9 @@ public class GroupMatchStage extends MatchStage implements IMatchStage {
 				this.currentState = Status.opened;
 				this.match.setState("O");
 				this.groupPane.getTable().refresh();
-			}
-			else if (e==Event.timer_finished){
+			} else if (e == Event.timer_finished) {
 				this.beendeSpiel();
-				this.currentState=Status.finished;
+				this.currentState = Status.finished;
 				this.match.setState("F");
 				this.groupPane.getTable().refresh();
 			}

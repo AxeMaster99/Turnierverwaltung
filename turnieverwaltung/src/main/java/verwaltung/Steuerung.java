@@ -6,6 +6,7 @@ import java.util.Collections;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
 
+import exception.GameNotFinishedException;
 import backend.MatchFactory;
 import interfaces.IMatch;
 import javafx.collections.FXCollections;
@@ -196,9 +197,8 @@ public class Steuerung {
 	public void updateSpielBaum() {
 		try {
 			this.spielBaum.updateSpielBaum();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (GameNotFinishedException e) {
+			logger.error(e.getMessage());
 		}
 	}
 

@@ -216,17 +216,12 @@ public class TeamScreen extends Pane {
 
 	private void submitListener(Steuerung steuerung) {
 		b_submit.setOnAction((event)->{
-			try {
 				logger.info("Turnier-Type gesetzt auf: "+steuerung.getTurnierType());
 				if(steuerung.getTurnierType() == "KO-Turnier") {
 					steuerung.setTreeScreen("spielBaum",teams);
 				} else {
 					steuerung.setGroupScreen("groupscreen", teams);
 				}	
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 		});
 	}
 

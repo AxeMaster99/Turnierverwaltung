@@ -221,16 +221,11 @@ public class GroupScreen extends Pane {
 					alleSieger.add(this.groups.get(i).getGruppenSieger().get(1));
 				}
 
-				try {
+				
 					for(int i = 0; i < matches.size(); i++) {
 						this.matches.get(i).setTurnierType("KO-Turnier");
 					}
-					
 					steuerung.setTreeScreen("spielBaum", alleSieger);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
 			}
 		});
 	}

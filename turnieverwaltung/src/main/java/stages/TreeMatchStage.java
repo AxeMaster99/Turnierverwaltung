@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
 
+import exception.GameNotFinishedException;
 import exception.GameUnentschiedenException;
 import interfaces.IMatch;
 import javafx.animation.KeyFrame;
@@ -115,15 +116,10 @@ public class TreeMatchStage extends MatchStage {
 				try {
 					alert.setHeaderText("Spiel Nr." + match.getIndex() + " ist beendet.\n(" + match.getSieger() + " vs "
 							+ match.getVerlierer() + ")");
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				try {
 					alert.setContentText("Das Spiel wurde Beendet. Gewonnen hat: " + match.getSieger());
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+
+				} catch (GameNotFinishedException e) {
+					logger.error(e.getMessage());
 				}
 				alert.showAndWait();
 			}

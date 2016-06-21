@@ -72,9 +72,8 @@ public class AppTest {
     	matches[3].setSieger();
     	matches[4].setSieger();
     	matches[5].setSieger();
-    	} catch(Exception e) {
+    	} catch(GameUnentschiedenException e) {
     		System.out.println(e.getMessage());
-    		System.out.println(e.getStackTrace());
     	}
 
     	Assert.assertEquals(m3.getName(), gruppe.getGruppenSieger().get(0));
@@ -129,9 +128,8 @@ public class AppTest {
     	matches[3].setSieger();
     	matches[4].setSieger();
     	matches[5].setSieger();
-    	} catch(Exception e) {
+    	} catch(GameUnentschiedenException e) {
     		System.out.println(e.getMessage());
-    		System.out.println(e.getStackTrace());
     	}
   	
     	Assert.assertEquals(m2.getName(), gruppe.getGruppenSieger().get(0));
