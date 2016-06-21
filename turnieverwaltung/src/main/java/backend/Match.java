@@ -109,7 +109,7 @@ public class Match implements IMatch {
 				this.verlierer.aendereTordifferenz(toreM1 - toreM2);
 			}
 			this.sieger.addPunkte();
-			logger.info("Spielende:" + this.mannschaft1 + " " + toreM1 + ":" + toreM2 + " " + this.mannschaft2);
+			logger.info("Spiel " + this.index + ": " + this.mannschaft1 + " " + toreM1 + ":" + toreM2 + " " + this.mannschaft2);
 		} else {
 			if (toreM1 > toreM2) {
 				this.sieger = mannschaft1;
@@ -117,21 +117,18 @@ public class Match implements IMatch {
 				this.sieger.aendereTordifferenz(toreM1 - toreM2);
 				this.verlierer.aendereTordifferenz(toreM2 - toreM1);
 				this.sieger.addPunkte();
-				logger.info("Spielende:" + this.mannschaft1 + " " + toreM1 + ":" + toreM2 + " " + this.mannschaft2);
-
+				logger.info("Spiel " + this.index + ": " + this.mannschaft1 + " " + toreM1 + ":" + toreM2 + " " + this.mannschaft2);
 			} else if (toreM1 < toreM2) {
 				this.sieger = mannschaft2;
 				this.verlierer = mannschaft1;
 				this.sieger.aendereTordifferenz(toreM2 - toreM1);
 				this.verlierer.aendereTordifferenz(toreM1 - toreM2);
 				this.sieger.addPunkte();
-				logger.info("Spielende:" + this.mannschaft1 + " " + toreM1 + ":" + toreM2 + " " + this.mannschaft2);
-			} else {
+				logger.info("Spiel " + this.index + ": " + this.mannschaft1 + " " + toreM1 + ":" + toreM2 + " " + this.mannschaft2);			} else {
 				this.unentschieden=true;
 				this.mannschaft1.addPunkteUnentschieden();
 				this.mannschaft2.addPunkteUnentschieden();
-				logger.info("Spielende:" + this.mannschaft1 + " " + toreM1 + ":" + toreM2 + " " + this.mannschaft2);
-			}
+				logger.info("Spiel " + this.index + ": " + this.mannschaft1 + " " + toreM1 + ":" + toreM2 + " " + this.mannschaft2);			}
 
 		}
 	}

@@ -101,8 +101,7 @@ public class MatchPane extends Pane {
 				
 				//wozu ?
 				logger.info(this.match.getMannschaft1().getName() + " gegen " + this.match.getMannschaft2().getName());
-				logger.info(this.getTranslateX());
-				logger.info(this.getTranslateY());
+
 				
 				
 				
