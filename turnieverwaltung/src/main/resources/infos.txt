@@ -10,13 +10,14 @@
 
 	(X) Einsatz von Interfaces bzw. Vererbung
 	(X) Sinnvoller Einsatz einer Package-Struktur
-	(?) Verwendung von Exceptions
+	(x) Verwendung von Exceptions
 	(X) Grafische Oberfläche (JavaFX)
-	(-) Logging mit sinnvollem Einsatz der Log-Stufen
+	(x) Logging mit sinnvollem Einsatz der Log-Stufen
 	(-) Dokumentation der Klassenstruktur mit UML-Klassendiagrammen
 	(X) Threads
-	(?) Einsatz von Streams und Lambda-Funktionen auf Collections (funktionale Programmierung)
-	(-) Dokumentation und Test-Fälle
+	(x) Einsatz von Streams und Lambda-Funktionen auf Collections (funktionale Programmierung)
+	(-) Dokumentation
+	(x)  Test-Fälle
 	(X) Verwenden von Factories
 	
 

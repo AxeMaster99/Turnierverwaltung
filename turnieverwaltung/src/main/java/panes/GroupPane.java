@@ -29,9 +29,10 @@ public class GroupPane extends Pane {
 	
 	private TableView<IMatch> table = new TableView<IMatch>();
 
-	TableColumn<IMatch, Mannschaft> team1Col = new TableColumn<IMatch, Mannschaft>("Mannschaft 1");
-	TableColumn<IMatch, Mannschaft> team2Col = new TableColumn<IMatch, Mannschaft>("Mannschaft 2");
+	TableColumn<IMatch, Mannschaft> team1Col = new TableColumn<IMatch, Mannschaft>("Team");
+	TableColumn<IMatch, Mannschaft> team2Col = new TableColumn<IMatch, Mannschaft>("Team");
 	TableColumn<IMatch, Integer> tor1Col = new TableColumn<IMatch, Integer>("T1");
+	
 	TableColumn<IMatch, Integer> tor2Col = new TableColumn<IMatch, Integer>("T2");
 	TableColumn<IMatch, String> stateCol = new TableColumn<IMatch, String>("State");
 
@@ -54,10 +55,12 @@ public class GroupPane extends Pane {
 		table.setItems(this.matches);
 		table.getColumns().addAll(team1Col, tor1Col, tor2Col, team2Col,stateCol);
 				
-		table.setEditable(true);
+		
+		tor1Col.setMaxWidth(25);
+		tor2Col.setMaxWidth(25);
 		table.setMaxWidth(300);
 		table.setMaxHeight(250);
-
+		table.setStyle("-fx-font-size: 12;");
 		this.getChildren().add(table);
 
 		table.setOnMouseReleased((event) -> {
