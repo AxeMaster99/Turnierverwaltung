@@ -23,7 +23,7 @@ public class Main extends Application {
 	}
 	
 	@Override
-	public void start(Stage stage) throws Exception {
+	public void start(Stage stage) {
 		this.steuerung = new Steuerung(this);
 		this.stage = stage;	
 		this.stage.setOnCloseRequest(e -> Platform.exit());

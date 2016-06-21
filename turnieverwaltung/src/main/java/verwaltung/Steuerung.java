@@ -32,10 +32,7 @@ public class Steuerung {
 	private int anzahlMatchesZus = 0;
 	private GroupScreen groupScreen;
 
-	private static final Logger logger = (Logger) LogManager.getLogger("Steuerung");
-
-	
-	
+	private static final Logger logger = (Logger) LogManager.getLogger("Steuerung");	
 	
 	public Steuerung(Main main) {
 		this.main = main;
@@ -45,7 +42,7 @@ public class Steuerung {
 //for testing
 		}
 
-	private void erstelleMatches(ObservableList<String> teams) throws Exception {
+	private void erstelleMatches(ObservableList<String> teams) {
 		this.teams = teams;
 
 //		Collections.shuffle(teams); // beste ZEILE
@@ -92,7 +89,7 @@ public class Steuerung {
 		}
 	}
 
-	private void erstelleSeite(int anzahlMatchesZus, int start, int stop) throws Exception {
+	private void erstelleSeite(int anzahlMatchesZus, int start, int stop) {
 
 		// StandartMatches
 		int actMatch = start;
@@ -154,9 +151,9 @@ public class Steuerung {
 	 *            the key of the screen which will be set.
 	 * @param teams
 	 *            an observable list of the teams.
-	 * @throws Exception
+	 * 
 	 */
-	public void setTreeScreen(String screenName, ObservableList<String> teams) throws Exception {
+	public void setTreeScreen(String screenName, ObservableList<String> teams) {
 		this.erstelleMatches(teams);
 		spielBaum = new TreeScreen(this, matches,this.teams.size());
 		main.getScenes().put(screenName, new Scene(spielBaum));

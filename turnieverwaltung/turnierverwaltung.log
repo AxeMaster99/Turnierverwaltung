@@ -1,33 +1,16 @@
-08:35:22 [JavaFX Application Thread] INFO  SettingsScreen - Anzahl Teams: 32, Matchdauer: 5
-08:35:24 [JavaFX Application Thread] INFO  TeamScreen - Turnier-Type gesetzt auf: KO-Turnier
-08:35:24 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 1: Mannschaft 1 gegen Mannschaft 2
-08:35:24 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 2: Mannschaft 3 gegen Mannschaft 4
-08:35:24 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 3: Mannschaft 5 gegen Mannschaft 6
-08:35:24 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 4: Mannschaft 7 gegen Mannschaft 8
-08:35:24 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 5: Mannschaft 9 gegen Mannschaft 10
-08:35:24 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 6: Mannschaft 11 gegen Mannschaft 12
-08:35:24 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 7: Mannschaft 13 gegen Mannschaft 14
-08:35:24 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 8: Mannschaft 15 gegen Mannschaft 16
-08:35:24 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 9:  Sieger Match 1 gegen Sieger Match 2
-08:35:24 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 10:  Sieger Match 3 gegen Sieger Match 4
-08:35:24 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 11:  Sieger Match 5 gegen Sieger Match 6
-08:35:24 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 12:  Sieger Match 7 gegen Sieger Match 8
-08:35:24 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 13:  Sieger Match 9 gegen Sieger Match 10
-08:35:24 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 14:  Sieger Match 11 gegen Sieger Match 12
-08:35:24 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 15:  Sieger Match 13 gegen Sieger Match 14
-08:35:24 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 16: Mannschaft 17 gegen Mannschaft 18
-08:35:24 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 17: Mannschaft 19 gegen Mannschaft 20
-08:35:24 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 18: Mannschaft 21 gegen Mannschaft 22
-08:35:24 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 19: Mannschaft 23 gegen Mannschaft 24
-08:35:24 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 20: Mannschaft 25 gegen Mannschaft 26
-08:35:24 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 21: Mannschaft 27 gegen Mannschaft 28
-08:35:24 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 22: Mannschaft 29 gegen Mannschaft 30
-08:35:24 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 23: Mannschaft 31 gegen Mannschaft 32
-08:35:24 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 24:  Sieger Match 16 gegen Sieger Match 17
-08:35:24 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 25:  Sieger Match 18 gegen Sieger Match 19
-08:35:24 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 26:  Sieger Match 20 gegen Sieger Match 21
-08:35:24 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 27:  Sieger Match 22 gegen Sieger Match 23
-08:35:24 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 28:  Sieger Match 24 gegen Sieger Match 25
-08:35:24 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 29:  Sieger Match 26 gegen Sieger Match 27
-08:35:24 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 30:  Sieger Match 28 gegen Sieger Match 29
-08:35:24 [JavaFX Application Thread] INFO  Steuerung - Finale: Begegnung Nr. 31:  Sieger Match 15 gegen Sieger Match 30
+08:48:57 [main] INFO  Match - Spielende:Mannschaft 1 3:1 Mannschaft 2
+08:48:57 [main] INFO  Match - Spielende:Mannschaft 1 2:2 Mannschaft 2
+08:48:57 [main] INFO  Match - Spielende:Mannschaft 2 0:10 Mannschaft 3
+08:48:57 [main] INFO  Match - Spielende:Mannschaft 3 7:2 Mannschaft 4
+08:48:57 [main] INFO  Match - Spielende:Mannschaft 1 1:4 Mannschaft 3
+08:48:57 [main] INFO  Match - Spielende:Mannschaft 2 1:2 Mannschaft 4
+08:48:57 [main] INFO  Match - Spielende:Mannschaft 1 0:2 Mannschaft 4
+08:48:57 [main] INFO  Match - Spielende:Mannschaft 1 2:4 Mannschaft 2
+08:48:57 [main] INFO  Match - Spielende:Mannschaft 2 10:0 Mannschaft 3
+08:48:57 [main] INFO  Match - Spielende:Mannschaft 3 3:1 Mannschaft 4
+08:48:57 [main] INFO  Match - Spielende:Mannschaft 1 1:4 Mannschaft 3
+08:48:57 [main] INFO  Match - Spielende:Mannschaft 2 2:11 Mannschaft 4
+08:48:57 [main] INFO  Match - Spielende:Mannschaft 1 3:0 Mannschaft 4
+08:48:57 [main] INFO  Match - Spielende:Mannschaft 1 3:2 Mannschaft 2
+08:48:57 [main] INFO  Match - Spielende:Mannschaft 1 2:3 Mannschaft 2
+08:48:57 [main] INFO  Match - Spielende:Mannschaft 1 1:1 Mannschaft 2

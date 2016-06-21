@@ -8,6 +8,7 @@ import org.apache.logging.log4j.core.Logger;
 
 import com.sun.javafx.stage.StageHelper;
 
+import exception.GameNotFinishedException;
 import stages.GroupMatchStage;
 import stages.MatchStage;
 import stages.MatchStage.Event;
@@ -48,7 +49,7 @@ public class TreeScreen extends Pane {
 
 	private static final Logger logger = (Logger) LogManager.getLogger("TreeScreen");
 
-	public TreeScreen(Steuerung steuerung, ArrayList<IMatch> matches, int anzahlTeams) throws Exception {
+	public TreeScreen(Steuerung steuerung, ArrayList<IMatch> matches, int anzahlTeams) {
 
 		this.steuerung = steuerung;
 		this.anzahlTeams = anzahlTeams;
@@ -382,7 +383,7 @@ public class TreeScreen extends Pane {
 		gc.strokeLine(fmX, fmY, m2X, m2Y);
 	}
 
-	public void updateSpielBaum() throws Exception {
+	public void updateSpielBaum() throws GameNotFinishedException {
 
 		logger.debug("update spielbaum");
 

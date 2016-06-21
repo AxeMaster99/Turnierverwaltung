@@ -10,6 +10,7 @@ import backend.Group;
 import backend.Mannschaft;
 import backend.Match;
 import backend.MatchFactory;
+import exception.GameNotFinishedException;
 import exception.GameUnentschiedenException;
 import interfaces.IMatch;
 import javafx.application.Application;
@@ -141,7 +142,7 @@ public class AppTest {
     }
 //	Tests fuer Match (Sieger, Verlierer)
    	@Test
-    public void testeMatchSiegerM1() throws Exception {
+    public void testeMatchSiegerM1() throws GameUnentschiedenException, GameNotFinishedException {
    		Mannschaft m1 = new Mannschaft("Mannschaft 1");
     	Mannschaft m2 = new Mannschaft("Mannschaft 2");
     	IMatch matches[] = new Match[1];
@@ -155,7 +156,7 @@ public class AppTest {
     	Assert.assertEquals(matches[0].getVerlierer(), m2);
    	}
    	@Test
-   	public void testeMatchSiegerM2() throws Exception {
+   	public void testeMatchSiegerM2() throws GameUnentschiedenException, GameNotFinishedException {
    		IMatch matches[] = new Match[1];
    		Mannschaft m1 = new Mannschaft("Mannschaft 1");
     	Mannschaft m2 = new Mannschaft("Mannschaft 2");
@@ -170,7 +171,7 @@ public class AppTest {
 
    	}
    	@Test
-    public void testeMatchUnentschieden() throws Exception {
+    public void testeMatchUnentschieden() throws GameUnentschiedenException {
    		Mannschaft m1 = new Mannschaft("Mannschaft 1");
     	Mannschaft m2 = new Mannschaft("Mannschaft 2");
     	IMatch matches[] = new Match[1];
@@ -213,7 +214,7 @@ public class AppTest {
    	}
  	
  	@Test
-    public void gesamteKlasseMatch() throws Exception {
+    public void gesamteKlasseMatch() throws GameUnentschiedenException, GameNotFinishedException {
    		Mannschaft m1 = new Mannschaft("Mannschaft 1");
     	Mannschaft m2 = new Mannschaft("Mannschaft 2");
     	IMatch matches[] = new Match[1];

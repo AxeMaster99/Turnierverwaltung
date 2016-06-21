@@ -3,6 +3,7 @@ package backend;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
 
+import exception.GameNotFinishedException;
 import exception.GameUnentschiedenException;
 import interfaces.IMatch;
 import panes.MatchPane;
@@ -135,9 +136,9 @@ public class Match implements IMatch {
 		}
 	}
 
-	public Mannschaft getSieger() throws Exception {
+	public Mannschaft getSieger() throws GameNotFinishedException {
 		if(this.sieger == null) {
-			throw new Exception("Sieger steht noch nicht fest");
+			throw new GameNotFinishedException();
 		}
 		return this.sieger;
 	}
