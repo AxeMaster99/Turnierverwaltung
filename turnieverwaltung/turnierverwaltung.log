@@ -1,51 +1,16 @@
-10:09:21 [main] INFO  Main - Programm start
-10:09:29 [JavaFX Application Thread] INFO  SettingsScreen - Anzahl Teams: 32, Matchdauer: 5
-10:09:31 [JavaFX Application Thread] INFO  TeamScreen - Turnier-Type gesetzt auf: Gruppen + KO
-10:09:31 [JavaFX Application Thread] INFO  GroupScreen - Begegnung Nr. 1: Mannschaft 1 gegen Mannschaft 2
-10:09:31 [JavaFX Application Thread] INFO  GroupScreen - Begegnung Nr. 2: Mannschaft 3 gegen Mannschaft 4
-10:09:31 [JavaFX Application Thread] INFO  GroupScreen - Begegnung Nr. 3: Mannschaft 1 gegen Mannschaft 3
-10:09:31 [JavaFX Application Thread] INFO  GroupScreen - Begegnung Nr. 4: Mannschaft 2 gegen Mannschaft 4
-10:09:31 [JavaFX Application Thread] INFO  GroupScreen - Begegnung Nr. 5: Mannschaft 1 gegen Mannschaft 4
-10:09:31 [JavaFX Application Thread] INFO  GroupScreen - Begegnung Nr. 6: Mannschaft 2 gegen Mannschaft 3
-10:09:31 [JavaFX Application Thread] INFO  GroupScreen - Begegnung Nr. 7: Mannschaft 5 gegen Mannschaft 6
-10:09:31 [JavaFX Application Thread] INFO  GroupScreen - Begegnung Nr. 8: Mannschaft 7 gegen Mannschaft 8
-10:09:31 [JavaFX Application Thread] INFO  GroupScreen - Begegnung Nr. 9: Mannschaft 5 gegen Mannschaft 7
-10:09:31 [JavaFX Application Thread] INFO  GroupScreen - Begegnung Nr. 10: Mannschaft 6 gegen Mannschaft 8
-10:09:31 [JavaFX Application Thread] INFO  GroupScreen - Begegnung Nr. 11: Mannschaft 5 gegen Mannschaft 8
-10:09:31 [JavaFX Application Thread] INFO  GroupScreen - Begegnung Nr. 12: Mannschaft 6 gegen Mannschaft 7
-10:09:31 [JavaFX Application Thread] INFO  GroupScreen - Begegnung Nr. 13: Mannschaft 9 gegen Mannschaft 10
-10:09:31 [JavaFX Application Thread] INFO  GroupScreen - Begegnung Nr. 14: Mannschaft 11 gegen Mannschaft 12
-10:09:31 [JavaFX Application Thread] INFO  GroupScreen - Begegnung Nr. 15: Mannschaft 9 gegen Mannschaft 11
-10:09:31 [JavaFX Application Thread] INFO  GroupScreen - Begegnung Nr. 16: Mannschaft 10 gegen Mannschaft 12
-10:09:31 [JavaFX Application Thread] INFO  GroupScreen - Begegnung Nr. 17: Mannschaft 9 gegen Mannschaft 12
-10:09:31 [JavaFX Application Thread] INFO  GroupScreen - Begegnung Nr. 18: Mannschaft 10 gegen Mannschaft 11
-10:09:31 [JavaFX Application Thread] INFO  GroupScreen - Begegnung Nr. 19: Mannschaft 13 gegen Mannschaft 14
-10:09:31 [JavaFX Application Thread] INFO  GroupScreen - Begegnung Nr. 20: Mannschaft 15 gegen Mannschaft 16
-10:09:31 [JavaFX Application Thread] INFO  GroupScreen - Begegnung Nr. 21: Mannschaft 13 gegen Mannschaft 15
-10:09:31 [JavaFX Application Thread] INFO  GroupScreen - Begegnung Nr. 22: Mannschaft 14 gegen Mannschaft 16
-10:09:31 [JavaFX Application Thread] INFO  GroupScreen - Begegnung Nr. 23: Mannschaft 13 gegen Mannschaft 16
-10:09:31 [JavaFX Application Thread] INFO  GroupScreen - Begegnung Nr. 24: Mannschaft 14 gegen Mannschaft 15
-10:09:31 [JavaFX Application Thread] INFO  GroupScreen - Begegnung Nr. 25: Mannschaft 17 gegen Mannschaft 18
-10:09:31 [JavaFX Application Thread] INFO  GroupScreen - Begegnung Nr. 26: Mannschaft 19 gegen Mannschaft 20
-10:09:31 [JavaFX Application Thread] INFO  GroupScreen - Begegnung Nr. 27: Mannschaft 17 gegen Mannschaft 19
-10:09:31 [JavaFX Application Thread] INFO  GroupScreen - Begegnung Nr. 28: Mannschaft 18 gegen Mannschaft 20
-10:09:31 [JavaFX Application Thread] INFO  GroupScreen - Begegnung Nr. 29: Mannschaft 17 gegen Mannschaft 20
-10:09:31 [JavaFX Application Thread] INFO  GroupScreen - Begegnung Nr. 30: Mannschaft 18 gegen Mannschaft 19
-10:09:31 [JavaFX Application Thread] INFO  GroupScreen - Begegnung Nr. 31: Mannschaft 21 gegen Mannschaft 22
-10:09:31 [JavaFX Application Thread] INFO  GroupScreen - Begegnung Nr. 32: Mannschaft 23 gegen Mannschaft 24
-10:09:31 [JavaFX Application Thread] INFO  GroupScreen - Begegnung Nr. 33: Mannschaft 21 gegen Mannschaft 23
-10:09:31 [JavaFX Application Thread] INFO  GroupScreen - Begegnung Nr. 34: Mannschaft 22 gegen Mannschaft 24
-10:09:31 [JavaFX Application Thread] INFO  GroupScreen - Begegnung Nr. 35: Mannschaft 21 gegen Mannschaft 24
-10:09:31 [JavaFX Application Thread] INFO  GroupScreen - Begegnung Nr. 36: Mannschaft 22 gegen Mannschaft 23
-10:09:31 [JavaFX Application Thread] INFO  GroupScreen - Begegnung Nr. 37: Mannschaft 25 gegen Mannschaft 26
-10:09:31 [JavaFX Application Thread] INFO  GroupScreen - Begegnung Nr. 38: Mannschaft 27 gegen Mannschaft 28
-10:09:31 [JavaFX Application Thread] INFO  GroupScreen - Begegnung Nr. 39: Mannschaft 25 gegen Mannschaft 27
-10:09:31 [JavaFX Application Thread] INFO  GroupScreen - Begegnung Nr. 40: Mannschaft 26 gegen Mannschaft 28
-10:09:31 [JavaFX Application Thread] INFO  GroupScreen - Begegnung Nr. 41: Mannschaft 25 gegen Mannschaft 28
-10:09:31 [JavaFX Application Thread] INFO  GroupScreen - Begegnung Nr. 42: Mannschaft 26 gegen Mannschaft 27
-10:09:31 [JavaFX Application Thread] INFO  GroupScreen - Begegnung Nr. 43: Mannschaft 29 gegen Mannschaft 30
-10:09:31 [JavaFX Application Thread] INFO  GroupScreen - Begegnung Nr. 44: Mannschaft 31 gegen Mannschaft 32
-10:09:31 [JavaFX Application Thread] INFO  GroupScreen - Begegnung Nr. 45: Mannschaft 29 gegen Mannschaft 31
-10:09:31 [JavaFX Application Thread] INFO  GroupScreen - Begegnung Nr. 46: Mannschaft 30 gegen Mannschaft 32
-10:09:31 [JavaFX Application Thread] INFO  GroupScreen - Begegnung Nr. 47: Mannschaft 29 gegen Mannschaft 32
-10:09:31 [JavaFX Application Thread] INFO  GroupScreen - Begegnung Nr. 48: Mannschaft 30 gegen Mannschaft 31
+18:18:54 [main] INFO  Match - Spiel 0: Mannschaft 1 3:1 Mannschaft 2
+18:18:54 [main] INFO  Match - Spiel 0: Mannschaft 1 2:2 Mannschaft 2
+18:18:54 [main] INFO  Match - Spiel 0: Mannschaft 2 0:10 Mannschaft 3
+18:18:54 [main] INFO  Match - Spiel 0: Mannschaft 3 7:2 Mannschaft 4
+18:18:54 [main] INFO  Match - Spiel 0: Mannschaft 1 1:4 Mannschaft 3
+18:18:54 [main] INFO  Match - Spiel 0: Mannschaft 2 1:2 Mannschaft 4
+18:18:54 [main] INFO  Match - Spiel 0: Mannschaft 1 0:2 Mannschaft 4
+18:18:54 [main] INFO  Match - Spiel 0: Mannschaft 1 2:4 Mannschaft 2
+18:18:54 [main] INFO  Match - Spiel 0: Mannschaft 2 10:0 Mannschaft 3
+18:18:54 [main] INFO  Match - Spiel 0: Mannschaft 3 3:1 Mannschaft 4
+18:18:54 [main] INFO  Match - Spiel 0: Mannschaft 1 1:4 Mannschaft 3
+18:18:54 [main] INFO  Match - Spiel 0: Mannschaft 2 2:11 Mannschaft 4
+18:18:54 [main] INFO  Match - Spiel 0: Mannschaft 1 3:0 Mannschaft 4
+18:18:54 [main] INFO  Match - Spiel 0: Mannschaft 1 3:2 Mannschaft 2
+18:18:54 [main] INFO  Match - Spiel 0: Mannschaft 1 2:3 Mannschaft 2
+18:18:54 [main] INFO  Match - Spiel 0: Mannschaft 1 1:1 Mannschaft 2

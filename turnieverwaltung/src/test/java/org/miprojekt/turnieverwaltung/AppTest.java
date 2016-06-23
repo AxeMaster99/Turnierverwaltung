@@ -1,23 +1,23 @@
 package org.miprojekt.turnieverwaltung;
 
+import main.Main;
+import main.Steuerung;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import com.sun.javafx.application.PlatformImpl;
 
-import backend.Group;
-import backend.Mannschaft;
-import backend.Match;
-import backend.MatchFactory;
-import exception.GameNotFinishedException;
-import exception.GameUnentschiedenException;
-import interfaces.IMatch;
+import backend.exception.GameNotFinishedException;
+import backend.exception.GameUnentschiedenException;
+import backend.interfaces.IMatch;
+import backend.turnier.Group;
+import backend.turnier.Mannschaft;
+import backend.turnier.MatchFactory;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.stage.Stage;
-import verwaltung.Main;
-import verwaltung.Steuerung;
 
 
 public class AppTest {
@@ -38,7 +38,7 @@ public class AppTest {
     	
     	Group gruppe = new Group(m1, m2, m3, m4);
     	
-    	IMatch matches[] = new Match[6];
+    	IMatch matches[] = new IMatch[6];
     	
     	matches[0] = MatchFactory.build(m1, m2);
     	matches[1] = MatchFactory.build(m2, m3);
@@ -94,7 +94,7 @@ public class AppTest {
     	
     	Group gruppe = new Group(m1, m2, m3, m4);
     	
-    	IMatch matches[] = new Match[6];
+    	IMatch matches[] = new IMatch[6];
     	
     	matches[0] = MatchFactory.build(m1, m2);
     	matches[1] = MatchFactory.build(m2, m3);
@@ -143,7 +143,7 @@ public class AppTest {
     public void testeMatchSiegerM1() throws GameUnentschiedenException, GameNotFinishedException {
    		Mannschaft m1 = new Mannschaft("Mannschaft 1");
     	Mannschaft m2 = new Mannschaft("Mannschaft 2");
-    	IMatch matches[] = new Match[1];
+    	IMatch matches[] = new IMatch[1];
     	matches[0] = MatchFactory.build(m1, m2);
     	
     	matches[0].setToreM1(3);
@@ -155,7 +155,7 @@ public class AppTest {
    	}
    	@Test
    	public void testeMatchSiegerM2() throws GameUnentschiedenException, GameNotFinishedException {
-   		IMatch matches[] = new Match[1];
+   		IMatch matches[] = new IMatch[1];
    		Mannschaft m1 = new Mannschaft("Mannschaft 1");
     	Mannschaft m2 = new Mannschaft("Mannschaft 2");
     	matches[0] = MatchFactory.build(m1, m2);
@@ -172,7 +172,7 @@ public class AppTest {
     public void testeMatchUnentschieden() throws GameUnentschiedenException {
    		Mannschaft m1 = new Mannschaft("Mannschaft 1");
     	Mannschaft m2 = new Mannschaft("Mannschaft 2");
-    	IMatch matches[] = new Match[1];
+    	IMatch matches[] = new IMatch[1];
     	matches[0] = MatchFactory.build(m1, m2);
     	
     	matches[0].setToreM1(1);
@@ -186,7 +186,7 @@ public class AppTest {
     public void testeMatchUnentschiedenKO() throws GameUnentschiedenException {
    		Mannschaft m1 = new Mannschaft("Mannschaft 1");
     	Mannschaft m2 = new Mannschaft("Mannschaft 2");
-    	IMatch matches[] = new Match[1];
+    	IMatch matches[] = new IMatch[1];
     	matches[0] = MatchFactory.build(m1, m2);
     	matches[0].setTurnierType("KO-Turnier");
     	
@@ -201,7 +201,7 @@ public class AppTest {
     public void incrementTore() {
    		Mannschaft m1 = new Mannschaft("Mannschaft 1");
     	Mannschaft m2 = new Mannschaft("Mannschaft 2");
-    	IMatch matches[] = new Match[1];
+    	IMatch matches[] = new IMatch[1];
     	matches[0] = MatchFactory.build(m1, m2);
     	
     	matches[0].incrementToreM1();
@@ -215,7 +215,7 @@ public class AppTest {
     public void gesamteKlasseMatch() throws GameUnentschiedenException, GameNotFinishedException {
    		Mannschaft m1 = new Mannschaft("Mannschaft 1");
     	Mannschaft m2 = new Mannschaft("Mannschaft 2");
-    	IMatch matches[] = new Match[1];
+    	IMatch matches[] = new IMatch[1];
     	matches[0] = MatchFactory.build(m1, m2);
     	matches[0].setTurnierType("KO-Turnier");
     	
