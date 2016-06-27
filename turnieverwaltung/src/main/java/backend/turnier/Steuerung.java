@@ -1,11 +1,8 @@
-package main;
+package backend.turnier;
 
 import java.util.ArrayList;
-import java.util.Collections;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
-
 import GUI.SettingsScreen;
 import GUI.SplashScreen;
 import GUI.TeamScreen;
@@ -15,10 +12,10 @@ import GUI.TreeScreen.TreeRangStage;
 import GUI.TreeScreen.TreeScreen;
 import backend.exception.GameNotFinishedException;
 import backend.interfaces.IMatch;
-import backend.turnier.MatchFactory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
+import main.Main;
 
 public class Steuerung {
 

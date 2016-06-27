@@ -1,4 +1,4 @@
-package backend.interfaces;
+package GUI.interfaces;
 
 import GUI.MatchStage.Event;
 

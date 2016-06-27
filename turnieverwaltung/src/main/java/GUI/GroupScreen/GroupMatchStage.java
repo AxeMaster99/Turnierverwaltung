@@ -6,11 +6,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
 
 import GUI.MatchStage;
-import GUI.MatchStage.Event;
+import GUI.interfaces.IMatchStage;
 import backend.exception.GameNotFinishedException;
 import backend.exception.GameUnentschiedenException;
 import backend.interfaces.IMatch;
-import backend.interfaces.IMatchStage;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;

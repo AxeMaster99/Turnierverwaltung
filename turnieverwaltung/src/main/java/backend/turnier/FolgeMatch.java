@@ -1,7 +1,6 @@
 package backend.turnier;
 
 import backend.interfaces.IMatch;
-import main.Steuerung;
 
 public class FolgeMatch extends Match {
 

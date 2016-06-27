@@ -1,22 +1,16 @@
 package GUI.TreeScreen;
 
 import java.util.ArrayList;
-import java.util.Spliterator;
-
-import main.Steuerung;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
-
 import com.sun.javafx.stage.StageHelper;
 
-import GUI.MatchPane;
 import GUI.MatchStage.Event;
 import backend.exception.GameNotFinishedException;
 import backend.interfaces.IMatch;
 import backend.turnier.FinalMatch;
 import backend.turnier.FolgeMatch;
-import javafx.collections.FXCollections;
+import backend.turnier.Steuerung;
 import javafx.collections.ObservableList;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -35,6 +29,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
+@SuppressWarnings("restriction")
 public class TreeScreen extends Pane {
 
 	private Canvas canvas = new Canvas(1400, 700);
@@ -100,7 +95,6 @@ public class TreeScreen extends Pane {
 		bgImageView.fitWidthProperty().bind(this.steuerung.getMain().getStage().widthProperty());
 
 		bgImageView.setOnMouseReleased((event) -> {
-			@SuppressWarnings("restriction")
 			ObservableList<Stage> stages = StageHelper.getStages();
 			Stage[] stagesArray = new Stage[stages.size()];
 			for (int i = 0; i < stages.size(); i++) {

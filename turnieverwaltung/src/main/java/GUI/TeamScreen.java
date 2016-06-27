@@ -2,11 +2,10 @@ package GUI;
 
 import java.util.Optional;
 
-import main.Steuerung;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
 
+import backend.turnier.Steuerung;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.HPos;

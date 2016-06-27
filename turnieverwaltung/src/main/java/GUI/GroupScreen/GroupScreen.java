@@ -1,35 +1,26 @@
 package GUI.GroupScreen;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Random;
-
-import main.Steuerung;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
-
 import backend.exception.GameUnentschiedenException;
 import backend.interfaces.IMatch;
 import backend.turnier.Group;
 import backend.turnier.Mannschaft;
 import backend.turnier.MatchFactory;
+import backend.turnier.Steuerung;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -37,7 +28,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import javafx.stage.WindowEvent;
 
 public class GroupScreen extends Pane {
 

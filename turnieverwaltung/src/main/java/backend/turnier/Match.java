@@ -1,14 +1,12 @@
 package backend.turnier;
 
-import main.Steuerung;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
 
+import GUI.TreeScreen.MatchPane;
 import backend.exception.GameNotFinishedException;
 import backend.exception.GameUnentschiedenException;
 import backend.interfaces.IMatch;
-import GUI.MatchPane;
 
 class Match implements IMatch {
 	

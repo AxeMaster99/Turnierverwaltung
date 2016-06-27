@@ -1,6 +1,6 @@
 package GUI;
 
-import main.Steuerung;
+import backend.turnier.Steuerung;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;

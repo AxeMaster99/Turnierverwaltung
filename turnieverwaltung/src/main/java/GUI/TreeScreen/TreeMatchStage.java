@@ -2,17 +2,15 @@ package GUI.TreeScreen;
 
 import java.util.Optional;
 
-import main.Steuerung;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
 
 import GUI.MatchStage;
 import GUI.WaitForButtonThread;
-import GUI.MatchStage.Event;
 import backend.exception.GameNotFinishedException;
 import backend.exception.GameUnentschiedenException;
 import backend.interfaces.IMatch;
+import backend.turnier.Steuerung;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;

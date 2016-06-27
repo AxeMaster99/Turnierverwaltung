@@ -4,18 +4,11 @@ import java.util.HashMap;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
-
-import com.sun.javafx.application.PlatformImpl;
-
+import backend.turnier.Steuerung;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.core.Logger;
-
-
 
 public class Main extends Application {
 	
@@ -71,14 +64,6 @@ public class Main extends Application {
 		this.close();
 		Platform.setImplicitExit(false);
 		stage.close();
-		
-        Platform.exit();
-        System.exit(0);
-   		PlatformImpl.exit();
-   		
-
 	}
-
-
 	
 }

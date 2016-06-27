@@ -1,11 +1,9 @@
 package backend.interfaces;
 
+import GUI.TreeScreen.MatchPane;
 import backend.exception.GameNotFinishedException;
 import backend.exception.GameUnentschiedenException;
 import backend.turnier.Mannschaft;
-import main.Steuerung;
-import GUI.MatchPane;
-import GUI.MatchStage;
 
 public interface IMatch {
 

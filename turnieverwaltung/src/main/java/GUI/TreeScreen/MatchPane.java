@@ -1,15 +1,13 @@
-package GUI;
-
-import main.Steuerung;
+package GUI.TreeScreen;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
 
 import GUI.MatchStage.Event;
-import GUI.TreeScreen.TreeMatchStage;
+import GUI.interfaces.IMatchStage;
 import backend.interfaces.IMatch;
-import backend.interfaces.IMatchStage;
 import backend.turnier.FolgeMatch;
+import backend.turnier.Steuerung;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;

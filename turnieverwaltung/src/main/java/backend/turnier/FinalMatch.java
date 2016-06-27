@@ -1,7 +1,6 @@
 package backend.turnier;
 
 import backend.interfaces.IMatch;
-import main.Steuerung;
 
 public final class FinalMatch extends FolgeMatch {
 

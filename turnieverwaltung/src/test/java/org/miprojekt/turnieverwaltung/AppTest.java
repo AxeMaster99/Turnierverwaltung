@@ -1,24 +1,13 @@
 package org.miprojekt.turnieverwaltung;
 
-import main.Main;
-import main.Steuerung;
-
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-
-import com.sun.javafx.application.PlatformImpl;
-
 import backend.exception.GameNotFinishedException;
 import backend.exception.GameUnentschiedenException;
 import backend.interfaces.IMatch;
 import backend.turnier.Group;
 import backend.turnier.Mannschaft;
 import backend.turnier.MatchFactory;
-import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.stage.Stage;
-
 
 public class AppTest {
 
@@ -78,9 +67,6 @@ public class AppTest {
 
     	Assert.assertEquals(m3.getName(), gruppe.getGruppenSieger().get(0));
     	
-   		Platform.setImplicitExit(true);
-    	Platform.exit();
-   		PlatformImpl.exit();
     }
    	
 //	Tests fuer Gruppenspiele "Rangliste" ueberpruefen 

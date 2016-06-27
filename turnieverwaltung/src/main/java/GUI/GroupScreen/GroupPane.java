@@ -1,21 +1,18 @@
 package GUI.GroupScreen;
 
 import java.util.ArrayList;
-
-import main.Steuerung;
 import GUI.MatchStage.Event;
+import GUI.interfaces.IMatchStage;
 import backend.interfaces.IMatch;
-import backend.interfaces.IMatchStage;
 import backend.turnier.Mannschaft;
+import backend.turnier.Steuerung;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
 public class GroupPane extends Pane {
