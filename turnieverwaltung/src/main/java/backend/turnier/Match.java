@@ -8,7 +8,7 @@ import backend.exception.GameNotFinishedException;
 import backend.exception.GameUnentschiedenException;
 import backend.interfaces.IMatch;
 
-class Match implements IMatch {
+public class Match implements IMatch {
 	
 	private static final Logger logger = (Logger) LogManager.getLogger("Match");
 	
