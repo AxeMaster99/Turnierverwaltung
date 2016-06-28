@@ -141,7 +141,7 @@
   </class>  
   <class id="16" language="java" name="GUI.TeamScreen" project="turnieverwaltung" 
     file="/turnieverwaltung/src/main/java/GUI/TeamScreen.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="3031" y="945"/>    
+    <position height="-1" width="-1" x="3011" y="911"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -260,7 +260,7 @@
   <association id="33">    
     <end type="SOURCE" refId="11" navigable="false">      
       <attribute id="34" name="gRangliste">        
-        <position height="22" width="83" x="3575" y="1316"/>      
+        <position height="18" width="58" x="3543" y="1372"/>      
       </attribute>      
       <multiplicity id="35" minimum="0" maximum="1">        
         <position height="0" width="0" x="1361" y="-2094"/>      
