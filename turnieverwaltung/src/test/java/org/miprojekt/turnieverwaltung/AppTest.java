@@ -12,11 +12,7 @@ import backend.turnier.MatchFactory;
 public class AppTest {
 
 	
-    @Test
-    public void testApp() {
-        Assert.assertTrue( true );
-    }
-//	Tests fuer Gruppenspiele   
+	//	Tests fuer Gruppenspiele   
    	@Test
     public void testeGruppenSieger() {
    		
