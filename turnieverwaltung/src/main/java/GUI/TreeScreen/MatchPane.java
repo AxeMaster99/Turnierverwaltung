@@ -4,7 +4,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
 
 import GUI.MatchStage.Event;
-import GUI.interfaces.IMatchStage;
 import backend.interfaces.IMatch;
 import backend.turnier.FolgeMatch;
 import backend.turnier.Steuerung;
@@ -31,7 +30,7 @@ public class MatchPane extends Pane {
 	private Label l4_toreM2;
 	private final double minHeight=60;
 	
-	private IMatchStage treeMatchStage;
+	private TreeMatchStage treeMatchStage;
 	private Steuerung steuerung;
 
 	private static final Logger logger = (Logger) LogManager.getLogger("MatchPane");
@@ -131,7 +130,7 @@ public class MatchPane extends Pane {
 		this.treeMatchStage.switchState(Event.timer_finished);
 	}
 
-	public IMatchStage getMatchStage() {
+	public TreeMatchStage getMatchStage() {
 		return this.treeMatchStage;
 	}
 

@@ -6,7 +6,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
 
 import GUI.MatchStage;
-import GUI.interfaces.IMatchStage;
 import backend.exception.GameNotFinishedException;
 import backend.exception.GameUnentschiedenException;
 import backend.interfaces.IMatch;
@@ -18,7 +17,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert.AlertType;
 import javafx.util.Duration;
 
-public class GroupMatchStage extends MatchStage implements IMatchStage {
+public class GroupMatchStage extends MatchStage  {
 
 	private static final Logger logger = (Logger) LogManager
 			.getLogger("MatchStage");

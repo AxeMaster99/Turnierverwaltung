@@ -1,6 +1,5 @@
 package GUI;
 
-import GUI.interfaces.IMatchStage;
 import backend.interfaces.IMatch;
 import javafx.animation.Timeline;
 import javafx.geometry.Pos;
@@ -14,7 +13,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-public abstract class MatchStage extends Stage implements IMatchStage {
+public abstract class MatchStage extends Stage {
 
 	public enum Event {
 		start_stop, hide, close, click, timer_finished, hover

@@ -2,7 +2,6 @@ package GUI.GroupScreen;
 
 import java.util.ArrayList;
 import GUI.MatchStage.Event;
-import GUI.interfaces.IMatchStage;
 import backend.interfaces.IMatch;
 import backend.turnier.Mannschaft;
 import backend.turnier.Steuerung;
@@ -75,7 +74,7 @@ public class GroupPane extends Pane {
 					}
 				}
 				if (gefunden == false) {
-					IMatchStage neueStage = new GroupMatchStage(this, table.getSelectionModel().getSelectedItem());
+					GroupMatchStage neueStage = new GroupMatchStage(this, table.getSelectionModel().getSelectedItem());
 					gms.add((GroupMatchStage) neueStage);
 					neueStage.switchState(Event.click);
 				}
