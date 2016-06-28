@@ -50,7 +50,7 @@
   </class>  
   <class id="6" language="java" name="backend.turnier.FolgeMatch" project="turnieverwaltung" 
     file="/turnieverwaltung/src/main/java/backend/turnier/FolgeMatch.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="3114" y="2301"/>    
+    <position height="-1" width="-1" x="3112" y="2299"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -228,242 +228,248 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <generalization id="26">    
-    <bendpoint x="2854" y="2196"/>    
-    <bendpoint x="2842" y="1366"/>    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="9"/>  
-  </generalization>  
-  <association id="27">    
-    <bendpoint x="3092" y="1375"/>    
-    <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="28" name="verlierer">        
-        <position height="22" width="69" x="3150" y="1561"/>      
-      </attribute>      
-      <multiplicity id="29" minimum="0" maximum="1">        
-        <position height="20" width="31" x="3177" y="1587"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="8" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="30">    
+  <association id="26">    
     <end type="SOURCE" refId="24" navigable="false">      
-      <attribute id="31" name="steuerung">        
-        <position height="0" width="0" x="610" y="-310"/>      
+      <attribute id="27" name="matches">        
+        <position height="0" width="0" x="-4502" y="-4904"/>      
       </attribute>      
-      <multiplicity id="32" minimum="0" maximum="1">        
-        <position height="0" width="0" x="610" y="-310"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="11" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="33">    
-    <end type="SOURCE" refId="21" navigable="false">      
-      <attribute id="34" name="matches">        
-        <position height="0" width="0" x="-4283" y="-4400"/>      
-      </attribute>      
-      <multiplicity id="35" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="-4283" y="-4400"/>      
+      <multiplicity id="28" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="-4502" y="-4904"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="36">    
-    <bendpoint x="3489" y="2073"/>    
-    <end type="SOURCE" refId="21" navigable="false">      
-      <attribute id="37" name="teams">        
-        <position height="0" width="0" x="647" y="-2523"/>      
-      </attribute>      
-      <multiplicity id="38" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="647" y="-2523"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="8" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="39">    
-    <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="40" name="spielBaum">        
-        <position height="0" width="0" x="-4422" y="-619"/>      
-      </attribute>      
-      <multiplicity id="41" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-4422" y="-619"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="24" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="42">    
-    <bendpoint x="3616" y="2424"/>    
-    <bendpoint x="4130" y="2412"/>    
-    <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="43" name="prevMatch1">        
-        <position height="0" width="0" x="-4283" y="-4400"/>      
-      </attribute>      
-      <multiplicity id="44" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-4283" y="-4400"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="45">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="46" name="treeMatchStage">        
-        <position height="0" width="0" x="-1858" y="-1918"/>      
-      </attribute>      
-      <multiplicity id="47" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-1858" y="-1918"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="22" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="48">    
-    <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="49" name="gRangliste">        
-        <position height="22" width="83" x="3575" y="1316"/>      
-      </attribute>      
-      <multiplicity id="50" minimum="0" maximum="1">        
-        <position height="0" width="0" x="1361" y="-2094"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="20" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="51">    
-    <bendpoint x="4332" y="2050"/>    
-    <end type="SOURCE" refId="21" navigable="false">      
-      <attribute id="52" name="groupPanes">        
-        <position height="0" width="0" x="279" y="15"/>      
-      </attribute>      
-      <multiplicity id="53" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="279" y="15"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="19" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="54">    
-    <end type="SOURCE" refId="19" navigable="false">      
-      <attribute id="55" name="matches">        
-        <position height="0" width="0" x="-4283" y="-4400"/>      
-      </attribute>      
-      <multiplicity id="56" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="-4283" y="-4400"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="57">    
-    <end type="SOURCE" refId="25" navigable="false">      
-      <attribute id="58" name="steuerung">        
-        <position height="0" width="0" x="610" y="-310"/>      
-      </attribute>      
-      <multiplicity id="59" minimum="0" maximum="1">        
-        <position height="0" width="0" x="610" y="-310"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="11" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="60">    
-    <end type="SOURCE" refId="20" navigable="false">      
-      <attribute id="61" name="tables">        
-        <position height="0" width="0" x="2095" y="-1648"/>      
-      </attribute>      
-      <multiplicity id="62" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="2095" y="-1648"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="13" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="63">    
-    <end type="SOURCE" refId="20" navigable="false">      
-      <attribute id="64" name="mannschaften">        
-        <position height="0" width="0" x="647" y="-2523"/>      
-      </attribute>      
-      <multiplicity id="65" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="647" y="-2523"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="8" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="66">    
-    <bendpoint x="3528" y="536"/>    
+  <association id="29">    
+    <bendpoint x="2917" y="1381"/>    
     <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="67" name="matchPane">        
-        <position height="0" width="0" x="1033" y="179"/>      
+      <attribute id="30" name="sieger">        
+        <position height="22" width="57" x="3068" y="1544"/>      
       </attribute>      
-      <multiplicity id="68" minimum="0" maximum="1">        
-        <position height="0" width="0" x="1033" y="179"/>      
+      <multiplicity id="31" minimum="0" maximum="1">        
+        <position height="20" width="31" x="3077" y="1579"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
+    <end type="TARGET" refId="8" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="69">    
-    <end type="SOURCE" refId="18" navigable="false">      
-      <attribute id="70" name="groupPane">        
-        <position height="0" width="0" x="279" y="15"/>      
-      </attribute>      
-      <multiplicity id="71" minimum="0" maximum="1">        
-        <position height="0" width="0" x="279" y="15"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="19" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="72">    
-    <bendpoint x="4702" y="724"/>    
-    <bendpoint x="5074" y="1116"/>    
-    <bendpoint x="5058" y="1774"/>    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="73" name="match">        
-        <position height="0" width="0" x="-4283" y="-4400"/>      
-      </attribute>      
-      <multiplicity id="74" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-4283" y="-4400"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="75">    
+  <association id="32">    
     <end type="SOURCE" refId="21" navigable="false">      
-      <attribute id="76" name="groups">        
+      <attribute id="33" name="groups">        
         <position height="0" width="0" x="298" y="-1480"/>      
       </attribute>      
-      <multiplicity id="77" minimum="0" maximum="2147483647">        
+      <multiplicity id="34" minimum="0" maximum="2147483647">        
         <position height="0" width="0" x="298" y="-1480"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="7" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="78">    
-    <end type="SOURCE" refId="23" navigable="false">      
-      <attribute id="79" name="table">        
-        <position height="0" width="0" x="1103" y="-1693"/>      
+  <association id="35">    
+    <bendpoint x="4702" y="724"/>    
+    <bendpoint x="5074" y="1116"/>    
+    <bendpoint x="5058" y="1774"/>    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="36" name="match">        
+        <position height="0" width="0" x="-4283" y="-4400"/>      
       </attribute>      
-      <multiplicity id="80" minimum="0" maximum="1">        
-        <position height="0" width="0" x="1103" y="-1693"/>      
+      <multiplicity id="37" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-4283" y="-4400"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="13" navigable="true"/>    
+    <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="81">    
+  <association id="38">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="39" name="mannschaften">        
+        <position height="0" width="0" x="647" y="-2523"/>      
+      </attribute>      
+      <multiplicity id="40" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="647" y="-2523"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="41">    
     <bendpoint x="4942" y="1378"/>    
     <bendpoint x="4932" y="1766"/>    
     <end type="SOURCE" refId="17" navigable="false">      
-      <attribute id="82" name="match">        
+      <attribute id="42" name="match">        
+        <position height="0" width="0" x="-4283" y="-4400"/>      
+      </attribute>      
+      <multiplicity id="43" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-4283" y="-4400"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="44">    
+    <bendpoint x="3489" y="2073"/>    
+    <end type="SOURCE" refId="21" navigable="false">      
+      <attribute id="45" name="teams">        
+        <position height="0" width="0" x="647" y="-2523"/>      
+      </attribute>      
+      <multiplicity id="46" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="647" y="-2523"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="47">    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="48" name="mannschaften">        
+        <position height="0" width="0" x="914" y="-2642"/>      
+      </attribute>      
+      <multiplicity id="49" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="914" y="-2642"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="50">    
+    <bendpoint x="4332" y="2050"/>    
+    <end type="SOURCE" refId="21" navigable="false">      
+      <attribute id="51" name="groupPanes">        
+        <position height="0" width="0" x="279" y="15"/>      
+      </attribute>      
+      <multiplicity id="52" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="279" y="15"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="19" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="53">    
+    <bendpoint x="4576" y="1374"/>    
+    <bendpoint x="4888" y="1374"/>    
+    <bendpoint x="4882" y="1726"/>    
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="54" name="match">        
+        <position height="0" width="0" x="-4283" y="-4400"/>      
+      </attribute>      
+      <multiplicity id="55" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-4283" y="-4400"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="56">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="57" name="steuerung">        
+        <position height="0" width="0" x="1542" y="-879"/>      
+      </attribute>      
+      <multiplicity id="58" minimum="0" maximum="1">        
+        <position height="0" width="0" x="1542" y="-879"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="59">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="60" name="treeMatchStage">        
+        <position height="0" width="0" x="-1858" y="-1918"/>      
+      </attribute>      
+      <multiplicity id="61" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-1858" y="-1918"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="22" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="62">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="63" name="groupScreen">        
+        <position height="0" width="0" x="-687" y="-2681"/>      
+      </attribute>      
+      <multiplicity id="64" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-687" y="-2681"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="21" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="65">    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="66" name="groupPane">        
+        <position height="0" width="0" x="279" y="15"/>      
+      </attribute>      
+      <multiplicity id="67" minimum="0" maximum="1">        
+        <position height="0" width="0" x="279" y="15"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="19" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="68">    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="69" name="steuerung">        
+        <position height="0" width="0" x="610" y="-310"/>      
+      </attribute>      
+      <multiplicity id="70" minimum="0" maximum="1">        
+        <position height="0" width="0" x="610" y="-310"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="71">    
+    <end type="SOURCE" refId="19" navigable="false">      
+      <attribute id="72" name="gms">        
+        <position height="0" width="0" x="-1759" y="-251"/>      
+      </attribute>      
+      <multiplicity id="73" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="-1759" y="-251"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="18" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="74">    
+    <end type="SOURCE" refId="21" navigable="false">      
+      <attribute id="75" name="matches">        
+        <position height="0" width="0" x="-4283" y="-4400"/>      
+      </attribute>      
+      <multiplicity id="76" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="-4283" y="-4400"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="77">    
+    <bendpoint x="2854" y="2196"/>    
+    <bendpoint x="2842" y="1366"/>    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="9"/>  
+  </generalization>  
+  <generalization id="78">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="6"/>  
+  </generalization>  
+  <generalization id="79">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="12"/>  
+  </generalization>  
+  <realization id="80">    
+    <bendpoint x="2788" y="1342"/>    
+    <bendpoint x="2794" y="2182"/>    
+    <bendpoint x="2944" y="2428"/>    
+    <bendpoint x="4154" y="2446"/>    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <association id="81">    
+    <bendpoint x="3624" y="2378"/>    
+    <bendpoint x="4076" y="2348"/>    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="82" name="prevMatch2">        
         <position height="0" width="0" x="-4283" y="-4400"/>      
       </attribute>      
       <multiplicity id="83" minimum="0" maximum="1">        
@@ -474,240 +480,234 @@
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="84">    
-    <end type="SOURCE" refId="23" navigable="false">      
-      <attribute id="85" name="mannschaften">        
-        <position height="0" width="0" x="914" y="-2642"/>      
-      </attribute>      
-      <multiplicity id="86" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="914" y="-2642"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="8" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="87">    
-    <bendpoint x="2788" y="1342"/>    
-    <bendpoint x="2794" y="2182"/>    
-    <bendpoint x="2944" y="2428"/>    
-    <bendpoint x="4154" y="2446"/>    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="1"/>  
-  </realization>  
-  <association id="88">    
-    <bendpoint x="4576" y="1374"/>    
-    <bendpoint x="4888" y="1374"/>    
-    <bendpoint x="4882" y="1726"/>    
-    <end type="SOURCE" refId="12" navigable="false">      
-      <attribute id="89" name="match">        
-        <position height="0" width="0" x="-4283" y="-4400"/>      
-      </attribute>      
-      <multiplicity id="90" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-4283" y="-4400"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="91">    
     <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="92" name="groupScreen">        
-        <position height="0" width="0" x="-687" y="-2681"/>      
-      </attribute>      
-      <multiplicity id="93" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-687" y="-2681"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="21" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="94">    
-    <bendpoint x="4257" y="1454"/>    
-    <bendpoint x="4281" y="1845"/>    
-    <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="95" name="matches">        
-        <position height="0" width="0" x="-4283" y="-4400"/>      
-      </attribute>      
-      <multiplicity id="96" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="-4283" y="-4400"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="97">    
-    <bendpoint x="2917" y="1381"/>    
-    <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="98" name="sieger">        
-        <position height="22" width="57" x="3068" y="1544"/>      
-      </attribute>      
-      <multiplicity id="99" minimum="0" maximum="1">        
-        <position height="20" width="31" x="3077" y="1579"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="8" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="100">    
-    <end type="SOURCE" refId="24" navigable="false">      
-      <attribute id="101" name="matches">        
-        <position height="0" width="0" x="-4502" y="-4904"/>      
-      </attribute>      
-      <multiplicity id="102" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="-4502" y="-4904"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="103">    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="104" name="mannschaften">        
-        <position height="0" width="0" x="647" y="-2523"/>      
-      </attribute>      
-      <multiplicity id="105" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="647" y="-2523"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="8" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="106">    
-    <end type="SOURCE" refId="22"/>    
-    <end type="TARGET" refId="12"/>  
-  </generalization>  
-  <association id="107">    
-    <bendpoint x="3141" y="1366"/>    
-    <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="108" name="mannschaft1">        
-        <position height="22" width="101" x="3253" y="1548"/>      
-      </attribute>      
-      <multiplicity id="109" minimum="0" maximum="1">        
-        <position height="20" width="31" x="3270" y="1600"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="8" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="110">    
-    <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="111" name="steuerung">        
-        <position height="0" width="0" x="1542" y="-879"/>      
-      </attribute>      
-      <multiplicity id="112" minimum="0" maximum="1">        
-        <position height="0" width="0" x="1542" y="-879"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="11" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="113">    
-    <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="114" name="main">        
+      <attribute id="85" name="main">        
         <position height="0" width="0" x="1385" y="-887"/>      
       </attribute>      
-      <multiplicity id="115" minimum="0" maximum="1">        
+      <multiplicity id="86" minimum="0" maximum="1">        
         <position height="0" width="0" x="1385" y="-887"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="25" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="116">    
-    <bendpoint x="3006" y="1348"/>    
-    <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="117" name="mannschaft2">        
-        <position height="22" width="101" x="3169" y="1519"/>      
-      </attribute>      
-      <multiplicity id="118" minimum="0" maximum="1">        
-        <position height="20" width="31" x="3220" y="1587"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="8" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="119">    
-    <bendpoint x="3805" y="1761"/>    
-    <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="120" name="tRangliste">        
-        <position height="0" width="0" x="644" y="-1678"/>      
-      </attribute>      
-      <multiplicity id="121" minimum="0" maximum="1">        
-        <position height="0" width="0" x="644" y="-1678"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="23" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="122">    
-    <end type="SOURCE" refId="18"/>    
-    <end type="TARGET" refId="12"/>  
-  </generalization>  
-  <association id="123">    
-    <end type="SOURCE" refId="22" navigable="false">      
-      <attribute id="124" name="steuerung">        
-        <position height="0" width="0" x="610" y="-310"/>      
-      </attribute>      
-      <multiplicity id="125" minimum="0" maximum="1">        
-        <position height="0" width="0" x="610" y="-310"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="11" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="126">    
-    <bendpoint x="4898" y="1212"/>    
-    <end type="SOURCE" refId="17" navigable="false">      
-      <attribute id="127" name="matchStage">        
-        <position height="0" width="0" x="-2808" y="-726"/>      
-      </attribute>      
-      <multiplicity id="128" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-2808" y="-726"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="12" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="129">    
-    <bendpoint x="3624" y="2378"/>    
-    <bendpoint x="4076" y="2348"/>    
+  <association id="87">    
+    <bendpoint x="3616" y="2424"/>    
+    <bendpoint x="4130" y="2412"/>    
     <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="130" name="prevMatch2">        
+      <attribute id="88" name="prevMatch1">        
         <position height="0" width="0" x="-4283" y="-4400"/>      
       </attribute>      
-      <multiplicity id="131" minimum="0" maximum="1">        
+      <multiplicity id="89" minimum="0" maximum="1">        
         <position height="0" width="0" x="-4283" y="-4400"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="132">    
+  <association id="90">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="91" name="spielBaum">        
+        <position height="0" width="0" x="-4422" y="-619"/>      
+      </attribute>      
+      <multiplicity id="92" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-4422" y="-619"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="24" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="93">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="133" name="steuerung">        
+      <attribute id="94" name="steuerung">        
         <position height="0" width="0" x="1542" y="-879"/>      
       </attribute>      
-      <multiplicity id="134" minimum="0" maximum="1">        
+      <multiplicity id="95" minimum="0" maximum="1">        
         <position height="0" width="0" x="1542" y="-879"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="11" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="135">    
-    <end type="SOURCE" refId="19" navigable="false">      
-      <attribute id="136" name="gms">        
-        <position height="0" width="0" x="-1759" y="-251"/>      
+  <association id="96">    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="97" name="table">        
+        <position height="0" width="0" x="1103" y="-1693"/>      
       </attribute>      
-      <multiplicity id="137" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="-1759" y="-251"/>      
+      <multiplicity id="98" minimum="0" maximum="1">        
+        <position height="0" width="0" x="1103" y="-1693"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="18" navigable="true"/>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="99">    
+    <bendpoint x="4257" y="1454"/>    
+    <bendpoint x="4281" y="1845"/>    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="100" name="matches">        
+        <position height="0" width="0" x="-4283" y="-4400"/>      
+      </attribute>      
+      <multiplicity id="101" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="-4283" y="-4400"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="102">    
+    <bendpoint x="3805" y="1761"/>    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="103" name="tRangliste">        
+        <position height="0" width="0" x="644" y="-1678"/>      
+      </attribute>      
+      <multiplicity id="104" minimum="0" maximum="1">        
+        <position height="0" width="0" x="644" y="-1678"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="23" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="105">    
+    <end type="SOURCE" refId="20" navigable="false">      
+      <attribute id="106" name="tables">        
+        <position height="0" width="0" x="2095" y="-1648"/>      
+      </attribute>      
+      <multiplicity id="107" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="2095" y="-1648"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="108">    
+    <bendpoint x="3141" y="1366"/>    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="109" name="mannschaft1">        
+        <position height="22" width="101" x="3253" y="1548"/>      
+      </attribute>      
+      <multiplicity id="110" minimum="0" maximum="1">        
+        <position height="20" width="31" x="3270" y="1600"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="111">    
+    <bendpoint x="3092" y="1375"/>    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="112" name="verlierer">        
+        <position height="22" width="69" x="3150" y="1561"/>      
+      </attribute>      
+      <multiplicity id="113" minimum="0" maximum="1">        
+        <position height="20" width="31" x="3177" y="1587"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="114">    
+    <bendpoint x="3006" y="1348"/>    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="115" name="mannschaft2">        
+        <position height="22" width="101" x="3169" y="1519"/>      
+      </attribute>      
+      <multiplicity id="116" minimum="0" maximum="1">        
+        <position height="20" width="31" x="3220" y="1587"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="117">    
+    <bendpoint x="3528" y="536"/>    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="118" name="matchPane">        
+        <position height="0" width="0" x="1033" y="179"/>      
+      </attribute>      
+      <multiplicity id="119" minimum="0" maximum="1">        
+        <position height="0" width="0" x="1033" y="179"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="120">    
+    <end type="SOURCE" refId="24" navigable="false">      
+      <attribute id="121" name="steuerung">        
+        <position height="0" width="0" x="610" y="-310"/>      
+      </attribute>      
+      <multiplicity id="122" minimum="0" maximum="1">        
+        <position height="0" width="0" x="610" y="-310"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="123">    
+    <end type="SOURCE" refId="20" navigable="false">      
+      <attribute id="124" name="mannschaften">        
+        <position height="0" width="0" x="647" y="-2523"/>      
+      </attribute>      
+      <multiplicity id="125" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="647" y="-2523"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="126">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="127" name="gRangliste">        
+        <position height="22" width="83" x="3575" y="1316"/>      
+      </attribute>      
+      <multiplicity id="128" minimum="0" maximum="1">        
+        <position height="0" width="0" x="1361" y="-2094"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="129">    
+    <end type="SOURCE" refId="22" navigable="false">      
+      <attribute id="130" name="steuerung">        
+        <position height="0" width="0" x="610" y="-310"/>      
+      </attribute>      
+      <multiplicity id="131" minimum="0" maximum="1">        
+        <position height="0" width="0" x="610" y="-310"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="132">    
+    <end type="SOURCE" refId="19" navigable="false">      
+      <attribute id="133" name="matches">        
+        <position height="0" width="0" x="-4283" y="-4400"/>      
+      </attribute>      
+      <multiplicity id="134" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="-4283" y="-4400"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="135">    
+    <bendpoint x="4898" y="1212"/>    
+    <end type="SOURCE" refId="17" navigable="false">      
+      <attribute id="136" name="matchStage">        
+        <position height="0" width="0" x="-2808" y="-726"/>      
+      </attribute>      
+      <multiplicity id="137" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-2808" y="-726"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <generalization id="138">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="6"/>  
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="12"/>  
   </generalization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
