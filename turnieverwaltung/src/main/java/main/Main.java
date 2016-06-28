@@ -48,6 +48,7 @@ public class Main extends Application {
 	 * @return the scene 
 	 */
 	public Scene getScene(String key) {
+		
 		return this.scenes.get(key);
 	}
 
@@ -62,11 +63,9 @@ public class Main extends Application {
 	
 	
 	// exit on close für gui 
-	public void close() {
+	public void stop() {
 		logger.info("Programm close");
-		this.close();
-		Platform.setImplicitExit(false);
-		stage.close();
+		
 	}
 	
 }
