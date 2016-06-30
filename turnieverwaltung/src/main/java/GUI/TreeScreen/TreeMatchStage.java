@@ -22,14 +22,14 @@ import javafx.util.Duration;
 public class TreeMatchStage extends MatchStage {
 
 	private static final Logger logger = (Logger) LogManager.getLogger("TreeMatchStage");
-	
+
 	public enum Status {
 		clickable_white, unclickable_white, clickable_yellow, unclickable_yellow, clickable_orange, unclickable_orange, finished_green, hovered
 	}
 
 	private Status currentState = Status.clickable_white;
-	private Steuerung steuerung; 
-	
+	private Steuerung steuerung;
+
 	public TreeMatchStage(Steuerung steuerung, IMatch match) {
 		super(match);
 		this.steuerung = steuerung;
@@ -65,7 +65,7 @@ public class TreeMatchStage extends MatchStage {
 			this.switchState(Event.hide);
 		});
 	}
-	
+
 	private void starteSpiel() {
 
 		if (matchTimer == -1) {
@@ -91,21 +91,19 @@ public class TreeMatchStage extends MatchStage {
 						switchState(Event.click);
 					}
 				});
-				new WaitForButtonThread(match, this).start();
-			} else {
-				new WaitForButtonThread(match, this).start();
 			}
+			new WaitForButtonThread(match, this).start();
 		});
 
 		timeline.setCycleCount(matchTimer);
 		timeline.play();
 	}
-	
+
 	public synchronized void beendeSpiel() {
 		this.close();
 		try {
 			this.match.setSieger();
-		} catch(GameUnentschiedenException e) {
+		} catch (GameUnentschiedenException e) {
 			logger.error(e.getMessage());
 		}
 		Platform.runLater(new Runnable() {
