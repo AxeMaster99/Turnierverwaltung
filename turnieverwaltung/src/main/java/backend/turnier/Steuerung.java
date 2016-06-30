@@ -1,6 +1,8 @@
 package backend.turnier;
 
 import java.util.ArrayList;
+import java.util.Collections;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
 import GUI.SettingsScreen;
@@ -43,7 +45,7 @@ public class Steuerung {
 	private void erstelleMatches(ObservableList<String> teams) {
 		this.teams = teams;
 
-//		Collections.shuffle(teams); // beste ZEILE
+		Collections.shuffle(teams);
 
 		this.berechneSpaltenUndMatches(this.teams.size());
 		this.erstelleSeite(anzahlMatchesZus, 0, this.teams.size() / 2);

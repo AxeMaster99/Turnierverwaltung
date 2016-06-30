@@ -1,34 +1,35 @@
-10:28:02 [main] INFO  Main - Programm start
-10:28:12 [JavaFX Application Thread] INFO  SettingsScreen - Anzahl Teams: 32, Matchdauer: 5
-10:28:15 [JavaFX Application Thread] INFO  TeamScreen - Turnier-Type gesetzt auf: KO-Turnier
-10:28:15 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 1: Mannschaft 1 gegen Mannschaft 2
-10:28:15 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 2: Mannschaft 3 gegen Mannschaft 4
-10:28:15 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 3: Mannschaft 5 gegen Mannschaft 6
-10:28:15 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 4: Mannschaft 7 gegen Mannschaft 8
-10:28:15 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 5: Mannschaft 9 gegen Mannschaft 10
-10:28:15 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 6: Mannschaft 11 gegen Mannschaft 12
-10:28:15 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 7: Mannschaft 13 gegen Mannschaft 14
-10:28:15 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 8: Mannschaft 15 gegen Mannschaft 16
-10:28:15 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 9:  Sieger Match 1 gegen Sieger Match 2
-10:28:15 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 10:  Sieger Match 3 gegen Sieger Match 4
-10:28:15 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 11:  Sieger Match 5 gegen Sieger Match 6
-10:28:15 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 12:  Sieger Match 7 gegen Sieger Match 8
-10:28:15 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 13:  Sieger Match 9 gegen Sieger Match 10
-10:28:15 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 14:  Sieger Match 11 gegen Sieger Match 12
-10:28:15 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 15:  Sieger Match 13 gegen Sieger Match 14
-10:28:15 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 16: Mannschaft 17 gegen Mannschaft 18
-10:28:15 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 17: Mannschaft 19 gegen Mannschaft 20
-10:28:15 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 18: Mannschaft 21 gegen Mannschaft 22
-10:28:15 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 19: Mannschaft 23 gegen Mannschaft 24
-10:28:15 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 20: Mannschaft 25 gegen Mannschaft 26
-10:28:15 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 21: Mannschaft 27 gegen Mannschaft 28
-10:28:15 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 22: Mannschaft 29 gegen Mannschaft 30
-10:28:15 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 23: Mannschaft 31 gegen Mannschaft 32
-10:28:15 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 24:  Sieger Match 16 gegen Sieger Match 17
-10:28:15 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 25:  Sieger Match 18 gegen Sieger Match 19
-10:28:15 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 26:  Sieger Match 20 gegen Sieger Match 21
-10:28:15 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 27:  Sieger Match 22 gegen Sieger Match 23
-10:28:15 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 28:  Sieger Match 24 gegen Sieger Match 25
-10:28:15 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 29:  Sieger Match 26 gegen Sieger Match 27
-10:28:15 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 30:  Sieger Match 28 gegen Sieger Match 29
-10:28:15 [JavaFX Application Thread] INFO  Steuerung - Finale: Begegnung Nr. 31:  Sieger Match 15 gegen Sieger Match 30
+12:23:18 [main] INFO  Main - Programm start
+12:23:28 [JavaFX Application Thread] INFO  SettingsScreen - Anzahl Teams: 32, Matchdauer: 5
+12:23:30 [JavaFX Application Thread] INFO  TeamScreen - Turnier-Type gesetzt auf: KO-Turnier
+12:23:30 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 1: Mannschaft 26 gegen Mannschaft 6
+12:23:30 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 2: Mannschaft 7 gegen Mannschaft 24
+12:23:30 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 3: Mannschaft 14 gegen Mannschaft 18
+12:23:30 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 4: Mannschaft 5 gegen Mannschaft 27
+12:23:30 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 5: Mannschaft 1 gegen Mannschaft 16
+12:23:30 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 6: Mannschaft 3 gegen Mannschaft 15
+12:23:30 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 7: Mannschaft 25 gegen Mannschaft 9
+12:23:30 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 8: Mannschaft 10 gegen Mannschaft 29
+12:23:30 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 9:  Sieger Match 1 gegen Sieger Match 2
+12:23:30 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 10:  Sieger Match 3 gegen Sieger Match 4
+12:23:30 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 11:  Sieger Match 5 gegen Sieger Match 6
+12:23:30 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 12:  Sieger Match 7 gegen Sieger Match 8
+12:23:30 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 13:  Sieger Match 9 gegen Sieger Match 10
+12:23:30 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 14:  Sieger Match 11 gegen Sieger Match 12
+12:23:30 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 15:  Sieger Match 13 gegen Sieger Match 14
+12:23:30 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 16: Mannschaft 32 gegen Mannschaft 20
+12:23:30 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 17: Mannschaft 21 gegen Mannschaft 13
+12:23:30 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 18: Mannschaft 23 gegen Mannschaft 11
+12:23:30 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 19: Mannschaft 2 gegen Mannschaft 8
+12:23:30 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 20: Mannschaft 22 gegen Mannschaft 31
+12:23:30 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 21: Mannschaft 30 gegen Mannschaft 28
+12:23:30 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 22: Mannschaft 19 gegen Mannschaft 12
+12:23:30 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 23: Mannschaft 17 gegen Mannschaft 4
+12:23:30 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 24:  Sieger Match 16 gegen Sieger Match 17
+12:23:30 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 25:  Sieger Match 18 gegen Sieger Match 19
+12:23:30 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 26:  Sieger Match 20 gegen Sieger Match 21
+12:23:30 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 27:  Sieger Match 22 gegen Sieger Match 23
+12:23:30 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 28:  Sieger Match 24 gegen Sieger Match 25
+12:23:30 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 29:  Sieger Match 26 gegen Sieger Match 27
+12:23:30 [JavaFX Application Thread] INFO  Steuerung - Begegnung Nr. 30:  Sieger Match 28 gegen Sieger Match 29
+12:23:30 [JavaFX Application Thread] INFO  Steuerung - Finale: Begegnung Nr. 31:  Sieger Match 15 gegen Sieger Match 30
+12:23:35 [JavaFX Application Thread] INFO  Main - Programm close

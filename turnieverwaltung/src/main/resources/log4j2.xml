@@ -18,8 +18,6 @@
 
         <!-- You my want to define class or package level per-logger rules -->
         <Root level="info">
-            <AppenderRef ref="file" level="TRACE"/>
-     		<AppenderRef ref="file" level="DEBUG"/>
      		<AppenderRef ref="file" level="INFO"/>
      		<AppenderRef ref="file" level="WARN"/>
      		<AppenderRef ref="file" level="ERROR"/>
