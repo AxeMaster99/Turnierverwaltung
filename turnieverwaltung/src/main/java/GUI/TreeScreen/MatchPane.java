@@ -98,12 +98,7 @@ public class MatchPane extends Pane {
 				}
 				this.treeMatchStage.show();
 				
-				//wozu ?
 				logger.info(this.match.getMannschaft1().getName() + " gegen " + this.match.getMannschaft2().getName());
-
-				
-				
-				
 				this.treeMatchStage.switchState(Event.click);
 			}
 		});

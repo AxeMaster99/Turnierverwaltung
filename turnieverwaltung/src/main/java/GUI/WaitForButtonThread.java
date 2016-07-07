@@ -19,7 +19,7 @@ public class WaitForButtonThread extends Thread {
 	@Override
 	public void run() {
 		
-		while (this.match.getToreM1() == this.match.getToreM2()) {} // don't do anything
+		while (this.match.getToreM1() == this.match.getToreM2()) {} // nix tun solange Spiel noch Unentschieden
 		
 		Platform.runLater(new Runnable() {
 			@Override

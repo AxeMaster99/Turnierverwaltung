@@ -60,8 +60,6 @@ public class Main extends Application {
 		return this.steuerung;
 	}
 	
-	
-	
 	// exit on close für gui 
 	public void stop() {
 		logger.info("Programm close");

@@ -229,6 +229,8 @@ public class TreeScreen extends Pane {
 		cnt=0;
 
 		/*
+		 * Wurde vor Einführung der Streams verwendet!
+		 * 
 		 * for (int i = 0; i < this.matches.size() / 2; i++) { if
 		 * (this.matches.get(i) instanceof FolgeMatch && !(this.matches.get(i)
 		 * instanceof FinalMatch)) {

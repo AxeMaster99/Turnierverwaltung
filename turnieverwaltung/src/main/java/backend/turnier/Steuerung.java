@@ -39,7 +39,7 @@ public class Steuerung {
 	}
 
 	public Steuerung() {
-//for testing
+		//for testing
 		}
 
 	private void erstelleMatches(ObservableList<String> teams) {
@@ -53,9 +53,7 @@ public class Steuerung {
 		this.erstelleFinale();
 
 		for (int i = 0; i < matches.size(); i++) {
-			
-			//macht der was ?
-			
+						
 			logger.info(this.matches.get(i).toString());
 		}
 	}
@@ -106,7 +104,8 @@ public class Steuerung {
 
 			IMatch pm1 = matches.get(actMatch);
 			IMatch pm2 = matches.get(actMatch + 1);
-			// beste Fabrik
+			
+			//Fabrikaufruf
 			this.matches.add(MatchFactory.build(this, pm1, pm2));
 
 			actMatch = actMatch + 2;

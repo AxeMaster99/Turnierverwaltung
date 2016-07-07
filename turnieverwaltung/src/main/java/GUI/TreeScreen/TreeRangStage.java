@@ -66,8 +66,9 @@ public class TreeRangStage extends Stage {
 		 * for (int i = matches.size() / 2; i <= ((matches.size() / 4) * 3) + 1;
 		 * i++) { mannschaften.add(matches.get(i).getMannschaft1());
 		 * mannschaften.add(matches.get(i).getMannschaft2()); }
+		 * 
+		 * obiges vor Einführung der Streams in der Vorlesung verwendet
 		 */
-		
 		matches
 				.stream()
 				.filter(match -> !(match instanceof FolgeMatch || match instanceof FinalMatch))

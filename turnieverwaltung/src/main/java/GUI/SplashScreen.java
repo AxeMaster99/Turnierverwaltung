@@ -38,21 +38,5 @@ public class SplashScreen extends Pane {
 		}));
 		timer.setCycleCount(Timeline.INDEFINITE);
 		timer.play();
-		
-		/*
-		Button b = new Button("test");
-		this.getChildren().add(b);
-		
-		b.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent e) {
-				
-				main.getStage().setScene(main.getScreen("settings"));
-				
-			}
-		});
-		*/
-
 	}
-	
 }

@@ -26,14 +26,17 @@ public abstract class MatchStage extends Stage {
 	protected GridPane grid = new GridPane();
 
 	protected Timeline timeline;
-	protected int matchTimer = -1; // Every Game gets his individual timer,
-									// initial value -1 to check if timer has
-									// had runtime before on resuming a paused
-									// Match
-	// private final double SPIELMINUTEN = 2; TODO: Spielminuten enablen
-	protected static int timerdauer = 5; // bisher aus Testgründen noch sekunden,
-										// kann bei "Release" auf Minuten
-										// gesetzt werden
+	protected int matchTimer = -1; 
+	/*	Every Game gets his individual timer,
+	 * initial value -1 to check if timer has
+	 * had runtime before on resuming a paused
+	 * Match*/
+	// private final double SPIELMINUTEN = 2; 
+	protected static int timerdauer = 5; 
+	/* TODO: Spielminuten enablen
+	 * bisher aus Testgründen noch sekunden,
+	 * kann bei "Release" auf Minuten
+	 * gesetzt werden*/
 
 	protected Label l_Spielstand = new Label();
 	protected Label l_Mannschaft1 = new Label();

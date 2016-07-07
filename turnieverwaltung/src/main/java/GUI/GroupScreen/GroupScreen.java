@@ -1,6 +1,7 @@
 package GUI.GroupScreen;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
@@ -111,8 +112,8 @@ public class GroupScreen extends Pane {
 		GridPane.setMargin(menubar, new Insets(0, 0, 20, 0));
 
 		this.teamnamen = teamnamen;
-		// Collections.shuffle(this.teamnamen);
-
+		Collections.shuffle(this.teamnamen);
+		
 		/*
 		 * for (int i = 0; i < this.teamnamen.size(); i++) { teams.add(new
 		 * Mannschaft(this.teamnamen.get(i))); }
@@ -139,7 +140,6 @@ public class GroupScreen extends Pane {
 		 * logger.info(this.matches.get(i).toString()); }
 		 */
 		
-		//wo zu ?
 		matches.stream().forEach(match -> logger.info(match.toString()));
 
 		int colBot = 0;

@@ -28,7 +28,7 @@ public class Group {
 					sieger.add(team.getName());
 				});
 
-		/*Collections.sort(this.mannschaften, new Comparator<Mannschaft>() {
+		/*  Collections.sort(this.mannschaften, new Comparator<Mannschaft>() {
 			@Override
 			public int compare(Mannschaft m1, Mannschaft m2) {
 
@@ -40,7 +40,6 @@ public class Group {
 				} else {
 					return 1;
 				}
-
 			}
 		});*/
 
